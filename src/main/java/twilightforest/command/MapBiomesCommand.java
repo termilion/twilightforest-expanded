@@ -63,7 +63,6 @@ public class MapBiomesCommand {
 
 		BIOME2COLOR.put(TFBiomes.HIGHLANDS.location(), new BiomeMapColor(100, 65, 0));
 		BIOME2COLOR.put(TFBiomes.THORNLANDS.location(), new BiomeMapColor(128, 100, 90));
-		BIOME2COLOR.put(TFBiomes.FINAL_PLATEAU.location(), new BiomeMapColor(128, 128, 128));
 	}
 
 	public LiteralArgumentBuilder<CommandSourceStack> register() {

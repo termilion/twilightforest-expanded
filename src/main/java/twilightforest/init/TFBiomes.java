@@ -47,7 +47,6 @@ public class TFBiomes {
 	public static final ResourceKey<Biome> HIGHLANDS_UNDERGROUND = makeKey("highlands_underground");
 
 	public static final ResourceKey<Biome> THORNLANDS = makeKey("thornlands");
-	public static final ResourceKey<Biome> FINAL_PLATEAU = makeKey("final_plateau");
 
 	public static final ResourceKey<Biome> UNDERGROUND = makeKey("underground");
 
@@ -84,7 +83,6 @@ public class TFBiomes {
 		context.register(HIGHLANDS, biomeWithDefaults(defaultAmbientBuilder(), defaultMobSpawning(), highlandsGen(featureGetter, carverGetter)).temperature(0.4F).downfall(0.7F).build());
 		context.register(HIGHLANDS_UNDERGROUND, biomeWithDefaults(defaultAmbientBuilder(), undergroundMobSpawning(), highlandsUndergroundGen(featureGetter, carverGetter)).temperature(0.35F).downfall(0.0F).build());
 		context.register(THORNLANDS, biomeWithDefaults(defaultAmbientBuilder(), new MobSpawnSettings.Builder(), thornlandsGen(featureGetter, carverGetter)).temperature(0.3F).downfall(0.2F).build());
-		context.register(FINAL_PLATEAU, biomeWithDefaults(defaultAmbientBuilder(), ravenSpawning(), new BiomeGenerationSettings.Builder(featureGetter, carverGetter)).temperature(1.0F).downfall(0.2F).build());
 
 		context.register(UNDERGROUND, biomeWithDefaults(defaultAmbientBuilder(), undergroundMobSpawning(), undergroundGen(featureGetter, carverGetter)).temperature(0.7F).downfall(0.0F).build());
 	}

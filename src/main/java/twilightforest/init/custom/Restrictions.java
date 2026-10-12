@@ -23,7 +23,6 @@ public class Restrictions {
 
 	public static final ResourceKey<Restriction> DARK_FOREST = makeKey(TFBiomes.DARK_FOREST.location());
 	public static final ResourceKey<Restriction> DARK_FOREST_CENTER = makeKey(TFBiomes.DARK_FOREST_CENTER.location());
-	public static final ResourceKey<Restriction> FINAL_PLATEAU = makeKey(TFBiomes.FINAL_PLATEAU.location());
 	public static final ResourceKey<Restriction> FIRE_SWAMP = makeKey(TFBiomes.FIRE_SWAMP.location());
 	public static final ResourceKey<Restriction> GLACIER = makeKey(TFBiomes.GLACIER.location());
 	public static final ResourceKey<Restriction> HIGHLANDS = makeKey(TFBiomes.HIGHLANDS.location());
@@ -38,13 +37,12 @@ public class Restrictions {
 	public static void bootstrap(BootstrapContext<Restriction> context) {
 		context.register(DARK_FOREST, new Restriction(TFStructures.KNIGHT_STRONGHOLD, Enforcements.DARKNESS.getKey(), 0.0F, asStack(TFBlocks.LICH_TOWER_MINIATURE_STRUCTURE), List.of(TwilightForestMod.prefix("progress_lich"))));
 		context.register(DARK_FOREST_CENTER, new Restriction(TFStructures.DARK_TOWER, Enforcements.DARKNESS.getKey(), 0.0F, asStack(TFBlocks.KNIGHT_PHANTOM_TROPHY), List.of(TwilightForestMod.prefix("progress_knights"))));
-		context.register(FINAL_PLATEAU, new Restriction(TFStructures.FINAL_CASTLE, Enforcements.ACID_RAIN.getKey(), 1.5F, asStack(TFItems.LAMP_OF_CINDERS), List.of(TwilightForestMod.prefix("progress_troll"))));
 		context.register(FIRE_SWAMP, new Restriction(TFStructures.HYDRA_LAIR, Enforcements.FIRE.getKey(), 8.0F, asStack(TFItems.MEEF_STROGANOFF), List.of(TwilightForestMod.prefix("progress_labyrinth"))));
 		context.register(GLACIER, new Restriction(TFStructures.AURORA_PALACE, Enforcements.FROST.getKey(), 1.0F, asStack(TFItems.ALPHA_YETI_FUR), List.of(TwilightForestMod.prefix("progress_yeti"))));
 		context.register(HIGHLANDS, new Restriction(TFStructures.TROLL_CAVE, Enforcements.ACID_RAIN.getKey(), 0.5F, asStack(TFBlocks.UBEROUS_SOIL), List.of(TwilightForestMod.prefix("progress_merge"))));
 		context.register(SNOWY_FOREST, new Restriction(TFStructures.YETI_CAVE, Enforcements.FROST.getKey(), 0.0F, asStack(TFBlocks.LICH_TOWER_MINIATURE_STRUCTURE), List.of(TwilightForestMod.prefix("progress_lich"))));
 		context.register(SWAMP, new Restriction(TFStructures.LABYRINTH, Enforcements.HUNGER.getKey(), 1.0F, asStack(TFBlocks.LICH_TOWER_MINIATURE_STRUCTURE), List.of(TwilightForestMod.prefix("progress_lich"))));
-		context.register(THORNLANDS, new Restriction(TFStructures.FINAL_CASTLE, Enforcements.ACID_RAIN.getKey(), 1.0F, asStack(TFItems.LAMP_OF_CINDERS), List.of(TwilightForestMod.prefix("progress_troll"))));
+		context.register(THORNLANDS, new Restriction(null, Enforcements.ACID_RAIN.getKey(), 1.0F, asStack(TFItems.LAMP_OF_CINDERS), List.of(TwilightForestMod.prefix("progress_troll"))));
 	}
 
 	public static ItemStack asStack(ItemLike itemLike) {

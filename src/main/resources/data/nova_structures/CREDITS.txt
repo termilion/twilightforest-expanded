@@ -1,0 +1,17 @@
+The files in data/nova_structures are taken from the "Dungeons and Taverns" datapack (namespace nova_structures)
+by Nova Wostra (lead developer, structure builds and placement), Walls (loot tables and enchantments),
+Konci, Badooga and Whity Lee.
+
+Imported: undead_crypt templates, template pools, processor list and loot tables.
+Changes: enchanted books in chests/undead_crypts_grave draw from #minecraft:on_random_loot instead of
+#nova_structures:shrine (the pack's custom enchantments are not included). Placement and height are defined by
+twilightforest:undead_crypt.
+chests/undead_crypts_grave also got a second pool with the items of minecraft:chests/end_city_treasure
+(one item in about 20% of the chests).
+worldgen/template_pool/undead_crypt_mob was rewritten to use Twilight Forest mobs and spawners
+(templates in data/twilightforest/structure/undead_crypt); the original skeleton/zombie/spider mob and spawner
+templates were removed. The keep skeleton templates copy the skeletons of the ATi Structures dark_keep.
+The central spawners of undead_crypt_spawner_room_1..3 now spawn death tomes, minotaurs, king spiders and strays.
+The main pool of chests/undead_crypts_grave additionally contains inline copies of twilightforest:stronghold_cache,
+stronghold_room and darktower_cache reduced to their Twilight Forest items (3/4 of the chests); the original crypt
+loot keeps 1/4. The copies do not follow later changes of the Twilight Forest tables.

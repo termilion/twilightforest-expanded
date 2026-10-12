@@ -108,6 +108,8 @@ public class TFStructurePieceTypes {
 	public static final DeferredHolder<StructurePieceType, StructurePieceType> LICH_YARD_GRAVE = registerPieceType("TFLT" + "Grave", LichYardGrave::new);
 	public static final DeferredHolder<StructurePieceType, StructurePieceType> LICH_YARD_LIGHTS = registerPieceType("TFLT" + "Light", LichYardLights::new);
 
+	public static final DeferredHolder<StructurePieceType, StructurePieceType> SPIRAL_STAIR_SHAFT = registerPieceType("TFSpiralStairShaft", SpiralStairShaftPiece::new);
+
 	// Labyrinth
 	//public static final DeferredHolder<StructurePieceType, StructurePieceType> TFLr = registerPieceType("TFLr", StructureStartLabyrinth::new);
 	public static final DeferredHolder<StructurePieceType, StructurePieceType> TFMMC = registerPieceType("TFMMC", MazeCorridorComponent::new);

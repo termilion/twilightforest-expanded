@@ -34,6 +34,8 @@ public class TFStructures {
 	public static final ResourceKey<Structure> CAMP = registerKey("camp");
 	public static final ResourceKey<Structure> MUSHROOM_TOWER = registerKey("mushroom_tower");
 	public static final ResourceKey<Structure> QUEST_ISLAND = registerKey("quest_island");
+	// Defined as static data in src/main/resources, since its template pools are imported from Dungeons and Taverns and unknown to datagen
+	public static final ResourceKey<Structure> UNDEAD_CRYPT = registerKey("undead_crypt");
 	public static final ResourceKey<Structure> DRUID_GROVE = registerKey("druid_grove");
 	public static final ResourceKey<Structure> FLOATING_RUINS = registerKey("floating_ruins");
 	public static final ResourceKey<Structure> WORLD_TREE = registerKey("world_tree");
@@ -62,7 +64,6 @@ public class TFStructures {
 		context.register(AURORA_PALACE, AuroraPalaceStructure.buildAuroraPalaceConfig(context));
 		context.register(TROLL_CAVE, TrollCaveStructure.buildTrollCaveConfig(context));
 		context.register(GIANT_HOUSE, GiantHouseStructure.buildGiantHouseConfig(context));
-		context.register(FINAL_CASTLE, FinalCastleStructure.buildFinalCastleConfig(context));
 
 		context.register(MUSHROOM_TOWER, MushroomTowerStructure.buildStructureConfig(context));
 	}

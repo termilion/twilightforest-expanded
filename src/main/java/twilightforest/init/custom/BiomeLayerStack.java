@@ -49,16 +49,15 @@ public class BiomeLayerStack {
 			TFBiomes.LAKE,
 			TFBiomes.DENSE_MUSHROOM_FOREST,
 			TFBiomes.ENCHANTED_FOREST,
-			TFBiomes.CLEARING,
-			TFBiomes.SPOOKY_FOREST
+			TFBiomes.CLEARING
 		));
 
-		biomes = new KeyBiomesLayer.Factory(1000L, List.of(TFBiomes.GLACIER, TFBiomes.FIRE_SWAMP, TFBiomes.DARK_FOREST_CENTER, TFBiomes.FINAL_PLATEAU), Holder.direct(biomes));
+		biomes = new KeyBiomesLayer.Factory(1000L, List.of(TFBiomes.GLACIER, TFBiomes.FIRE_SWAMP, TFBiomes.DARK_FOREST_CENTER, TFBiomes.SPOOKY_FOREST), Holder.direct(biomes));
 		biomes = new CompanionBiomesLayer.Factory(1000L, List.of(
 			Pair.of(TFBiomes.FIRE_SWAMP, TFBiomes.SWAMP),
 			Pair.of(TFBiomes.GLACIER, TFBiomes.SNOWY_FOREST),
 			Pair.of(TFBiomes.DARK_FOREST_CENTER, TFBiomes.DARK_FOREST),
-			Pair.of(TFBiomes.FINAL_PLATEAU, TFBiomes.HIGHLANDS)
+			Pair.of(TFBiomes.SPOOKY_FOREST, TFBiomes.HIGHLANDS)
 		), Holder.direct(biomes));
 
 		biomes = new ZoomLayer.Factory(1000L, false, Holder.direct(biomes));
@@ -66,7 +65,10 @@ public class BiomeLayerStack {
 
 		biomes = new StabilizeLayer.Factory(700L, Holder.direct(biomes));
 
-		biomes = new BorderLayer.Factory(500L, TFBiomes.FINAL_PLATEAU, TFBiomes.THORNLANDS, Holder.direct(biomes));
+		// Make room for large structures inside the key biome slot formerly held by the Final Plateau
+		biomes = new ExpandBiomeLayer.Factory(600L, List.of(TFBiomes.SPOOKY_FOREST), Holder.direct(biomes));
+
+		biomes = new BorderLayer.Factory(500L, TFBiomes.SPOOKY_FOREST, TFBiomes.THORNLANDS, Holder.direct(biomes));
 
 		biomes = new ZoomLayer.Factory(1002L, false, Holder.direct(biomes));
 		biomes = new ZoomLayer.Factory(1003L, false, Holder.direct(biomes));
@@ -80,7 +82,7 @@ public class BiomeLayerStack {
 			Pair.of(TFBiomes.MUSHROOM_FOREST, TFBiomes.DENSE_MUSHROOM_FOREST),
 			Pair.of(TFBiomes.SWAMP, TFBiomes.FIRE_SWAMP),
 			Pair.of(TFBiomes.DARK_FOREST, TFBiomes.DARK_FOREST_CENTER),
-			Pair.of(TFBiomes.HIGHLANDS, TFBiomes.FINAL_PLATEAU)
+			Pair.of(TFBiomes.HIGHLANDS, TFBiomes.SPOOKY_FOREST)
 		), randomBiomes);
 		riverLayer = new SmoothLayer.Factory(7000L, Holder.direct(riverLayer));
 

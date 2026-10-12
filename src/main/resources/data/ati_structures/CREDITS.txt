@@ -1,0 +1,5 @@
+The files in data/ati_structures are taken from the "ATi Structures" datapack (namespace ati_structures).
+The datapack ships without author or license information; rights must be clarified before distribution.
+
+Imported: dark_keep (template, pool, loot tables it references) and its terrain_small foundation.
+Used as the surface entrance of twilightforest:undead_crypt, connected by twilightforest's spiral staircase piece.

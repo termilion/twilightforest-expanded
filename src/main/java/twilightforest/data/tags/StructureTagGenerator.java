@@ -38,8 +38,7 @@ public class StructureTagGenerator extends StructureTagsProvider {
 			TFStructures.DARK_TOWER,
 			TFStructures.YETI_CAVE,
 			TFStructures.AURORA_PALACE,
-			TFStructures.TROLL_CAVE,
-			TFStructures.FINAL_CASTLE
+			TFStructures.TROLL_CAVE
 		);
 	}
 }

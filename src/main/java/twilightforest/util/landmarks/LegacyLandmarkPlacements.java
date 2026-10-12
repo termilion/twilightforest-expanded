@@ -22,6 +22,7 @@ public class LegacyLandmarkPlacements {
 	private static final Map<ResourceKey<Biome>, ResourceKey<Structure>> BIOME_2_STRUCTURES = new ImmutableMap.Builder<ResourceKey<Biome>, ResourceKey<Structure>>()
 		//.put(TFBiomes.DENSE_MUSHROOM_FOREST.location(), MUSHROOM_TOWER)
 		.put(Biomes.MANGROVE_SWAMP, TFStructures.LICH_TOWER)
+		.put(TFBiomes.SPOOKY_FOREST, TFStructures.UNDEAD_CRYPT)
 		.put(TFBiomes.ENCHANTED_FOREST, TFStructures.QUEST_GROVE)
 		.put(TFBiomes.LAKE, TFStructures.QUEST_ISLAND)
 		.put(TFBiomes.SWAMP, TFStructures.LABYRINTH)
@@ -31,7 +32,6 @@ public class LegacyLandmarkPlacements {
 		.put(TFBiomes.SNOWY_FOREST, TFStructures.YETI_CAVE)
 		.put(TFBiomes.GLACIER, TFStructures.AURORA_PALACE)
 		.put(TFBiomes.HIGHLANDS, TFStructures.TROLL_CAVE)
-		.put(TFBiomes.FINAL_PLATEAU, TFStructures.FINAL_CASTLE)
 		.build();
 
 	public static final SimpleWeightedRandomList<ResourceKey<Structure>> VARIETY_LANDMARKS = Util.make(() -> {

@@ -32,7 +32,7 @@ public final class BiomeMaker extends BiomeHelper {
 			biomeColumnWithUnderground(0.0D, 1.75D, 1.0D, biomeRegistry, TFBiomes.DENSE_MUSHROOM_FOREST, undergroundBiome),
 
 			biomeColumnWithUnderground(-0.5D, 4.0D, 1.0D, biomeRegistry, TFBiomes.ENCHANTED_FOREST, undergroundBiome),
-			biomeColumnWithUnderground(0.0D, 2.25D, 1.0D, biomeRegistry, TFBiomes.SPOOKY_FOREST, undergroundBiome),
+			biomeColumnWithUnderground(5.5D, 2.25D, 1.0D, biomeRegistry, TFBiomes.SPOOKY_FOREST, undergroundBiome),
 
 			biomeColumnWithUnderground(-0.6D, 1.7D, 1.0D, biomeRegistry, TFBiomes.SWAMP, undergroundBiome),
 			biomeColumnWithUnderground(-0.6D, 1.7D, 1.0D, biomeRegistry, Biomes.MANGROVE_SWAMP, undergroundBiome),
@@ -45,8 +45,7 @@ public final class BiomeMaker extends BiomeHelper {
 			biomeColumnWithUnderground(-0.05D, 1.75D, 1.0D, biomeRegistry, TFBiomes.GLACIER, undergroundBiome),
 
 			biomeColumnWithUnderground(3.0D, 2.25D, 0.135D, biomeRegistry, TFBiomes.HIGHLANDS, biomeRegistry.getOrThrow(TFBiomes.HIGHLANDS_UNDERGROUND)),
-			biomeColumnToBedrock(5.5D, 1.75D, 1.15D, biomeRegistry, TFBiomes.THORNLANDS),
-			biomeColumnToBedrock(12.0D, 0.75D, 1.0D, biomeRegistry, TFBiomes.FINAL_PLATEAU)
+			biomeColumnToBedrock(5.5D, 1.75D, 1.15D, biomeRegistry, TFBiomes.THORNLANDS)
 		);
 	}
 

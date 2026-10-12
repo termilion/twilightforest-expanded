@@ -64,7 +64,7 @@ public class TFSurfaceRules {
 
 	@NotNull
 	private static SurfaceRules.RuleSource deadrockSurface() {
-		//thornlands/plateau has no caves and deadrock instead of stone
+		//thornlands has no caves and deadrock instead of stone
 		SurfaceRules.RuleSource deadrockTerrain = SurfaceRules.sequence(
 			SurfaceRules.ifTrue(SurfaceRules.ON_FLOOR, WEATHERED_DEADROCK),
 			SurfaceRules.ifTrue(
@@ -75,7 +75,7 @@ public class TFSurfaceRules {
 		);
 
 		//check if we're in the deadrock biomes
-		return SurfaceRules.ifTrue(SurfaceRules.isBiome(TFBiomes.THORNLANDS, TFBiomes.FINAL_PLATEAU), deadrockTerrain);
+		return SurfaceRules.ifTrue(SurfaceRules.isBiome(TFBiomes.THORNLANDS), deadrockTerrain);
 	}
 
 	@NotNull

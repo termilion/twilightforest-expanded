@@ -277,7 +277,7 @@ public class TFAdvancementGenerator implements AdvancementProvider.AdvancementGe
 				Component.translatable("advancement.twilightforest.progression_end.desc"),
 				null, AdvancementType.GOAL, true, false, false)
 			.addCriterion("previous_progression", this.advancementTrigger(lamp))
-			.addCriterion("plateau", PlayerTrigger.TriggerInstance.located(LocationPredicate.Builder.inBiome(biomes.getOrThrow(TFBiomes.FINAL_PLATEAU))))
+			.addCriterion("spooky_forest", PlayerTrigger.TriggerInstance.located(LocationPredicate.Builder.inBiome(biomes.getOrThrow(TFBiomes.SPOOKY_FOREST))))
 			.save(consumer, "twilightforest:progression_end");
 
 //		AdvancementHolder thornlands = Advancement.Builder.advancement().parent(lamp).display(

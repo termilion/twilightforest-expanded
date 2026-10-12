@@ -39,7 +39,6 @@ public class TFStructureSets {
 	public static final ResourceKey<StructureSet> AURORA_PALACE = registerKey("aurora_palace");
 	public static final ResourceKey<StructureSet> TROLL_CAVE = registerKey("troll_cave");
 	public static final ResourceKey<StructureSet> GIANT_HOUSE = registerKey("giant_house");
-	public static final ResourceKey<StructureSet> FINAL_CASTLE = registerKey("final_castle");
 
 	public static final ResourceKey<StructureSet> MUSHROOM_TOWER = registerKey("mushroom_tower");
 	public static final ResourceKey<StructureSet> QUEST_ISLAND = registerKey("quest_island");
@@ -84,7 +83,6 @@ public class TFStructureSets {
 		context.register(AURORA_PALACE, new StructureSet(structures.getOrThrow(TFStructures.AURORA_PALACE), LandmarkGridPlacement.forceStructureForCenters()));
 		context.register(TROLL_CAVE, new StructureSet(structures.getOrThrow(TFStructures.TROLL_CAVE), LandmarkGridPlacement.forceStructureForCenters()));
 		context.register(GIANT_HOUSE, new StructureSet(structures.getOrThrow(TFStructures.GIANT_HOUSE), LandmarkGridPlacement.forceStructureForCenters()));
-		context.register(FINAL_CASTLE, new StructureSet(structures.getOrThrow(TFStructures.FINAL_CASTLE), LandmarkGridPlacement.forceStructureForCenters()));
 
 		// uncomment to include in mod-internal datapack, for worldgen
 		//context.register(MUSHROOM_TOWER, new StructureSet(structures.getOrThrow(TFStructures.MUSHROOM_TOWER), LandmarkGridPlacement.forceStructureForCenters()));
