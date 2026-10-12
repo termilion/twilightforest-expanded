@@ -38,6 +38,7 @@ public class BiomeTagGenerator extends BiomeTagsProvider {
 	public static final TagKey<Biome> VALID_GIANT_HOUSE_BIOMES = TagKey.create(Registries.BIOME, TwilightForestMod.prefix("valid_giant_house_biomes"));
 	public static final TagKey<Biome> VALID_UNDEAD_CRYPT_BIOMES = TagKey.create(Registries.BIOME, TwilightForestMod.prefix("valid_undead_crypt_biomes"));
 	public static final TagKey<Biome> VALID_SPOOKY_RUIN_BIOMES = TagKey.create(Registries.BIOME, TwilightForestMod.prefix("valid_spooky_ruin_biomes"));
+	public static final TagKey<Biome> VALID_SAVANNA_LANDMARK_BIOMES = TagKey.create(Registries.BIOME, TwilightForestMod.prefix("valid_savanna_landmark_biomes"));
 	public static final TagKey<Biome> VALID_FINAL_CASTLE_BIOMES = TagKey.create(Registries.BIOME, TwilightForestMod.prefix("valid_final_castle_biomes"));
 
 	public BiomeTagGenerator(PackOutput output, CompletableFuture<HolderLookup.Provider> provider, ExistingFileHelper helper) {
@@ -64,32 +65,29 @@ public class BiomeTagGenerator extends BiomeTagsProvider {
 		this.tag(VALID_MUSHROOM_TOWER_BIOMES).add(TFBiomes.DENSE_MUSHROOM_FOREST);
 
 		this.tag(VALID_CAMP_BIOMES).add(
-			TFBiomes.OAK_SAVANNAH, TFBiomes.CLEARING, TFBiomes.MUSHROOM_FOREST, TFBiomes.FOREST, TFBiomes.FIREFLY_FOREST
+			TFBiomes.CLEARING, TFBiomes.MUSHROOM_FOREST, TFBiomes.FOREST, TFBiomes.FIREFLY_FOREST
 		);
 
 		this.tag(VALID_HOLLOW_TREE_BIOMES).add(
 			TFBiomes.DENSE_FOREST, TFBiomes.FIRE_SWAMP,
 			TFBiomes.DENSE_MUSHROOM_FOREST, TFBiomes.FIREFLY_FOREST,
 			TFBiomes.FOREST, TFBiomes.MUSHROOM_FOREST,
-			TFBiomes.OAK_SAVANNAH, TFBiomes.ENCHANTED_FOREST
+			TFBiomes.ENCHANTED_FOREST
 		);
 		this.tag(VALID_HEDGE_MAZE_BIOMES).add(
 			TFBiomes.CLEARING, TFBiomes.DENSE_FOREST,
 			TFBiomes.DENSE_MUSHROOM_FOREST, TFBiomes.FIREFLY_FOREST,
-			TFBiomes.FOREST, TFBiomes.MUSHROOM_FOREST,
-			TFBiomes.OAK_SAVANNAH
+			TFBiomes.FOREST, TFBiomes.MUSHROOM_FOREST
 		);
 		this.tag(VALID_HOLLOW_HILL_BIOMES).add(
 			TFBiomes.CLEARING, TFBiomes.DENSE_FOREST,
 			TFBiomes.DENSE_MUSHROOM_FOREST, TFBiomes.FIREFLY_FOREST,
-			TFBiomes.FOREST, TFBiomes.MUSHROOM_FOREST,
-			TFBiomes.OAK_SAVANNAH
+			TFBiomes.FOREST, TFBiomes.MUSHROOM_FOREST
 		);
 		this.tag(VALID_NAGA_COURTYARD_BIOMES).add(
 			TFBiomes.CLEARING, TFBiomes.DENSE_FOREST,
 			TFBiomes.DENSE_MUSHROOM_FOREST, TFBiomes.FIREFLY_FOREST,
-			TFBiomes.FOREST, TFBiomes.MUSHROOM_FOREST,
-			TFBiomes.OAK_SAVANNAH
+			TFBiomes.FOREST, TFBiomes.MUSHROOM_FOREST
 		);
 		this.tag(VALID_LICH_TOWER_BIOMES).add(Biomes.MANGROVE_SWAMP);
 		this.tag(VALID_LABYRINTH_BIOMES).add(TFBiomes.SWAMP);
@@ -101,6 +99,7 @@ public class BiomeTagGenerator extends BiomeTagsProvider {
 		this.tag(VALID_TROLL_CAVE_BIOMES).add(TFBiomes.HIGHLANDS);
 		this.tag(VALID_UNDEAD_CRYPT_BIOMES).add(TFBiomes.SPOOKY_FOREST);
 		this.tag(VALID_SPOOKY_RUIN_BIOMES).add(TFBiomes.SPOOKY_FOREST);
+		this.tag(VALID_SAVANNA_LANDMARK_BIOMES).add(TFBiomes.OAK_SAVANNAH);
 		this.tag(VALID_GIANT_HOUSE_BIOMES).add(TFBiomes.HIGHLANDS);
 
 		//apparently using forge and vanilla tags allows other mods to spawn stuff in our biomes. Will keep these commented out here just in case we need to reference them later.

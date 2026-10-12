@@ -1,0 +1,19 @@
+{
+  "placement": {
+    "type": "twilightforest:landmark_grid"
+  },
+  "structures": [
+    {
+      "structure": "twilightforest:savanna_quarry",
+      "weight": 1
+    },
+    {
+      "structure": "twilightforest:savanna_gnome_hut",
+      "weight": 1
+    },
+    {
+      "structure": "twilightforest:savanna_stoneworks",
+      "weight": 1
+    }
+  ]
+}

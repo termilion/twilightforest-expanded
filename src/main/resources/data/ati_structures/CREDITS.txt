@@ -7,3 +7,9 @@ Used as the surface entrance of twilightforest:undead_crypt, connected by twilig
 Also imported for the spooky forest ruins: haunted_ruin (3 variants, TNT trap kept) and rotten_log. The haunted ruin
 chests now use ati_structures:chests/haunted_ruin (1 in 7 minecraft:chests/simple_dungeon, otherwise Twilight Forest
 graveyard/hill_1 loot with vanilla entries emptied).
+
+Also imported as oak savannah landmarks (twilightforest:savanna_*): quarry, gnome_hut (2 variants) and ati_stoneworks with
+the stoneworks pieces and terrain_large foundations. Changes: all loot containers use Twilight Forest hollow hill tables
+(gnome hut hill_1, quarry and stoneworks pieces hill_2, stoneworks main building hill_3); all hostile mobs replaced by
+redcaps (5), redcap sappers (3) and kobolds or cave spiders (2), about 1 in 20 of them a vex; the terrain pool now points at terrain_large/terrain1..2 (the original
+pointed at a non-existing terrain/ folder).
