@@ -21,6 +21,46 @@ Keep in touch with development on our [Discord server](https://discord.gg/6v3z26
 ## Translation
 Submitting translations for Twilight Forest can be done via our [Crowdin page](https://crowdin.com/project/twilight-forest). Consider helping us out if you're fluent in any language at all! Alternatively, translations can still be submitted via pull requests.
 
+## Building & Testing
+Targets Minecraft 1.21.1 / NeoForge 21.1.209, built with Gradle 8.9 (wrapper) and ModDevGradle. Run all commands from this directory.
+
+### Prerequisites
+JDK 21 is required. On macOS:
+```
+brew install --cask temurin@21
+```
+
+### Build
+```
+./gradlew build
+```
+The first run downloads Minecraft and NeoForge and takes a while. Output lands in `build/libs/`; the `-universal.jar` is the one to put in a regular `mods/` folder. The compiler runs with `-Werror`, so any warning fails the build.
+
+### Unit tests
+JUnit tests live in `src/test/java`:
+```
+./gradlew test
+```
+
+### In-game testing
+* `./gradlew runClient` launches a dev client with the mod loaded (game directory: `run/`). In a creative world, jump straight into the dimension with `/execute in twilightforest:twilight_forest run tp @s 0 100 0`.
+* `./gradlew runServer` starts a headless dedicated server, useful for catching client-only code leaking into common code.
+
+GameTests are enabled for the `twilightforest` namespace in both run configs, but no `@GameTest` classes exist yet.
+
+### Data generation
+After changing recipes, loot tables, models, tags or lang entries that are produced by datagen:
+```
+./gradlew runData
+```
+This regenerates `src/generated/resources/`. Do not edit those files by hand.
+
+### Recommended baseline
+Before making changes, run `./gradlew build test`, then `./gradlew runClient` and confirm a world loads and the portal works, so you have a known-good baseline.
+
+### IDE
+Open this folder in IntelliJ IDEA as a Gradle project. ModDevGradle generates run configurations for client, server and data.
+
 ## Maven
 ### 1.20.6+
 https://maven.tamaized.com/#/releases/team-twilight/twilightforest/

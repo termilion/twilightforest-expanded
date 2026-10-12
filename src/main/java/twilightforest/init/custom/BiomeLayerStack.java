@@ -10,6 +10,7 @@ import net.minecraft.data.worldgen.BootstrapContext;
 import net.minecraft.resources.RegistryFileCodec;
 import net.minecraft.resources.ResourceKey;
 import net.minecraft.world.level.biome.Biome;
+import net.minecraft.world.level.biome.Biomes;
 import twilightforest.TFRegistries;
 import twilightforest.TwilightForestMod;
 import twilightforest.init.TFBiomes;
@@ -42,7 +43,8 @@ public class BiomeLayerStack {
 			TFBiomes.DENSE_FOREST,
 			TFBiomes.MUSHROOM_FOREST,
 			TFBiomes.OAK_SAVANNAH,
-			TFBiomes.FIREFLY_FOREST
+			TFBiomes.FIREFLY_FOREST,
+			Biomes.MANGROVE_SWAMP
 		), ImmutableList.of(
 			TFBiomes.LAKE,
 			TFBiomes.DENSE_MUSHROOM_FOREST,

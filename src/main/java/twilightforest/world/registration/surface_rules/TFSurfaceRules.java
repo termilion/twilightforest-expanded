@@ -1,5 +1,6 @@
 package twilightforest.world.registration.surface_rules;
 
+import net.minecraft.world.level.biome.Biomes;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.levelgen.Noises;
@@ -16,6 +17,7 @@ public class TFSurfaceRules {
 	private static final SurfaceRules.RuleSource PODZOL = makeStateRule(Blocks.PODZOL);
 	private static final SurfaceRules.RuleSource COARSE_DIRT = makeStateRule(Blocks.COARSE_DIRT);
 	private static final SurfaceRules.RuleSource GRAVEL = makeStateRule(Blocks.GRAVEL);
+	private static final SurfaceRules.RuleSource MUD = makeStateRule(Blocks.MUD);
 	private static final SurfaceRules.RuleSource SAND = makeStateRule(Blocks.SAND);
 	private static final SurfaceRules.RuleSource SANDSTONE = makeStateRule(Blocks.SANDSTONE);
 	private static final SurfaceRules.RuleSource SNOW = makeStateRule(Blocks.SNOW_BLOCK);
@@ -36,6 +38,7 @@ public class TFSurfaceRules {
 			deadrockSurface(),
 			snowyForestSurface(),
 			glacierSurface(),
+			mangroveSwampSurface(),
 			overworldLikeFloor()
 		);
 	}
@@ -112,6 +115,21 @@ public class TFSurfaceRules {
 
 		//check if we're in the glacier biome
 		return SurfaceRules.ifTrue(SurfaceRules.isBiome(TFBiomes.GLACIER), surfaceUnderPermafrost);
+	}
+
+	@NotNull
+	private static SurfaceRules.RuleSource mangroveSwampSurface() {
+		//mangrove swamp is covered in mud, like its overworld counterpart
+		SurfaceRules.RuleSource mudSoil = SurfaceRules.sequence(
+			SurfaceRules.ifTrue(SurfaceRules.ON_FLOOR, MUD),
+			SurfaceRules.ifTrue(
+				SurfaceRules.waterStartCheck(-6, -1),
+				SurfaceRules.ifTrue(SurfaceRules.UNDER_FLOOR, MUD)
+			)
+		);
+
+		//check if we're in the mangrove swamp
+		return SurfaceRules.ifTrue(SurfaceRules.isBiome(Biomes.MANGROVE_SWAMP), mudSoil);
 	}
 
 	@NotNull
