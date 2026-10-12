@@ -30,6 +30,7 @@ import net.neoforged.neoforge.server.ServerLifecycleHooks;
 import org.jetbrains.annotations.Nullable;
 import twilightforest.init.TFDimensionData;
 import twilightforest.util.landmarks.LegacyLandmarkPlacements;
+import twilightforest.world.components.biomesources.TFBiomeProvider;
 import twilightforest.world.components.structures.placements.LandmarkGridPlacement;
 
 import java.util.List;
@@ -100,6 +101,9 @@ public final class WorldUtil {
 	}
 
 	public static Optional<Pair<BlockPos, Holder<Structure>>> findNearestMapLandmark(ServerLevel level, HolderSet<Structure> targetStructures, BlockPos pos, int chunkSearchRadius, boolean skipKnownStructures) {
+		// Landmarks only generate in the Twilight Forest, see LandmarkStructure#findValidGenerationPoint
+		if (!(level.getChunkSource().getGenerator().getBiomeSource() instanceof TFBiomeProvider)) return Optional.empty();
+
 		ChunkGeneratorStructureState state = level.getChunkSource().getGeneratorState();
 
 		Map<LandmarkGridPlacement, Set<Holder<Structure>>> seekStructures = new Object2ObjectArrayMap<>();

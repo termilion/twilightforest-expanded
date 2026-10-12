@@ -116,8 +116,9 @@ public abstract class LandmarkStructure extends Structure implements DecorationC
 
 	@Override
 	public Optional<GenerationStub> findValidGenerationPoint(GenerationContext context) {
+		// Landmarks only belong in the Twilight Forest, even if a biome tag contains biomes shared with other dimensions
 		if (!(context.biomeSource() instanceof TFBiomeProvider twilightBiomeProvider))
-			return super.findValidGenerationPoint(context);
+			return Optional.empty();
 
 		ChunkPos chunkPos = context.chunkPos();
 		// set biomeX and biomeZ to center of the biome-grid tile.

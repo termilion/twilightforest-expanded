@@ -7,6 +7,7 @@ import net.minecraft.resources.ResourceKey;
 import net.minecraft.util.random.SimpleWeightedRandomList;
 import net.minecraft.world.level.LevelReader;
 import net.minecraft.world.level.biome.Biome;
+import net.minecraft.world.level.biome.Biomes;
 import net.minecraft.world.level.levelgen.LegacyRandomSource;
 import net.minecraft.world.level.levelgen.structure.Structure;
 import twilightforest.init.TFBiomes;
@@ -20,6 +21,7 @@ import java.util.Optional;
 public class LegacyLandmarkPlacements {
 	private static final Map<ResourceKey<Biome>, ResourceKey<Structure>> BIOME_2_STRUCTURES = new ImmutableMap.Builder<ResourceKey<Biome>, ResourceKey<Structure>>()
 		//.put(TFBiomes.DENSE_MUSHROOM_FOREST.location(), MUSHROOM_TOWER)
+		.put(Biomes.MANGROVE_SWAMP, TFStructures.LICH_TOWER)
 		.put(TFBiomes.ENCHANTED_FOREST, TFStructures.QUEST_GROVE)
 		.put(TFBiomes.LAKE, TFStructures.QUEST_ISLAND)
 		.put(TFBiomes.SWAMP, TFStructures.LABYRINTH)
@@ -40,7 +42,6 @@ public class LegacyLandmarkPlacements {
 		varietyLandmarks.add(TFStructures.HOLLOW_HILL_LARGE, 1);
 		varietyLandmarks.add(TFStructures.HEDGE_MAZE, 2);
 		varietyLandmarks.add(TFStructures.NAGA_COURTYARD, 2);
-		varietyLandmarks.add(TFStructures.LICH_TOWER, 2);
 
 		return varietyLandmarks.build();
 	});
@@ -111,12 +112,7 @@ public class LegacyLandmarkPlacements {
 		int regionOffsetX = Math.abs((chunkX + 64 >> 4) % 8);
 		int regionOffsetZ = Math.abs((chunkZ + 64 >> 4) % 8);
 
-		// plant two lich towers near the center of each 2048x2048 map area
-		if ((regionOffsetX == 4 && regionOffsetZ == 5) || (regionOffsetX == 4 && regionOffsetZ == 3)) {
-			return TFStructures.LICH_TOWER;
-		}
-
-		// also two nagas
+		// plant two nagas near the center of each 2048x2048 map area
 		if ((regionOffsetX == 5 && regionOffsetZ == 4) || (regionOffsetX == 3 && regionOffsetZ == 4)) {
 			return TFStructures.NAGA_COURTYARD;
 		}

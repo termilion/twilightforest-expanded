@@ -7,6 +7,7 @@ import net.minecraft.data.tags.BiomeTagsProvider;
 import net.minecraft.tags.BiomeTags;
 import net.minecraft.tags.TagKey;
 import net.minecraft.world.level.biome.Biome;
+import net.minecraft.world.level.biome.Biomes;
 import net.neoforged.neoforge.common.data.ExistingFileHelper;
 import twilightforest.TwilightForestMod;
 import twilightforest.init.TFBiomes;
@@ -88,12 +89,7 @@ public class BiomeTagGenerator extends BiomeTagsProvider {
 			TFBiomes.FOREST, TFBiomes.MUSHROOM_FOREST,
 			TFBiomes.OAK_SAVANNAH, TFBiomes.SPOOKY_FOREST
 		);
-		this.tag(VALID_LICH_TOWER_BIOMES).add(
-			TFBiomes.CLEARING, TFBiomes.DENSE_FOREST,
-			TFBiomes.DENSE_MUSHROOM_FOREST, TFBiomes.FIREFLY_FOREST,
-			TFBiomes.FOREST, TFBiomes.MUSHROOM_FOREST,
-			TFBiomes.OAK_SAVANNAH, TFBiomes.SPOOKY_FOREST
-		);
+		this.tag(VALID_LICH_TOWER_BIOMES).add(Biomes.MANGROVE_SWAMP);
 		this.tag(VALID_LABYRINTH_BIOMES).add(TFBiomes.SWAMP);
 		this.tag(VALID_HYDRA_LAIR_BIOMES).add(TFBiomes.FIRE_SWAMP);
 		this.tag(VALID_KNIGHT_STRONGHOLD_BIOMES).add(TFBiomes.DARK_FOREST);

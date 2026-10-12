@@ -73,8 +73,8 @@ public class TFStructureSets {
 		context.register(HOLLOW_HILL_MEDIUM, new StructureSet(structures.getOrThrow(TFStructures.HOLLOW_HILL_MEDIUM), new LandmarkGridPlacement(Optional.of(TFStructures.HOLLOW_HILL_MEDIUM))));
 		context.register(HOLLOW_HILL_LARGE, new StructureSet(structures.getOrThrow(TFStructures.HOLLOW_HILL_LARGE), new LandmarkGridPlacement(Optional.of(TFStructures.HOLLOW_HILL_LARGE))));
 		context.register(NAGA_COURTYARD, new StructureSet(structures.getOrThrow(TFStructures.NAGA_COURTYARD), new LandmarkGridPlacement(Optional.of(TFStructures.NAGA_COURTYARD))));
-		context.register(LICH_TOWER, new StructureSet(structures.getOrThrow(TFStructures.LICH_TOWER), new LandmarkGridPlacement(Optional.of(TFStructures.LICH_TOWER))));
 
+		context.register(LICH_TOWER, new StructureSet(structures.getOrThrow(TFStructures.LICH_TOWER), LandmarkGridPlacement.forceStructureForCenters()));
 		context.register(QUEST_GROVE, new StructureSet(structures.getOrThrow(TFStructures.QUEST_GROVE), LandmarkGridPlacement.forceStructureForCenters()));
 		context.register(LABYRINTH, new StructureSet(structures.getOrThrow(TFStructures.LABYRINTH), LandmarkGridPlacement.forceStructureForCenters()));
 		context.register(HYDRA_LAIR, new StructureSet(structures.getOrThrow(TFStructures.HYDRA_LAIR), LandmarkGridPlacement.forceStructureForCenters()));
