@@ -6,8 +6,9 @@ Imported: undead_crypt templates, template pools, processor list and loot tables
 Changes: enchanted books in chests/undead_crypts_grave draw from #minecraft:on_random_loot instead of
 #nova_structures:shrine (the pack's custom enchantments are not included). Placement and height are defined by
 twilightforest:undead_crypt.
-chests/undead_crypts_grave also got a second pool with the items of minecraft:chests/end_city_treasure
-(one item in about 20% of the chests).
+chests/undead_crypts_grave also got a pool with a full roll of minecraft:chests/end_city_treasure in 1 of 5 chests
+and a pool with an elytra in 1 of 100 chests. The remnant graveyard uses twilightforest:chests/spooky_graveyard
+(the grave loot without these two pools) instead.
 worldgen/template_pool/undead_crypt_mob was rewritten to use Twilight Forest mobs and spawners
 (templates in data/twilightforest/structure/undead_crypt); the original skeleton/zombie/spider mob and spawner
 templates were removed. The keep skeleton templates copy the skeletons of the ATi Structures dark_keep.
