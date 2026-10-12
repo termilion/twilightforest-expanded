@@ -1,0 +1,295 @@
+{
+  "type": "minecraft:chest",
+  "pools": [
+    {
+      "rolls": 1,
+      "bonus_rolls": 0.0,
+      "entries": [
+        {
+          "type": "minecraft:loot_table",
+          "value": {
+            "type": "minecraft:chest",
+            "pools": [
+              {
+                "rolls": 1,
+                "entries": [
+                  {
+                    "type": "minecraft:loot_table",
+                    "value": "nova_structures:chests/dungeon_1"
+                  },
+                  {
+                    "type": "minecraft:loot_table",
+                    "value": "nova_structures:chests/dungeon_2"
+                  },
+                  {
+                    "type": "minecraft:loot_table",
+                    "value": "nova_structures:chests/dungeon_3"
+                  },
+                  {
+                    "type": "minecraft:loot_table",
+                    "value": "nova_structures:chests/dungeon_4"
+                  },
+                  {
+                    "type": "minecraft:loot_table",
+                    "value": "nova_structures:chests/dungeon_5"
+                  },
+                  {
+                    "type": "minecraft:loot_table",
+                    "value": "nova_structures:chests/dungeon_6"
+                  },
+                  {
+                    "type": "minecraft:loot_table",
+                    "value": "nova_structures:chests/dungeon_7"
+                  }
+                ]
+              },
+              {
+                "rolls": 1,
+                "bonus_rolls": 0.0,
+                "entries": [
+                  {
+                    "type": "minecraft:empty",
+                    "weight": 200
+                  },
+                  {
+                    "type": "item",
+                    "name": "minecraft:wild_armor_trim_smithing_template"
+                  }
+                ]
+              }
+            ],
+            "functions": [
+              {
+                "function": "minecraft:reference",
+                "name": "nova_structures:loot_modifier"
+              }
+            ]
+          },
+          "weight": 2
+        },
+        {
+          "type": "minecraft:loot_table",
+          "value": {
+            "type": "minecraft:chest",
+            "pools": [
+              {
+                "bonus_rolls": 0.0,
+                "entries": [
+                  {
+                    "type": "minecraft:empty",
+                    "weight": 1
+                  },
+                  {
+                    "type": "minecraft:empty",
+                    "weight": 1
+                  },
+                  {
+                    "type": "minecraft:empty",
+                    "weight": 1
+                  },
+                  {
+                    "type": "minecraft:empty",
+                    "weight": 1
+                  },
+                  {
+                    "type": "minecraft:item",
+                    "name": "twilightforest:ore_magnet"
+                  }
+                ],
+                "rolls": 2.0
+              },
+              {
+                "bonus_rolls": 0.0,
+                "entries": [
+                  {
+                    "type": "minecraft:item",
+                    "functions": [
+                      {
+                        "add": false,
+                        "count": {
+                          "type": "minecraft:uniform",
+                          "max": 3.0,
+                          "min": 1.0
+                        },
+                        "function": "minecraft:set_count"
+                      }
+                    ],
+                    "name": "twilightforest:liveroot",
+                    "weight": 75
+                  },
+                  {
+                    "type": "minecraft:empty",
+                    "weight": 75
+                  },
+                  {
+                    "type": "minecraft:empty",
+                    "weight": 75
+                  },
+                  {
+                    "type": "minecraft:empty",
+                    "weight": 25
+                  },
+                  {
+                    "type": "minecraft:item",
+                    "name": "twilightforest:ore_meter",
+                    "weight": 25
+                  },
+                  {
+                    "type": "minecraft:item",
+                    "functions": [
+                      {
+                        "add": false,
+                        "count": {
+                          "type": "minecraft:uniform",
+                          "max": 12.0,
+                          "min": 1.0
+                        },
+                        "function": "minecraft:set_count"
+                      }
+                    ],
+                    "name": "twilightforest:transformation_powder",
+                    "weight": 25
+                  },
+                  {
+                    "type": "minecraft:item",
+                    "functions": [
+                      {
+                        "add": false,
+                        "count": {
+                          "type": "minecraft:uniform",
+                          "max": 3.0,
+                          "min": 1.0
+                        },
+                        "function": "minecraft:set_count"
+                      }
+                    ],
+                    "name": "twilightforest:steeleaf_ingot",
+                    "weight": 25
+                  },
+                  {
+                    "type": "minecraft:item",
+                    "name": "twilightforest:music_disc_findings",
+                    "weight": 25
+                  }
+                ],
+                "rolls": 1.0
+              }
+            ]
+          },
+          "weight": 6
+        },
+        {
+          "type": "minecraft:loot_table",
+          "value": {
+            "type": "minecraft:chest",
+            "pools": [
+              {
+                "bonus_rolls": 0.0,
+                "entries": [
+                  {
+                    "type": "minecraft:empty",
+                    "weight": 1
+                  },
+                  {
+                    "type": "minecraft:empty",
+                    "weight": 1
+                  },
+                  {
+                    "type": "minecraft:empty",
+                    "weight": 1
+                  },
+                  {
+                    "type": "minecraft:item",
+                    "name": "twilightforest:ore_magnet"
+                  },
+                  {
+                    "type": "minecraft:item",
+                    "functions": [
+                      {
+                        "add": false,
+                        "count": {
+                          "type": "minecraft:uniform",
+                          "max": 4.0,
+                          "min": 1.0
+                        },
+                        "function": "minecraft:set_count"
+                      }
+                    ],
+                    "name": "twilightforest:ironwood_ingot"
+                  }
+                ],
+                "rolls": 2.0
+              },
+              {
+                "bonus_rolls": 0.0,
+                "entries": [
+                  {
+                    "type": "minecraft:item",
+                    "name": "twilightforest:magic_map",
+                    "weight": 75
+                  },
+                  {
+                    "type": "minecraft:item",
+                    "functions": [
+                      {
+                        "add": false,
+                        "count": {
+                          "type": "minecraft:uniform",
+                          "max": 12.0,
+                          "min": 1.0
+                        },
+                        "function": "minecraft:set_count"
+                      }
+                    ],
+                    "name": "twilightforest:transformation_powder",
+                    "weight": 75
+                  },
+                  {
+                    "type": "minecraft:item",
+                    "conditions": [
+                      {
+                        "condition": "twilightforest:uncrafting_table_enabled"
+                      }
+                    ],
+                    "name": "twilightforest:uncrafting_table",
+                    "weight": 75
+                  },
+                  {
+                    "type": "minecraft:empty",
+                    "weight": 25
+                  },
+                  {
+                    "type": "minecraft:empty",
+                    "weight": 25
+                  },
+                  {
+                    "type": "minecraft:item",
+                    "name": "twilightforest:peacock_feather_fan",
+                    "weight": 25
+                  },
+                  {
+                    "type": "minecraft:item",
+                    "name": "twilightforest:charm_of_life_1",
+                    "weight": 25
+                  },
+                  {
+                    "type": "minecraft:item",
+                    "name": "twilightforest:pocket_watch",
+                    "weight": 25
+                  },
+                  {
+                    "type": "minecraft:item",
+                    "name": "twilightforest:music_disc_wayfarer",
+                    "weight": 25
+                  }
+                ],
+                "rolls": 1.0
+              }
+            ]
+          },
+          "weight": 6
+        }
+      ]
+    }
+  ]
+}

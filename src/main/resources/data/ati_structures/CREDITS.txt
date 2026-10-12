@@ -3,3 +3,7 @@ The datapack ships without author or license information; rights must be clarifi
 
 Imported: dark_keep (template, pool, loot tables it references) and its terrain_small foundation.
 Used as the surface entrance of twilightforest:undead_crypt, connected by twilightforest's spiral staircase piece.
+
+Also imported for the spooky forest ruins: haunted_ruin (3 variants, TNT trap kept) and rotten_log. The haunted ruin
+chests now use ati_structures:chests/haunted_ruin (1 in 7 minecraft:chests/simple_dungeon, otherwise Twilight Forest
+graveyard/hill_1 loot with vanilla entries emptied).

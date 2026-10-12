@@ -1,0 +1,35 @@
+{
+  "placement": {
+    "type": "twilightforest:avoid_landmark_grid",
+    "salt": 1873204951,
+    "spacing": 5,
+    "separation": 2,
+    "spread_type": "triangular"
+  },
+  "structures": [
+    {
+      "structure": "twilightforest:spooky_graveyard",
+      "weight": 3
+    },
+    {
+      "structure": "twilightforest:spooky_wild_ruin",
+      "weight": 4
+    },
+    {
+      "structure": "twilightforest:spooky_firewatch_tower",
+      "weight": 2
+    },
+    {
+      "structure": "twilightforest:spooky_woodland_hut",
+      "weight": 2
+    },
+    {
+      "structure": "twilightforest:spooky_haunted_ruin",
+      "weight": 3
+    },
+    {
+      "structure": "twilightforest:spooky_rotten_log",
+      "weight": 2
+    }
+  ]
+}

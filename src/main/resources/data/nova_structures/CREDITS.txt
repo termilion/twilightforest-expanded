@@ -15,3 +15,8 @@ The central spawners of undead_crypt_spawner_room_1..3 now spawn death tomes, mi
 The main pool of chests/undead_crypts_grave additionally contains inline copies of twilightforest:stronghold_cache,
 stronghold_room and darktower_cache reduced to their Twilight Forest items (3/4 of the chests); the original crypt
 loot keeps 1/4. The copies do not follow later changes of the Twilight Forest tables.
+
+Also imported for the spooky forest ruins (twilightforest:spooky_*): remnant_graveyard, remnant_woodland_hud,
+wild_ruin and firewatch_tower_dark_oak with their pools, processors and loot. Loot tables ruin_loot_master, pot_wild_ruin
+and firewatch_tower were wrapped: the original loot fills 1 in 7 containers, Twilight Forest tables (vanilla entries
+emptied) the rest; #nova_structures:traveler enchantments replaced by #minecraft:on_random_loot.
