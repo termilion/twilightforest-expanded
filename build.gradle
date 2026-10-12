@@ -165,8 +165,8 @@ repositories {
 		url 'https://maven.blamejared.com/'
 	}
 	maven {
-		name = "OctoStudios" //Curios
-		url = uri("https://maven.octo-studios.com/releases")
+		name = "Curios" //Curios
+		url = uri("https://maven.theillusivec4.top/")
 	}
 	maven {
 		name 'Shedaniel\'s Maven' //REI
