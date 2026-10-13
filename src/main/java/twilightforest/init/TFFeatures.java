@@ -18,6 +18,8 @@ public class TFFeatures {
 
 	public static final DeferredRegister<Feature<?>> FEATURES = DeferredRegister.create(Registries.FEATURE, TwilightForestMod.ID);
 
+	public static final DeferredHolder<Feature<?>, Feature<BlockColumnsFeature.Config>> BLOCK_COLUMNS = FEATURES.register("block_columns", () -> new BlockColumnsFeature(BlockColumnsFeature.Config.CODEC));
+	public static final DeferredHolder<Feature<?>, Feature<CrystalSpikeFeature.Config>> CRYSTAL_SPIKE = FEATURES.register("crystal_spike", () -> new CrystalSpikeFeature(CrystalSpikeFeature.Config.CODEC));
 	public static final DeferredHolder<Feature<?>, Feature<TFSmallLakeFeature.Configuration>> SMALL_LAKE = FEATURES.register("small_lake", () -> new TFSmallLakeFeature(TFSmallLakeFeature.Configuration.CODEC));
 	public static final DeferredHolder<Feature<?>, Feature<HugeMushroomFeatureConfiguration>> BIG_MUSHGLOOM = FEATURES.register("big_mushgloom", () -> new BigMushgloomFeature(HugeMushroomFeatureConfiguration.CODEC));
 	public static final DeferredHolder<Feature<?>, Feature<HugeMushroomFeatureConfiguration>> CANOPY_BROWN_MUSHROOM = FEATURES.register("canopy_brown_mushroom", () -> new BrownCanopyMushroomFeature(HugeMushroomFeatureConfiguration.CODEC));

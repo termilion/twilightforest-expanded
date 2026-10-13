@@ -218,6 +218,28 @@ public class TreeConfigurations {
 		.ignoreVines()
 		.build();
 
+	// Copy of OAK_BUSH with canopy wood and rainbow oak leaves that keeps blackstone under its trunk instead of turning it into dirt (amethyst straits)
+	public static final TreeConfiguration RAINBOW_CANOPY_BUSH = new TreeConfiguration.TreeConfigurationBuilder(
+		BlockStateProvider.simple(TFBlocks.CANOPY_WOOD.get()),
+		new StraightTrunkPlacer(1, 0, 0),
+		BlockStateProvider.simple(TFBlocks.RAINBOW_OAK_LEAVES.get()),
+		new BushFoliagePlacer(ConstantInt.of(2), ConstantInt.of(1), 2),
+		new TwoLayersFeatureSize(0, 0, 0))
+		.dirt(BlockStateProvider.simple(Blocks.BLACKSTONE))
+		.ignoreVines()
+		.build();
+
+	// Same bush with darkwood wood and dark leaves (amethyst straits)
+	public static final TreeConfiguration DARKWOOD_BUSH = new TreeConfiguration.TreeConfigurationBuilder(
+		BlockStateProvider.simple(TFBlocks.DARK_WOOD.get()),
+		new StraightTrunkPlacer(1, 0, 0),
+		BlockStateProvider.simple(TFBlocks.DARK_LEAVES.get()),
+		new BushFoliagePlacer(ConstantInt.of(2), ConstantInt.of(1), 2),
+		new TwoLayersFeatureSize(0, 0, 0))
+		.dirt(BlockStateProvider.simple(Blocks.BLACKSTONE))
+		.ignoreVines()
+		.build();
+
 	//[VanillaCopy] of Features.MEGA_SPRUCE, just without all the nasty podzol so it fits better
 	public static final TreeConfiguration BIG_SPRUCE = new TreeConfiguration.TreeConfigurationBuilder(
 		BlockStateProvider.simple(Blocks.SPRUCE_LOG),

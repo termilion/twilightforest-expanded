@@ -3,6 +3,7 @@ package twilightforest.world.registration.biomes;
 import net.minecraft.core.HolderGetter;
 import net.minecraft.core.particles.ParticleTypes;
 import net.minecraft.data.worldgen.BiomeDefaultFeatures;
+import net.minecraft.data.worldgen.Carvers;
 import net.minecraft.data.worldgen.placement.AquaticPlacements;
 import net.minecraft.data.worldgen.placement.MiscOverworldPlacements;
 import net.minecraft.data.worldgen.placement.VegetationPlacements;
@@ -355,6 +356,40 @@ public abstract class BiomeHelper {
 		return biome;
 	}
 
+	public static BiomeGenerationSettings.Builder amethystStraitsGen(HolderGetter<PlacedFeature> featureGetter, HolderGetter<ConfiguredWorldCarver<?>> carverGetter) {
+		// Started as a copy of vanilla ice spikes
+		BiomeGenerationSettings.Builder biome = new BiomeGenerationSettings.Builder(featureGetter, carverGetter);
+
+		biome.addCarver(GenerationStep.Carving.AIR, Carvers.CAVE);
+		biome.addCarver(GenerationStep.Carving.AIR, Carvers.CAVE_EXTRA_UNDERGROUND);
+		biome.addCarver(GenerationStep.Carving.AIR, Carvers.CANYON);
+		biome.addFeature(GenerationStep.Decoration.LAKES, TFPlacedFeatures.PLACED_LAKE_AMETHYST);
+		BiomeDefaultFeatures.addDefaultCrystalFormations(biome);
+		biome.addFeature(GenerationStep.Decoration.LOCAL_MODIFICATIONS, TFPlacedFeatures.PLACED_CRYING_OBSIDIAN_SPOT);
+		BiomeDefaultFeatures.addDefaultMonsterRoom(biome);
+		BiomeDefaultFeatures.addDefaultUndergroundVariety(biome);
+		BiomeDefaultFeatures.addDefaultSprings(biome);
+		biome.addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, TFPlacedFeatures.PLACED_RAINBOW_CANOPY_BUSH);
+		biome.addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, TFPlacedFeatures.PLACED_DARKWOOD_BUSH);
+		biome.addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, TFPlacedFeatures.PLACED_LAMPPOST_PLACER);
+		// Lily pads on the delta pools, same patch as swamps
+		biome.addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, VegetationPlacements.PATCH_WATERLILY);
+		biome.addFeature(GenerationStep.Decoration.TOP_LAYER_MODIFICATION, TFPlacedFeatures.PLACED_AMETHYST_CLUSTER_ON_BUDDING);
+
+		// Basalt delta terrain: water pools with obsidian rims, blackstone columns and blobs
+		biome.addFeature(GenerationStep.Decoration.SURFACE_STRUCTURES, TFPlacedFeatures.PLACED_AMETHYST_DELTA);
+		biome.addFeature(GenerationStep.Decoration.SURFACE_STRUCTURES, TFPlacedFeatures.PLACED_SMALL_BLACKSTONE_COLUMNS);
+		biome.addFeature(GenerationStep.Decoration.SURFACE_STRUCTURES, TFPlacedFeatures.PLACED_LARGE_BLACKSTONE_COLUMNS);
+		biome.addFeature(GenerationStep.Decoration.UNDERGROUND_DECORATION, TFPlacedFeatures.PLACED_BLACKSTONE_BLOBS);
+		biome.addFeature(GenerationStep.Decoration.SURFACE_STRUCTURES, TFPlacedFeatures.PLACED_AMETHYST_SPIKE);
+		biome.addFeature(GenerationStep.Decoration.SURFACE_STRUCTURES, TFPlacedFeatures.PLACED_AMETHYST_PATCH);
+
+		BiomeDefaultFeatures.addDefaultOres(biome);
+		BiomeDefaultFeatures.addDefaultSoftDisks(biome);
+
+		return biome;
+	}
+
 	public static BiomeGenerationSettings.Builder undergroundGen(HolderGetter<PlacedFeature> featureGetter, HolderGetter<ConfiguredWorldCarver<?>> carverGetter) {
 		BiomeGenerationSettings.Builder biome = new BiomeGenerationSettings.Builder(featureGetter, carverGetter);
 
@@ -455,6 +490,12 @@ public abstract class BiomeHelper {
 		return builder;
 	}
 
+	public static BiomeSpecialEffects.Builder purpleFireflyParticles(BiomeSpecialEffects.Builder builder) {
+		// Twice the density of fireflyParticles (forest, dense forest)
+		builder.ambientParticle(new AmbientParticleSettings(TFParticleType.PURPLE_WANDERING_FIREFLY.get(), 0.0005f));
+		return builder;
+	}
+
 	public static BiomeSpecialEffects.Builder fireflyParticles(BiomeSpecialEffects.Builder builder) {
 		builder.ambientParticle(new AmbientParticleSettings(TFParticleType.WANDERING_FIREFLY.get(), 0.00025f));
 		return builder;
@@ -533,6 +574,19 @@ public abstract class BiomeHelper {
 
 		spawnInfo.creatureGenerationProbability(0.3f);
 		spawnInfo.addSpawn(MobCategory.CREATURE, new MobSpawnSettings.SpawnerData(TFEntities.RAVEN.get(), 10, 4, 4));
+
+		return spawnInfo;
+	}
+
+	public static MobSpawnSettings.Builder amethystStraitsSpawning() {
+		MobSpawnSettings.Builder spawnInfo = new MobSpawnSettings.Builder();
+
+		spawnInfo.creatureGenerationProbability(0.07F);
+		spawnInfo.addSpawn(MobCategory.CREATURE, new MobSpawnSettings.SpawnerData(TFEntities.RAVEN.get(), 10, 4, 4));
+		spawnInfo.addSpawn(MobCategory.AMBIENT, new MobSpawnSettings.SpawnerData(EntityType.BAT, 100, 8, 8));
+		spawnInfo.addSpawn(MobCategory.UNDERGROUND_WATER_CREATURE, new MobSpawnSettings.SpawnerData(EntityType.GLOW_SQUID, 10, 4, 6));
+		spawnInfo.addSpawn(MobCategory.MONSTER, new MobSpawnSettings.SpawnerData(TFEntities.WRAITH.get(), 10, 1, 2)).addMobCharge(TFEntities.WRAITH.get(), 0.7D, 0.15D);
+		spawnInfo.addSpawn(MobCategory.MONSTER, new MobSpawnSettings.SpawnerData(TFEntities.TROLL.get(), 5, 1, 2)).addMobCharge(TFEntities.TROLL.get(), 0.8D, 0.2D);
 
 		return spawnInfo;
 	}

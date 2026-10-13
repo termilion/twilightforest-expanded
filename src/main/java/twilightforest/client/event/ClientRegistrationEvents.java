@@ -581,6 +581,9 @@ public class ClientRegistrationEvents {
 		event.registerSpriteSet(TFParticleType.HUGE_SMOKE.get(), SmokeScaleParticle.Factory::new);
 		event.registerSpriteSet(TFParticleType.FIREFLY.get(), FireflyParticle.StationaryProvider::new);
 		event.registerSpriteSet(TFParticleType.WANDERING_FIREFLY.get(), FireflyParticle.WanderingProvider::new);
+		event.registerSpriteSet(TFParticleType.PURPLE_WANDERING_FIREFLY.get(), FireflyParticle.PurpleWanderingProvider::new);
+		event.registerSpriteSet(TFParticleType.OBSIDIAN_MOTE.get(), MoteParticleProviders.Black::new);
+		event.registerSpriteSet(TFParticleType.BLACKSTONE_MOTE.get(), MoteParticleProviders.Grey::new);
 		event.registerSpriteSet(TFParticleType.PARTICLE_SPAWNER_FIREFLY.get(), FireflyParticle.ParticleSpawnerProvider::new);
 		event.registerSpriteSet(TFParticleType.FALLEN_LEAF.get(), LeafParticle.Factory::new);
 		event.registerSpriteSet(TFParticleType.DIM_FLAME.get(), FlameParticle.SmallFlameProvider::new);

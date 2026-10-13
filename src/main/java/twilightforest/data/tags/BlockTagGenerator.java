@@ -104,6 +104,11 @@ public class BlockTagGenerator extends ModdedBlockTagGenerator {
 	public static final TagKey<Block> BLOCK_AND_CHAIN_NEVER_BREAKS = create("block_and_chain_never_breaks");
 
 	public static final TagKey<Block> SMALL_LAKES_DONT_REPLACE = create("small_lakes_dont_replace");
+	public static final TagKey<Block> RAVEN_SPAWNABLE_ON = create("raven_spawnable_on");
+	public static final TagKey<Block> LAMPPOST_PLACEABLE_ON = create("lamppost_placeable_on");
+	public static final TagKey<Block> EMITS_OBSIDIAN_MOTES = create("emits_obsidian_motes");
+	public static final TagKey<Block> EMITS_BLACKSTONE_MOTES = create("emits_blackstone_motes");
+	public static final TagKey<Block> DARK_CANOPY_TREE_GROUND = create("dark_canopy_tree_ground");
 	public static final TagKey<Block> DRYING_RACKS = create("drying_racks");
 
 	public BlockTagGenerator(PackOutput output, CompletableFuture<HolderLookup.Provider> future, ExistingFileHelper helper) {
@@ -829,6 +834,12 @@ public class BlockTagGenerator extends ModdedBlockTagGenerator {
 		this.tag(BLOCK_AND_CHAIN_NEVER_BREAKS).addTags(MAZESTONE, CASTLE_BLOCKS, DEADROCK, BlockTags.WITHER_IMMUNE)
 			.add(TFBlocks.TIME_LOG_CORE.get(), TFBlocks.TRANSFORMATION_LOG_CORE.get(), TFBlocks.MINING_LOG_CORE.get(), TFBlocks.SORTING_LOG_CORE.get())
 			.add(TFBlocks.GIANT_OBSIDIAN.get());
+
+		this.tag(EMITS_OBSIDIAN_MOTES).add(Blocks.OBSIDIAN, Blocks.CRYING_OBSIDIAN);
+		this.tag(EMITS_BLACKSTONE_MOTES).add(Blocks.BLACKSTONE);
+		this.tag(DARK_CANOPY_TREE_GROUND).addTag(BlockTags.DIRT).add(Blocks.BLACKSTONE);
+		this.tag(LAMPPOST_PLACEABLE_ON).add(Blocks.GRASS_BLOCK, Blocks.BLACKSTONE, Blocks.OBSIDIAN, Blocks.CRYING_OBSIDIAN);
+		this.tag(RAVEN_SPAWNABLE_ON).addTag(BlockTags.ANIMALS_SPAWNABLE_ON).add(Blocks.BLACKSTONE, Blocks.OBSIDIAN, Blocks.CRYING_OBSIDIAN);
 
 		this.tag(SMALL_LAKES_DONT_REPLACE).addTags(BlockTags.FEATURES_CANNOT_REPLACE, BlockTags.LOGS, BlockTags.LEAVES)
 			.add(TFBlocks.ROOT_BLOCK.get(), TFBlocks.LIVEROOT_BLOCK.get(), Blocks.MUSHROOM_STEM);

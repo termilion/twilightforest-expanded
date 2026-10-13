@@ -23,6 +23,7 @@ public class LegacyLandmarkPlacements {
 		//.put(TFBiomes.DENSE_MUSHROOM_FOREST.location(), MUSHROOM_TOWER)
 		.put(Biomes.MANGROVE_SWAMP, TFStructures.LICH_TOWER)
 		.put(TFBiomes.SPOOKY_FOREST, TFStructures.UNDEAD_CRYPT)
+		.put(TFBiomes.AMETHYST_STRAITS, TFStructures.LONE_CITADEL)
 		.put(TFBiomes.ENCHANTED_FOREST, TFStructures.QUEST_GROVE)
 		.put(TFBiomes.LAKE, TFStructures.QUEST_ISLAND)
 		.put(TFBiomes.SWAMP, TFStructures.LABYRINTH)

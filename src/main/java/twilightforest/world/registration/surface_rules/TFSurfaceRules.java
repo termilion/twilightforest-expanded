@@ -21,6 +21,8 @@ public class TFSurfaceRules {
 	private static final SurfaceRules.RuleSource SAND = makeStateRule(Blocks.SAND);
 	private static final SurfaceRules.RuleSource SANDSTONE = makeStateRule(Blocks.SANDSTONE);
 	private static final SurfaceRules.RuleSource SNOW = makeStateRule(Blocks.SNOW_BLOCK);
+	private static final SurfaceRules.RuleSource BLACKSTONE = makeStateRule(Blocks.BLACKSTONE);
+	private static final SurfaceRules.RuleSource OBSIDIAN = makeStateRule(Blocks.OBSIDIAN);
 	private static final SurfaceRules.RuleSource WEATHERED_DEADROCK = makeStateRule(TFBlocks.WEATHERED_DEADROCK.get());
 	private static final SurfaceRules.RuleSource CRACKED_DEADROCK = makeStateRule(TFBlocks.CRACKED_DEADROCK.get());
 	private static final SurfaceRules.RuleSource DEADROCK = makeStateRule(TFBlocks.DEADROCK.get());
@@ -39,6 +41,7 @@ public class TFSurfaceRules {
 			snowyForestSurface(),
 			glacierSurface(),
 			mangroveSwampSurface(),
+			amethystStraitsSurface(),
 			overworldLikeFloor()
 		);
 	}
@@ -115,6 +118,23 @@ public class TFSurfaceRules {
 
 		//check if we're in the glacier biome
 		return SurfaceRules.ifTrue(SurfaceRules.isBiome(TFBiomes.GLACIER), surfaceUnderPermafrost);
+	}
+
+	@NotNull
+	private static SurfaceRules.RuleSource amethystStraitsSurface() {
+		//blackstone with noise patches of obsidian on the floor (also underwater), only blackstone below
+		SurfaceRules.RuleSource floor = SurfaceRules.sequence(
+			SurfaceRules.ifTrue(surfaceNoiseAbove(1.5D), OBSIDIAN),
+			BLACKSTONE
+		);
+		SurfaceRules.RuleSource underFloor = BLACKSTONE;
+
+		SurfaceRules.RuleSource basaltSoil = SurfaceRules.sequence(
+			SurfaceRules.ifTrue(SurfaceRules.ON_FLOOR, floor),
+			SurfaceRules.ifTrue(SurfaceRules.UNDER_FLOOR, underFloor)
+		);
+
+		return SurfaceRules.ifTrue(SurfaceRules.isBiome(TFBiomes.AMETHYST_STRAITS), basaltSoil);
 	}
 
 	@NotNull

@@ -28,6 +28,7 @@ import net.minecraft.world.level.levelgen.structure.templatesystem.StructureTemp
 import twilightforest.init.TFStructureTypes;
 import twilightforest.world.components.structures.SpiralStairShaftPiece;
 import twilightforest.world.components.biomesources.TFBiomeProvider;
+import twilightforest.world.components.structures.util.DecorationClearance;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -39,7 +40,7 @@ import java.util.Optional;
  * so the structure can start underground (where the biome is twilightforest:underground) and still be bound to the surface biome.
  * An optional entrance places a second jigsaw structure on the surface above the start piece and connects both with a spiral staircase.
  */
-public class LandmarkJigsawStructure extends Structure {
+public class LandmarkJigsawStructure extends Structure implements DecorationClearance {
 	public static final MapCodec<LandmarkJigsawStructure> CODEC = RecordCodecBuilder.mapCodec(instance -> instance.group(
 		settingsCodec(instance),
 		StructureTemplatePool.CODEC.fieldOf("start_pool").forGetter(s -> s.startPool),
@@ -50,7 +51,8 @@ public class LandmarkJigsawStructure extends Structure {
 		Codec.intRange(1, JigsawStructure.MAX_TOTAL_STRUCTURE_RANGE).fieldOf("max_distance_from_center").forGetter(s -> s.maxDistanceFromCenter),
 		DimensionPadding.CODEC.optionalFieldOf("dimension_padding", JigsawStructure.DEFAULT_DIMENSION_PADDING).forGetter(s -> s.dimensionPadding),
 		LiquidSettings.CODEC.optionalFieldOf("liquid_settings", JigsawStructure.DEFAULT_LIQUID_SETTINGS).forGetter(s -> s.liquidSettings),
-		Entrance.CODEC.optionalFieldOf("entrance").forGetter(s -> s.entrance)
+		Entrance.CODEC.optionalFieldOf("entrance").forGetter(s -> s.entrance),
+		DecorationConfig.CODEC.optionalFieldOf(DecorationClearance.CODEC_NAME).forGetter(s -> s.decorationConfig)
 	).apply(instance, LandmarkJigsawStructure::new));
 
 	private final Holder<StructureTemplatePool> startPool;
@@ -62,8 +64,10 @@ public class LandmarkJigsawStructure extends Structure {
 	private final DimensionPadding dimensionPadding;
 	private final LiquidSettings liquidSettings;
 	private final Optional<Entrance> entrance;
+	// Without a config, biome features may generate anywhere around and inside the structure
+	private final Optional<DecorationConfig> decorationConfig;
 
-	public LandmarkJigsawStructure(StructureSettings settings, Holder<StructureTemplatePool> startPool, Optional<ResourceLocation> startJigsawName, int maxDepth, HeightProvider startHeight, Optional<Heightmap.Types> projectStartToHeightmap, int maxDistanceFromCenter, DimensionPadding dimensionPadding, LiquidSettings liquidSettings, Optional<Entrance> entrance) {
+	public LandmarkJigsawStructure(StructureSettings settings, Holder<StructureTemplatePool> startPool, Optional<ResourceLocation> startJigsawName, int maxDepth, HeightProvider startHeight, Optional<Heightmap.Types> projectStartToHeightmap, int maxDistanceFromCenter, DimensionPadding dimensionPadding, LiquidSettings liquidSettings, Optional<Entrance> entrance, Optional<DecorationConfig> decorationConfig) {
 		super(settings);
 		this.startPool = startPool;
 		this.startJigsawName = startJigsawName;
@@ -74,6 +78,7 @@ public class LandmarkJigsawStructure extends Structure {
 		this.dimensionPadding = dimensionPadding;
 		this.liquidSettings = liquidSettings;
 		this.entrance = entrance;
+		this.decorationConfig = decorationConfig;
 	}
 
 	@Override
@@ -150,6 +155,31 @@ public class LandmarkJigsawStructure extends Structure {
 			BlockPos.CODEC.fieldOf("shaft_position").forGetter(Entrance::shaftPosition),
 			Codec.intRange(0, JigsawStructure.MAX_DEPTH).optionalFieldOf("size", 1).forGetter(Entrance::size)
 		).apply(instance, Entrance::new));
+	}
+
+	@Override
+	public float chunkClearanceRadius() {
+		return this.decorationConfig.map(DecorationConfig::chunkClearanceRadius).orElse(0F);
+	}
+
+	@Override
+	public boolean isSurfaceDecorationsAllowed() {
+		return this.decorationConfig.map(DecorationConfig::surfaceDecorations).orElse(true);
+	}
+
+	@Override
+	public boolean isUndergroundDecoAllowed() {
+		return this.decorationConfig.map(DecorationConfig::undergroundDecorations).orElse(true);
+	}
+
+	@Override
+	public boolean isGrassDecoAllowed() {
+		return this.decorationConfig.map(DecorationConfig::vegetation).orElse(true);
+	}
+
+	@Override
+	public boolean shouldAdjustToTerrain() {
+		return false;
 	}
 
 	@Override

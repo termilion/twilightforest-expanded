@@ -120,8 +120,7 @@ public class TFSmallLakeFeature extends Feature<TFSmallLakeFeature.Configuration
 			}
 
 			if (config.barrier() != null) {
-				BlockState barrierState = config.barrier().getState(randomsource, blockpos);
-				if (!barrierState.isAir()) {
+				if (!config.barrier().getState(randomsource, blockpos).isAir()) {
 					for (int x = 0; x < 16; x++) {
 						for (int z = 0; z < 16; z++) {
 							for (int y = 0; y < 8; y++) {
@@ -138,7 +137,8 @@ public class TFSmallLakeFeature extends Feature<TFSmallLakeFeature.Configuration
 									BlockState blockstate = worldgenlevel.getBlockState(blockpos.offset(x, y, z));
 									if (blockstate.isSolid() && !blockstate.is(BlockTags.LAVA_POOL_STONE_CANNOT_REPLACE)) {
 										BlockPos blockpos3 = blockpos.offset(x, y, z);
-										worldgenlevel.setBlock(blockpos3, barrierState, Block.UPDATE_CLIENTS);
+										// Sampled per block, so weighted barriers (e.g. amethyst lakes) are mixed
+										worldgenlevel.setBlock(blockpos3, config.barrier().getState(randomsource, blockpos3), Block.UPDATE_CLIENTS);
 										this.markAboveForPostProcessing(worldgenlevel, blockpos3);
 									}
 								}

@@ -1,0 +1,782 @@
+{
+  "type": "minecraft:chest",
+  "pools": [
+    {
+      "rolls": 1.0,
+      "bonus_rolls": 0.0,
+      "entries": [
+        {
+          "type": "minecraft:loot_table",
+          "value": {
+            "pools": [
+              {
+                "rolls": 1,
+                "entries": [
+                  {
+                    "type": "minecraft:item",
+                    "weight": 1,
+                    "name": "minecraft:sentry_armor_trim_smithing_template"
+                  },
+                  {
+                    "type": "minecraft:empty",
+                    "weight": 230
+                  }
+                ]
+              },
+              {
+                "rolls": 5,
+                "entries": [
+                  {
+                    "type": "minecraft:item",
+                    "weight": 1,
+                    "name": "minecraft:diamond",
+                    "functions": [
+                      {
+                        "function": "minecraft:set_count",
+                        "count": {
+                          "min": 1,
+                          "max": 3
+                        }
+                      }
+                    ]
+                  },
+                  {
+                    "type": "minecraft:item",
+                    "weight": 4,
+                    "name": "minecraft:gold_ingot",
+                    "functions": [
+                      {
+                        "function": "minecraft:set_count",
+                        "count": {
+                          "min": 1,
+                          "max": 3
+                        }
+                      }
+                    ]
+                  },
+                  {
+                    "type": "minecraft:item",
+                    "weight": 4,
+                    "name": "minecraft:emerald",
+                    "functions": [
+                      {
+                        "function": "minecraft:set_count",
+                        "count": {
+                          "min": 1,
+                          "max": 4
+                        }
+                      }
+                    ]
+                  },
+                  {
+                    "type": "minecraft:item",
+                    "weight": 7,
+                    "name": "minecraft:iron_ingot",
+                    "functions": [
+                      {
+                        "function": "minecraft:set_count",
+                        "count": {
+                          "min": 1,
+                          "max": 6
+                        }
+                      }
+                    ]
+                  },
+                  {
+                    "type": "minecraft:item",
+                    "weight": 6,
+                    "name": "minecraft:flint",
+                    "functions": [
+                      {
+                        "function": "minecraft:set_count",
+                        "count": {
+                          "min": 1,
+                          "max": 5
+                        }
+                      }
+                    ]
+                  },
+                  {
+                    "type": "minecraft:item",
+                    "weight": 3,
+                    "name": "minecraft:soul_lantern",
+                    "functions": [
+                      {
+                        "function": "minecraft:set_count",
+                        "count": {
+                          "min": 1,
+                          "max": 4
+                        }
+                      }
+                    ]
+                  },
+                  {
+                    "type": "minecraft:item",
+                    "weight": 3,
+                    "name": "minecraft:soul_torch",
+                    "functions": [
+                      {
+                        "function": "minecraft:set_count",
+                        "count": {
+                          "min": 3,
+                          "max": 12
+                        }
+                      }
+                    ]
+                  },
+                  {
+                    "type": "minecraft:item",
+                    "weight": 3,
+                    "name": "minecraft:name_tag",
+                    "functions": [
+                      {
+                        "function": "minecraft:set_count",
+                        "count": {
+                          "min": 1,
+                          "max": 4
+                        }
+                      }
+                    ]
+                  },
+                  {
+                    "type": "minecraft:item",
+                    "weight": 3,
+                    "name": "minecraft:saddle"
+                  },
+                  {
+                    "type": "minecraft:item",
+                    "weight": 3,
+                    "name": "minecraft:iron_horse_armor"
+                  },
+                  {
+                    "type": "minecraft:item",
+                    "weight": 5,
+                    "name": "minecraft:iron_pickaxe",
+                    "functions": [
+                      {
+                        "function": "minecraft:set_damage",
+                        "damage": {
+                          "min": 33,
+                          "max": 230
+                        }
+                      },
+                      {
+                        "function": "minecraft:enchant_with_levels",
+                        "levels": {
+                          "min": 3,
+                          "max": 10
+                        },
+                        "options": "#minecraft:on_random_loot"
+                      }
+                    ]
+                  },
+                  {
+                    "type": "minecraft:item",
+                    "weight": 5,
+                    "name": "minecraft:iron_axe",
+                    "functions": [
+                      {
+                        "function": "minecraft:set_damage",
+                        "damage": {
+                          "min": 33,
+                          "max": 230
+                        }
+                      },
+                      {
+                        "function": "minecraft:enchant_with_levels",
+                        "levels": {
+                          "min": 1,
+                          "max": 10
+                        },
+                        "options": "#minecraft:on_random_loot"
+                      }
+                    ]
+                  },
+                  {
+                    "type": "minecraft:item",
+                    "weight": 5,
+                    "name": "minecraft:iron_helmet",
+                    "functions": [
+                      {
+                        "function": "minecraft:set_damage",
+                        "damage": {
+                          "min": 33,
+                          "max": 230
+                        }
+                      },
+                      {
+                        "function": "minecraft:enchant_with_levels",
+                        "levels": {
+                          "min": 1,
+                          "max": 10
+                        },
+                        "options": "#minecraft:on_random_loot"
+                      }
+                    ]
+                  },
+                  {
+                    "type": "minecraft:item",
+                    "weight": 5,
+                    "name": "minecraft:suspicious_stew"
+                  },
+                  {
+                    "type": "minecraft:item",
+                    "weight": 5,
+                    "name": "minecraft:cake"
+                  },
+                  {
+                    "type": "minecraft:item",
+                    "weight": 5,
+                    "name": "minecraft:cookie",
+                    "functions": [
+                      {
+                        "function": "minecraft:set_count",
+                        "count": {
+                          "min": 1,
+                          "max": 7
+                        }
+                      }
+                    ]
+                  },
+                  {
+                    "type": "minecraft:item",
+                    "weight": 7,
+                    "name": "minecraft:pumpkin_pie",
+                    "functions": [
+                      {
+                        "function": "minecraft:set_count",
+                        "count": {
+                          "min": 1,
+                          "max": 5
+                        }
+                      }
+                    ]
+                  },
+                  {
+                    "type": "minecraft:item",
+                    "weight": 7,
+                    "name": "minecraft:golden_apple"
+                  },
+                  {
+                    "type": "minecraft:item",
+                    "weight": 7,
+                    "name": "minecraft:apple",
+                    "functions": [
+                      {
+                        "function": "minecraft:set_count",
+                        "count": {
+                          "min": 1,
+                          "max": 8
+                        }
+                      }
+                    ]
+                  },
+                  {
+                    "type": "minecraft:item",
+                    "weight": 7,
+                    "name": "minecraft:cooked_rabbit",
+                    "functions": [
+                      {
+                        "function": "minecraft:set_count",
+                        "count": {
+                          "min": 1,
+                          "max": 4
+                        }
+                      }
+                    ]
+                  },
+                  {
+                    "type": "minecraft:item",
+                    "weight": 6,
+                    "name": "minecraft:rabbit_hide",
+                    "functions": [
+                      {
+                        "function": "minecraft:set_count",
+                        "count": {
+                          "min": 1,
+                          "max": 3
+                        }
+                      }
+                    ]
+                  },
+                  {
+                    "type": "minecraft:item",
+                    "weight": 9,
+                    "name": "minecraft:experience_bottle",
+                    "functions": [
+                      {
+                        "function": "minecraft:set_count",
+                        "count": {
+                          "min": 1,
+                          "max": 4
+                        }
+                      }
+                    ]
+                  },
+                  {
+                    "type": "minecraft:item",
+                    "weight": 9,
+                    "name": "minecraft:book",
+                    "functions": [
+                      {
+                        "function": "minecraft:set_count",
+                        "count": {
+                          "min": 1,
+                          "max": 3
+                        }
+                      }
+                    ]
+                  },
+                  {
+                    "type": "minecraft:item",
+                    "weight": 12,
+                    "name": "minecraft:spruce_log",
+                    "functions": [
+                      {
+                        "function": "minecraft:set_count",
+                        "count": {
+                          "min": 3,
+                          "max": 12
+                        }
+                      }
+                    ]
+                  },
+                  {
+                    "type": "minecraft:item",
+                    "name": "minecraft:light_blue_candle",
+                    "functions": [
+                      {
+                        "function": "minecraft:set_count",
+                        "count": {
+                          "min": 1,
+                          "max": 8
+                        }
+                      }
+                    ]
+                  },
+                  {
+                    "type": "minecraft:item",
+                    "weight": 9,
+                    "name": "minecraft:snowball",
+                    "functions": [
+                      {
+                        "function": "minecraft:set_count",
+                        "count": {
+                          "min": 1,
+                          "max": 4
+                        }
+                      }
+                    ]
+                  },
+                  {
+                    "type": "minecraft:item",
+                    "weight": 9,
+                    "name": "minecraft:arrow",
+                    "functions": [
+                      {
+                        "function": "minecraft:set_count",
+                        "count": {
+                          "min": 1,
+                          "max": 7
+                        }
+                      }
+                    ]
+                  },
+                  {
+                    "type": "minecraft:item",
+                    "weight": 9,
+                    "name": "minecraft:bread",
+                    "functions": [
+                      {
+                        "function": "minecraft:set_count",
+                        "count": {
+                          "min": 1,
+                          "max": 5
+                        }
+                      }
+                    ]
+                  }
+                ]
+              }
+            ],
+            "functions": [
+              {
+                "function": "minecraft:reference",
+                "name": "nova_structures:loot_modifier"
+              }
+            ]
+          },
+          "weight": 20
+        },
+        {
+          "type": "minecraft:loot_table",
+          "value": {
+            "pools": [
+              {
+                "bonus_rolls": 0.0,
+                "rolls": 4.0,
+                "entries": [
+                  {
+                    "type": "minecraft:item",
+                    "functions": [
+                      {
+                        "add": false,
+                        "count": {
+                          "type": "minecraft:uniform",
+                          "max": 9.0,
+                          "min": 1.0
+                        },
+                        "function": "minecraft:set_count"
+                      }
+                    ],
+                    "name": "twilightforest:maze_wafer"
+                  }
+                ]
+              },
+              {
+                "bonus_rolls": 0.0,
+                "rolls": 2.0,
+                "entries": [
+                  {
+                    "type": "minecraft:item",
+                    "functions": [
+                      {
+                        "add": false,
+                        "count": {
+                          "type": "minecraft:uniform",
+                          "max": 6.0,
+                          "min": 1.0
+                        },
+                        "function": "minecraft:set_count"
+                      }
+                    ],
+                    "name": "twilightforest:ironwood_ingot"
+                  },
+                  {
+                    "type": "minecraft:item",
+                    "functions": [
+                      {
+                        "add": false,
+                        "count": {
+                          "type": "minecraft:uniform",
+                          "max": 5.0,
+                          "min": 1.0
+                        },
+                        "function": "minecraft:set_count"
+                      }
+                    ],
+                    "name": "twilightforest:firefly"
+                  },
+                  {
+                    "type": "minecraft:item",
+                    "name": "twilightforest:charm_of_keeping_1"
+                  },
+                  {
+                    "type": "minecraft:item",
+                    "functions": [
+                      {
+                        "add": false,
+                        "count": {
+                          "type": "minecraft:uniform",
+                          "max": 3.0,
+                          "min": 1.0
+                        },
+                        "function": "minecraft:set_count"
+                      }
+                    ],
+                    "name": "twilightforest:armor_shard"
+                  }
+                ]
+              },
+              {
+                "bonus_rolls": 0.0,
+                "rolls": 1.0,
+                "entries": [
+                  {
+                    "type": "minecraft:item",
+                    "functions": [
+                      {
+                        "add": false,
+                        "count": {
+                          "type": "minecraft:uniform",
+                          "max": 8.0,
+                          "min": 1.0
+                        },
+                        "function": "minecraft:set_count"
+                      }
+                    ],
+                    "name": "twilightforest:knightmetal_ingot",
+                    "weight": 75
+                  },
+                  {
+                    "type": "minecraft:item",
+                    "functions": [
+                      {
+                        "function": "minecraft:enchant_with_levels",
+                        "levels": 15.0,
+                        "options": "#minecraft:on_random_loot"
+                      }
+                    ],
+                    "name": "twilightforest:ironwood_sword",
+                    "weight": 75
+                  },
+                  {
+                    "type": "minecraft:item",
+                    "functions": [
+                      {
+                        "function": "minecraft:enchant_with_levels",
+                        "levels": 10.0,
+                        "options": "#minecraft:on_random_loot"
+                      }
+                    ],
+                    "name": "twilightforest:steeleaf_sword",
+                    "weight": 75
+                  }
+                ]
+              }
+            ]
+          },
+          "weight": 21
+        },
+        {
+          "type": "minecraft:loot_table",
+          "value": {
+            "pools": [
+              {
+                "bonus_rolls": 0.0,
+                "rolls": 4.0,
+                "entries": [
+                  {
+                    "type": "minecraft:item",
+                    "functions": [
+                      {
+                        "add": false,
+                        "count": {
+                          "type": "minecraft:uniform",
+                          "max": 12.0,
+                          "min": 1.0
+                        },
+                        "function": "minecraft:set_count"
+                      }
+                    ],
+                    "name": "twilightforest:maze_wafer",
+                    "weight": 75
+                  },
+                  {
+                    "type": "minecraft:item",
+                    "functions": [
+                      {
+                        "add": false,
+                        "count": {
+                          "type": "minecraft:uniform",
+                          "max": 4.0,
+                          "min": 1.0
+                        },
+                        "function": "minecraft:set_count"
+                      }
+                    ],
+                    "name": "twilightforest:ironwood_ingot",
+                    "weight": 75
+                  },
+                  {
+                    "type": "minecraft:item",
+                    "functions": [
+                      {
+                        "add": false,
+                        "count": {
+                          "type": "minecraft:uniform",
+                          "max": 5.0,
+                          "min": 1.0
+                        },
+                        "function": "minecraft:set_count"
+                      }
+                    ],
+                    "name": "twilightforest:firefly",
+                    "weight": 75
+                  }
+                ]
+              },
+              {
+                "bonus_rolls": 0.0,
+                "rolls": 2.0,
+                "entries": [
+                  {
+                    "type": "minecraft:item",
+                    "functions": [
+                      {
+                        "add": false,
+                        "count": {
+                          "type": "minecraft:uniform",
+                          "max": 6.0,
+                          "min": 1.0
+                        },
+                        "function": "minecraft:set_count"
+                      }
+                    ],
+                    "name": "twilightforest:steeleaf_ingot"
+                  },
+                  {
+                    "type": "minecraft:item",
+                    "name": "twilightforest:charm_of_life_1"
+                  },
+                  {
+                    "type": "minecraft:item",
+                    "name": "twilightforest:steeleaf_helmet"
+                  },
+                  {
+                    "type": "minecraft:item",
+                    "name": "twilightforest:steeleaf_chestplate"
+                  },
+                  {
+                    "type": "minecraft:item",
+                    "name": "twilightforest:steeleaf_leggings"
+                  },
+                  {
+                    "type": "minecraft:item",
+                    "name": "twilightforest:steeleaf_boots"
+                  },
+                  {
+                    "type": "minecraft:item",
+                    "name": "twilightforest:steeleaf_pickaxe"
+                  },
+                  {
+                    "type": "minecraft:item",
+                    "name": "twilightforest:ironwood_chestplate"
+                  },
+                  {
+                    "type": "minecraft:item",
+                    "name": "twilightforest:ironwood_sword"
+                  }
+                ]
+              },
+              {
+                "bonus_rolls": 0.0,
+                "rolls": 1.0,
+                "entries": [
+                  {
+                    "type": "minecraft:item",
+                    "functions": [
+                      {
+                        "function": "minecraft:enchant_with_levels",
+                        "levels": 25.0,
+                        "options": "#minecraft:on_random_loot"
+                      }
+                    ],
+                    "name": "twilightforest:ironwood_sword"
+                  },
+                  {
+                    "type": "minecraft:item",
+                    "functions": [
+                      {
+                        "function": "minecraft:enchant_with_levels",
+                        "levels": 20.0,
+                        "options": "#minecraft:on_random_loot"
+                      }
+                    ],
+                    "name": "twilightforest:steeleaf_sword"
+                  },
+                  {
+                    "type": "minecraft:item",
+                    "name": "twilightforest:maze_map_focus"
+                  }
+                ]
+              }
+            ]
+          },
+          "weight": 21
+        },
+        {
+          "type": "minecraft:loot_table",
+          "value": {
+            "pools": [
+              {
+                "bonus_rolls": 0.0,
+                "rolls": 4.0,
+                "entries": [
+                  {
+                    "type": "minecraft:item",
+                    "functions": [
+                      {
+                        "add": false,
+                        "count": {
+                          "type": "minecraft:uniform",
+                          "max": 9.0,
+                          "min": 1.0
+                        },
+                        "function": "minecraft:set_count"
+                      }
+                    ],
+                    "name": "twilightforest:experiment_115",
+                    "weight": 75
+                  }
+                ]
+              },
+              {
+                "bonus_rolls": 0.0,
+                "rolls": 2.0,
+                "entries": [
+                  {
+                    "type": "minecraft:item",
+                    "functions": [
+                      {
+                        "add": false,
+                        "count": {
+                          "type": "minecraft:uniform",
+                          "max": 8.0,
+                          "min": 1.0
+                        },
+                        "function": "minecraft:set_count"
+                      }
+                    ],
+                    "name": "twilightforest:ironwood_ingot"
+                  },
+                  {
+                    "type": "minecraft:item",
+                    "functions": [
+                      {
+                        "add": false,
+                        "count": {
+                          "type": "minecraft:uniform",
+                          "max": 5.0,
+                          "min": 1.0
+                        },
+                        "function": "minecraft:set_count"
+                      }
+                    ],
+                    "name": "twilightforest:firefly"
+                  },
+                  {
+                    "type": "minecraft:item",
+                    "name": "twilightforest:charm_of_keeping_1"
+                  }
+                ]
+              },
+              {
+                "bonus_rolls": 0.0,
+                "rolls": 1.0,
+                "entries": [
+                  {
+                    "type": "minecraft:item",
+                    "functions": [
+                      {
+                        "add": false,
+                        "count": {
+                          "type": "minecraft:uniform",
+                          "max": 8.0,
+                          "min": 1.0
+                        },
+                        "function": "minecraft:set_count"
+                      }
+                    ],
+                    "name": "twilightforest:steeleaf_ingot"
+                  }
+                ]
+              }
+            ]
+          },
+          "weight": 21
+        }
+      ]
+    }
+  ]
+}

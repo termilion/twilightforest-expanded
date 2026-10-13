@@ -21,3 +21,7 @@ Also imported for the spooky forest ruins (twilightforest:spooky_*): remnant_gra
 wild_ruin and firewatch_tower_dark_oak with their pools, processors and loot. Loot tables ruin_loot_master, pot_wild_ruin
 and firewatch_tower were wrapped: the original loot fills 1 in 7 containers, Twilight Forest tables (vanilla entries
 emptied) the rest; #nova_structures:traveler enchantments replaced by #minecraft:on_random_loot.
+
+lone_citadel (2026-10-13): templates, template pools, processor list citadel_degradation, pillar features (*_base), block tag support_goes_through
+and loot tables (chests/pots/spawners/equipment/spawner_projectile lone_citadel, keys citadel_key / citadel_boss_key) copied from Dungeons and Taverns
+and modified (amethyst/blackstone re-skin, Twilight Forest mobs and loot).

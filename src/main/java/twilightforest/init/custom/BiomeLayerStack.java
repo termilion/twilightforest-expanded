@@ -59,6 +59,8 @@ public class BiomeLayerStack {
 			Pair.of(TFBiomes.DARK_FOREST_CENTER, TFBiomes.DARK_FOREST),
 			Pair.of(TFBiomes.SPOOKY_FOREST, TFBiomes.HIGHLANDS)
 		), Holder.direct(biomes));
+		// Key slot 4 holds one of several biomes, picked per key biome cell
+		biomes = new KeyBiomeVariantsLayer.Factory(1010L, TFBiomes.SPOOKY_FOREST, List.of(TFBiomes.SPOOKY_FOREST, TFBiomes.AMETHYST_STRAITS), Holder.direct(biomes));
 
 		biomes = new ZoomLayer.Factory(1000L, false, Holder.direct(biomes));
 		biomes = new ZoomLayer.Factory(1001L, false, Holder.direct(biomes));
@@ -66,9 +68,10 @@ public class BiomeLayerStack {
 		biomes = new StabilizeLayer.Factory(700L, Holder.direct(biomes));
 
 		// Make room for large structures inside the key biome slot formerly held by the Final Plateau
-		biomes = new ExpandBiomeLayer.Factory(600L, List.of(TFBiomes.SPOOKY_FOREST), Holder.direct(biomes));
+		biomes = new ExpandBiomeLayer.Factory(600L, List.of(TFBiomes.SPOOKY_FOREST, TFBiomes.AMETHYST_STRAITS), Holder.direct(biomes));
 
 		biomes = new BorderLayer.Factory(500L, TFBiomes.SPOOKY_FOREST, TFBiomes.THORNLANDS, Holder.direct(biomes));
+		biomes = new BorderLayer.Factory(501L, TFBiomes.AMETHYST_STRAITS, TFBiomes.THORNLANDS, Holder.direct(biomes));
 
 		biomes = new ZoomLayer.Factory(1002L, false, Holder.direct(biomes));
 		biomes = new ZoomLayer.Factory(1003L, false, Holder.direct(biomes));
@@ -82,7 +85,8 @@ public class BiomeLayerStack {
 			Pair.of(TFBiomes.MUSHROOM_FOREST, TFBiomes.DENSE_MUSHROOM_FOREST),
 			Pair.of(TFBiomes.SWAMP, TFBiomes.FIRE_SWAMP),
 			Pair.of(TFBiomes.DARK_FOREST, TFBiomes.DARK_FOREST_CENTER),
-			Pair.of(TFBiomes.HIGHLANDS, TFBiomes.SPOOKY_FOREST)
+			Pair.of(TFBiomes.HIGHLANDS, TFBiomes.SPOOKY_FOREST),
+			Pair.of(TFBiomes.HIGHLANDS, TFBiomes.AMETHYST_STRAITS)
 		), randomBiomes);
 		riverLayer = new SmoothLayer.Factory(7000L, Holder.direct(riverLayer));
 

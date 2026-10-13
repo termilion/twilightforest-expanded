@@ -48,6 +48,7 @@ public class LangGenerator extends TFLangProvider {
 		this.addBiome(TFBiomes.DARK_FOREST_CENTER, "Dark Forest Center");
 		this.addBiome(TFBiomes.SNOWY_FOREST, "Snowy Forest");
 		this.addBiome(TFBiomes.GLACIER, "Twilight Glacier");
+		this.addBiome(TFBiomes.AMETHYST_STRAITS, "Amethyst Straits");
 		this.addBiome(TFBiomes.HIGHLANDS, "Twilight Highlands");
 		this.addBiome(TFBiomes.HIGHLANDS_UNDERGROUND, "Troll Caves");
 		this.addBiome(TFBiomes.THORNLANDS, "Thornlands");

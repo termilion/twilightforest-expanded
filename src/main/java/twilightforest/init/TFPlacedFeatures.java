@@ -12,6 +12,10 @@ import net.minecraft.data.worldgen.placement.PlacementUtils;
 import net.minecraft.data.worldgen.placement.VegetationPlacements;
 import net.minecraft.resources.ResourceKey;
 import net.minecraft.util.valueproviders.ClampedInt;
+import net.minecraft.util.valueproviders.ConstantInt;
+import net.minecraft.util.valueproviders.IntProvider;
+import net.minecraft.util.valueproviders.WeightedListInt;
+import net.minecraft.util.random.SimpleWeightedRandomList;
 import net.minecraft.util.valueproviders.UniformInt;
 import net.minecraft.world.level.biome.Biome;
 import net.minecraft.world.level.block.Blocks;
@@ -28,12 +32,25 @@ import twilightforest.world.components.placements.ChunkBlanketingModifier;
 import twilightforest.world.components.placements.ChunkCenterModifier;
 
 import java.util.List;
+import java.util.Optional;
+import net.minecraft.world.level.levelgen.Heightmap;
 
 public class TFPlacedFeatures {
 
 	public static final ResourceKey<PlacedFeature> PLACED_LAKE_LAVA = registerKey("lava_lake");
 	public static final ResourceKey<PlacedFeature> PLACED_LAKE_WATER = registerKey("water_lake");
 	public static final ResourceKey<PlacedFeature> PLACED_LAKE_FROZEN = registerKey("frozen_lake");
+	public static final ResourceKey<PlacedFeature> PLACED_LAKE_AMETHYST = registerKey("amethyst_lake");
+	public static final ResourceKey<PlacedFeature> PLACED_AMETHYST_SPIKE = registerKey("amethyst_spike");
+	public static final ResourceKey<PlacedFeature> PLACED_AMETHYST_PATCH = registerKey("amethyst_patch");
+	public static final ResourceKey<PlacedFeature> PLACED_RAINBOW_CANOPY_BUSH = registerKey("tree/rainbow_canopy_bush");
+	public static final ResourceKey<PlacedFeature> PLACED_DARKWOOD_BUSH = registerKey("tree/darkwood_bush");
+	public static final ResourceKey<PlacedFeature> PLACED_AMETHYST_DELTA = registerKey("amethyst_delta");
+	public static final ResourceKey<PlacedFeature> PLACED_SMALL_BLACKSTONE_COLUMNS = registerKey("small_blackstone_columns");
+	public static final ResourceKey<PlacedFeature> PLACED_LARGE_BLACKSTONE_COLUMNS = registerKey("large_blackstone_columns");
+	public static final ResourceKey<PlacedFeature> PLACED_BLACKSTONE_BLOBS = registerKey("blackstone_blobs");
+	public static final ResourceKey<PlacedFeature> PLACED_AMETHYST_CLUSTER_ON_BUDDING = registerKey("amethyst_cluster_on_budding");
+	public static final ResourceKey<PlacedFeature> PLACED_CRYING_OBSIDIAN_SPOT = registerKey("crying_obsidian_spot");
 	public static final ResourceKey<PlacedFeature> PLACED_DRUID_HUT = registerKey("druid_hut");
 	public static final ResourceKey<PlacedFeature> PLACED_DENSE_FERNS = registerKey("dense_ferns");
 	public static final ResourceKey<PlacedFeature> PLACED_DENSE_LARGE_FERNS = registerKey("dense_large_ferns");
@@ -208,6 +225,18 @@ public class TFPlacedFeatures {
 		context.register(PLACED_LAKE_LAVA, new PlacedFeature(features.getOrThrow(TFConfiguredFeatures.LAKE_LAVA), tfFeatureCheckArea(AvoidLandmarkModifier.checkBoth(), 10).build()));
 		context.register(PLACED_LAKE_WATER, new PlacedFeature(features.getOrThrow(TFConfiguredFeatures.LAKE_WATER), tfFeatureCheckArea(AvoidLandmarkModifier.checkBoth(), 32).build()));
 		context.register(PLACED_LAKE_FROZEN, new PlacedFeature(features.getOrThrow(TFConfiguredFeatures.LAKE_FROZEN), tfFeatureCheckArea(AvoidLandmarkModifier.checkBoth(), 4).build()));
+		context.register(PLACED_LAKE_AMETHYST, new PlacedFeature(features.getOrThrow(TFConfiguredFeatures.LAKE_AMETHYST), tfFeatureCheckArea(AvoidLandmarkModifier.checkBoth(), 32).build()));
+		// Same placement as vanilla ice_spike / ice_patch, the patch only on the amethyst straits surface blocks
+		PlacementUtils.register(context, PLACED_AMETHYST_SPIKE, features.getOrThrow(TFConfiguredFeatures.AMETHYST_SPIKE), CountPlacement.of(1), InSquarePlacement.spread(), PlacementUtils.HEIGHTMAP, AvoidLandmarkModifier.checkSurface(), BiomeFilter.biome());
+		PlacementUtils.register(context, PLACED_AMETHYST_PATCH, features.getOrThrow(TFConfiguredFeatures.AMETHYST_PATCH), CountPlacement.of(2), InSquarePlacement.spread(), PlacementUtils.HEIGHTMAP, RandomOffsetPlacement.vertical(ConstantInt.of(-1)), BlockPredicateFilter.forPredicate(BlockPredicate.matchesBlocks(Blocks.BLACKSTONE, Blocks.OBSIDIAN, Blocks.CRYING_OBSIDIAN)), AvoidLandmarkModifier.checkSurface(), BiomeFilter.biome());
+		// Basalt delta features (NetherPlacements), only on the surface and at about half the vanilla column/blob counts. Vanilla uses 40 deltas per layer,
+		// but the flat surface here accepts nearly every one (40 -> 83% water, 3 -> 29%), so 1-2
+		PlacementUtils.register(context, PLACED_AMETHYST_DELTA, features.getOrThrow(TFConfiguredFeatures.AMETHYST_DELTA), CountPlacement.of(UniformInt.of(1, 2)), InSquarePlacement.spread(), PlacementUtils.HEIGHTMAP, RandomOffsetPlacement.vertical(ConstantInt.of(-1)), AvoidLandmarkModifier.checkSurface(), BiomeFilter.biome());
+		PlacementUtils.register(context, PLACED_SMALL_BLACKSTONE_COLUMNS, features.getOrThrow(TFConfiguredFeatures.SMALL_BLACKSTONE_COLUMNS), CountPlacement.of(2), InSquarePlacement.spread(), PlacementUtils.HEIGHTMAP, AvoidLandmarkModifier.checkSurface(), BiomeFilter.biome());
+		PlacementUtils.register(context, PLACED_LARGE_BLACKSTONE_COLUMNS, features.getOrThrow(TFConfiguredFeatures.LARGE_BLACKSTONE_COLUMNS), CountPlacement.of(1), InSquarePlacement.spread(), PlacementUtils.HEIGHTMAP, AvoidLandmarkModifier.checkSurface(), BiomeFilter.biome());
+		PlacementUtils.register(context, PLACED_BLACKSTONE_BLOBS, features.getOrThrow(TFConfiguredFeatures.BLACKSTONE_BLOBS), CountPlacement.of(12), InSquarePlacement.spread(), HeightRangePlacement.uniform(VerticalAnchor.absolute(-8), VerticalAnchor.absolute(80)), BiomeFilter.biome());
+		// Single crying obsidian blocks in the obsidian surface patches (8 tries per chunk, ~3% of patch blocks)
+		PlacementUtils.register(context, PLACED_CRYING_OBSIDIAN_SPOT, features.getOrThrow(TFConfiguredFeatures.CRYING_OBSIDIAN_SPOT), CountPlacement.of(8), InSquarePlacement.spread(), PlacementUtils.HEIGHTMAP, RandomOffsetPlacement.vertical(ConstantInt.of(-1)), BlockPredicateFilter.forPredicate(BlockPredicate.matchesBlocks(Blocks.OBSIDIAN)), AvoidLandmarkModifier.checkSurface(), BiomeFilter.biome());
 		context.register(PLACED_DRUID_HUT, new PlacedFeature(features.getOrThrow(TFConfiguredFeatures.DRUID_HUT), tfFeatureCheckArea(new AvoidLandmarkModifier(true, true, 16, HolderSet.empty()), 105).build()));
 		context.register(PLACED_DENSE_FERNS, new PlacedFeature(features.getOrThrow(TFConfiguredFeatures.DENSE_FERNS), ImmutableList.<PlacementModifier>builder().add(PlacementUtils.countExtra(3, 0.5F, 1), InSquarePlacement.spread(), PlacementUtils.HEIGHTMAP_WORLD_SURFACE, BiomeFilter.biome(), avoidLichTower).build()));
 		context.register(PLACED_DENSE_LARGE_FERNS, new PlacedFeature(features.getOrThrow(TFConfiguredFeatures.DENSE_LARGE_FERNS), ImmutableList.<PlacementModifier>builder().add(CountPlacement.of(2), InSquarePlacement.spread(), PlacementUtils.HEIGHTMAP_WORLD_SURFACE, BiomeFilter.biome(), avoidLichTower).build()));
@@ -250,6 +279,11 @@ public class TFPlacedFeatures {
 		context.register(PLACED_PUMPKIN_LAMPPOST, new PlacedFeature(features.getOrThrow(TFConfiguredFeatures.PUMPKIN_LAMPPOST), tfFeatureCheckArea(AvoidLandmarkModifier.checkSurface(), 10).build()));
 		context.register(PLACED_SMOKER, new PlacedFeature(features.getOrThrow(TFConfiguredFeatures.SMOKER), ImmutableList.<PlacementModifier>builder().add(PlacementUtils.HEIGHTMAP_WORLD_SURFACE, InSquarePlacement.spread(), BiomeFilter.biome()).build()));
 		context.register(PLACED_STONE_CIRCLE, new PlacedFeature(features.getOrThrow(TFConfiguredFeatures.STONE_CIRCLE), tfFeatureCheckArea(AvoidLandmarkModifier.checkSurface(), 105).build()));
+		// An amethyst cluster on every exposed budding amethyst at the surface
+		context.register(PLACED_AMETHYST_CLUSTER_ON_BUDDING, new PlacedFeature(features.getOrThrow(TFConfiguredFeatures.AMETHYST_CLUSTER_ON_BUDDING), List.of(
+			new ChunkBlanketingModifier(1.0F, Heightmap.Types.WORLD_SURFACE, Optional.of(HolderSet.direct(biomes.getOrThrow(TFBiomes.AMETHYST_STRAITS)))),
+			BlockPredicateFilter.forPredicate(BlockPredicate.allOf(BlockPredicate.matchesBlocks(Direction.DOWN.getNormal(), Blocks.BUDDING_AMETHYST), BlockPredicate.ONLY_IN_AIR_PREDICATE))
+		)));
 		context.register(PLACED_THORNS, new PlacedFeature(features.getOrThrow(TFConfiguredFeatures.THORNS), ImmutableList.<PlacementModifier>builder().add(ChunkBlanketingModifier.addThorns(HolderSet.direct(biomes.getOrThrow(TFBiomes.THORNLANDS)))).build()));
 		context.register(PLACED_TORCH_BERRIES, new PlacedFeature(features.getOrThrow(TFConfiguredFeatures.TORCH_BERRIES), ImmutableList.<PlacementModifier>builder().add(PlacementUtils.HEIGHTMAP_WORLD_SURFACE, HeightRangePlacement.uniform(VerticalAnchor.bottom(), VerticalAnchor.absolute(60)), CountPlacement.of(8), InSquarePlacement.spread(), AvoidLandmarkModifier.checkUnderground(), BiomeFilter.biome()).build()));
 		context.register(PLACED_TROLL_ROOTS, new PlacedFeature(features.getOrThrow(TFConfiguredFeatures.TROLL_ROOTS), ImmutableList.<PlacementModifier>builder().add(PlacementUtils.HEIGHTMAP_WORLD_SURFACE, CountOnEveryLayerPlacement.of(12), BiomeFilter.biome()).build()));
@@ -310,6 +344,10 @@ public class TFPlacedFeatures {
 		context.register(PLACED_DENSE_CANOPY_TREES, new PlacedFeature(features.getOrThrow(TFConfiguredFeatures.DENSE_CANOPY_TREES), tfTreeCheckArea(PlacementUtils.countExtra(5, 0.1F, 1), TFBlocks.CANOPY_SAPLING.get().defaultBlockState(), allowLichTower)));
 		context.register(PLACED_FIREFLY_FOREST_TREES, new PlacedFeature(features.getOrThrow(TFConfiguredFeatures.FIREFLY_FOREST_TREES), tfTreeCheckArea(PlacementUtils.countExtra(3, 0.1F, 1), TFBlocks.CANOPY_SAPLING.get().defaultBlockState(), allowLichTower)));
 		context.register(PLACED_DARK_FOREST_TREES, new PlacedFeature(features.getOrThrow(TFConfiguredFeatures.DARKWOOD_TREE), darkForestTreeCheck(PlacementUtils.countExtra(8, 0.1F, 1))));
+		// Rainbow canopy and darkwood bushes on the blackstone of the amethyst straits, 0.75 attempts per chunk each (0 or 1, weighted 1:3)
+		IntProvider amethystBushCount = new WeightedListInt(SimpleWeightedRandomList.<IntProvider>builder().add(ConstantInt.of(0), 1).add(ConstantInt.of(1), 3).build());
+		context.register(PLACED_RAINBOW_CANOPY_BUSH, new PlacedFeature(features.getOrThrow(TFConfiguredFeatures.RAINBOW_CANOPY_BUSH), darkForestTreeCheck(CountPlacement.of(amethystBushCount))));
+		context.register(PLACED_DARKWOOD_BUSH, new PlacedFeature(features.getOrThrow(TFConfiguredFeatures.DARKWOOD_BUSH), darkForestTreeCheck(CountPlacement.of(amethystBushCount))));
 		context.register(PLACED_DARK_FOREST_TREE_MIX, new PlacedFeature(features.getOrThrow(TFConfiguredFeatures.DARK_FOREST_TREES), darkForestTreeCheck(PlacementUtils.countExtra(3, 0.1F, 1))));
 		context.register(PLACED_HIGHLANDS_TREES, new PlacedFeature(features.getOrThrow(TFConfiguredFeatures.HIGHLANDS_TREES), tfTreeCheckArea(PlacementUtils.countExtra(3, 0.1F, 1), Blocks.SPRUCE_SAPLING.defaultBlockState())));
 		context.register(PLACED_ENCHANTED_FOREST_TREES, new PlacedFeature(features.getOrThrow(TFConfiguredFeatures.ENCHANTED_FOREST_TREES), tfTreeCheckArea(PlacementUtils.countExtra(5, 0.1F, 1), TFBlocks.RAINBOW_OAK_SAPLING.get().defaultBlockState())));

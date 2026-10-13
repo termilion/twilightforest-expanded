@@ -37,6 +37,7 @@ public class BiomeTagGenerator extends BiomeTagsProvider {
 	public static final TagKey<Biome> VALID_TROLL_CAVE_BIOMES = TagKey.create(Registries.BIOME, TwilightForestMod.prefix("valid_troll_cave_biomes"));
 	public static final TagKey<Biome> VALID_GIANT_HOUSE_BIOMES = TagKey.create(Registries.BIOME, TwilightForestMod.prefix("valid_giant_house_biomes"));
 	public static final TagKey<Biome> VALID_UNDEAD_CRYPT_BIOMES = TagKey.create(Registries.BIOME, TwilightForestMod.prefix("valid_undead_crypt_biomes"));
+	public static final TagKey<Biome> VALID_LONE_CITADEL_BIOMES = TagKey.create(Registries.BIOME, TwilightForestMod.prefix("valid_lone_citadel_biomes"));
 	public static final TagKey<Biome> VALID_SPOOKY_RUIN_BIOMES = TagKey.create(Registries.BIOME, TwilightForestMod.prefix("valid_spooky_ruin_biomes"));
 	public static final TagKey<Biome> VALID_SAVANNA_LANDMARK_BIOMES = TagKey.create(Registries.BIOME, TwilightForestMod.prefix("valid_savanna_landmark_biomes"));
 	public static final TagKey<Biome> VALID_FINAL_CASTLE_BIOMES = TagKey.create(Registries.BIOME, TwilightForestMod.prefix("valid_final_castle_biomes"));
@@ -58,7 +59,8 @@ public class BiomeTagGenerator extends BiomeTagsProvider {
 			TFBiomes.SWAMP, TFBiomes.FIRE_SWAMP,
 			TFBiomes.DARK_FOREST, TFBiomes.DARK_FOREST_CENTER,
 			TFBiomes.SNOWY_FOREST, TFBiomes.GLACIER,
-			TFBiomes.HIGHLANDS, TFBiomes.THORNLANDS
+			TFBiomes.HIGHLANDS, TFBiomes.THORNLANDS,
+			TFBiomes.AMETHYST_STRAITS
 		);
 
 		this.tag(VALID_QUEST_GROVE_BIOMES).add(TFBiomes.ENCHANTED_FOREST);
@@ -98,6 +100,7 @@ public class BiomeTagGenerator extends BiomeTagsProvider {
 		this.tag(VALID_AURORA_PALACE_BIOMES).add(TFBiomes.GLACIER);
 		this.tag(VALID_TROLL_CAVE_BIOMES).add(TFBiomes.HIGHLANDS);
 		this.tag(VALID_UNDEAD_CRYPT_BIOMES).add(TFBiomes.SPOOKY_FOREST);
+		this.tag(VALID_LONE_CITADEL_BIOMES).add(TFBiomes.AMETHYST_STRAITS);
 		this.tag(VALID_SPOOKY_RUIN_BIOMES).add(TFBiomes.SPOOKY_FOREST);
 		this.tag(VALID_SAVANNA_LANDMARK_BIOMES).add(TFBiomes.OAK_SAVANNAH);
 		this.tag(VALID_GIANT_HOUSE_BIOMES).add(TFBiomes.HIGHLANDS);

@@ -24,6 +24,7 @@ import net.minecraft.world.level.levelgen.structure.BoundingBox;
 import net.minecraft.world.level.levelgen.structure.templatesystem.StructureTemplate;
 import net.minecraft.world.phys.shapes.BitSetDiscreteVoxelShape;
 import net.minecraft.world.phys.shapes.DiscreteVoxelShape;
+import twilightforest.data.tags.BlockTagGenerator;
 import twilightforest.util.features.FeaturePlacers;
 
 import java.util.List;
@@ -50,11 +51,11 @@ public class DarkCanopyTreeFeature extends Feature<TreeConfiguration> {
 		BlockPos pos = ctx.origin();
 		RandomSource rand = ctx.random();
 
-		// if we are given leaves as a starting position, seek dirt or grass underneath
+		// if we are given leaves as a starting position, seek dirt or grass (or another ground block from the tag, e.g. blackstone) underneath
 		boolean foundDirt = false;
 		for (int dy = pos.getY(); dy >= reader.getMinBuildHeight(); dy--) {
 			BlockState state = reader.getBlockState(new BlockPos(pos.getX(), dy - 1, pos.getZ()));
-			if (state.is(BlockTags.DIRT)) {
+			if (state.is(BlockTagGenerator.DARK_CANOPY_TREE_GROUND)) {
 				// yes!
 				foundDirt = true;
 				pos = new BlockPos(pos.getX(), dy, pos.getZ());

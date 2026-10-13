@@ -87,6 +87,20 @@ public class FireflyParticle extends TextureSheetParticle {
 		}
 	}
 
+	/**
+	 * Same as {@link WanderingProvider}, tinted purple (amethyst straits)
+	 */
+	public record PurpleWanderingProvider(SpriteSet sprite) implements ParticleProvider<SimpleParticleType> {
+
+		@Override
+		public Particle createParticle(SimpleParticleType type, ClientLevel level, double x, double y, double z, double xSpeed, double ySpeed, double zSpeed) {
+			Particle particle = new WanderingProvider(this.sprite()).createParticle(type, level, x, y, z, xSpeed, ySpeed, zSpeed);
+			RandomSource rand = level.getRandom();
+			particle.setColor(0.6F + rand.nextFloat() * 0.25F, 0.2F + rand.nextFloat() * 0.15F, 0.85F + rand.nextFloat() * 0.15F);
+			return particle;
+		}
+	}
+
 	public record ParticleSpawnerProvider(SpriteSet sprite) implements ParticleProvider<SimpleParticleType> {
 
 		@Override

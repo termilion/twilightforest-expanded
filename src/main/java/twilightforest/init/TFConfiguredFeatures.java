@@ -15,10 +15,14 @@ import net.minecraft.tags.BlockTags;
 import net.minecraft.util.random.SimpleWeightedRandomList;
 import net.minecraft.util.valueproviders.ConstantInt;
 import net.minecraft.util.valueproviders.UniformInt;
+import net.minecraft.world.level.block.AmethystClusterBlock;
 import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.HugeMushroomBlock;
 import net.minecraft.world.level.block.state.properties.BlockStateProperties;
 import net.minecraft.world.level.levelgen.blockpredicates.BlockPredicate;
+import net.minecraft.world.level.block.Block;
+import net.minecraft.world.level.block.state.BlockState;
+import net.minecraft.core.HolderSet;
 import net.minecraft.world.level.levelgen.feature.ConfiguredFeature;
 import net.minecraft.world.level.levelgen.feature.Feature;
 import net.minecraft.world.level.levelgen.feature.WeightedPlacedFeature;
@@ -40,6 +44,8 @@ import twilightforest.block.TorchberryPlantBlock;
 import twilightforest.data.tags.BlockTagGenerator;
 import twilightforest.data.tags.CustomTagGenerator;
 import twilightforest.util.woods.WoodPalette;
+import twilightforest.world.components.feature.BlockColumnsFeature;
+import twilightforest.world.components.feature.CrystalSpikeFeature;
 import twilightforest.world.components.feature.TFSmallLakeFeature;
 import twilightforest.world.components.feature.config.*;
 import twilightforest.world.registration.TreeConfigurations;
@@ -53,6 +59,17 @@ public final class TFConfiguredFeatures {
 	public static final ResourceKey<ConfiguredFeature<?, ?>> LAKE_LAVA = registerKey("lava_lake");
 	public static final ResourceKey<ConfiguredFeature<?, ?>> LAKE_WATER = registerKey("water_lake");
 	public static final ResourceKey<ConfiguredFeature<?, ?>> LAKE_FROZEN = registerKey("water_frozen");
+	public static final ResourceKey<ConfiguredFeature<?, ?>> LAKE_AMETHYST = registerKey("amethyst_lake");
+	public static final ResourceKey<ConfiguredFeature<?, ?>> AMETHYST_SPIKE = registerKey("amethyst_spike");
+	public static final ResourceKey<ConfiguredFeature<?, ?>> AMETHYST_PATCH = registerKey("amethyst_patch");
+	public static final ResourceKey<ConfiguredFeature<?, ?>> RAINBOW_CANOPY_BUSH = registerKey("tree/rainbow_canopy_bush");
+	public static final ResourceKey<ConfiguredFeature<?, ?>> DARKWOOD_BUSH = registerKey("tree/darkwood_bush");
+	public static final ResourceKey<ConfiguredFeature<?, ?>> AMETHYST_DELTA = registerKey("amethyst_delta");
+	public static final ResourceKey<ConfiguredFeature<?, ?>> SMALL_BLACKSTONE_COLUMNS = registerKey("small_blackstone_columns");
+	public static final ResourceKey<ConfiguredFeature<?, ?>> LARGE_BLACKSTONE_COLUMNS = registerKey("large_blackstone_columns");
+	public static final ResourceKey<ConfiguredFeature<?, ?>> BLACKSTONE_BLOBS = registerKey("blackstone_blobs");
+	public static final ResourceKey<ConfiguredFeature<?, ?>> AMETHYST_CLUSTER_ON_BUDDING = registerKey("amethyst_cluster_on_budding");
+	public static final ResourceKey<ConfiguredFeature<?, ?>> CRYING_OBSIDIAN_SPOT = registerKey("crying_obsidian_spot");
 
 	//"structures" that arent actually structures
 	public static final ResourceKey<ConfiguredFeature<?, ?>> SIMPLE_WELL = registerKey("simple_well");
@@ -250,6 +267,24 @@ public final class TFConfiguredFeatures {
 		context.register(LAKE_LAVA, new ConfiguredFeature<>(TFFeatures.SMALL_LAKE.get(), new TFSmallLakeFeature.Configuration(BlockStateProvider.simple(Blocks.LAVA), BlockStateProvider.simple(Blocks.STONE), null)));
 		context.register(LAKE_WATER, new ConfiguredFeature<>(TFFeatures.SMALL_LAKE.get(), new TFSmallLakeFeature.Configuration(BlockStateProvider.simple(Blocks.WATER), null, null)));
 		context.register(LAKE_FROZEN, new ConfiguredFeature<>(TFFeatures.SMALL_LAKE.get(), new TFSmallLakeFeature.Configuration(BlockStateProvider.simple(Blocks.WATER), null, BlockStateProvider.simple(Blocks.ICE))));
+		// Water lake walled with amethyst, see amethyst_straits
+		context.register(LAKE_AMETHYST, new ConfiguredFeature<>(TFFeatures.SMALL_LAKE.get(), new TFSmallLakeFeature.Configuration(BlockStateProvider.simple(Blocks.WATER), new WeightedStateProvider(SimpleWeightedRandomList.<BlockState>builder().add(Blocks.AMETHYST_BLOCK.defaultBlockState(), 4).add(Blocks.BUDDING_AMETHYST.defaultBlockState(), 1)), null)));
+		// Copies of vanilla ice_spike / ice_patch with packed ice replaced by amethyst
+		HolderSet<Block> amethystStraitsGround = HolderSet.direct(Block::builtInRegistryHolder, Blocks.BLACKSTONE, Blocks.OBSIDIAN, Blocks.CRYING_OBSIDIAN);
+		context.register(AMETHYST_SPIKE, new ConfiguredFeature<>(TFFeatures.CRYSTAL_SPIKE.get(), new CrystalSpikeFeature.Config(BlockStateProvider.simple(Blocks.AMETHYST_BLOCK), amethystStraitsGround, HolderSet.direct(Block::builtInRegistryHolder, Blocks.AMETHYST_BLOCK), UniformInt.of(8, 16), 3, UniformInt.of(12, 40))));
+		context.register(AMETHYST_PATCH, new ConfiguredFeature<>(Feature.DISK, new DiskConfiguration(
+			RuleBasedBlockStateProvider.simple(new WeightedStateProvider(SimpleWeightedRandomList.<BlockState>builder().add(Blocks.AMETHYST_BLOCK.defaultBlockState(), 19).add(Blocks.BUDDING_AMETHYST.defaultBlockState(), 1))),
+			BlockPredicate.matchesBlocks(List.of(Blocks.DIRT, Blocks.BLACKSTONE, Blocks.OBSIDIAN, Blocks.CRYING_OBSIDIAN, Blocks.AMETHYST_BLOCK)),
+			UniformInt.of(2, 3),
+			1
+		)));
+		// Basalt delta terrain (NetherFeatures#DELTA, *_BASALT_COLUMNS, BLACKSTONE_BLOBS) adapted to the amethyst straits
+		context.register(AMETHYST_DELTA, new ConfiguredFeature<>(Feature.DELTA_FEATURE, new DeltaFeatureConfiguration(Blocks.WATER.defaultBlockState(), Blocks.OBSIDIAN.defaultBlockState(), UniformInt.of(3, 7), UniformInt.of(0, 2))));
+		context.register(SMALL_BLACKSTONE_COLUMNS, new ConfiguredFeature<>(TFFeatures.BLOCK_COLUMNS.get(), new BlockColumnsFeature.Config(Blocks.BLACKSTONE.defaultBlockState(), ConstantInt.of(1), UniformInt.of(1, 4))));
+		context.register(LARGE_BLACKSTONE_COLUMNS, new ConfiguredFeature<>(TFFeatures.BLOCK_COLUMNS.get(), new BlockColumnsFeature.Config(Blocks.BLACKSTONE.defaultBlockState(), UniformInt.of(2, 3), UniformInt.of(5, 10))));
+		context.register(BLACKSTONE_BLOBS, new ConfiguredFeature<>(Feature.REPLACE_BLOBS, new ReplaceSphereConfiguration(Blocks.STONE.defaultBlockState(), Blocks.BLACKSTONE.defaultBlockState(), UniformInt.of(3, 7))));
+		context.register(AMETHYST_CLUSTER_ON_BUDDING, new ConfiguredFeature<>(Feature.SIMPLE_BLOCK, new SimpleBlockConfiguration(BlockStateProvider.simple(Blocks.AMETHYST_CLUSTER.defaultBlockState().setValue(AmethystClusterBlock.FACING, Direction.UP)))));
+		context.register(CRYING_OBSIDIAN_SPOT, new ConfiguredFeature<>(Feature.SIMPLE_BLOCK, new SimpleBlockConfiguration(BlockStateProvider.simple(Blocks.CRYING_OBSIDIAN))));
 
 		registerTemplateFeatures(context);
 
@@ -370,6 +405,8 @@ public final class TFConfiguredFeatures {
 		context.register(DARK_FOREST_OAK_TREE, new ConfiguredFeature<>(TFFeatures.DARK_CANOPY_TREE.get(), new TreeConfiguration.TreeConfigurationBuilder(BlockStateProvider.simple(Blocks.OAK_LOG), new StraightTrunkPlacer(4, 2, 0), BlockStateProvider.simple(Blocks.OAK_LEAVES), new BlobFoliagePlacer(ConstantInt.of(2), ConstantInt.of(0), 3), new TwoLayersFeatureSize(1, 0, 1)).ignoreVines().build()));
 		context.register(DARK_FOREST_BIRCH_TREE, new ConfiguredFeature<>(TFFeatures.DARK_CANOPY_TREE.get(), new TreeConfiguration.TreeConfigurationBuilder(BlockStateProvider.simple(Blocks.BIRCH_LOG), new StraightTrunkPlacer(5, 2, 0), BlockStateProvider.simple(Blocks.BIRCH_LEAVES), new BlobFoliagePlacer(ConstantInt.of(2), ConstantInt.of(0), 3), new TwoLayersFeatureSize(1, 0, 1)).ignoreVines().build()));
 		context.register(DARK_OAK_BUSH, new ConfiguredFeature<>(TFFeatures.DARK_CANOPY_TREE.get(), TreeConfigurations.OAK_BUSH));
+		context.register(RAINBOW_CANOPY_BUSH, new ConfiguredFeature<>(TFFeatures.DARK_CANOPY_TREE.get(), TreeConfigurations.RAINBOW_CANOPY_BUSH));
+		context.register(DARKWOOD_BUSH, new ConfiguredFeature<>(TFFeatures.DARK_CANOPY_TREE.get(), TreeConfigurations.DARKWOOD_BUSH));
 		context.register(VANILLA_OAK_TREE, new ConfiguredFeature<>(Feature.TREE, new TreeConfiguration.TreeConfigurationBuilder(BlockStateProvider.simple(Blocks.OAK_LOG), new StraightTrunkPlacer(4, 2, 0), BlockStateProvider.simple(Blocks.OAK_LEAVES), new BlobFoliagePlacer(ConstantInt.of(2), ConstantInt.of(0), 3), new TwoLayersFeatureSize(1, 0, 1)).ignoreVines().build()));
 		context.register(VANILLA_BIRCH_TREE, new ConfiguredFeature<>(Feature.TREE, new TreeConfiguration.TreeConfigurationBuilder(BlockStateProvider.simple(Blocks.BIRCH_LOG), new StraightTrunkPlacer(5, 2, 0), BlockStateProvider.simple(Blocks.BIRCH_LEAVES), new BlobFoliagePlacer(ConstantInt.of(2), ConstantInt.of(0), 3), new TwoLayersFeatureSize(1, 0, 1)).ignoreVines().build()));
 		context.register(SMALLER_JUNGLE_TREE, new ConfiguredFeature<>(Feature.TREE, TreeConfigurations.SMALL_JUNGLE));

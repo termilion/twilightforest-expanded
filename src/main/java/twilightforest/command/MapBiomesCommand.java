@@ -60,6 +60,7 @@ public class MapBiomesCommand {
 
 		BIOME2COLOR.put(TFBiomes.SNOWY_FOREST.location(), new BiomeMapColor(255, 255, 255));
 		BIOME2COLOR.put(TFBiomes.GLACIER.location(), new BiomeMapColor(130, 191, 245));
+		BIOME2COLOR.put(TFBiomes.AMETHYST_STRAITS.location(), new BiomeMapColor(180, 220, 255));
 
 		BIOME2COLOR.put(TFBiomes.HIGHLANDS.location(), new BiomeMapColor(100, 65, 0));
 		BIOME2COLOR.put(TFBiomes.THORNLANDS.location(), new BiomeMapColor(128, 100, 90));

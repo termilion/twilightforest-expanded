@@ -54,6 +54,9 @@ public class ParticleGenerator extends ParticleDescriptionProvider {
 		this.sprite(TFParticleType.SORTING_PARTICLE.get(), TwilightForestMod.prefix("log_core"));
 		this.sprite(TFParticleType.TRANSFORMATION_PARTICLE.get(), TwilightForestMod.prefix("log_core"));
 		this.sprite(TFParticleType.WANDERING_FIREFLY.get(), TwilightForestMod.prefix("firefly"));
+		this.sprite(TFParticleType.PURPLE_WANDERING_FIREFLY.get(), TwilightForestMod.prefix("firefly"));
+		this.sprite(TFParticleType.OBSIDIAN_MOTE.get(), ResourceLocation.withDefaultNamespace("generic_0"));
+		this.sprite(TFParticleType.BLACKSTONE_MOTE.get(), ResourceLocation.withDefaultNamespace("generic_0"));
 		this.spriteSet(TFParticleType.DRYING_RACK.get(), ResourceLocation.withDefaultNamespace("generic"), 8, true);
 		this.spriteSet(TFParticleType.MAGIC_EFFECT.get(), ResourceLocation.withDefaultNamespace("effect"), 8, true);
 		this.sprite(TFParticleType.ANGRY_LICH.get(), ResourceLocation.withDefaultNamespace("angry"));

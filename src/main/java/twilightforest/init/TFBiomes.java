@@ -42,6 +42,7 @@ public class TFBiomes {
 
 	public static final ResourceKey<Biome> SNOWY_FOREST = makeKey("snowy_forest");
 	public static final ResourceKey<Biome> GLACIER = makeKey("glacier");
+	public static final ResourceKey<Biome> AMETHYST_STRAITS = makeKey("amethyst_straits");
 
 	public static final ResourceKey<Biome> HIGHLANDS = makeKey("highlands");
 	public static final ResourceKey<Biome> HIGHLANDS_UNDERGROUND = makeKey("highlands_underground");
@@ -79,6 +80,8 @@ public class TFBiomes {
 
 		context.register(SNOWY_FOREST, biomeWithDefaults(defaultAmbientBuilder().skyColor(0x808080).fogColor(0xFFFFFF).foliageColorOverride(0xFFFFFF).grassColorOverride(0xFFFFFF), snowForestSpawning(), snowyForestGen(featureGetter, carverGetter)).hasPrecipitation(true).temperature(0.09F).downfall(0.9F).build());
 		context.register(GLACIER, biomeWithDefaults(defaultAmbientBuilder().skyColor(0x130D28).fogColor(0x361F88), penguinSpawning(), glacierGen(featureGetter, carverGetter)).temperature(0.08F).downfall(0.1F).hasPrecipitation(true).build());
+		// Started as a copy of vanilla ice spikes (OverworldBiomes#plains with isCold + isIceSpikes), sky as dark forest
+		context.register(AMETHYST_STRAITS, biomeWithDefaults(purpleFireflyParticles(defaultAmbientBuilder()).skyColor(0x000000).fogColor(0xD8C0FF).foliageColorOverride(0x1E5C14).waterColor(0xCE7FFF).waterFogColor(0x9C48A8), amethystStraitsSpawning(), amethystStraitsGen(featureGetter, carverGetter)).hasPrecipitation(true).temperature(0.8F).downfall(0.0F).build());
 
 		context.register(HIGHLANDS, biomeWithDefaults(defaultAmbientBuilder(), defaultMobSpawning(), highlandsGen(featureGetter, carverGetter)).temperature(0.4F).downfall(0.7F).build());
 		context.register(HIGHLANDS_UNDERGROUND, biomeWithDefaults(defaultAmbientBuilder(), undergroundMobSpawning(), highlandsUndergroundGen(featureGetter, carverGetter)).temperature(0.35F).downfall(0.0F).build());

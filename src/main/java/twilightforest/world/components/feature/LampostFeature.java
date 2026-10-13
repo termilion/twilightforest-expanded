@@ -1,5 +1,6 @@
 package twilightforest.world.components.feature;
 
+import twilightforest.data.tags.BlockTagGenerator;
 import com.mojang.serialization.Codec;
 import net.minecraft.core.BlockPos;
 import net.minecraft.util.RandomSource;
@@ -29,8 +30,8 @@ public class LampostFeature extends Feature<BlockStateConfiguration> {
 		RandomSource rand = ctx.random();
 		BlockStateConfiguration config = ctx.config();
 
-		// we should start on a grass block
-		if (world.getBlockState(pos.below()).getBlock() != Blocks.GRASS_BLOCK) {
+		// we should start on a grass block (or the ground of the amethyst straits)
+		if (!world.getBlockState(pos.below()).is(BlockTagGenerator.LAMPPOST_PLACEABLE_ON)) {
 			return false;
 		}
 
