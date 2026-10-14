@@ -190,6 +190,13 @@ repositories {
         }
     }
 	maven {
+		name = "GeckoLib" // Pale Monarch
+		url = "https://dl.cloudsmith.io/public/geckolib3/geckolib/maven/"
+		content {
+			includeGroup("software.bernie.geckolib")
+		}
+	}
+	maven {
 		name 'Tama\'s Maven' // Beanification
 		url 'https://maven.tamaized.com/releases/'
 		content {
@@ -200,6 +207,9 @@ repositories {
 
 dependencies {
 	jarJar implementation(project(":tf-asm"))
+	jarJar(implementation("software.bernie.geckolib:geckolib-neoforge-${project.minecraft_version}:${project.geckolib_version}")) {
+		version { strictly "[${project.geckolib_version},)"; prefer project.geckolib_version }
+	}
 
 	def beanification = "tamaized:beanification:${project.beanification_version}"
 	implementation beanification
