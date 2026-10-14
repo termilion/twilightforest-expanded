@@ -150,6 +150,9 @@ public final class TFConfiguredFeatures {
 	//Ores! Lets keep pre 1.18 ore rates :)
 	public static final ResourceKey<ConfiguredFeature<?, ?>> LEGACY_COAL_ORE = registerKey("legacy_coal_ore");
 	public static final ResourceKey<ConfiguredFeature<?, ?>> LEGACY_IRON_ORE = registerKey("legacy_iron_ore");
+	public static final ResourceKey<ConfiguredFeature<?, ?>> IRON_ORE_VEIN = registerKey("iron_ore_vein");
+	public static final ResourceKey<ConfiguredFeature<?, ?>> GOLD_ORE_VEIN = registerKey("gold_ore_vein");
+	public static final ResourceKey<ConfiguredFeature<?, ?>> AMETHYST_ANCIENT_DEBRIS = registerKey("amethyst_ore/ancient_debris");
 	public static final ResourceKey<ConfiguredFeature<?, ?>> LEGACY_GOLD_ORE = registerKey("legacy_gold_ore");
 	public static final ResourceKey<ConfiguredFeature<?, ?>> LEGACY_REDSTONE_ORE = registerKey("legacy_redstone_ore");
 	public static final ResourceKey<ConfiguredFeature<?, ?>> LEGACY_DIAMOND_ORE = registerKey("legacy_diamond_ore");
@@ -301,6 +304,8 @@ public final class TFConfiguredFeatures {
 		// Same vein sizes as the LEGACY_*_ORE features
 		BlockMatchTest blackstone = new BlockMatchTest(Blocks.BLACKSTONE);
 		context.register(AMETHYST_ORE_COAL, new ConfiguredFeature<>(Feature.ORE, new OreConfiguration(blackstone, Blocks.AMETHYST_BLOCK.defaultBlockState(), 16)));
+		// Like vanilla ore_debris_small (size 2, never exposed to air): mostly single blocks
+		context.register(AMETHYST_ANCIENT_DEBRIS, new ConfiguredFeature<>(Feature.ORE, new OreConfiguration(blackstone, Blocks.ANCIENT_DEBRIS.defaultBlockState(), 2, 1.0F)));
 		context.register(AMETHYST_ORE_IRON, new ConfiguredFeature<>(Feature.ORE, new OreConfiguration(blackstone, Blocks.AMETHYST_BLOCK.defaultBlockState(), 9)));
 		context.register(AMETHYST_ORE_GOLD, new ConfiguredFeature<>(Feature.ORE, new OreConfiguration(blackstone, Blocks.AMETHYST_BLOCK.defaultBlockState(), 9)));
 		context.register(AMETHYST_ORE_REDSTONE, new ConfiguredFeature<>(Feature.ORE, new OreConfiguration(blackstone, Blocks.AMETHYST_BLOCK.defaultBlockState(), 8)));
@@ -370,6 +375,9 @@ public final class TFConfiguredFeatures {
 		context.register(SMALL_ANDESITE, new ConfiguredFeature<>(Feature.ORE, new OreConfiguration(new TagMatchTest(BlockTags.STONE_ORE_REPLACEABLES), Blocks.ANDESITE.defaultBlockState(), 16)));
 
 		context.register(LEGACY_COAL_ORE, new ConfiguredFeature<>(Feature.ORE, new OreConfiguration(new TagMatchTest(BlockTags.STONE_ORE_REPLACEABLES), Blocks.COAL_ORE.defaultBlockState(), 16)));
+		// Long ore streaks (an ore feature this size stretches into a vein) for the oak savannah underground
+		context.register(IRON_ORE_VEIN, new ConfiguredFeature<>(Feature.ORE, new OreConfiguration(new TagMatchTest(BlockTags.STONE_ORE_REPLACEABLES), Blocks.IRON_ORE.defaultBlockState(), 40)));
+		context.register(GOLD_ORE_VEIN, new ConfiguredFeature<>(Feature.ORE, new OreConfiguration(new TagMatchTest(BlockTags.STONE_ORE_REPLACEABLES), Blocks.GOLD_ORE.defaultBlockState(), 28)));
 		context.register(LEGACY_IRON_ORE, new ConfiguredFeature<>(Feature.ORE, new OreConfiguration(new TagMatchTest(BlockTags.STONE_ORE_REPLACEABLES), Blocks.IRON_ORE.defaultBlockState(), 9)));
 		context.register(LEGACY_GOLD_ORE, new ConfiguredFeature<>(Feature.ORE, new OreConfiguration(new TagMatchTest(BlockTags.STONE_ORE_REPLACEABLES), Blocks.GOLD_ORE.defaultBlockState(), 9)));
 		context.register(LEGACY_REDSTONE_ORE, new ConfiguredFeature<>(Feature.ORE, new OreConfiguration(new TagMatchTest(BlockTags.STONE_ORE_REPLACEABLES), Blocks.REDSTONE_ORE.defaultBlockState(), 8)));

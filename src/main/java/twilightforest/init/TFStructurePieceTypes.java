@@ -12,6 +12,7 @@ import twilightforest.world.components.structures.fallentrunk.FallenTrunkPiece;
 import twilightforest.world.components.structures.finalcastle.*;
 import twilightforest.world.components.structures.hollowtree.*;
 import twilightforest.world.components.structures.icetower.*;
+import twilightforest.world.components.structures.lakeruin.LakeRuinPiece;
 import twilightforest.world.components.structures.lichtower.*;
 import twilightforest.world.components.structures.lichtowerrevamp.*;
 import twilightforest.world.components.structures.minotaurmaze.*;
@@ -31,6 +32,7 @@ public class TFStructurePieceTypes {
 	public static final DeferredHolder<StructurePieceType, StructurePieceType> TFQuestGrove = registerPieceType("TFQuest1", QuestGrove::new);
 	public static final DeferredHolder<StructurePieceType, StructurePieceType> TFHydra = registerPieceType("TFHydra", HydraLairComponent::new);
 	public static final DeferredHolder<StructurePieceType, StructurePieceType> TFYeti = registerPieceType("TFYeti", YetiCaveComponent::new);
+	public static final DeferredHolder<StructurePieceType, StructurePieceType> TFLakeRuin = registerPieceType("TFLakeRuin", LakeRuinPiece::new);
 	public static final DeferredHolder<StructurePieceType, StructurePieceType> TFFallenTrunk = registerPieceType("TFFallenTrunk", FallenTrunkPiece::new);
 	public static final DeferredHolder<StructurePieceType, StructurePieceType> TFUtilityPiece = registerPieceType("TFUtilityPiece", UtilityPiece::new);
 	public static final DeferredHolder<StructurePieceType, StructurePieceType> TFJigsawTemplate = registerPieceType("TFJigsawTemplate", TwilightJigsawPiece::defaultDeserialize);

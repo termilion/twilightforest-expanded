@@ -32,6 +32,7 @@ public class TFStructures {
 	public static final ResourceKey<Structure> HOLLOW_TREE = registerKey("hollow_tree");
 	public static final ResourceKey<Structure> SWAMP_HOLLOW_TREE = registerKey("swamp_hollow_tree");
 	public static final ResourceKey<Structure> CAMP = registerKey("camp");
+	public static final ResourceKey<Structure> LAKE_RUIN = registerKey("lake_ruin");
 	public static final ResourceKey<Structure> MUSHROOM_TOWER = registerKey("mushroom_tower");
 	public static final ResourceKey<Structure> QUEST_ISLAND = registerKey("quest_island");
 	// Defined as static data in src/main/resources, since its template pools are imported from Dungeons and Taverns and unknown to datagen
@@ -50,6 +51,7 @@ public class TFStructures {
 		context.register(HOLLOW_TREE, HollowTreeStructure.buildStructureConfig(false, context.lookup(Registries.BIOME).getOrThrow(BiomeTagGenerator.VALID_HOLLOW_TREE_BIOMES)));
 		context.register(SWAMP_HOLLOW_TREE, HollowTreeStructure.buildStructureConfig(true, HolderSet.direct(context.lookup(Registries.BIOME).getOrThrow(TFBiomes.SWAMP))));
 		context.register(CAMP, CampStructure.buildStructureConfig(context));
+		context.register(LAKE_RUIN, LakeRuinStructure.buildStructureConfig(HolderSet.direct(context.lookup(Registries.BIOME).getOrThrow(TFBiomes.LAKE))));
 		context.register(HEDGE_MAZE, HedgeMazeStructure.buildStructureConfig(context));
 		context.register(QUEST_GROVE, QuestGroveStructure.buildStructureConfig(context));
 		context.register(HOLLOW_HILL_SMALL, HollowHillStructure.buildSmallHillConfig(context));

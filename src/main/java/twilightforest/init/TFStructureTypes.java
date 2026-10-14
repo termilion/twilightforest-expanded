@@ -17,6 +17,7 @@ public class TFStructureTypes {
 	public static final DeferredHolder<StructureType<?>, StructureType<ProgressionWrappedStructure>> PROGRESSION_WRAPPED = registerType("progression", () -> () -> ProgressionWrappedStructure.CODEC);
 	public static final DeferredHolder<StructureType<?>, StructureType<FallenTrunkStructure>> FALLEN_TRUNK = registerType("fallen_trunk", () -> () -> FallenTrunkStructure.CODEC);
 	public static final DeferredHolder<StructureType<?>, StructureType<HollowTreeStructure>> HOLLOW_TREE = registerType("hollow_tree", () -> () -> HollowTreeStructure.CODEC);
+	public static final DeferredHolder<StructureType<?>, StructureType<LakeRuinStructure>> LAKE_RUIN = registerType("lake_ruin", () -> () -> LakeRuinStructure.CODEC);
 	public static final DeferredHolder<StructureType<?>, StructureType<CampStructure>> CAMP = registerType("camp", () -> () -> CampStructure.CODEC);
 	public static final DeferredHolder<StructureType<?>, StructureType<HedgeMazeStructure>> HEDGE_MAZE = registerType("hedge_maze", () -> () -> HedgeMazeStructure.CODEC);
 	public static final DeferredHolder<StructureType<?>, StructureType<HollowHillStructure>> HOLLOW_HILL = registerType("hollow_hill", () -> () -> HollowHillStructure.CODEC);

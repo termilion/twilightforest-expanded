@@ -58,6 +58,7 @@ public class LangGenerator extends TFLangProvider {
 		this.addBiome(TFBiomes.THORNLANDS, "Thornlands");
 		this.addBiome(TFBiomes.UNDERGROUND, "Underground");
 		this.addBiome(TFBiomes.AMETHYST_STRAITS_UNDERGROUND, "Amethyst Caves");
+		this.addBiome(TFBiomes.OAK_SAVANNAH_UNDERGROUND, "Savannah Mines");
 
 		this.add("dimension.twilightforest.twilight_forest", "Twilight Forest");
 

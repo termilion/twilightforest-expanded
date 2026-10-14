@@ -7,6 +7,7 @@ import net.minecraft.core.HolderGetter;
 import net.minecraft.core.HolderSet;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.data.worldgen.BootstrapContext;
+import net.minecraft.data.worldgen.features.AquaticFeatures;
 import net.minecraft.data.worldgen.features.VegetationFeatures;
 import net.minecraft.data.worldgen.placement.PlacementUtils;
 import net.minecraft.data.worldgen.placement.VegetationPlacements;
@@ -42,6 +43,8 @@ public class TFPlacedFeatures {
 
 	public static final ResourceKey<PlacedFeature> PLACED_LAKE_LAVA = registerKey("lava_lake");
 	public static final ResourceKey<PlacedFeature> PLACED_LAKE_WATER = registerKey("water_lake");
+	public static final ResourceKey<PlacedFeature> PLACED_LAKE_KELP = registerKey("lake_kelp");
+	public static final ResourceKey<PlacedFeature> PLACED_LAKE_SEAGRASS = registerKey("lake_seagrass");
 	public static final ResourceKey<PlacedFeature> PLACED_LAKE_FROZEN = registerKey("frozen_lake");
 	public static final ResourceKey<PlacedFeature> PLACED_LAKE_AMETHYST = registerKey("amethyst_lake");
 	public static final ResourceKey<PlacedFeature> PLACED_AMETHYST_SPIKE = registerKey("amethyst_spike");
@@ -131,6 +134,9 @@ public class TFPlacedFeatures {
 	//Ores!
 	public static final ResourceKey<PlacedFeature> PLACED_LEGACY_COAL_ORE = registerKey("legacy_coal_ore");
 	public static final ResourceKey<PlacedFeature> PLACED_LEGACY_IRON_ORE = registerKey("legacy_iron_ore");
+	public static final ResourceKey<PlacedFeature> PLACED_IRON_ORE_VEIN = registerKey("iron_ore_vein");
+	public static final ResourceKey<PlacedFeature> PLACED_GOLD_ORE_VEIN = registerKey("gold_ore_vein");
+	public static final ResourceKey<PlacedFeature> PLACED_AMETHYST_ANCIENT_DEBRIS = registerKey("amethyst_ore/ancient_debris");
 	public static final ResourceKey<PlacedFeature> PLACED_LEGACY_GOLD_ORE = registerKey("legacy_gold_ore");
 	public static final ResourceKey<PlacedFeature> PLACED_LEGACY_REDSTONE_ORE = registerKey("legacy_redstone_ore");
 	public static final ResourceKey<PlacedFeature> PLACED_LEGACY_DIAMOND_ORE = registerKey("legacy_diamond_ore");
@@ -159,6 +165,7 @@ public class TFPlacedFeatures {
 	public static final ResourceKey<PlacedFeature> PLACED_OAK_BUSH_DENSE = registerKey("tree/oak_bush_dense");
 
 	public static final ResourceKey<PlacedFeature> PLACED_CANOPY_TREES = registerKey("tree/selector/canopy_trees");
+	public static final ResourceKey<PlacedFeature> PLACED_FOREST_CANOPY_TREES = registerKey("tree/selector/forest_canopy_trees");
 	public static final ResourceKey<PlacedFeature> PLACED_DENSE_CANOPY_TREES = registerKey("tree/selector/dense_canopy_trees");
 	public static final ResourceKey<PlacedFeature> PLACED_FIREFLY_FOREST_TREES = registerKey("tree/selector/firefly_forest_trees");
 	public static final ResourceKey<PlacedFeature> PLACED_DARK_FOREST_TREES = registerKey("tree/selector/dark_forest_trees");
@@ -238,6 +245,9 @@ public class TFPlacedFeatures {
 		HolderSet.Direct<Structure> allowLichTower = HolderSet.direct(lichTowerHolder);
 
 		context.register(PLACED_LAKE_LAVA, new PlacedFeature(features.getOrThrow(TFConfiguredFeatures.LAKE_LAVA), tfFeatureCheckArea(AvoidLandmarkModifier.checkBoth(), 10).build()));
+		// Noise-based counts that drop to zero below the offset, so kelp and seagrass grow in patches instead of everywhere
+		context.register(PLACED_LAKE_KELP, new PlacedFeature(features.getOrThrow(AquaticFeatures.KELP), List.of(NoiseBasedCountPlacement.of(150, 40.0D, -0.3D), InSquarePlacement.spread(), PlacementUtils.HEIGHTMAP_TOP_SOLID, BiomeFilter.biome())));
+		context.register(PLACED_LAKE_SEAGRASS, new PlacedFeature(features.getOrThrow(AquaticFeatures.SEAGRASS_TALL), List.of(NoiseBasedCountPlacement.of(90, 30.0D, -0.35D), InSquarePlacement.spread(), PlacementUtils.HEIGHTMAP_TOP_SOLID, BiomeFilter.biome())));
 		context.register(PLACED_LAKE_WATER, new PlacedFeature(features.getOrThrow(TFConfiguredFeatures.LAKE_WATER), tfFeatureCheckArea(AvoidLandmarkModifier.checkBoth(), 32).build()));
 		context.register(PLACED_LAKE_FROZEN, new PlacedFeature(features.getOrThrow(TFConfiguredFeatures.LAKE_FROZEN), tfFeatureCheckArea(AvoidLandmarkModifier.checkBoth(), 4).build()));
 		// No landmark check: amethyst lakes, blackstone columns and bushes are allowed inside the lone citadel's clearing so they blend into it (but not on ruin towns)
@@ -328,6 +338,9 @@ public class TFPlacedFeatures {
 		context.register(PLACED_ENCHANTED_FOREST_VINES, new PlacedFeature(features.getOrThrow(TFConfiguredFeatures.ENCHANTED_FOREST_VINES), ImmutableList.<PlacementModifier>builder().add(PlacementUtils.HEIGHTMAP, BiomeFilter.biome()).build()));
 
 		context.register(PLACED_LEGACY_COAL_ORE, new PlacedFeature(features.getOrThrow(TFConfiguredFeatures.LEGACY_COAL_ORE), ImmutableList.<PlacementModifier>builder().add(HeightRangePlacement.uniform(VerticalAnchor.bottom(), VerticalAnchor.absolute(127)), InSquarePlacement.spread(), CountPlacement.of(20), BiomeFilter.biome()).build()));
+		context.register(PLACED_IRON_ORE_VEIN, new PlacedFeature(features.getOrThrow(TFConfiguredFeatures.IRON_ORE_VEIN), ImmutableList.<PlacementModifier>builder().add(HeightRangePlacement.uniform(VerticalAnchor.bottom(), VerticalAnchor.absolute(-8)), InSquarePlacement.spread(), RarityFilter.onAverageOnceEvery(2), BiomeFilter.biome()).build()));
+		context.register(PLACED_GOLD_ORE_VEIN, new PlacedFeature(features.getOrThrow(TFConfiguredFeatures.GOLD_ORE_VEIN), ImmutableList.<PlacementModifier>builder().add(HeightRangePlacement.uniform(VerticalAnchor.bottom(), VerticalAnchor.absolute(-8)), InSquarePlacement.spread(), RarityFilter.onAverageOnceEvery(5), BiomeFilter.biome()).build()));
+		context.register(PLACED_AMETHYST_ANCIENT_DEBRIS, new PlacedFeature(features.getOrThrow(TFConfiguredFeatures.AMETHYST_ANCIENT_DEBRIS), ImmutableList.<PlacementModifier>builder().add(HeightRangePlacement.uniform(VerticalAnchor.bottom(), VerticalAnchor.absolute(-8)), InSquarePlacement.spread(), RarityFilter.onAverageOnceEvery(3), BiomeFilter.biome()).build()));
 		context.register(PLACED_LEGACY_IRON_ORE, new PlacedFeature(features.getOrThrow(TFConfiguredFeatures.LEGACY_IRON_ORE), ImmutableList.<PlacementModifier>builder().add(HeightRangePlacement.uniform(VerticalAnchor.bottom(), VerticalAnchor.absolute(63)), InSquarePlacement.spread(), CountPlacement.of(20), BiomeFilter.biome()).build()));
 		context.register(PLACED_LEGACY_GOLD_ORE, new PlacedFeature(features.getOrThrow(TFConfiguredFeatures.LEGACY_GOLD_ORE), ImmutableList.<PlacementModifier>builder().add(HeightRangePlacement.uniform(VerticalAnchor.bottom(), VerticalAnchor.absolute(31)), InSquarePlacement.spread(), CountPlacement.of(2), BiomeFilter.biome()).build()));
 		context.register(PLACED_LEGACY_REDSTONE_ORE, new PlacedFeature(features.getOrThrow(TFConfiguredFeatures.LEGACY_REDSTONE_ORE), ImmutableList.<PlacementModifier>builder().add(HeightRangePlacement.uniform(VerticalAnchor.bottom(), VerticalAnchor.absolute(15)), InSquarePlacement.spread(), CountPlacement.of(8), BiomeFilter.biome()).build()));
@@ -367,6 +380,7 @@ public class TFPlacedFeatures {
 		context.register(PLACED_DARKWOOD_TREE, new PlacedFeature(features.getOrThrow(TFConfiguredFeatures.DARKWOOD_TREE), List.of(PlacementUtils.countExtra(5, 0.1F, 1), InSquarePlacement.spread(), SurfaceWaterDepthFilter.forMaxDepth(0), PlacementUtils.HEIGHTMAP_OCEAN_FLOOR, new AvoidLandmarkModifier(true, false, 16, HolderSet.empty()), PlacementUtils.filteredByBlockSurvival(TFBlocks.DARKWOOD_SAPLING.get()), BiomeFilter.biome())));
 
 		context.register(PLACED_CANOPY_TREES, new PlacedFeature(features.getOrThrow(TFConfiguredFeatures.CANOPY_TREES), tfTreeCheckArea(PlacementUtils.countExtra(7, 0.1F, 1), TFBlocks.CANOPY_SAPLING.get().defaultBlockState(), allowLichTower)));
+		context.register(PLACED_FOREST_CANOPY_TREES, new PlacedFeature(features.getOrThrow(TFConfiguredFeatures.CANOPY_TREES), tfTreeCheckArea(PlacementUtils.countExtra(10, 0.1F, 1), TFBlocks.CANOPY_SAPLING.get().defaultBlockState(), allowLichTower)));
 		context.register(PLACED_DENSE_CANOPY_TREES, new PlacedFeature(features.getOrThrow(TFConfiguredFeatures.DENSE_CANOPY_TREES), tfTreeCheckArea(PlacementUtils.countExtra(5, 0.1F, 1), TFBlocks.CANOPY_SAPLING.get().defaultBlockState(), allowLichTower)));
 		context.register(PLACED_FIREFLY_FOREST_TREES, new PlacedFeature(features.getOrThrow(TFConfiguredFeatures.FIREFLY_FOREST_TREES), tfTreeCheckArea(PlacementUtils.countExtra(3, 0.1F, 1), TFBlocks.CANOPY_SAPLING.get().defaultBlockState(), allowLichTower)));
 		context.register(PLACED_DARK_FOREST_TREES, new PlacedFeature(features.getOrThrow(TFConfiguredFeatures.DARKWOOD_TREE), darkForestTreeCheck(PlacementUtils.countExtra(8, 0.1F, 1))));

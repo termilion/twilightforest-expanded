@@ -49,7 +49,7 @@ public class BiomeLayerStack {
 		), ImmutableList.of(
 			TFBiomes.LAKE,
 			TFBiomes.DENSE_MUSHROOM_FOREST,
-			TFBiomes.ENCHANTED_FOREST,
+			TFBiomes.LAKE, // Former enchanted forest slot, enchanted forests are now islands inside lakes (LandmarkIslandLayer)
 			TFBiomes.CLEARING
 		));
 
@@ -74,16 +74,34 @@ public class BiomeLayerStack {
 		biomes = new BorderLayer.Factory(500L, TFBiomes.SPOOKY_FOREST, TFBiomes.THORNLANDS, Holder.direct(biomes));
 		biomes = new BorderLayer.Factory(501L, TFBiomes.AMETHYST_STRAITS, TFBiomes.THORNLANDS, Holder.direct(biomes));
 
+		// Larger lakes: grow by one pixel (64 blocks), only into the common random biomes so key biomes and their rings stay intact
+		biomes = new ExpandBiomeLayer.Factory(602L, List.of(TFBiomes.LAKE), Optional.of(List.of(
+			TFBiomes.FOREST,
+			TFBiomes.DENSE_FOREST,
+			TFBiomes.MUSHROOM_FOREST,
+			TFBiomes.OAK_SAVANNAH,
+			TFBiomes.FIREFLY_FOREST,
+			Biomes.MANGROVE_SWAMP,
+			TFBiomes.DENSE_MUSHROOM_FOREST,
+			TFBiomes.CLEARING
+		)), Holder.direct(biomes));
+
 		biomes = new ZoomLayer.Factory(1002L, false, Holder.direct(biomes));
+		// Smaller clearings: lose 32 + 16 blocks on every side
+		biomes = new ShrinkBiomeLayer.Factory(800L, List.of(TFBiomes.CLEARING), Holder.direct(biomes));
 		// Grow the amethyst straits by another half pixel (32 blocks) into the inner half of its thornlands ring, the outer ring edge stays where it is
 		biomes = new ExpandBiomeLayer.Factory(601L, List.of(TFBiomes.AMETHYST_STRAITS), Optional.of(List.of(TFBiomes.THORNLANDS)), Holder.direct(biomes));
 		biomes = new ZoomLayer.Factory(1003L, false, Holder.direct(biomes));
+		biomes = new ShrinkBiomeLayer.Factory(801L, List.of(TFBiomes.CLEARING), Holder.direct(biomes));
 		biomes = new ZoomLayer.Factory(1004L, false, Holder.direct(biomes));
 		biomes = new ZoomLayer.Factory(1005L, false, Holder.direct(biomes));
 
+		// Enchanted forests only exist as islands on the landmark centers of lakes, carrying the quest grove
+		biomes = new LandmarkIslandLayer.Factory(900L, TFBiomes.LAKE, TFBiomes.ENCHANTED_FOREST, 56, Holder.direct(biomes));
+
 		Holder.Reference<BiomeLayerFactory> randomBiomes = context.register(RANDOM_FOREST_BIOMES, biomes);
 
-		BiomeLayerFactory riverLayer = new SeamLayer.Factory(1L, TFBiomes.STREAM, List.of(TFBiomes.LAKE, TFBiomes.THORNLANDS, TFBiomes.CLEARING, TFBiomes.OAK_SAVANNAH), List.of(
+		BiomeLayerFactory riverLayer = new SeamLayer.Factory(1L, TFBiomes.STREAM, List.of(TFBiomes.LAKE, TFBiomes.ENCHANTED_FOREST, TFBiomes.THORNLANDS, TFBiomes.CLEARING, TFBiomes.OAK_SAVANNAH), List.of(
 			Pair.of(TFBiomes.SNOWY_FOREST, TFBiomes.GLACIER),
 			Pair.of(TFBiomes.MUSHROOM_FOREST, TFBiomes.DENSE_MUSHROOM_FOREST),
 			Pair.of(TFBiomes.SWAMP, TFBiomes.FIRE_SWAMP),

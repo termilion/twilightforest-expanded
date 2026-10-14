@@ -27,6 +27,8 @@ public class BiomeLayerTypes {
 	public static final DeferredHolder<BiomeLayerType, BiomeLayerType> FILTERED = registerType("filtered", () -> () -> FilteredBiomeLayer.Factory.CODEC);
 	public static final DeferredHolder<BiomeLayerType, BiomeLayerType> MEDIAN = registerType("median", () -> () -> MedianLayer.Factory.CODEC);
 	public static final DeferredHolder<BiomeLayerType, BiomeLayerType> EXPAND = registerType("expand", () -> () -> ExpandBiomeLayer.Factory.CODEC);
+	public static final DeferredHolder<BiomeLayerType, BiomeLayerType> SHRINK = registerType("shrink", () -> () -> ShrinkBiomeLayer.Factory.CODEC);
+	public static final DeferredHolder<BiomeLayerType, BiomeLayerType> LANDMARK_ISLAND = registerType("landmark_island", () -> () -> LandmarkIslandLayer.Factory.CODEC);
 	public static final DeferredHolder<BiomeLayerType, BiomeLayerType> KEY_BIOME_VARIANTS = registerType("key_biome_variants", () -> () -> KeyBiomeVariantsLayer.Factory.CODEC);
 
 	private static DeferredHolder<BiomeLayerType, BiomeLayerType> registerType(String name, Supplier<BiomeLayerType> factory) {

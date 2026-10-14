@@ -36,6 +36,12 @@ public class QuestGroveStructure extends ConquerableStructure {
 		return new QuestGrove(context.structureTemplateManager(), new BlockPos(x - LENGTH / 2 + 1, y + 2, z - LENGTH / 2 + 1)); // + 1 offsets to center the structure
 	}
 
+	// The grove sits on raised lake islands, the default clamp (sea level + 1..7) would bury it
+	@Override
+	public int adjustForTerrain(GenerationContext context, int x, int z) {
+		return super.adjustForTerrain(context, x, z) + 12;
+	}
+
 	@Override
 	public StructureType<?> type() {
 		return TFStructureTypes.QUEST_GROVE.get();

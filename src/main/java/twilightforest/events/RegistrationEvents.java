@@ -6,6 +6,8 @@ import net.minecraft.core.Registry;
 import net.minecraft.core.cauldron.CauldronInteraction;
 import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.core.registries.Registries;
+import net.minecraft.tags.FluidTags;
+import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.Mob;
 import net.minecraft.world.entity.SpawnPlacementTypes;
 import net.minecraft.world.entity.animal.Animal;
@@ -567,6 +569,10 @@ public class RegistrationEvents {
 		event.register(TFEntities.SKELETON_DRUID.get(), SpawnPlacementTypes.ON_GROUND, Heightmap.Types.MOTION_BLOCKING_NO_LEAVES, SkeletonDruid::checkDruidSpawnRules, RegisterSpawnPlacementsEvent.Operation.REPLACE);
 		event.register(TFEntities.WRAITH.get(), SpawnPlacementTypes.ON_GROUND, Heightmap.Types.MOTION_BLOCKING_NO_LEAVES, Wraith::checkMonsterSpawnRules, RegisterSpawnPlacementsEvent.Operation.REPLACE);
 		event.register(TFEntities.HOSTILE_WOLF.get(), SpawnPlacementTypes.ON_GROUND, Heightmap.Types.MOTION_BLOCKING_NO_LEAVES, HostileWolf::checkWolfSpawnRules, RegisterSpawnPlacementsEvent.Operation.REPLACE);
+		// Vanilla never spawns allays naturally and has no placement for them; enchanted forests do
+		event.register(EntityType.ALLAY, SpawnPlacementTypes.ON_GROUND, Heightmap.Types.MOTION_BLOCKING_NO_LEAVES, Mob::checkMobSpawnRules, RegisterSpawnPlacementsEvent.Operation.REPLACE);
+		// Vanilla glow squids need Y <= sea level - 33, impossible in the Twilight Forest (sea level 0, bottom -32); allow them in deep lake water
+		event.register(EntityType.GLOW_SQUID, null, null, (type, level, spawnType, pos, random) -> pos.getY() <= level.getSeaLevel() - 12 && level.getBiome(pos).is(TFBiomes.LAKE) && level.getFluidState(pos).is(FluidTags.WATER), RegisterSpawnPlacementsEvent.Operation.OR);
 		event.register(TFEntities.HYDRA.get(), SpawnPlacementTypes.ON_GROUND, Heightmap.Types.MOTION_BLOCKING_NO_LEAVES, Mob::checkMobSpawnRules, RegisterSpawnPlacementsEvent.Operation.REPLACE);
 		event.register(TFEntities.LICH.get(), SpawnPlacementTypes.ON_GROUND, Heightmap.Types.MOTION_BLOCKING_NO_LEAVES, Monster::checkMonsterSpawnRules, RegisterSpawnPlacementsEvent.Operation.REPLACE);
 		event.register(TFEntities.PENGUIN.get(), SpawnPlacementTypes.NO_RESTRICTIONS, Heightmap.Types.MOTION_BLOCKING_NO_LEAVES, Penguin::canSpawn, RegisterSpawnPlacementsEvent.Operation.REPLACE);

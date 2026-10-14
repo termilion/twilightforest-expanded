@@ -51,6 +51,7 @@ public class TFBiomes {
 
 	public static final ResourceKey<Biome> UNDERGROUND = makeKey("underground");
 	public static final ResourceKey<Biome> AMETHYST_STRAITS_UNDERGROUND = makeKey("amethyst_straits_underground");
+	public static final ResourceKey<Biome> OAK_SAVANNAH_UNDERGROUND = makeKey("oak_savannah_underground");
 
 	private static ResourceKey<Biome> makeKey(String name) {
 		return ResourceKey.create(Registries.BIOME, TwilightForestMod.prefix(name));
@@ -69,9 +70,9 @@ public class TFBiomes {
 		context.register(DENSE_MUSHROOM_FOREST, biomeWithDefaults(fireflyParticles(defaultAmbientBuilder()), defaultMobSpawning(), denseMushroomForestGen(featureGetter, carverGetter)).temperature(0.8F).downfall(1).build());
 
 		context.register(SPOOKY_FOREST, biomeWithDefaults(defaultAmbientBuilder().grassColorOverride(0xC45123).foliageColorOverride(0xFF8501).fogColor(0x827391).waterColor(0xBC8857).waterFogColor(0xBC8857).grassColorModifier(grassColorModifierEnumExtension.SPOOKY_FOREST), spookSpawning(), spookyForestGen(featureGetter, carverGetter)).temperature(0.5F).downfall(1).build());
-		context.register(ENCHANTED_FOREST, biomeWithDefaults(fireflyParticles(defaultAmbientBuilder()).foliageColorOverride(0x00FFFF).grassColorOverride(0x00FFFF).grassColorModifier(grassColorModifierEnumExtension.ENCHANTED_FOREST), defaultMobSpawning(), enchantedForestGen(featureGetter, carverGetter)).hasPrecipitation(false).build());
+		context.register(ENCHANTED_FOREST, biomeWithDefaults(fireflyParticles(defaultAmbientBuilder()).foliageColorOverride(0x00FFFF).grassColorOverride(0x00FFFF).grassColorModifier(grassColorModifierEnumExtension.ENCHANTED_FOREST), enchantedForestSpawning(), enchantedForestGen(featureGetter, carverGetter)).hasPrecipitation(false).build());
 		context.register(STREAM, biomeWithDefaults(defaultAmbientBuilder(), defaultMobSpawning(), streamsAndLakes(featureGetter, carverGetter, false)).temperature(0.5F).downfall(0.1F).build());
-		context.register(LAKE, biomeWithDefaults(defaultAmbientBuilder(), defaultMobSpawning(), streamsAndLakes(featureGetter, carverGetter, true)).temperature(0.66F).downfall(1).build());
+		context.register(LAKE, biomeWithDefaults(defaultAmbientBuilder().waterColor(0x3FABDA).waterFogColor(0x05333F), lakeSpawning(), streamsAndLakes(featureGetter, carverGetter, true)).temperature(0.66F).downfall(1).build());
 
 		context.register(SWAMP, biomeWithDefaults(defaultAmbientBuilder().skyColor(0x002112).fogColor(0x003F21).grassColorOverride(0x5C694E).foliageColorOverride(0x496137).waterColor(0x95B55F).waterFogColor(0x95B55F).grassColorModifier(grassColorModifierEnumExtension.SWAMP), swampSpawning(), swampGen(featureGetter, carverGetter)).temperature(0.8F).downfall(0.9F).build());
 		context.register(FIRE_SWAMP, biomeWithDefaults(whiteAshParticles(defaultAmbientBuilder()).waterColor(0x2D0700).fogColor(0x380A00).grassColorOverride(0x572E23).foliageColorOverride(0x64260F).waterColor(0x6C2C2C).waterFogColor(0x6C2C2C), new MobSpawnSettings.Builder(), fireSwampGen(featureGetter, carverGetter)).hasPrecipitation(false).temperature(1).downfall(0.4F).build());
@@ -90,6 +91,8 @@ public class TFBiomes {
 
 		context.register(UNDERGROUND, biomeWithDefaults(defaultAmbientBuilder(), undergroundMobSpawning(), undergroundGen(featureGetter, carverGetter)).temperature(0.7F).downfall(0.0F).build());
 		// Copy of UNDERGROUND, only below the amethyst straits
+		// Copy of UNDERGROUND with iron/gold ore veins and mineshafts, only below the oak savannah
+		context.register(OAK_SAVANNAH_UNDERGROUND, biomeWithDefaults(defaultAmbientBuilder(), undergroundMobSpawning(), oakSavannahUndergroundGen(featureGetter, carverGetter)).temperature(0.7F).downfall(0.0F).build());
 		context.register(AMETHYST_STRAITS_UNDERGROUND, biomeWithDefaults(defaultAmbientBuilder(), undergroundMobSpawning(), amethystStraitsUndergroundGen(featureGetter, carverGetter)).temperature(0.7F).downfall(0.0F).build());
 	}
 }

@@ -60,7 +60,8 @@ public class BiomeTagGenerator extends BiomeTagsProvider {
 			TFBiomes.DARK_FOREST, TFBiomes.DARK_FOREST_CENTER,
 			TFBiomes.SNOWY_FOREST, TFBiomes.GLACIER,
 			TFBiomes.HIGHLANDS, TFBiomes.THORNLANDS,
-			TFBiomes.AMETHYST_STRAITS, TFBiomes.AMETHYST_STRAITS_UNDERGROUND
+			TFBiomes.AMETHYST_STRAITS, TFBiomes.AMETHYST_STRAITS_UNDERGROUND,
+			TFBiomes.OAK_SAVANNAH_UNDERGROUND
 		);
 
 		this.tag(VALID_QUEST_GROVE_BIOMES).add(TFBiomes.ENCHANTED_FOREST);
@@ -141,6 +142,9 @@ public class BiomeTagGenerator extends BiomeTagsProvider {
 		this.tag(BiomeTags.WITHOUT_ZOMBIE_SIEGES).addTag(IS_TWILIGHT);
 
 		//even though we won't spawn vanilla frogs, we'll still add support for the variants
+		this.tag(BiomeTags.MORE_FREQUENT_DROWNED_SPAWNS).add(TFBiomes.LAKE);
+		// Vanilla mineshafts; the start is checked at its final (underground) position, the surface biome covers a start that ends up higher
+		this.tag(BiomeTags.HAS_MINESHAFT).add(TFBiomes.OAK_SAVANNAH, TFBiomes.OAK_SAVANNAH_UNDERGROUND);
 		this.tag(BiomeTags.SPAWNS_COLD_VARIANT_FROGS).add(TFBiomes.SNOWY_FOREST, TFBiomes.GLACIER);
 		this.tag(BiomeTags.SPAWNS_WARM_VARIANT_FROGS).add(TFBiomes.OAK_SAVANNAH, TFBiomes.FIRE_SWAMP);
 
