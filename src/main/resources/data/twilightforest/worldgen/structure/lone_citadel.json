@@ -8,8 +8,15 @@
   "start_jigsaw_name": "nova_structures:lone_citadel_frame_anchor",
   "size": 20,
   "start_height": {
-    "absolute": 106
+    "absolute": 96
   },
   "max_distance_from_center": 128,
-  "liquid_settings": "ignore_waterlogging"
+  "liquid_settings": "ignore_waterlogging",
+  "decoration_clearance": {
+    "chunk_clearance_radius": 8.0,
+    "allow_biome_surface_decorations": false,
+    "allow_biome_underground_decorations": true,
+    "allow_biome_vegetation": false,
+    "adjust_structure_elevation": false
+  }
 }

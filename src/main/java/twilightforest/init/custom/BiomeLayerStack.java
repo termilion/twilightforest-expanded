@@ -22,6 +22,7 @@ import twilightforest.world.components.layer.vanillalegacy.ZoomLayer;
 import twilightforest.world.registration.biomes.BiomeMaker;
 
 import java.util.List;
+import java.util.Optional;
 
 
 public class BiomeLayerStack {
@@ -74,6 +75,8 @@ public class BiomeLayerStack {
 		biomes = new BorderLayer.Factory(501L, TFBiomes.AMETHYST_STRAITS, TFBiomes.THORNLANDS, Holder.direct(biomes));
 
 		biomes = new ZoomLayer.Factory(1002L, false, Holder.direct(biomes));
+		// Grow the amethyst straits by another half pixel (32 blocks) into the inner half of its thornlands ring, the outer ring edge stays where it is
+		biomes = new ExpandBiomeLayer.Factory(601L, List.of(TFBiomes.AMETHYST_STRAITS), Optional.of(List.of(TFBiomes.THORNLANDS)), Holder.direct(biomes));
 		biomes = new ZoomLayer.Factory(1003L, false, Holder.direct(biomes));
 		biomes = new ZoomLayer.Factory(1004L, false, Holder.direct(biomes));
 		biomes = new ZoomLayer.Factory(1005L, false, Holder.direct(biomes));

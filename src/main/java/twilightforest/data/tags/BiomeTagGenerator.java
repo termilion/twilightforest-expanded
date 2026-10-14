@@ -60,7 +60,7 @@ public class BiomeTagGenerator extends BiomeTagsProvider {
 			TFBiomes.DARK_FOREST, TFBiomes.DARK_FOREST_CENTER,
 			TFBiomes.SNOWY_FOREST, TFBiomes.GLACIER,
 			TFBiomes.HIGHLANDS, TFBiomes.THORNLANDS,
-			TFBiomes.AMETHYST_STRAITS
+			TFBiomes.AMETHYST_STRAITS, TFBiomes.AMETHYST_STRAITS_UNDERGROUND
 		);
 
 		this.tag(VALID_QUEST_GROVE_BIOMES).add(TFBiomes.ENCHANTED_FOREST);

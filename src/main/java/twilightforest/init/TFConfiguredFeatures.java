@@ -34,6 +34,7 @@ import net.minecraft.world.level.levelgen.feature.stateproviders.*;
 import net.minecraft.world.level.levelgen.feature.trunkplacers.StraightTrunkPlacer;
 import net.minecraft.world.level.levelgen.placement.PlacedFeature;
 import net.minecraft.world.level.levelgen.structure.templatesystem.AlwaysTrueTest;
+import net.minecraft.world.level.levelgen.structure.templatesystem.BlockMatchTest;
 import net.minecraft.world.level.levelgen.structure.templatesystem.ProcessorRule;
 import net.minecraft.world.level.levelgen.structure.templatesystem.RandomBlockMatchTest;
 import net.minecraft.world.level.levelgen.structure.templatesystem.TagMatchTest;
@@ -52,6 +53,7 @@ import twilightforest.world.registration.TreeConfigurations;
 import twilightforest.world.registration.TreeDecorators;
 
 import java.util.List;
+import java.util.Optional;
 
 public final class TFConfiguredFeatures {
 
@@ -70,6 +72,16 @@ public final class TFConfiguredFeatures {
 	public static final ResourceKey<ConfiguredFeature<?, ?>> BLACKSTONE_BLOBS = registerKey("blackstone_blobs");
 	public static final ResourceKey<ConfiguredFeature<?, ?>> AMETHYST_CLUSTER_ON_BUDDING = registerKey("amethyst_cluster_on_budding");
 	public static final ResourceKey<ConfiguredFeature<?, ?>> CRYING_OBSIDIAN_SPOT = registerKey("crying_obsidian_spot");
+	// Amethyst straits underground: legacy ores as amethyst in blackstone, large calcite/deepslate veins
+	public static final ResourceKey<ConfiguredFeature<?, ?>> AMETHYST_ORE_COAL = registerKey("amethyst_ore/coal");
+	public static final ResourceKey<ConfiguredFeature<?, ?>> AMETHYST_ORE_IRON = registerKey("amethyst_ore/iron");
+	public static final ResourceKey<ConfiguredFeature<?, ?>> AMETHYST_ORE_GOLD = registerKey("amethyst_ore/gold");
+	public static final ResourceKey<ConfiguredFeature<?, ?>> AMETHYST_ORE_REDSTONE = registerKey("amethyst_ore/redstone");
+	public static final ResourceKey<ConfiguredFeature<?, ?>> AMETHYST_ORE_DIAMOND = registerKey("amethyst_ore/diamond");
+	public static final ResourceKey<ConfiguredFeature<?, ?>> AMETHYST_ORE_LAPIS = registerKey("amethyst_ore/lapis");
+	public static final ResourceKey<ConfiguredFeature<?, ?>> AMETHYST_ORE_COPPER = registerKey("amethyst_ore/copper");
+	public static final ResourceKey<ConfiguredFeature<?, ?>> CALCITE_VEIN = registerKey("calcite_vein");
+	public static final ResourceKey<ConfiguredFeature<?, ?>> DEEPSLATE_VEIN = registerKey("deepslate_vein");
 
 	//"structures" that arent actually structures
 	public static final ResourceKey<ConfiguredFeature<?, ?>> SIMPLE_WELL = registerKey("simple_well");
@@ -271,7 +283,8 @@ public final class TFConfiguredFeatures {
 		context.register(LAKE_AMETHYST, new ConfiguredFeature<>(TFFeatures.SMALL_LAKE.get(), new TFSmallLakeFeature.Configuration(BlockStateProvider.simple(Blocks.WATER), new WeightedStateProvider(SimpleWeightedRandomList.<BlockState>builder().add(Blocks.AMETHYST_BLOCK.defaultBlockState(), 4).add(Blocks.BUDDING_AMETHYST.defaultBlockState(), 1)), null)));
 		// Copies of vanilla ice_spike / ice_patch with packed ice replaced by amethyst
 		HolderSet<Block> amethystStraitsGround = HolderSet.direct(Block::builtInRegistryHolder, Blocks.BLACKSTONE, Blocks.OBSIDIAN, Blocks.CRYING_OBSIDIAN);
-		context.register(AMETHYST_SPIKE, new ConfiguredFeature<>(TFFeatures.CRYSTAL_SPIKE.get(), new CrystalSpikeFeature.Config(BlockStateProvider.simple(Blocks.AMETHYST_BLOCK), amethystStraitsGround, HolderSet.direct(Block::builtInRegistryHolder, Blocks.AMETHYST_BLOCK), UniformInt.of(8, 16), 3, UniformInt.of(12, 40))));
+		context.register(AMETHYST_SPIKE, new ConfiguredFeature<>(TFFeatures.CRYSTAL_SPIKE.get(), new CrystalSpikeFeature.Config(BlockStateProvider.simple(Blocks.AMETHYST_BLOCK), amethystStraitsGround, HolderSet.direct(Block::builtInRegistryHolder, Blocks.AMETHYST_BLOCK, Blocks.PURPLE_STAINED_GLASS, Blocks.PEARLESCENT_FROGLIGHT), UniformInt.of(8, 16), 3, UniformInt.of(12, 40),
+			Optional.of(BlockStateProvider.simple(Blocks.PURPLE_STAINED_GLASS)), Optional.of(BlockStateProvider.simple(Blocks.PEARLESCENT_FROGLIGHT)), UniformInt.of(1, 3))));
 		context.register(AMETHYST_PATCH, new ConfiguredFeature<>(Feature.DISK, new DiskConfiguration(
 			RuleBasedBlockStateProvider.simple(new WeightedStateProvider(SimpleWeightedRandomList.<BlockState>builder().add(Blocks.AMETHYST_BLOCK.defaultBlockState(), 19).add(Blocks.BUDDING_AMETHYST.defaultBlockState(), 1))),
 			BlockPredicate.matchesBlocks(List.of(Blocks.DIRT, Blocks.BLACKSTONE, Blocks.OBSIDIAN, Blocks.CRYING_OBSIDIAN, Blocks.AMETHYST_BLOCK)),
@@ -285,6 +298,18 @@ public final class TFConfiguredFeatures {
 		context.register(BLACKSTONE_BLOBS, new ConfiguredFeature<>(Feature.REPLACE_BLOBS, new ReplaceSphereConfiguration(Blocks.STONE.defaultBlockState(), Blocks.BLACKSTONE.defaultBlockState(), UniformInt.of(3, 7))));
 		context.register(AMETHYST_CLUSTER_ON_BUDDING, new ConfiguredFeature<>(Feature.SIMPLE_BLOCK, new SimpleBlockConfiguration(BlockStateProvider.simple(Blocks.AMETHYST_CLUSTER.defaultBlockState().setValue(AmethystClusterBlock.FACING, Direction.UP)))));
 		context.register(CRYING_OBSIDIAN_SPOT, new ConfiguredFeature<>(Feature.SIMPLE_BLOCK, new SimpleBlockConfiguration(BlockStateProvider.simple(Blocks.CRYING_OBSIDIAN))));
+		// Same vein sizes as the LEGACY_*_ORE features
+		BlockMatchTest blackstone = new BlockMatchTest(Blocks.BLACKSTONE);
+		context.register(AMETHYST_ORE_COAL, new ConfiguredFeature<>(Feature.ORE, new OreConfiguration(blackstone, Blocks.AMETHYST_BLOCK.defaultBlockState(), 16)));
+		context.register(AMETHYST_ORE_IRON, new ConfiguredFeature<>(Feature.ORE, new OreConfiguration(blackstone, Blocks.AMETHYST_BLOCK.defaultBlockState(), 9)));
+		context.register(AMETHYST_ORE_GOLD, new ConfiguredFeature<>(Feature.ORE, new OreConfiguration(blackstone, Blocks.AMETHYST_BLOCK.defaultBlockState(), 9)));
+		context.register(AMETHYST_ORE_REDSTONE, new ConfiguredFeature<>(Feature.ORE, new OreConfiguration(blackstone, Blocks.AMETHYST_BLOCK.defaultBlockState(), 8)));
+		context.register(AMETHYST_ORE_DIAMOND, new ConfiguredFeature<>(Feature.ORE, new OreConfiguration(blackstone, Blocks.AMETHYST_BLOCK.defaultBlockState(), 8)));
+		context.register(AMETHYST_ORE_LAPIS, new ConfiguredFeature<>(Feature.ORE, new OreConfiguration(blackstone, Blocks.AMETHYST_BLOCK.defaultBlockState(), 7)));
+		context.register(AMETHYST_ORE_COPPER, new ConfiguredFeature<>(Feature.ORE, new OreConfiguration(blackstone, Blocks.AMETHYST_BLOCK.defaultBlockState(), 10)));
+		// 64 = largest ore vein size (vanilla large granite/diorite/andesite)
+		context.register(CALCITE_VEIN, new ConfiguredFeature<>(Feature.ORE, new OreConfiguration(blackstone, Blocks.CALCITE.defaultBlockState(), 64)));
+		context.register(DEEPSLATE_VEIN, new ConfiguredFeature<>(Feature.ORE, new OreConfiguration(blackstone, Blocks.DEEPSLATE.defaultBlockState(), 64)));
 
 		registerTemplateFeatures(context);
 

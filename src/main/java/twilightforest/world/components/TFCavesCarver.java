@@ -173,7 +173,7 @@ public class TFCavesCarver extends WorldCarver<CaveCarverConfiguration> {
 
 				BlockState neighboringBlock = access.getBlockState(directionalRelative);
 
-				if (neighboringBlock.is(BlockTags.BASE_STONE_OVERWORLD) || neighboringBlock.getFluidState().is(FluidTags.WATER)) {
+				if (neighboringBlock.is(BlockTags.BASE_STONE_OVERWORLD) || neighboringBlock.is(Blocks.BLACKSTONE) || neighboringBlock.getFluidState().is(FluidTags.WATER)) {
 					access.setBlockState(directionalRelative, this.wallBlocks.getState(rand, directionalRelative), false);
 				}
 			}

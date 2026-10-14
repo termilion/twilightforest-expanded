@@ -13,6 +13,7 @@ import twilightforest.world.components.feature.trees.treeplacers.*;
 import twilightforest.world.components.placements.AvoidLandmarkModifier;
 import twilightforest.world.components.placements.ChunkBlanketingModifier;
 import twilightforest.world.components.placements.ChunkCenterModifier;
+import twilightforest.world.components.placements.MaxHeightFilter;
 
 import java.util.function.Supplier;
 
@@ -35,6 +36,7 @@ public final class TFFeatureModifiers {
 
 	public static final DeferredHolder<PlacementModifierType<?>, PlacementModifierType<AvoidLandmarkModifier>> NO_STRUCTURE = registerPlacer("no_structure", () -> () -> AvoidLandmarkModifier.CODEC);
 	public static final DeferredHolder<PlacementModifierType<?>, PlacementModifierType<ChunkCenterModifier>> CHUNK_CENTERER = registerPlacer("chunk_centerer", () -> () -> ChunkCenterModifier.CODEC);
+	public static final DeferredHolder<PlacementModifierType<?>, PlacementModifierType<MaxHeightFilter>> MAX_HEIGHT = registerPlacer("max_height", () -> () -> MaxHeightFilter.CODEC);
 	public static final DeferredHolder<PlacementModifierType<?>, PlacementModifierType<ChunkBlanketingModifier>> CHUNK_BLANKETING = registerPlacer("chunk_blanketing", () -> () -> ChunkBlanketingModifier.CODEC);
 
 	//goofy but needed

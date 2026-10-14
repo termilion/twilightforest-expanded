@@ -36,6 +36,7 @@ public class TFSurfaceRules {
 
 		return SurfaceRules.sequence(
 			bedrockLayer,
+			amethystStraitsUndergroundStone(),
 			highlandsSurface(),
 			deadrockSurface(),
 			snowyForestSurface(),
@@ -135,6 +136,12 @@ public class TFSurfaceRules {
 		);
 
 		return SurfaceRules.ifTrue(SurfaceRules.isBiome(TFBiomes.AMETHYST_STRAITS), basaltSoil);
+	}
+
+	@NotNull
+	private static SurfaceRules.RuleSource amethystStraitsUndergroundStone() {
+		//every stone block of the amethyst straits underground is blackstone
+		return SurfaceRules.ifTrue(SurfaceRules.isBiome(TFBiomes.AMETHYST_STRAITS_UNDERGROUND), BLACKSTONE);
 	}
 
 	@NotNull

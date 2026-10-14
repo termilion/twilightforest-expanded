@@ -299,11 +299,6 @@
         "minecraft:dark_oak_pressure_plate": "twilightforest:dark_pressure_plate",
         "minecraft:dark_oak_leaves": "twilightforest:dark_leaves",
         "minecraft:dark_oak_sapling": "twilightforest:darkwood_sapling",
-        "minecraft:tuff": "twilightforest:trollsteinn",
-        "minecraft:polished_tuff": "twilightforest:trollsteinn",
-        "minecraft:tuff_bricks": "twilightforest:trollsteinn",
-        "minecraft:chiseled_tuff": "twilightforest:trollsteinn",
-        "minecraft:chiseled_tuff_bricks": "twilightforest:trollsteinn",
         "minecraft:blue_orchid": "minecraft:allium",
         "minecraft:potted_blue_orchid": "minecraft:potted_allium",
         "minecraft:light_blue_bed": "minecraft:pink_bed",
@@ -346,7 +341,22 @@
         "minecraft:polished_deepslate_wall": "minecraft:polished_blackstone_wall",
         "minecraft:chiseled_deepslate": "minecraft:chiseled_polished_blackstone",
         "minecraft:blue_ice": "minecraft:purple_stained_glass",
-        "minecraft:ice": "minecraft:water"
+        "minecraft:tuff": "minecraft:blackstone",
+        "minecraft:tuff_slab": "minecraft:blackstone_slab",
+        "minecraft:tuff_stairs": "minecraft:blackstone_stairs",
+        "minecraft:tuff_wall": "minecraft:blackstone_wall",
+        "minecraft:polished_tuff": "minecraft:polished_blackstone",
+        "minecraft:polished_tuff_slab": "minecraft:polished_blackstone_slab",
+        "minecraft:polished_tuff_stairs": "minecraft:polished_blackstone_stairs",
+        "minecraft:polished_tuff_wall": "minecraft:polished_blackstone_wall",
+        "minecraft:tuff_bricks": "minecraft:polished_blackstone_bricks",
+        "minecraft:tuff_brick_slab": "minecraft:polished_blackstone_brick_slab",
+        "minecraft:tuff_brick_stairs": "minecraft:polished_blackstone_brick_stairs",
+        "minecraft:tuff_brick_wall": "minecraft:polished_blackstone_brick_wall",
+        "minecraft:chiseled_tuff": "minecraft:chiseled_polished_blackstone",
+        "minecraft:chiseled_tuff_bricks": "minecraft:chiseled_polished_blackstone",
+        "minecraft:coarse_dirt": "minecraft:mud",
+        "minecraft:ice": "minecraft:air"
       }
     },
     {
@@ -379,9 +389,6 @@
           }
         }
       ]
-    },
-    {
-      "processor_type": "twilightforest:fluid_tick"
     }
   ]
 }

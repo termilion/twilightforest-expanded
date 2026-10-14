@@ -27,8 +27,8 @@ public class WoodRootFeature extends Feature<RootConfig> {
 		BlockPos pos = ctx.origin();
 		RandomSource rand = ctx.random();
 
-		// start must be in stone
-		if (world.getBlockState(pos).getBlock() != Blocks.STONE) {
+		// start must be in stone (blackstone in the amethyst straits underground)
+		if (!isStone(world.getBlockState(pos).getBlock())) {
 			return false;
 		}
 
@@ -41,6 +41,10 @@ public class WoodRootFeature extends Feature<RootConfig> {
 		float tilt = 0.6F + rand.nextFloat() * 0.3F;
 
 		return drawRoot(world, rand, pos, pos, length, rand.nextFloat(), tilt, ctx.config().blockRoot(), ctx.config().oreRoot());
+	}
+
+	private static boolean isStone(Block block) {
+		return block == Blocks.STONE || block == Blocks.BLACKSTONE;
 	}
 
 	private boolean drawRoot(LevelAccessor world, RandomSource rand, BlockPos oPos, BlockPos pos, float length, float angle, float tilt, BlockStateProvider rootBlock, BlockStateProvider oreBlock) {
@@ -63,7 +67,7 @@ public class WoodRootFeature extends Feature<RootConfig> {
 		}
 
 		// end must be in stone
-		if (world.getBlockState(dest).getBlock() != Blocks.STONE) {
+		if (!isStone(world.getBlockState(dest).getBlock())) {
 			return false;
 		}
 

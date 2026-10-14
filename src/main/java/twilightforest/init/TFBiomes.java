@@ -50,6 +50,7 @@ public class TFBiomes {
 	public static final ResourceKey<Biome> THORNLANDS = makeKey("thornlands");
 
 	public static final ResourceKey<Biome> UNDERGROUND = makeKey("underground");
+	public static final ResourceKey<Biome> AMETHYST_STRAITS_UNDERGROUND = makeKey("amethyst_straits_underground");
 
 	private static ResourceKey<Biome> makeKey(String name) {
 		return ResourceKey.create(Registries.BIOME, TwilightForestMod.prefix(name));
@@ -88,5 +89,7 @@ public class TFBiomes {
 		context.register(THORNLANDS, biomeWithDefaults(defaultAmbientBuilder(), new MobSpawnSettings.Builder(), thornlandsGen(featureGetter, carverGetter)).temperature(0.3F).downfall(0.2F).build());
 
 		context.register(UNDERGROUND, biomeWithDefaults(defaultAmbientBuilder(), undergroundMobSpawning(), undergroundGen(featureGetter, carverGetter)).temperature(0.7F).downfall(0.0F).build());
+		// Copy of UNDERGROUND, only below the amethyst straits
+		context.register(AMETHYST_STRAITS_UNDERGROUND, biomeWithDefaults(defaultAmbientBuilder(), undergroundMobSpawning(), amethystStraitsUndergroundGen(featureGetter, carverGetter)).temperature(0.7F).downfall(0.0F).build());
 	}
 }

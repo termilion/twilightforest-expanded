@@ -363,6 +363,8 @@ public abstract class BiomeHelper {
 		biome.addCarver(GenerationStep.Carving.AIR, Carvers.CAVE);
 		biome.addCarver(GenerationStep.Carving.AIR, Carvers.CAVE_EXTRA_UNDERGROUND);
 		biome.addCarver(GenerationStep.Carving.AIR, Carvers.CANYON);
+		// Carvers come from the biome at Y 0, so the TF caves of the amethyst straits underground are added here
+		biome.addCarver(GenerationStep.Carving.AIR, TFCaveCarvers.TFCAVES_CONFIGURED);
 		biome.addFeature(GenerationStep.Decoration.LAKES, TFPlacedFeatures.PLACED_LAKE_AMETHYST);
 		BiomeDefaultFeatures.addDefaultCrystalFormations(biome);
 		biome.addFeature(GenerationStep.Decoration.LOCAL_MODIFICATIONS, TFPlacedFeatures.PLACED_CRYING_OBSIDIAN_SPOT);
@@ -398,6 +400,28 @@ public abstract class BiomeHelper {
 		withWoodRoots(biome);
 		addCaves(biome);
 		addSmallStoneClusters(biome);
+		return biome;
+	}
+
+	public static BiomeGenerationSettings.Builder amethystStraitsUndergroundGen(HolderGetter<PlacedFeature> featureGetter, HolderGetter<ConfiguredWorldCarver<?>> carverGetter) {
+		// Copy of undergroundGen: stone is blackstone (TFSurfaceRules), legacy ores are amethyst, calcite/deepslate veins instead of the small stone clusters
+		BiomeGenerationSettings.Builder biome = new BiomeGenerationSettings.Builder(featureGetter, carverGetter);
+
+		BiomeDefaultFeatures.addDefaultSoftDisks(biome);
+		BiomeDefaultFeatures.addSurfaceFreezing(biome);
+		withWoodRoots(biome);
+		biome.addCarver(GenerationStep.Carving.AIR, TFCaveCarvers.TFCAVES_CONFIGURED);
+		biome.addFeature(GenerationStep.Decoration.UNDERGROUND_DECORATION, TFPlacedFeatures.PLACED_PLANT_ROOTS);
+		biome.addFeature(GenerationStep.Decoration.UNDERGROUND_DECORATION, TFPlacedFeatures.PLACED_TORCH_BERRIES);
+		biome.addFeature(GenerationStep.Decoration.UNDERGROUND_ORES, TFPlacedFeatures.PLACED_AMETHYST_ORE_COAL);
+		biome.addFeature(GenerationStep.Decoration.UNDERGROUND_ORES, TFPlacedFeatures.PLACED_AMETHYST_ORE_IRON);
+		biome.addFeature(GenerationStep.Decoration.UNDERGROUND_ORES, TFPlacedFeatures.PLACED_AMETHYST_ORE_GOLD);
+		biome.addFeature(GenerationStep.Decoration.UNDERGROUND_ORES, TFPlacedFeatures.PLACED_AMETHYST_ORE_REDSTONE);
+		biome.addFeature(GenerationStep.Decoration.UNDERGROUND_ORES, TFPlacedFeatures.PLACED_AMETHYST_ORE_DIAMOND);
+		biome.addFeature(GenerationStep.Decoration.UNDERGROUND_ORES, TFPlacedFeatures.PLACED_AMETHYST_ORE_LAPIS);
+		biome.addFeature(GenerationStep.Decoration.UNDERGROUND_ORES, TFPlacedFeatures.PLACED_AMETHYST_ORE_COPPER);
+		biome.addFeature(GenerationStep.Decoration.UNDERGROUND_ORES, TFPlacedFeatures.PLACED_CALCITE_VEIN);
+		biome.addFeature(GenerationStep.Decoration.UNDERGROUND_ORES, TFPlacedFeatures.PLACED_DEEPSLATE_VEIN);
 		return biome;
 	}
 
@@ -583,10 +607,10 @@ public abstract class BiomeHelper {
 
 		spawnInfo.creatureGenerationProbability(0.07F);
 		spawnInfo.addSpawn(MobCategory.CREATURE, new MobSpawnSettings.SpawnerData(TFEntities.RAVEN.get(), 10, 4, 4));
-		spawnInfo.addSpawn(MobCategory.AMBIENT, new MobSpawnSettings.SpawnerData(EntityType.BAT, 100, 8, 8));
-		spawnInfo.addSpawn(MobCategory.UNDERGROUND_WATER_CREATURE, new MobSpawnSettings.SpawnerData(EntityType.GLOW_SQUID, 10, 4, 6));
-		spawnInfo.addSpawn(MobCategory.MONSTER, new MobSpawnSettings.SpawnerData(TFEntities.WRAITH.get(), 10, 1, 2)).addMobCharge(TFEntities.WRAITH.get(), 0.7D, 0.15D);
-		spawnInfo.addSpawn(MobCategory.MONSTER, new MobSpawnSettings.SpawnerData(TFEntities.TROLL.get(), 5, 1, 2)).addMobCharge(TFEntities.TROLL.get(), 0.8D, 0.2D);
+		// Lower goblin knights get their upper knight rider in finalizeSpawn
+		spawnInfo.addSpawn(MobCategory.MONSTER, new MobSpawnSettings.SpawnerData(TFEntities.LOWER_GOBLIN_KNIGHT.get(), 5, 1, 2)).addMobCharge(TFEntities.LOWER_GOBLIN_KNIGHT.get(), 0.8D, 0.2D);
+		spawnInfo.addSpawn(MobCategory.MONSTER, new MobSpawnSettings.SpawnerData(TFEntities.TROLL.get(), 2, 1, 2)).addMobCharge(TFEntities.TROLL.get(), 0.8D, 0.2D);
+		spawnInfo.addSpawn(MobCategory.MONSTER, new MobSpawnSettings.SpawnerData(EntityType.VEX, 2, 1, 1)).addMobCharge(EntityType.VEX, 0.7D, 0.15D);
 
 		return spawnInfo;
 	}
