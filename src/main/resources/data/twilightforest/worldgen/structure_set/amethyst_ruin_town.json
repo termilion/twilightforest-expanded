@@ -1,0 +1,14 @@
+{
+  "placement": {
+    "type": "twilightforest:avoid_landmark_grid",
+    "salt": 1592640387,
+    "spacing": 8,
+    "separation": 3
+  },
+  "structures": [
+    {
+      "structure": "twilightforest:amethyst_ruin_town",
+      "weight": 1
+    }
+  ]
+}

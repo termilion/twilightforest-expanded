@@ -1,0 +1,239 @@
+{
+  "processors": [
+    {
+      "processor_type": "minecraft:rule",
+      "rules": [
+        {
+          "input_predicate": {
+            "block": "minecraft:suspicious_gravel",
+            "predicate_type": "minecraft:random_block_match",
+            "probability": 0.9
+          },
+          "location_predicate": {
+            "predicate_type": "minecraft:always_true"
+          },
+          "output_state": {
+            "Name": "minecraft:gravel"
+          }
+        },
+        {
+          "input_predicate": {
+            "block": "minecraft:chest",
+            "predicate_type": "minecraft:random_block_match",
+            "probability": 0.2
+          },
+          "location_predicate": {
+            "predicate_type": "minecraft:always_true"
+          },
+          "output_state": {
+            "Name": "minecraft:gravel"
+          }
+        },
+        {
+          "input_predicate": {
+            "block": "minecraft:stone_bricks",
+            "predicate_type": "minecraft:random_block_match",
+            "probability": 0.2
+          },
+          "location_predicate": {
+            "predicate_type": "minecraft:always_true"
+          },
+          "output_state": {
+            "Name": "minecraft:cracked_stone_bricks"
+          }
+        },
+        {
+          "input_predicate": {
+            "block": "minecraft:stone_bricks",
+            "predicate_type": "minecraft:random_block_match",
+            "probability": 0.1
+          },
+          "location_predicate": {
+            "predicate_type": "minecraft:always_true"
+          },
+          "output_state": {
+            "Name": "minecraft:mossy_stone_bricks"
+          }
+        },
+        {
+          "input_predicate": {
+            "block": "minecraft:cobblestone",
+            "predicate_type": "minecraft:random_block_match",
+            "probability": 0.1
+          },
+          "location_predicate": {
+            "predicate_type": "minecraft:always_true"
+          },
+          "output_state": {
+            "Name": "minecraft:mossy_cobblestone"
+          }
+        },
+        {
+          "output_state": {
+            "Name": "minecraft:water"
+          },
+          "input_predicate": {
+            "block": "minecraft:mossy_cobblestone",
+            "predicate_type": "minecraft:block_match"
+          },
+          "location_predicate": {
+            "block": "minecraft:water",
+            "predicate_type": "minecraft:block_match"
+          }
+        },
+        {
+          "output_state": {
+            "Name": "minecraft:water"
+          },
+          "input_predicate": {
+            "block": "minecraft:cobblestone",
+            "predicate_type": "minecraft:block_match"
+          },
+          "location_predicate": {
+            "block": "minecraft:water",
+            "predicate_type": "minecraft:block_match"
+          }
+        },
+        {
+          "output_state": {
+            "Name": "minecraft:water"
+          },
+          "input_predicate": {
+            "block": "minecraft:grass_block",
+            "predicate_type": "minecraft:block_match"
+          },
+          "location_predicate": {
+            "block": "minecraft:water",
+            "predicate_type": "minecraft:block_match"
+          }
+        }
+      ]
+    },
+    {
+      "processor_type": "twilightforest:block_swap",
+      "swaps": {
+        "minecraft:cobblestone": "minecraft:cobbled_deepslate",
+        "minecraft:cobblestone_stairs": "minecraft:cobbled_deepslate_stairs",
+        "minecraft:cobblestone_slab": "minecraft:cobbled_deepslate_slab",
+        "minecraft:cobblestone_wall": "minecraft:cobbled_deepslate_wall",
+        "minecraft:mossy_cobblestone": "minecraft:cobbled_deepslate",
+        "minecraft:mossy_cobblestone_stairs": "minecraft:cobbled_deepslate_stairs",
+        "minecraft:mossy_cobblestone_slab": "minecraft:cobbled_deepslate_slab",
+        "minecraft:mossy_cobblestone_wall": "minecraft:cobbled_deepslate_wall",
+        "minecraft:stone_bricks": "minecraft:deepslate_bricks",
+        "minecraft:stone_brick_stairs": "minecraft:deepslate_brick_stairs",
+        "minecraft:stone_brick_slab": "minecraft:deepslate_brick_slab",
+        "minecraft:stone_brick_wall": "minecraft:deepslate_brick_wall",
+        "minecraft:cracked_stone_bricks": "minecraft:cracked_deepslate_bricks",
+        "minecraft:chiseled_stone_bricks": "minecraft:chiseled_deepslate",
+        "minecraft:mossy_stone_bricks": "minecraft:deepslate_tiles",
+        "minecraft:mossy_stone_brick_stairs": "minecraft:deepslate_tile_stairs",
+        "minecraft:mossy_stone_brick_slab": "minecraft:deepslate_tile_slab",
+        "minecraft:mossy_stone_brick_wall": "minecraft:deepslate_tile_wall",
+        "minecraft:stone": "minecraft:deepslate",
+        "minecraft:smooth_stone": "minecraft:polished_deepslate",
+        "minecraft:smooth_stone_slab": "minecraft:polished_deepslate_slab",
+        "minecraft:polished_granite": "minecraft:polished_deepslate",
+        "minecraft:granite_wall": "minecraft:polished_deepslate_wall",
+        "minecraft:polished_andesite": "minecraft:polished_deepslate",
+        "minecraft:oak_planks": "twilightforest:canopy_planks",
+        "minecraft:oak_stairs": "twilightforest:canopy_stairs",
+        "minecraft:oak_slab": "twilightforest:canopy_slab",
+        "minecraft:oak_fence": "twilightforest:canopy_fence",
+        "minecraft:oak_log": "twilightforest:canopy_log",
+        "minecraft:stripped_oak_log": "twilightforest:stripped_canopy_log",
+        "minecraft:oak_trapdoor": "twilightforest:canopy_trapdoor",
+        "minecraft:oak_leaves": "twilightforest:canopy_leaves",
+        "minecraft:bookshelf": "twilightforest:canopy_bookshelf",
+        "minecraft:chest": "twilightforest:canopy_chest",
+        "minecraft:spruce_planks": "twilightforest:dark_planks",
+        "minecraft:spruce_slab": "twilightforest:dark_slab",
+        "minecraft:birch_trapdoor": "twilightforest:dark_trapdoor",
+        "minecraft:grass_block": "minecraft:mycelium",
+        "minecraft:dirt": "minecraft:mud",
+        "minecraft:coarse_dirt": "minecraft:mud",
+        "minecraft:farmland": "minecraft:budding_amethyst",
+        "minecraft:wheat": "minecraft:amethyst_cluster",
+        "minecraft:hay_block": "minecraft:air",
+        "minecraft:short_grass": "minecraft:air",
+        "minecraft:tall_grass": "minecraft:air"
+      }
+    },
+    {
+      "processor_type": "minecraft:protected_blocks",
+      "value": "#minecraft:features_cannot_replace"
+    },
+    {
+      "processor_type": "twilightforest:attach_plants",
+      "rules": [
+        {
+          "targets": "minecraft:mycelium",
+          "direction": "up",
+          "chance": 0.15,
+          "plants": [
+            {
+              "data": {
+                "Name": "minecraft:red_mushroom"
+              },
+              "weight": 1
+            },
+            {
+              "data": {
+                "Name": "minecraft:brown_mushroom"
+              },
+              "weight": 1
+            }
+          ]
+        },
+        {
+          "targets": [
+            "minecraft:deepslate",
+            "minecraft:cobbled_deepslate",
+            "minecraft:polished_deepslate",
+            "minecraft:deepslate_bricks",
+            "minecraft:cracked_deepslate_bricks",
+            "minecraft:deepslate_tiles",
+            "minecraft:cracked_deepslate_tiles",
+            "minecraft:chiseled_deepslate"
+          ],
+          "direction": "down",
+          "chance": 0.08,
+          "plants": [
+            {
+              "data": {
+                "Name": "twilightforest:torchberry_plant",
+                "Properties": {
+                  "has_torchberries": "true"
+                }
+              },
+              "weight": 1
+            }
+          ]
+        },
+        {
+          "targets": [
+            "minecraft:deepslate",
+            "minecraft:cobbled_deepslate",
+            "minecraft:polished_deepslate",
+            "minecraft:deepslate_bricks",
+            "minecraft:cracked_deepslate_bricks",
+            "minecraft:deepslate_tiles",
+            "minecraft:cracked_deepslate_tiles",
+            "minecraft:chiseled_deepslate"
+          ],
+          "direction": "down",
+          "chance": 0.12,
+          "plants": [
+            {
+              "data": {
+                "Name": "twilightforest:root_strand"
+              },
+              "weight": 1
+            }
+          ],
+          "max_length": 3
+        }
+      ]
+    }
+  ]
+}

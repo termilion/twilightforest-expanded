@@ -31,5 +31,12 @@ versionRange = "[1.21.1]"
 ordering = "NONE"
 side = "BOTH"
 
+[[dependencies.twilightforest]]
+modId = "geckolib"
+type = "required"
+versionRange = "[4.8.3,)"
+ordering = "NONE"
+side = "BOTH"
+
 [modproperties.twilightforest]
 configuredBackground = "twilightforest:textures/block/mazestone_large_brick.png"

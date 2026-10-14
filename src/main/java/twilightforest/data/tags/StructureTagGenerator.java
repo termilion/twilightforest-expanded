@@ -16,6 +16,8 @@ import java.util.concurrent.CompletableFuture;
 public class StructureTagGenerator extends StructureTagsProvider {
 	// Add structures to this tag to show on the Magic Map, detected by worldgen features avoiding landmarks and progression lock behavior
 	public static final TagKey<Structure> LANDMARK = TagKey.create(Registries.STRUCTURE, TwilightForestMod.prefix("landmark"));
+	// Amethyst straits spikes, blackstone columns, deltas and lakes keep clear of the pieces of these structures
+	public static final TagKey<Structure> CLEAR_OF_AMETHYST_FEATURES = TagKey.create(Registries.STRUCTURE, TwilightForestMod.prefix("clear_of_amethyst_features"));
 
 	public StructureTagGenerator(PackOutput output, CompletableFuture<HolderLookup.Provider> provider, @Nullable ExistingFileHelper helper) {
 		super(output, provider, TwilightForestMod.ID, helper);
@@ -40,5 +42,8 @@ public class StructureTagGenerator extends StructureTagsProvider {
 			TFStructures.AURORA_PALACE,
 			TFStructures.TROLL_CAVE
 		);
+
+		// The ruin town is a plain data structure (no TFStructures key)
+		this.tag(CLEAR_OF_AMETHYST_FEATURES).addOptional(TwilightForestMod.prefix("amethyst_ruin_town"));
 	}
 }

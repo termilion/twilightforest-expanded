@@ -14,6 +14,10 @@ import twilightforest.init.custom.TravellersModifiersManager;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.concurrent.CompletableFuture;
+import twilightforest.ivarsbosses.IvarsBosses;
+import twilightforest.palemonarch.init.PaleMonarchModEntities;
+import twilightforest.palemonarch.init.PaleMonarchModItems;
+import twilightforest.palemonarch.init.PaleMonarchModMobEffects;
 
 public class LangGenerator extends TFLangProvider {
 	public static final Map<ResourceLocation, Pair<String, String>> MAGIC_PAINTING_HELPER = new HashMap<>();
@@ -821,6 +825,19 @@ public class LangGenerator extends TFLangProvider {
 		this.addEntityAndEgg(TFEntities.UR_GHAST, "Ur-Ghast");
 		this.addEntityAndEgg(TFEntities.WINTER_WOLF, "Winter Wolf");
 		this.addEntityAndEgg(TFEntities.WRAITH, "Wraith");
+		this.add(IvarsBosses.FENRIR.get(), "Fenrir");
+		this.add(IvarsBosses.FENRIR_SPAWN_EGG.get(), "Fenrir Spawn Egg");
+		this.add(PaleMonarchModEntities.PALE_MONARCH.get(), "Pale Monarch");
+		this.add(PaleMonarchModItems.PALE_MONARCH_SPAWN_EGG.get(), "Pale Monarch Spawn Egg");
+		this.add(PaleMonarchModEntities.PALE_MONARCH_DEATH_ENTITY.get(), "Pale Monarch");
+		this.add(PaleMonarchModEntities.FALSE_KING_1.get(), "False King");
+		this.add(PaleMonarchModEntities.FALSE_KING_2.get(), "False King");
+		this.add(PaleMonarchModEntities.SHADOW.get(), "King's Shadow");
+		this.add(PaleMonarchModItems.PALE_AXE.get(), "Pale Axe");
+		this.add("item.twilightforest.pale_axe.description_0", "[RMB] Draw on your life force to increase strength and speed, expect a couple drawbacks");
+		this.add("item.twilightforest.pale_axe.description_1", "[RMB + Sneak] Manifest a King's Shadow to attack.");
+		this.add(PaleMonarchModMobEffects.TIRED.get(), "Tired");
+		this.add(PaleMonarchModMobEffects.OVERENCUMBERED.get(), "Overencumbered");
 		this.addEntityAndEgg(TFEntities.YETI, "Yeti");
 
 		this.addEntityType(TFEntities.LICH_MINION, "Lich Minion");
@@ -854,6 +871,8 @@ public class LangGenerator extends TFLangProvider {
 
 		SUBTITLE_GENERATOR.forEach(this::add);
 
+		this.addDeathMessage("armorPierce", "%1$s was cleaved by the Pale Monarch");
+		this.addDeathMessage("armorPierce.player", "%1$s was cleaved while trying to escape %2$s");
 		this.addDeathMessage("ghastTear", "%1$s was scalded by fiery tears");
 		this.addDeathMessage("ghastTear.player", "%1$s was scalded by fiery tears while escaping %2$s");
 		this.addDeathMessage("hydraFire", "%1$s was roasted alive by the Hydra");

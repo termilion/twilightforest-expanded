@@ -425,7 +425,9 @@ public class BlockTagGenerator extends ModdedBlockTagGenerator {
 
 		this.tag(PLANTS_HANG_ON)
 			.addTag(BlockTags.DIRT)
-			.add(Blocks.MOSS_BLOCK, TFBlocks.MANGROVE_ROOT.get(), TFBlocks.ROOT_BLOCK.get(), TFBlocks.LIVEROOT_BLOCK.get());
+			.add(Blocks.MOSS_BLOCK, TFBlocks.MANGROVE_ROOT.get(), TFBlocks.ROOT_BLOCK.get(), TFBlocks.LIVEROOT_BLOCK.get())
+			// amethyst straits ruin towns hang torchberries and root strands under their stonework
+			.add(Blocks.DEEPSLATE, Blocks.COBBLED_DEEPSLATE, Blocks.POLISHED_DEEPSLATE, Blocks.DEEPSLATE_BRICKS, Blocks.CRACKED_DEEPSLATE_BRICKS, Blocks.DEEPSLATE_TILES, Blocks.CRACKED_DEEPSLATE_TILES, Blocks.CHISELED_DEEPSLATE);
 
 		this.tag(OREBERRY_BUSHES_SURVIVE)
 			.addTags(Tags.Blocks.STONES)

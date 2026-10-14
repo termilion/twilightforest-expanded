@@ -7,6 +7,7 @@ import net.neoforged.neoforge.common.data.SoundDefinition;
 import twilightforest.TwilightForestMod;
 import twilightforest.data.helpers.TFSoundProvider;
 import twilightforest.init.TFSounds;
+import twilightforest.ivarsbosses.IvarsBosses;
 
 public class SoundGenerator extends TFSoundProvider {
 
@@ -17,6 +18,9 @@ public class SoundGenerator extends TFSoundProvider {
 	@Override
 	public void registerSounds() {
 		this.generateExistingSoundWithSubtitle(TFSounds.ACID_RAIN_BURNS, SoundEvents.FIRE_EXTINGUISH, "Acid rain scalds");
+		this.generateNewSoundWithSubtitle(IvarsBosses.FENRIR_AWAKENING, "entity/fenrir/awakening", 1, "Fenrir awakens");
+		this.generateNewSoundWithSubtitle(IvarsBosses.FENRIR_HURT, "entity/fenrir/hurt", 1, "Fenrir hurts");
+		this.generateNewSoundWithSubtitle(IvarsBosses.FENRIR_DEATH, "entity/fenrir/death", 1, "Fenrir dies");
 		this.generateNewSoundWithSubtitle(TFSounds.ALPHA_YETI_ALERT, "mob/alpha_yeti/alert", 1, "Alpha Yeti takes notice");
 		this.generateNewSoundWithSubtitle(TFSounds.ALPHA_YETI_DEATH, "mob/alpha_yeti/death", 1, "Alpha Yeti dies");
 		this.generateNewSoundWithSubtitle(TFSounds.ALPHA_YETI_GRAB, "mob/alpha_yeti/grab", 1, "Alpha Yeti grabs");

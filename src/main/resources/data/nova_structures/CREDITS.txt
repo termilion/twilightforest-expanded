@@ -25,3 +25,7 @@ emptied) the rest; #nova_structures:traveler enchantments replaced by #minecraft
 lone_citadel (2026-10-13): templates, template pools, processor list citadel_degradation, pillar features (*_base), block tag support_goes_through
 and loot tables (chests/pots/spawners/equipment/spawner_projectile lone_citadel, keys citadel_key / citadel_boss_key) copied from Dungeons and Taverns
 and modified (amethyst/blackstone re-skin, Twilight Forest mobs and loot).
+
+ruin_town (2026-10-14): templates (structure/ruin_town), template pools ruin_town*, processor lists (ruined_town_degradation / ruined_town_road_degradation,
+copied as amethyst_ruin_town_* with a blackstone/deepslate/canopy/darkwood block swap), loot tables pots/pot_generic_ruin and
+minecraft:archaelogy/ruins copied from Dungeons and Taverns. Missing chests/ruin_loot_1..7 references retargeted to chests/ruin_loot_master.

@@ -27,7 +27,9 @@ import net.minecraft.world.level.levelgen.placement.*;
 import net.minecraft.world.level.levelgen.structure.Structure;
 import net.neoforged.neoforge.common.util.ConcatenatedListView;
 import twilightforest.TwilightForestMod;
+import twilightforest.data.tags.StructureTagGenerator;
 import twilightforest.world.components.placements.AvoidLandmarkModifier;
+import twilightforest.world.components.placements.AvoidStructurePiecesModifier;
 import twilightforest.world.components.placements.ChunkBlanketingModifier;
 import twilightforest.world.components.placements.ChunkCenterModifier;
 import twilightforest.world.components.placements.MaxHeightFilter;
@@ -232,21 +234,22 @@ public class TFPlacedFeatures {
 		HolderGetter<Biome> biomes = context.lookup(Registries.BIOME);
 		AvoidLandmarkModifier avoidLichTower = AvoidLandmarkModifier.checkVegetation();
 		Holder.Reference<Structure> lichTowerHolder = context.lookup(Registries.STRUCTURE).getOrThrow(TFStructures.LICH_TOWER);
+		HolderSet<Structure> clearOfAmethystFeatures = context.lookup(Registries.STRUCTURE).getOrThrow(StructureTagGenerator.CLEAR_OF_AMETHYST_FEATURES);
 		HolderSet.Direct<Structure> allowLichTower = HolderSet.direct(lichTowerHolder);
 
 		context.register(PLACED_LAKE_LAVA, new PlacedFeature(features.getOrThrow(TFConfiguredFeatures.LAKE_LAVA), tfFeatureCheckArea(AvoidLandmarkModifier.checkBoth(), 10).build()));
 		context.register(PLACED_LAKE_WATER, new PlacedFeature(features.getOrThrow(TFConfiguredFeatures.LAKE_WATER), tfFeatureCheckArea(AvoidLandmarkModifier.checkBoth(), 32).build()));
 		context.register(PLACED_LAKE_FROZEN, new PlacedFeature(features.getOrThrow(TFConfiguredFeatures.LAKE_FROZEN), tfFeatureCheckArea(AvoidLandmarkModifier.checkBoth(), 4).build()));
-		// No landmark check: amethyst lakes, blackstone columns and bushes are allowed inside the lone citadel's clearing so they blend into it
-		context.register(PLACED_LAKE_AMETHYST, new PlacedFeature(features.getOrThrow(TFConfiguredFeatures.LAKE_AMETHYST), List.of(RarityFilter.onAverageOnceEvery(32), InSquarePlacement.spread(), PlacementUtils.HEIGHTMAP_OCEAN_FLOOR, BiomeFilter.biome())));
+		// No landmark check: amethyst lakes, blackstone columns and bushes are allowed inside the lone citadel's clearing so they blend into it (but not on ruin towns)
+		context.register(PLACED_LAKE_AMETHYST, new PlacedFeature(features.getOrThrow(TFConfiguredFeatures.LAKE_AMETHYST), List.of(RarityFilter.onAverageOnceEvery(32), InSquarePlacement.spread(), PlacementUtils.HEIGHTMAP_OCEAN_FLOOR, new AvoidStructurePiecesModifier(clearOfAmethystFeatures, 9), BiomeFilter.biome())));
 		// Same placement as vanilla ice_spike / ice_patch, the patch only on the amethyst straits surface blocks
-		PlacementUtils.register(context, PLACED_AMETHYST_SPIKE, features.getOrThrow(TFConfiguredFeatures.AMETHYST_SPIKE), CountPlacement.of(1), InSquarePlacement.spread(), PlacementUtils.HEIGHTMAP, new MaxHeightFilter(AMETHYST_STRAITS_MAX_FEATURE_Y), AvoidLandmarkModifier.checkSurface(), BiomeFilter.biome());
+		PlacementUtils.register(context, PLACED_AMETHYST_SPIKE, features.getOrThrow(TFConfiguredFeatures.AMETHYST_SPIKE), CountPlacement.of(1), InSquarePlacement.spread(), PlacementUtils.HEIGHTMAP, new MaxHeightFilter(AMETHYST_STRAITS_MAX_FEATURE_Y), AvoidLandmarkModifier.checkSurface(), new AvoidStructurePiecesModifier(clearOfAmethystFeatures, 4), BiomeFilter.biome());
 		PlacementUtils.register(context, PLACED_AMETHYST_PATCH, features.getOrThrow(TFConfiguredFeatures.AMETHYST_PATCH), CountPlacement.of(2), InSquarePlacement.spread(), PlacementUtils.HEIGHTMAP, RandomOffsetPlacement.vertical(ConstantInt.of(-1)), BlockPredicateFilter.forPredicate(BlockPredicate.matchesBlocks(Blocks.BLACKSTONE, Blocks.OBSIDIAN, Blocks.CRYING_OBSIDIAN)), AvoidLandmarkModifier.checkSurface(), BiomeFilter.biome());
 		// Basalt delta features (NetherPlacements), only on the surface and at about half the vanilla column/blob counts. Vanilla uses 40 deltas per layer,
 		// but the flat surface here accepts nearly every one (40 -> 83% water, 3 -> 29%), so 1-2
-		PlacementUtils.register(context, PLACED_AMETHYST_DELTA, features.getOrThrow(TFConfiguredFeatures.AMETHYST_DELTA), CountPlacement.of(UniformInt.of(1, 2)), InSquarePlacement.spread(), PlacementUtils.HEIGHTMAP, RandomOffsetPlacement.vertical(ConstantInt.of(-1)), new MaxHeightFilter(AMETHYST_STRAITS_MAX_FEATURE_Y), AvoidLandmarkModifier.checkSurface(), BiomeFilter.biome());
-		PlacementUtils.register(context, PLACED_SMALL_BLACKSTONE_COLUMNS, features.getOrThrow(TFConfiguredFeatures.SMALL_BLACKSTONE_COLUMNS), CountPlacement.of(2), InSquarePlacement.spread(), PlacementUtils.HEIGHTMAP, new MaxHeightFilter(AMETHYST_STRAITS_MAX_FEATURE_Y), BiomeFilter.biome());
-		PlacementUtils.register(context, PLACED_LARGE_BLACKSTONE_COLUMNS, features.getOrThrow(TFConfiguredFeatures.LARGE_BLACKSTONE_COLUMNS), CountPlacement.of(1), InSquarePlacement.spread(), PlacementUtils.HEIGHTMAP, new MaxHeightFilter(AMETHYST_STRAITS_MAX_FEATURE_Y), BiomeFilter.biome());
+		PlacementUtils.register(context, PLACED_AMETHYST_DELTA, features.getOrThrow(TFConfiguredFeatures.AMETHYST_DELTA), CountPlacement.of(UniformInt.of(1, 2)), InSquarePlacement.spread(), PlacementUtils.HEIGHTMAP, RandomOffsetPlacement.vertical(ConstantInt.of(-1)), new MaxHeightFilter(AMETHYST_STRAITS_MAX_FEATURE_Y), AvoidLandmarkModifier.checkSurface(), new AvoidStructurePiecesModifier(clearOfAmethystFeatures, 9), BiomeFilter.biome());
+		PlacementUtils.register(context, PLACED_SMALL_BLACKSTONE_COLUMNS, features.getOrThrow(TFConfiguredFeatures.SMALL_BLACKSTONE_COLUMNS), CountPlacement.of(2), InSquarePlacement.spread(), PlacementUtils.HEIGHTMAP, new MaxHeightFilter(AMETHYST_STRAITS_MAX_FEATURE_Y), new AvoidStructurePiecesModifier(clearOfAmethystFeatures, 4), BiomeFilter.biome());
+		PlacementUtils.register(context, PLACED_LARGE_BLACKSTONE_COLUMNS, features.getOrThrow(TFConfiguredFeatures.LARGE_BLACKSTONE_COLUMNS), CountPlacement.of(1), InSquarePlacement.spread(), PlacementUtils.HEIGHTMAP, new MaxHeightFilter(AMETHYST_STRAITS_MAX_FEATURE_Y), new AvoidStructurePiecesModifier(clearOfAmethystFeatures, 4), BiomeFilter.biome());
 		PlacementUtils.register(context, PLACED_BLACKSTONE_BLOBS, features.getOrThrow(TFConfiguredFeatures.BLACKSTONE_BLOBS), CountPlacement.of(12), InSquarePlacement.spread(), HeightRangePlacement.uniform(VerticalAnchor.absolute(-8), VerticalAnchor.absolute(80)), BiomeFilter.biome());
 		// Single crying obsidian blocks in the obsidian surface patches (8 tries per chunk, ~3% of patch blocks)
 		PlacementUtils.register(context, PLACED_CRYING_OBSIDIAN_SPOT, features.getOrThrow(TFConfiguredFeatures.CRYING_OBSIDIAN_SPOT), CountPlacement.of(8), InSquarePlacement.spread(), PlacementUtils.HEIGHTMAP, RandomOffsetPlacement.vertical(ConstantInt.of(-1)), BlockPredicateFilter.forPredicate(BlockPredicate.matchesBlocks(Blocks.OBSIDIAN)), AvoidLandmarkModifier.checkSurface(), BiomeFilter.biome());

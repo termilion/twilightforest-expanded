@@ -20,6 +20,8 @@ import twilightforest.config.ConfigSetup;
 import twilightforest.init.*;
 import twilightforest.init.custom.*;
 import twilightforest.util.TFRemapper;
+import twilightforest.palemonarch.PaleMonarchMod;
+import twilightforest.ivarsbosses.IvarsBosses;
 
 import java.util.Locale;
 
@@ -90,6 +92,9 @@ public final class TwilightForestMod {
 		ChunkBlanketProcessors.CHUNK_BLANKETING_TYPES.register(bus);
 		TFStructurePlacementTypes.STRUCTURE_PLACEMENT_TYPES.register(bus);
 		TemplateMarkerHandlers.TEMPLATE_MARKER_HANDLER_TYPES.register(bus);
+
+		PaleMonarchMod.register(bus);
+		IvarsBosses.register(bus);
 
 		TFRemapper.addRegistryAliases();
 

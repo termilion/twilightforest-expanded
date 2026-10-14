@@ -11,6 +11,7 @@ import net.neoforged.neoforge.registries.DeferredRegister;
 import twilightforest.TwilightForestMod;
 import twilightforest.world.components.feature.trees.treeplacers.*;
 import twilightforest.world.components.placements.AvoidLandmarkModifier;
+import twilightforest.world.components.placements.AvoidStructurePiecesModifier;
 import twilightforest.world.components.placements.ChunkBlanketingModifier;
 import twilightforest.world.components.placements.ChunkCenterModifier;
 import twilightforest.world.components.placements.MaxHeightFilter;
@@ -35,6 +36,7 @@ public final class TFFeatureModifiers {
 	public static final DeferredHolder<TreeDecoratorType<?>, TreeDecoratorType<DangleFromTreeDecorator>> DANGLING_DECORATOR = TREE_DECORATORS.register("dangle_from_tree_decorator", () -> new TreeDecoratorType<>(DangleFromTreeDecorator.CODEC));
 
 	public static final DeferredHolder<PlacementModifierType<?>, PlacementModifierType<AvoidLandmarkModifier>> NO_STRUCTURE = registerPlacer("no_structure", () -> () -> AvoidLandmarkModifier.CODEC);
+	public static final DeferredHolder<PlacementModifierType<?>, PlacementModifierType<AvoidStructurePiecesModifier>> AVOID_STRUCTURE_PIECES = registerPlacer("avoid_structure_pieces", () -> () -> AvoidStructurePiecesModifier.CODEC);
 	public static final DeferredHolder<PlacementModifierType<?>, PlacementModifierType<ChunkCenterModifier>> CHUNK_CENTERER = registerPlacer("chunk_centerer", () -> () -> ChunkCenterModifier.CODEC);
 	public static final DeferredHolder<PlacementModifierType<?>, PlacementModifierType<MaxHeightFilter>> MAX_HEIGHT = registerPlacer("max_height", () -> () -> MaxHeightFilter.CODEC);
 	public static final DeferredHolder<PlacementModifierType<?>, PlacementModifierType<ChunkBlanketingModifier>> CHUNK_BLANKETING = registerPlacer("chunk_blanketing", () -> () -> ChunkBlanketingModifier.CODEC);

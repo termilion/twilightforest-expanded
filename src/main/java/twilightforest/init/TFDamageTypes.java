@@ -5,6 +5,7 @@ import net.minecraft.data.worldgen.BootstrapContext;
 import net.minecraft.resources.ResourceKey;
 import net.minecraft.world.damagesource.DamageEffects;
 import net.minecraft.world.damagesource.DamageSource;
+import net.minecraft.world.damagesource.DamageScaling;
 import net.minecraft.world.damagesource.DamageType;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.EntityType;
@@ -58,6 +59,7 @@ public class TFDamageTypes {
 	public static final ResourceKey<DamageType> FALLING_ICE = create("falling_ice");
 	public static final ResourceKey<DamageType> MOONWORM = create("moonworm"); //Moonworm
 	public static final ResourceKey<DamageType> ACID_RAIN = create("acid_rain"); //Acid rain Enforcement
+	public static final ResourceKey<DamageType> ARMOR_PIERCE = create("armor_pierce"); //Pale Monarch
 	public static final ResourceKey<DamageType> OMINOUS_FIRE = create("ominous_fire"); //Standing in cursed fire
 	public static final ResourceKey<DamageType> FAILED_CHALLENGE = create("failed_challenge"); //Being an absolute loser
 	public static final ResourceKey<DamageType> STALE_SANDWICH = create("stale_sandwich"); //You're a stale sandwich
@@ -116,6 +118,7 @@ public class TFDamageTypes {
 		context.register(FALLING_ICE, new DamageType("fallingBlock", 0.1F));
 		context.register(MOONWORM, new DamageType("twilightforest.moonworm", 0.0F));
 		context.register(ACID_RAIN, new DamageType("twilightforest.acid_rain", 0.0F));
+		context.register(ARMOR_PIERCE, new DamageType("twilightforest.armorPierce", DamageScaling.NEVER, 0.1F));
 		context.register(OMINOUS_FIRE, new DamageType("twilightforest.ominous", 0.1F, DamageEffects.BURNING));
 		context.register(FAILED_CHALLENGE, new DamageType("twilightforest.failedChallenge", 0.0F));
 		context.register(STALE_SANDWICH, new DamageType("twilightforest.stale_sandwich", 0.0F));
