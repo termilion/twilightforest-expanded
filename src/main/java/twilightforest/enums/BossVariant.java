@@ -16,7 +16,7 @@ public enum BossVariant implements StringRepresentable {
 	HYDRA(TrophyType.GOLD, TFBlockEntities.HYDRA_SPAWNER::get),
 	UR_GHAST(TrophyType.GOLD, TFBlockEntities.UR_GHAST_SPAWNER::get),
 	KNIGHT_PHANTOM(TrophyType.IRON, TFBlockEntities.KNIGHT_PHANTOM_SPAWNER::get),
-	SNOW_QUEEN(TrophyType.GOLD, TFBlockEntities.SNOW_QUEEN_SPAWNER::get),
+	PRINCESS_AURORA(TrophyType.GOLD, TFBlockEntities.PRINCESS_AURORA_SPAWNER::get),
 	MINOSHROOM(TrophyType.IRON, TFBlockEntities.MINOSHROOM_SPAWNER::get),
 	ALPHA_YETI(TrophyType.IRON, TFBlockEntities.ALPHA_YETI_SPAWNER::get),
 	QUEST_RAM(TrophyType.IRONWOOD, null),

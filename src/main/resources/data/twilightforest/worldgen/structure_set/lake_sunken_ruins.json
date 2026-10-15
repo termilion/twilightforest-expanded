@@ -1,0 +1,31 @@
+{
+  "placement": {
+    "type": "minecraft:random_spread",
+    "salt": 1593827461,
+    "spacing": 8,
+    "separation": 3,
+    "spread_type": "triangular"
+  },
+  "structures": [
+    {
+      "structure": "twilightforest:lake_conduit_ruins",
+      "weight": 4
+    },
+    {
+      "structure": "twilightforest:lake_sunken_city",
+      "weight": 2
+    },
+    {
+      "structure": "twilightforest:lake_ocean_temple",
+      "weight": 2
+    },
+    {
+      "structure": "twilightforest:lake_prismarine_forge",
+      "weight": 2
+    },
+    {
+      "structure": "twilightforest:lake_underwater_sword",
+      "weight": 3
+    }
+  ]
+}

@@ -513,7 +513,7 @@ public class ItemTagGenerator extends ModdedItemTagGenerator {
 			TFItems.NAGA_TROPHY.get(), TFItems.LICH_TROPHY.get(),
 			TFItems.MINOSHROOM_TROPHY.get(), TFItems.HYDRA_TROPHY.get(),
 			TFItems.KNIGHT_PHANTOM_TROPHY.get(), TFItems.UR_GHAST_TROPHY.get(),
-			TFItems.ALPHA_YETI_TROPHY.get(), TFItems.SNOW_QUEEN_TROPHY.get());
+			TFItems.ALPHA_YETI_TROPHY.get(), TFItems.PRINCESS_AURORA_TROPHY.get());
 
 		this.tag(EMPERORS_CLOTH_APPLICABLE).addTag(Tags.Items.ARMORS).add(Items.ELYTRA);
 	}

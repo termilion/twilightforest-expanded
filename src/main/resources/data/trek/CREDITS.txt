@@ -1,0 +1,11 @@
+The files in data/trek are taken from the "Trek" datapack (namespace trek).
+
+Imported (2026-10-15) for the Twilight Forest lake (twilightforest:lake_underwater_sword): template overworld/medium/underwater_sword,
+its template pool and processor list combination/crackify_50_mossify_20.
+Changes: the barrel uses trek:chests/lake_underwater_sword (minecraft:chests/buried_treasure plus twilightforest:hedge_maze in 2 of 3
+and twilightforest:aurora_room in 1 of 8 barrels) instead of minecraft:chests/buried_treasure.
+
+Imported (2026-10-15): hobbit_hole (TF brownie_hole: wood swapped to canopy wood, villager jigsaw emptied, one persistent brownie added),
+elven_pillars (small + tall), frozen_remains, three_finger_ice, claw_spike, ritual, ruins (ruine_1..7), elven_tree, orbital, with their template pools
+and processor list combination/crackify_20_mossify_20. Mob jigsaws (trek:mobs/*) were emptied and template mobs removed (ritual: tropical fish).
+All chest loot replaced by Twilight Forest lich tower tables. Placement: data/twilightforest/worldgen/structure + structure_set.

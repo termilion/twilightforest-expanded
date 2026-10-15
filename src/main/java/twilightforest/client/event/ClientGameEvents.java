@@ -93,6 +93,7 @@ public class ClientGameEvents {
 		NeoForge.EVENT_BUS.addListener(this::handleGameBootup);
 		NeoForge.EVENT_BUS.addListener(this::killVignette);
 		NeoForge.EVENT_BUS.addListener(this::removeHostileMountHealth);
+		NeoForge.EVENT_BUS.addListener(WrappedOverlayMessage::render);
 		NeoForge.EVENT_BUS.addListener(this::renderAurora);
 		NeoForge.EVENT_BUS.addListener(this::renderCustomBossbars);
 		NeoForge.EVENT_BUS.addListener(this::renderGiantBlockOutlines);

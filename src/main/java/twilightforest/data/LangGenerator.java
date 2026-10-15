@@ -498,7 +498,7 @@ public class LangGenerator extends TFLangProvider {
 		this.addBlock(TFBlocks.KNIGHT_PHANTOM_TROPHY, "Knight Phantom Trophy");
 		this.addBlock(TFBlocks.UR_GHAST_TROPHY, "Ur-Ghast Trophy");
 		this.addBlock(TFBlocks.ALPHA_YETI_TROPHY, "Alpha Yeti Trophy");
-		this.addBlock(TFBlocks.SNOW_QUEEN_TROPHY, "Snow Queen Trophy");
+		this.addBlock(TFBlocks.PRINCESS_AURORA_TROPHY, "Princess Aurora Trophy");
 		this.addBlock(TFBlocks.QUEST_RAM_TROPHY, "Questing Ram Trophy");
 
 		this.addBlock(TFBlocks.NAGA_BOSS_SPAWNER, "Naga Boss Spawner");
@@ -508,7 +508,7 @@ public class LangGenerator extends TFLangProvider {
 		this.addBlock(TFBlocks.KNIGHT_PHANTOM_BOSS_SPAWNER, "Knight Phantoms Boss Spawner");
 		this.addBlock(TFBlocks.UR_GHAST_BOSS_SPAWNER, "Ur-Ghast Boss Spawner");
 		this.addBlock(TFBlocks.ALPHA_YETI_BOSS_SPAWNER, "Alpha Yeti Boss Spawner");
-		this.addBlock(TFBlocks.SNOW_QUEEN_BOSS_SPAWNER, "Snow Queen Boss Spawner");
+		this.addBlock(TFBlocks.PRINCESS_AURORA_BOSS_SPAWNER, "Princess Aurora Boss Spawner");
 		this.addBlock(TFBlocks.FINAL_BOSS_BOSS_SPAWNER, "Final Boss Boss Spawner");
 
 		this.addBannerPattern("naga", "Naga Scales");
@@ -518,7 +518,7 @@ public class LangGenerator extends TFLangProvider {
 		this.addBannerPattern("knight_phantom", "Knight Helmet");
 		this.addBannerPattern("ur_ghast", "Carminite Border");
 		this.addBannerPattern("alpha_yeti", "Alpha Yeti Face");
-		this.addBannerPattern("snow_queen", "Snowflake");
+		this.addBannerPattern("princess_aurora", "Snowflake");
 		this.addBannerPattern("quest_ram", "Questing Ram Swirls");
 
 		this.addBlock(TFBlocks.ZOMBIE_SKULL_CANDLE, "Zombie Skull Candle");
@@ -815,8 +815,11 @@ public class LangGenerator extends TFLangProvider {
 		this.addEntityAndEgg(TFEntities.SKELETON_DRUID, "Skeleton Druid");
 		this.addEntityAndEgg(TFEntities.SLIME_BEETLE, "Slime Beetle");
 		this.addEntityAndEgg(TFEntities.SNOW_GUARDIAN, "Snow Guardian");
-		this.addEntityAndEgg(TFEntities.SNOW_QUEEN, "Snow Queen");
+		this.addEntityAndEgg(TFEntities.PRINCESS_AURORA, "Princess Aurora");
 		this.addEntityAndEgg(TFEntities.SQUIRREL, "Squirrel");
+		this.addEntityAndEgg(TFEntities.QUEST_ALLAY, "Quest Allay");
+		this.addEntityAndEgg(TFEntities.SHROOMLING, "Shroomling");
+		this.addEntityAndEgg(TFEntities.BROWNIE, "Brownie");
 		this.addEntityAndEgg(TFEntities.STABLE_ICE_CORE, "Stable Ice Core");
 		this.addEntityAndEgg(TFEntities.SWARM_SPIDER, "Swarm Spider");
 		this.addEntityAndEgg(TFEntities.TINY_BIRD, "Tiny Bird");
@@ -884,10 +887,10 @@ public class LangGenerator extends TFLangProvider {
 		this.addDeathMessage("lichBolt.player", "The Lich and %2$s had better aim than %1$s");
 		this.addDeathMessage("lichBomb", "%1$s succumbed to the Lich's explosive magic");
 		this.addDeathMessage("lichBomb.player", "%1$s succumbed to the Lich's explosive magic while escaping %2$s");
-		this.addDeathMessage("chillingBreath", "%1$s was frozen to death by the Snow Queen");
-		this.addDeathMessage("chillingBreath.player", "%1$s was frozen to death by the Snow Queen while escaping %2$s");
-		this.addDeathMessage("squish", "%1$s was squashed by the Snow Queen");
-		this.addDeathMessage("squish.player", "%1$s was squashed by the Snow Queen while escaping %2$s");
+		this.addDeathMessage("chillingBreath", "%1$s was frozen to death by Princess Aurora");
+		this.addDeathMessage("chillingBreath.player", "%1$s was frozen to death by Princess Aurora while escaping %2$s");
+		this.addDeathMessage("squish", "%1$s was squashed by Princess Aurora");
+		this.addDeathMessage("squish.player", "%1$s was squashed by Princess Aurora while escaping %2$s");
 		this.addDeathMessage("thrownAxe", "%1$s was decapitated by a thrown axe");
 		this.addDeathMessage("thrownAxe.player", "%1$s was decapitated by a thrown axe while escaping %2$s");
 		this.addDeathMessage("thrownPickaxe", "%1$s was decapitated by a thrown pickaxe");
@@ -1075,7 +1078,6 @@ public class LangGenerator extends TFLangProvider {
 		this.createTip("baby_jockey", "Baby Skeleton Druids can be found riding Swarm Spiders.");
 		this.createTip("banister_shape", "Banisters can be right-clicked with an axe to change their height.");
 		this.createTip("block_and_chain", "Enchanting a Block and Chain with Destruction allows it to break blocks.");
-		this.createTip("boggard", "What the heck is a Boggard?");
 		this.createTip("bugs_on_head", "Bugs will happily sit on your head.");
 		this.createTip("burnt_thorns", "Burnt Thorns will disintegrate when stepped on.");
 		this.createTip("carminite_builder", "Carminite Builders place temporary blocks in the direction you're looking.");

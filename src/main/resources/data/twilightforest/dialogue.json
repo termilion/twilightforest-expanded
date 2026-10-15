@@ -1,0 +1,126 @@
+{
+    "en": {
+        "brownie": {
+            "hide_and_seek_start": [
+                "Hihihi, let us play a game! Catch me three times, if you can!"
+            ],
+            "hide_and_seek_found": [
+                "Hohoho, you found me! Again!",
+                "Oh dear, caught again. But not for long!"
+            ],
+            "hide_and_seek_won": [
+                "You are a sharp-eyed one! Here, take this. Farewell, adventurer!"
+            ],
+            "default": [
+                "Hip and hop.",
+                "I am a brownie, what are you?",
+                "Do you want a cup of tea?",
+                "Do not trust the birds, dear adventurer. They will lead you astray.",
+                "Do you have seen my pet toad? I lost it somewhere around here. It is a very special toad, it can talk and it is very wise.",
+                "I have a secret to tell, but I cannot tell it to you. You are not a brownie, and only brownies can know the secrets of the brownie.",
+                "Hihihi",
+                "Hohoho",
+                "I have my favorite button, right here. It is a very special button, it is the only button that can make me laugh.",
+                "Sometimes the trees are talking to me. They are very silly fellows.",
+                "Have you seen these gigantic trees around here? I once knew a brownie that hid his secret stash in their branches. I wonder if it is still there.",
+                "You can make a brownie laugh by tickling it. But be careful, if you tickle it too much, it will get angry and it will chase you away.",
+                "Have you tried to tickle the trees? They are very ticklish, but they do not like it when you tickle them too much.",
+                "If you treat your leather and hang it to dry, you can make very special armor with it. I once saw a traveller jump three blocks high with his winged boots!"
+            ],
+            "twilightforest:forest": [
+                "Welcome to the forest adventurer. Night reigns here, respect it and you will be safe.",
+                "There once was a kingdom in these lands. A mighty king and a powerful queen ruled over it in prosperity.",
+                "There is no kingdom anymore. Anyone has been driven mad and the kings castle has been sealed away behind the thorns.",
+                "The Naga has her courtyard in these woods. She was once an adviser to the king, but fell victim to the wizard's curse.",
+                "Be careful around the Naga, she is powerful and will not hesitate to crush you."
+            ],
+            "minecraft:mangrove_swamp": [
+                "Climb up into my home, dear traveller. The swamp is not a safe place, is it not?",
+                "The wizard has his tower in these swamps. His foul magic seeps into it's waters and makes the dead rise with hunger.",
+                "Before the kingdom fell into chaos, the wizard was part of the king's court, but now he is a madman, corrupted by his own magic."
+            ],
+            "twilightforest:dense_forest": [
+                "Welcome traveller. These are dark times for a visit to the forest of the night.",
+                "If you search for the kingdom, oh dear traveller, you have come too late.",
+                "After the queen's death, the kingdom fell into chaos.",
+                "The wizards hides away in his tower. He is corruped by curse and madness. He does not care for the living anymore.",
+                "The dead haunt the wizards castle. Be careful if you venture there."
+            ],
+            "twilightforest:firefly_forest": [
+                "Welcome dear traveller. Sit down and rest a bit. Let yourself be enchanted by the firefly's dance.",
+                "There is an island in the lakes of these woods. An ancient god of the forest resides there.",
+                "The spirits of the forest were the first to be affected by the curse. Maybe some of them were protected by their god.",
+                "Be careful in the waters of the lakes. Their depths hide many dangers."
+            ],
+            "twilightforest:mushroom_forest": [
+                "Welcome to the forest adventurer. Night reigns here, respect it and you will be safe.",
+                "The shroomlings are a curious bunch. The prattle away with no care in the world.",
+                "It is remarkable how the shroomlings seem to be immune to the madness that befell the king."
+            ],
+            "twilightforest:dense_mushroom_forest": [
+                "Welcome adventurer. A beautiful night for a visit to the forest, is it not?",
+                "The shroomlings might seem innocent, but once they tried to overthrow the king!",
+                "The shroomlings once had a bond the minotaurs. But since the rebellion, the minotaurs have been driven away from here. You can still find their ruins in these parts of the woods."
+            ],
+            "twilightforest:oak_savannah": [
+                "Dear traveller, what brings you to these parts?",
+                "The redcap goblins are a menace to the forest. They mine away for anything shiny.",
+                "The kings madness unleashed the redcap's greed. They cannot be reasoned with anymore.",
+                "Please adventurer, would you free the forest of the redcap's rampage?"
+            ],
+            "twilightforest:darkwood": [
+                "Psst adventurer, come closer. I have a secret to tell you.",
+                "The darkwood is a dangerous place. The trees are alive and they do not like visitors.",
+                "This is an ancient place. It was not affected by the kingdoms curse, it's darkness is way older than that.",
+                "These woods hide a secret of the wizard. He has a crimson tower in it's midst. Strange experiments happened there.",
+                "There is an old mansion in this forest. You should not go there, it is haunted by those that should remain forgotten.",
+                "After the queen's death, the king brought his royal guard to the old fortress. His axe struck them down one by one. Their spirits still linger in it's depths."
+            ],
+            "twilightforest:snowy_forest": [
+                "Come to the fire, dear traveller. You must be freezing.",
+                "The snowy forest is a harsh place. Many travelers have perished in its icy grip.",
+                "The king's daughter, Princess Aurora lives in her castle ontop of the glacier.",
+                "Princess Aurora is a kind soul, but she fell victim to her own madness. Without her mother's guidance, she has become cold and cruel.",
+                "Her magic is unstable. Her coldness is seeping into this forest. She is the source of the blizzards that plague these woods."
+            ],
+            "twilightforest:amethyst_straits": [
+                "A traveller? In these parts? You are brave, or foolish.",
+                "This is the heart of the kingdom. The pale monarch sits upon his throne in the castle of the night.",
+                "The dead haunt the castle. Be careful, the king's madness has made them restless.",
+                "The king had once bonded with a wolf of the forest. He named it Fenrir.",
+                "Fenrir has been changed by the wizards magic and it destroys everything in its path."
+            ],
+            "twilightforest:spooky_forest": [
+                "What brings you to these parts of the woods? Only the dead walk upon these paths.",
+                "This place was once the beautiful garden of the queen and her death has left this place in mourning",
+                "Her guards still defend her castle and the catacombs beneath. Many treasures are hidden there, but many dangers as well.",
+                "She was buried somewhere in the catacombs. But no one knows where.",
+                "Be careful around graveyards in this part of the woods. The queen of spiders has taken up residence there."
+            ],
+            "twilightforest:twilight_swamp": [
+                "Oh dear, you look bitten to shreds by these blood sucking mosquitoes. You should be careful out there.",
+                "Most folks would say, these swamps are filthy. But I don't know what they are talking about. I think they are beautiful.",
+                "Be careful around the well. The kingdoms most dangerous criminals were once thrown into the labyrinth at its bottom.",
+                "The Hydra, the kings most dangerous weapon, lives in the center of the swamp. It's fire is hot, not even the strongest armor can withstand it.",
+                "Only the mightiest of the minotaurs ever survived a battle with the Hydra. But he is gone now, locked away in the labyrinth."
+            ],
+            "twilightforest:fire_swamp": [
+                "What are doing here traveller? How are you managing in this heat?",
+                "The hydra has its lair not far from here, be careful when you venture deeper into the swamps.",
+                "The hydra' blood is a powerful reagent. It can imbue metal with the hydra's fiery might.",
+                "After the kingdom fell, the wizard visited the hydra on Aurora's orders. I don't know what he did, but no one has visited since."
+            ],
+            "twilightforest:highlands": [
+                "The acid rain has stopped, has it not? Finally, I can venture out and see the world again.",
+                "The highlands are the home of the trolls. They have their caves deep underground.",
+                "Above us, the giant's island floats ontop of a cloud. I don't know how they manage to keep it afloat, but it is a sight to behold.",
+                "The trolls never liked the king. But they were loyal to the queen and her daughter. After the kingdom fell, Aurora visited the trolls, a lamp in her hands. Whatever she did, the trolls have been even fiercer since."
+            ],
+            "twilightforest:clearing": [
+                "Welcome traveller. The night is beautiful, is it not? The stars are shining bright and the moon is full.",
+                "The trees are restless, traveller. Something is happening in the forest.",
+                "There once was a city, where the lake is now. It fell long ago, but it's ruins can still be found in the depths of the lake."
+            ]
+        }
+    }
+}

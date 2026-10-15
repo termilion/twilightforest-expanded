@@ -1,0 +1,31 @@
+{
+  "placement": {
+    "type": "twilightforest:avoid_landmark_grid",
+    "salt": 1739462812,
+    "spacing": 30,
+    "separation": 10,
+    "spread_type": "triangular"
+  },
+  "structures": [
+    {
+      "structure": "twilightforest:frozen_remains",
+      "weight": 1
+    },
+    {
+      "structure": "twilightforest:three_finger_spike",
+      "weight": 1
+    },
+    {
+      "structure": "twilightforest:claw_spike",
+      "weight": 1
+    },
+    {
+      "structure": "twilightforest:snowy_ritual",
+      "weight": 1
+    },
+    {
+      "structure": "twilightforest:snowy_ruins",
+      "weight": 1
+    }
+  ]
+}

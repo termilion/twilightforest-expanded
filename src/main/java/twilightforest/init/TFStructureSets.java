@@ -9,6 +9,7 @@ import net.minecraft.data.worldgen.BootstrapContext;
 import net.minecraft.resources.ResourceKey;
 import net.minecraft.world.level.levelgen.structure.Structure;
 import net.minecraft.world.level.levelgen.structure.StructureSet;
+import net.minecraft.world.level.levelgen.structure.placement.RandomSpreadStructurePlacement;
 import net.minecraft.world.level.levelgen.structure.placement.RandomSpreadType;
 import net.minecraft.world.level.levelgen.structure.placement.StructurePlacement;
 import twilightforest.TwilightForestMod;
@@ -25,6 +26,7 @@ public class TFStructureSets {
 	public static final ResourceKey<StructureSet> HOLLOW_TREE = registerKey("hollow_tree");
 	public static final ResourceKey<StructureSet> CAMP = registerKey("camp");
 	public static final ResourceKey<StructureSet> LAKE_RUIN = registerKey("lake_ruin");
+	public static final ResourceKey<StructureSet> BROWNIE_HUT = registerKey("brownie_hut");
 	public static final ResourceKey<StructureSet> HEDGE_MAZE = registerKey("hedge_maze");
 	public static final ResourceKey<StructureSet> QUEST_GROVE = registerKey("quest_grove");
 	public static final ResourceKey<StructureSet> HOLLOW_HILL_SMALL = registerKey("small_hollow_hill");
@@ -66,7 +68,9 @@ public class TFStructureSets {
 			fallenTrunk, 2,
 			hollowTree, 1
 		))));
-		context.register(LAKE_RUIN, new StructureSet(structures.getOrThrow(TFStructures.LAKE_RUIN), new AvoidLandmarkGridPlacement(5, 2, RandomSpreadType.LINEAR, 482915307, Optional.empty())));
+		// Plain random spread: lake ruins may sit right up to the enchanted island, its depth check keeps them off the island itself
+		context.register(LAKE_RUIN, new StructureSet(structures.getOrThrow(TFStructures.LAKE_RUIN), new RandomSpreadStructurePlacement(2, 1, RandomSpreadType.LINEAR, 482915307)));
+		context.register(BROWNIE_HUT, new StructureSet(structures.getOrThrow(TFStructures.BROWNIE_HUT), new AvoidLandmarkGridPlacement(14, 5, RandomSpreadType.LINEAR, 1408763229, Optional.empty())));
 		context.register(CAMP, new StructureSet(structures.getOrThrow(TFStructures.CAMP), new AvoidLandmarkGridPlacement(18, 14, RandomSpreadType.TRIANGULAR, 701432212, avoidTrees)));
 
 		context.register(HEDGE_MAZE, new StructureSet(structures.getOrThrow(TFStructures.HEDGE_MAZE), new LandmarkGridPlacement(Optional.of(TFStructures.HEDGE_MAZE))));
@@ -87,7 +91,8 @@ public class TFStructureSets {
 		context.register(GIANT_HOUSE, new StructureSet(structures.getOrThrow(TFStructures.GIANT_HOUSE), LandmarkGridPlacement.forceStructureForCenters()));
 
 		// uncomment to include in mod-internal datapack, for worldgen
-		//context.register(MUSHROOM_TOWER, new StructureSet(structures.getOrThrow(TFStructures.MUSHROOM_TOWER), LandmarkGridPlacement.forceStructureForCenters()));
+		// Not a landmark (the mushroom forests keep the variety landmarks): a rare minor structure clear of landmark centers
+		context.register(MUSHROOM_TOWER, new StructureSet(structures.getOrThrow(TFStructures.MUSHROOM_TOWER), new AvoidLandmarkGridPlacement(40, 16, RandomSpreadType.TRIANGULAR, 1660419273, Optional.empty())));
 		//context.register(QUEST_ISLAND, new StructureSet(structures.getOrThrow(TFStructures.QUEST_ISLAND), LandmarkGridPlacement.forceStructureForCenters()));
 		//context.register(DRUID_GROVE, new StructureSet(structures.getOrThrow(TFStructures.DRUID_GROVE), LandmarkGridPlacement.forceStructureForCenters()));
 		//context.register(FLOATING_RUINS, new StructureSet(structures.getOrThrow(TFStructures.FLOATING_RUINS), LandmarkGridPlacement.forceStructureForCenters()));

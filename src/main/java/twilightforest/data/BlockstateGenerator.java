@@ -138,7 +138,7 @@ public class BlockstateGenerator extends BlockModelBuilders {
 		simpleBlock(TFBlocks.MINOSHROOM_TROPHY.get(), models().getExistingFile(ResourceLocation.withDefaultNamespace("block/skull")));
 		simpleBlock(TFBlocks.HYDRA_TROPHY.get(), models().getExistingFile(ResourceLocation.withDefaultNamespace("block/skull")));
 		simpleBlock(TFBlocks.ALPHA_YETI_TROPHY.get(), models().getExistingFile(ResourceLocation.withDefaultNamespace("block/skull")));
-		simpleBlock(TFBlocks.SNOW_QUEEN_TROPHY.get(), models().getExistingFile(ResourceLocation.withDefaultNamespace("block/skull")));
+		simpleBlock(TFBlocks.PRINCESS_AURORA_TROPHY.get(), models().getExistingFile(ResourceLocation.withDefaultNamespace("block/skull")));
 		simpleBlock(TFBlocks.KNIGHT_PHANTOM_TROPHY.get(), models().getExistingFile(ResourceLocation.withDefaultNamespace("block/skull")));
 		simpleBlock(TFBlocks.UR_GHAST_TROPHY.get(), models().getExistingFile(ResourceLocation.withDefaultNamespace("block/skull")));
 		simpleBlock(TFBlocks.QUEST_RAM_TROPHY.get(), models().getExistingFile(ResourceLocation.withDefaultNamespace("block/skull")));
@@ -147,7 +147,7 @@ public class BlockstateGenerator extends BlockModelBuilders {
 		simpleBlock(TFBlocks.MINOSHROOM_WALL_TROPHY.get(), models().getExistingFile(ResourceLocation.withDefaultNamespace("block/skull")));
 		simpleBlock(TFBlocks.HYDRA_WALL_TROPHY.get(), models().getExistingFile(ResourceLocation.withDefaultNamespace("block/skull")));
 		simpleBlock(TFBlocks.ALPHA_YETI_WALL_TROPHY.get(), models().getExistingFile(ResourceLocation.withDefaultNamespace("block/skull")));
-		simpleBlock(TFBlocks.SNOW_QUEEN_WALL_TROPHY.get(), models().getExistingFile(ResourceLocation.withDefaultNamespace("block/skull")));
+		simpleBlock(TFBlocks.PRINCESS_AURORA_WALL_TROPHY.get(), models().getExistingFile(ResourceLocation.withDefaultNamespace("block/skull")));
 		simpleBlock(TFBlocks.KNIGHT_PHANTOM_WALL_TROPHY.get(), models().getExistingFile(ResourceLocation.withDefaultNamespace("block/skull")));
 		simpleBlock(TFBlocks.UR_GHAST_WALL_TROPHY.get(), models().getExistingFile(ResourceLocation.withDefaultNamespace("block/skull")));
 		simpleBlock(TFBlocks.QUEST_RAM_WALL_TROPHY.get(), models().getExistingFile(ResourceLocation.withDefaultNamespace("block/skull")));
@@ -325,7 +325,7 @@ public class BlockstateGenerator extends BlockModelBuilders {
 		simpleBlock(TFBlocks.HYDRA_BOSS_SPAWNER.get(), bigSpawner);
 		simpleBlock(TFBlocks.UR_GHAST_BOSS_SPAWNER.get(), bigSpawner);
 		simpleBlock(TFBlocks.KNIGHT_PHANTOM_BOSS_SPAWNER.get(), bigSpawner);
-		simpleBlock(TFBlocks.SNOW_QUEEN_BOSS_SPAWNER.get(), bigSpawner);
+		simpleBlock(TFBlocks.PRINCESS_AURORA_BOSS_SPAWNER.get(), bigSpawner);
 		simpleBlock(TFBlocks.MINOSHROOM_BOSS_SPAWNER.get(), bigSpawner);
 		simpleBlock(TFBlocks.ALPHA_YETI_BOSS_SPAWNER.get(), bigSpawner);
 		simpleBlock(TFBlocks.FINAL_BOSS_BOSS_SPAWNER.get(), bigSpawner);
@@ -1518,10 +1518,10 @@ public class BlockstateGenerator extends BlockModelBuilders {
 	private void trophyPedestal() {
 		String baseName = TFBlocks.TROPHY_PEDESTAL.getId().getPath();
 		ModelFile latent0 = pedestalModel(baseName, "naga", "lich", "hydra", "ur-ghast", false);
-		ModelFile latent1 = pedestalModel(baseName + "_1", "snow_queen", "naga", "lich", "hydra", false);
-		ModelFile latent2 = pedestalModel(baseName + "_2", "ur-ghast", "snow_queen", "naga", "lich", false);
-		ModelFile latent3 = pedestalModel(baseName + "_3", "hydra", "ur-ghast", "snow_queen", "naga", false);
-		ModelFile latent4 = pedestalModel(baseName + "_4", "lich", "hydra", "ur-ghast", "snow_queen", false);
+		ModelFile latent1 = pedestalModel(baseName + "_1", "princess_aurora", "naga", "lich", "hydra", false);
+		ModelFile latent2 = pedestalModel(baseName + "_2", "ur-ghast", "princess_aurora", "naga", "lich", false);
+		ModelFile latent3 = pedestalModel(baseName + "_3", "hydra", "ur-ghast", "princess_aurora", "naga", false);
+		ModelFile latent4 = pedestalModel(baseName + "_4", "lich", "hydra", "ur-ghast", "princess_aurora", false);
 
 		List<ConfiguredModel> latentModels = new ArrayList<>();
 		for (ModelFile f : Arrays.asList(latent0, latent1, latent2, latent3, latent4)) {
@@ -1535,10 +1535,10 @@ public class BlockstateGenerator extends BlockModelBuilders {
 
 
 		ModelFile active0 = pedestalModel(baseName + "_active", "naga", "lich", "hydra", "ur-ghast", true);
-		ModelFile active1 = pedestalModel(baseName + "_active_1", "snow_queen", "naga", "lich", "hydra", true);
-		ModelFile active2 = pedestalModel(baseName + "_active_2", "ur-ghast", "snow_queen", "naga", "lich", true);
-		ModelFile active3 = pedestalModel(baseName + "_active_3", "hydra", "ur-ghast", "snow_queen", "naga", true);
-		ModelFile active4 = pedestalModel(baseName + "_active_4", "lich", "hydra", "ur-ghast", "snow_queen", true);
+		ModelFile active1 = pedestalModel(baseName + "_active_1", "princess_aurora", "naga", "lich", "hydra", true);
+		ModelFile active2 = pedestalModel(baseName + "_active_2", "ur-ghast", "princess_aurora", "naga", "lich", true);
+		ModelFile active3 = pedestalModel(baseName + "_active_3", "hydra", "ur-ghast", "princess_aurora", "naga", true);
+		ModelFile active4 = pedestalModel(baseName + "_active_4", "lich", "hydra", "ur-ghast", "princess_aurora", true);
 
 		List<ConfiguredModel> activeModels = new ArrayList<>();
 		for (ModelFile f : Arrays.asList(active0, active1, active2, active3, active4)) {

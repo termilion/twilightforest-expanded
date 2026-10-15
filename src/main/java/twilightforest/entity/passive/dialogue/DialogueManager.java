@@ -1,0 +1,84 @@
+package twilightforest.entity.passive.dialogue;
+
+import com.google.gson.JsonElement;
+import com.google.gson.JsonObject;
+import com.google.gson.JsonParser;
+import net.minecraft.resources.ResourceLocation;
+import net.minecraft.server.level.ServerPlayer;
+import net.minecraft.server.packs.resources.Resource;
+import net.minecraft.server.packs.resources.ResourceManager;
+import net.minecraft.server.packs.resources.SimplePreparableReloadListener;
+import net.minecraft.util.profiling.ProfilerFiller;
+import net.minecraft.world.entity.player.Player;
+import twilightforest.TwilightForestMod;
+
+import java.io.Reader;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+import java.util.Optional;
+
+/**
+ * Loads the lines of talking mobs from {@code data/twilightforest/dialogue.json}:
+ * {@code { "<language>": { "<mob>": { "<key>": ["line", ...] } } }}. Keys are biome ids, {@code default} or event names.
+ * Lines are looked up in the player's client language (full code, then its prefix, e.g. {@code en_us} → {@code en}), falling back to {@code en}.
+ */
+public class DialogueManager extends SimplePreparableReloadListener<Map<String, Map<String, Map<String, List<String>>>>> {
+	public static final DialogueManager INSTANCE = new DialogueManager();
+	private static final ResourceLocation FILE = TwilightForestMod.prefix("dialogue.json");
+	private static final String FALLBACK_LANGUAGE = "en";
+
+	private Map<String, Map<String, Map<String, List<String>>>> dialogue = Map.of();
+
+	@Override
+	protected Map<String, Map<String, Map<String, List<String>>>> prepare(ResourceManager manager, ProfilerFiller profiler) {
+		Map<String, Map<String, Map<String, List<String>>>> result = new HashMap<>();
+		Optional<Resource> resource = manager.getResource(FILE);
+		if (resource.isEmpty()) {
+			TwilightForestMod.LOGGER.warn("Dialogue file {} not found", FILE);
+			return result;
+		}
+		try (Reader reader = resource.get().openAsReader()) {
+			for (Map.Entry<String, JsonElement> language : JsonParser.parseReader(reader).getAsJsonObject().entrySet()) {
+				Map<String, Map<String, List<String>>> mobs = new HashMap<>();
+				for (Map.Entry<String, JsonElement> mob : language.getValue().getAsJsonObject().entrySet()) {
+					Map<String, List<String>> keys = new HashMap<>();
+					JsonObject mobLines = mob.getValue().getAsJsonObject();
+					for (Map.Entry<String, JsonElement> key : mobLines.entrySet()) {
+						List<String> lines = new ArrayList<>();
+						// Lenient parsing turns a trailing comma into a null entry: skip it
+						key.getValue().getAsJsonArray().forEach(line -> {
+							if (!line.isJsonNull())
+								lines.add(line.getAsString());
+						});
+						keys.put(key.getKey(), List.copyOf(lines));
+					}
+					mobs.put(mob.getKey(), keys);
+				}
+				result.put(language.getKey(), mobs);
+			}
+		} catch (Exception e) {
+			TwilightForestMod.LOGGER.error("Failed to load dialogue file {}", FILE, e);
+		}
+		return result;
+	}
+
+	@Override
+	protected void apply(Map<String, Map<String, Map<String, List<String>>>> prepared, ResourceManager manager, ProfilerFiller profiler) {
+		this.dialogue = prepared;
+	}
+
+	/**
+	 * @return the lines of {@code mob} for {@code key} in the player's language, or an empty list.
+	 */
+	public List<String> getLines(Player player, String mob, String key) {
+		String language = player instanceof ServerPlayer serverPlayer ? serverPlayer.clientInformation().language() : FALLBACK_LANGUAGE;
+		for (String candidate : List.of(language, language.split("_")[0], FALLBACK_LANGUAGE)) {
+			List<String> lines = this.dialogue.getOrDefault(candidate, Map.of()).getOrDefault(mob, Map.of()).get(key);
+			if (lines != null && !lines.isEmpty())
+				return lines;
+		}
+		return List.of();
+	}
+}

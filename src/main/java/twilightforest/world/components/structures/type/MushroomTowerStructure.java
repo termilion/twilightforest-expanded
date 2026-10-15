@@ -3,6 +3,7 @@ package twilightforest.world.components.structures.type;
 import com.mojang.serialization.MapCodec;
 import com.mojang.serialization.codecs.RecordCodecBuilder;
 import net.minecraft.core.Holder;
+import net.minecraft.core.QuartPos;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.data.worldgen.BootstrapContext;
 import net.minecraft.util.RandomSource;
@@ -14,6 +15,7 @@ import net.minecraft.world.level.levelgen.structure.*;
 import net.minecraft.world.level.saveddata.maps.MapDecorationType;
 import twilightforest.data.tags.BiomeTagGenerator;
 import twilightforest.init.TFStructureTypes;
+import twilightforest.world.components.biomesources.TFBiomeProvider;
 import twilightforest.world.components.structures.mushroomtower.MushroomTowerMainComponent;
 import twilightforest.world.components.structures.util.LandmarkStructure;
 
@@ -31,6 +33,15 @@ public class MushroomTowerStructure extends LandmarkStructure {
 	@Override
 	protected StructurePiece getFirstPiece(GenerationContext context, RandomSource random, ChunkPos chunkPos, int x, int y, int z) {
 		return new MushroomTowerMainComponent(random, 0, x, y, z);
+	}
+
+	// Placed like a minor structure (not on the landmark grid), so the biome is checked at the tower itself
+	@Override
+	public Optional<GenerationStub> findValidGenerationPoint(GenerationContext context) {
+		if (!(context.biomeSource() instanceof TFBiomeProvider))
+			return Optional.empty();
+		return this.findGenerationPoint(context).filter(stub -> context.validBiome().test(context.biomeSource().getNoiseBiome(
+			QuartPos.fromBlock(stub.position().getX()), QuartPos.fromBlock(stub.position().getY()), QuartPos.fromBlock(stub.position().getZ()), context.randomState().sampler())));
 	}
 
 	@Override

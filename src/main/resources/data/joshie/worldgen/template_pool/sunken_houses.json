@@ -1,0 +1,51 @@
+{
+  "name": "joshie:sunken_houses",
+  "fallback": "minecraft:empty",
+  "elements": [
+    {
+      "weight": 1,
+      "element": {
+        "element_type": "minecraft:single_pool_element",
+        "location": "joshie:city_ruins/house_1",
+        "processors": "twilightforest:protect_bedrock",
+        "projection": "rigid"
+      }
+    },
+    {
+      "weight": 1,
+      "element": {
+        "element_type": "minecraft:single_pool_element",
+        "location": "joshie:city_ruins/house_2",
+        "processors": "twilightforest:protect_bedrock",
+        "projection": "rigid"
+      }
+    },
+    {
+      "weight": 1,
+      "element": {
+        "element_type": "minecraft:single_pool_element",
+        "location": "joshie:city_ruins/house_3",
+        "processors": "twilightforest:protect_bedrock",
+        "projection": "rigid"
+      }
+    },
+    {
+      "weight": 1,
+      "element": {
+        "element_type": "minecraft:single_pool_element",
+        "location": "joshie:city_ruins/house_4",
+        "processors": "twilightforest:protect_bedrock",
+        "projection": "rigid"
+      }
+    },
+    {
+      "weight": 1,
+      "element": {
+        "element_type": "minecraft:single_pool_element",
+        "location": "joshie:city_ruins/house_5",
+        "processors": "twilightforest:protect_bedrock",
+        "projection": "rigid"
+      }
+    }
+  ]
+}

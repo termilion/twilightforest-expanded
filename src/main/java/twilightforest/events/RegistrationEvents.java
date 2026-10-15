@@ -7,11 +7,14 @@ import net.minecraft.core.cauldron.CauldronInteraction;
 import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.tags.FluidTags;
+import net.minecraft.core.BlockPos;
+import net.minecraft.world.level.ServerLevelAccessor;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.Mob;
 import net.minecraft.world.entity.SpawnPlacementTypes;
 import net.minecraft.world.entity.animal.Animal;
 import net.minecraft.world.entity.animal.Sheep;
+import net.minecraft.world.entity.animal.allay.Allay;
 import net.minecraft.world.entity.monster.AbstractSkeleton;
 import net.minecraft.world.entity.monster.Monster;
 import net.minecraft.world.entity.monster.Spider;
@@ -62,6 +65,7 @@ import twilightforest.entity.RovingCube;
 import twilightforest.entity.boss.*;
 import twilightforest.entity.monster.*;
 import twilightforest.entity.passive.*;
+import twilightforest.entity.passive.dialogue.DialogueManager;
 import twilightforest.entity.passive.quest.QuestReloadListener;
 import twilightforest.init.*;
 import twilightforest.init.custom.BiomeLayerStack;
@@ -113,6 +117,7 @@ public class RegistrationEvents {
 		NeoForge.EVENT_BUS.addListener(this::registerCommands);
 		NeoForge.EVENT_BUS.addListener(AddReloadListenerEvent.class, event -> event.addListener(new QuestReloadListener()));
 		NeoForge.EVENT_BUS.addListener(AddReloadListenerEvent.class, event -> event.addListener(TravellersModifiersManager.CacheInvalidationReloadListener.INSTANCE));
+		NeoForge.EVENT_BUS.addListener(AddReloadListenerEvent.class, event -> event.addListener(DialogueManager.INSTANCE));
 		NeoForge.EVENT_BUS.addListener(StalactiteReloadListener.INSTANCE::registerListener);
 		NeoForge.EVENT_BUS.addListener(this.structureTemplateDefinitions::registerListener);
 		NeoForge.EVENT_BUS.addListener(ConfigSetup::syncUncraftingConfig);
@@ -561,6 +566,13 @@ public class RegistrationEvents {
 		this.tfCommand.register(event.getDispatcher(), event.getBuildContext());
 	}
 
+	// Water in a Twilight Forest lake, between minBelowSea and maxBelowSea blocks relative to the generator's sea level
+	private static boolean isLakeWater(ServerLevelAccessor level, BlockPos pos, int minBelowSea, int maxBelowSea) {
+		int seaLevel = level.getLevel().getChunkSource().getGenerator().getSeaLevel();
+		return pos.getY() >= seaLevel + minBelowSea && pos.getY() <= seaLevel + maxBelowSea
+			&& level.getFluidState(pos).is(FluidTags.WATER) && level.getBiome(pos).is(TFBiomes.LAKE);
+	}
+
 	private void registerSpawnPlacements(RegisterSpawnPlacementsEvent event) {
 		event.register(TFEntities.BOAR.get(), SpawnPlacementTypes.ON_GROUND, Heightmap.Types.MOTION_BLOCKING_NO_LEAVES, Animal::checkAnimalSpawnRules, RegisterSpawnPlacementsEvent.Operation.REPLACE);
 		event.register(TFEntities.BIGHORN_SHEEP.get(), SpawnPlacementTypes.ON_GROUND, Heightmap.Types.MOTION_BLOCKING_NO_LEAVES, Animal::checkAnimalSpawnRules, RegisterSpawnPlacementsEvent.Operation.REPLACE);
@@ -569,10 +581,14 @@ public class RegistrationEvents {
 		event.register(TFEntities.SKELETON_DRUID.get(), SpawnPlacementTypes.ON_GROUND, Heightmap.Types.MOTION_BLOCKING_NO_LEAVES, SkeletonDruid::checkDruidSpawnRules, RegisterSpawnPlacementsEvent.Operation.REPLACE);
 		event.register(TFEntities.WRAITH.get(), SpawnPlacementTypes.ON_GROUND, Heightmap.Types.MOTION_BLOCKING_NO_LEAVES, Wraith::checkMonsterSpawnRules, RegisterSpawnPlacementsEvent.Operation.REPLACE);
 		event.register(TFEntities.HOSTILE_WOLF.get(), SpawnPlacementTypes.ON_GROUND, Heightmap.Types.MOTION_BLOCKING_NO_LEAVES, HostileWolf::checkWolfSpawnRules, RegisterSpawnPlacementsEvent.Operation.REPLACE);
-		// Vanilla never spawns allays naturally and has no placement for them; enchanted forests do
-		event.register(EntityType.ALLAY, SpawnPlacementTypes.ON_GROUND, Heightmap.Types.MOTION_BLOCKING_NO_LEAVES, Mob::checkMobSpawnRules, RegisterSpawnPlacementsEvent.Operation.REPLACE);
-		// Vanilla glow squids need Y <= sea level - 33, impossible in the Twilight Forest (sea level 0, bottom -32); allow them in deep lake water
-		event.register(EntityType.GLOW_SQUID, null, null, (type, level, spawnType, pos, random) -> pos.getY() <= level.getSeaLevel() - 12 && level.getBiome(pos).is(TFBiomes.LAKE) && level.getFluidState(pos).is(FluidTags.WATER), RegisterSpawnPlacementsEvent.Operation.OR);
+		event.register(TFEntities.BROWNIE.get(), SpawnPlacementTypes.ON_GROUND, Heightmap.Types.MOTION_BLOCKING_NO_LEAVES, Brownie::checkBrownieSpawnRules, RegisterSpawnPlacementsEvent.Operation.REPLACE);
+		event.register(TFEntities.SHROOMLING.get(), SpawnPlacementTypes.ON_GROUND, Heightmap.Types.MOTION_BLOCKING_NO_LEAVES, Mob::checkMobSpawnRules, RegisterSpawnPlacementsEvent.Operation.REPLACE);
+		event.register(TFEntities.QUEST_ALLAY.get(), SpawnPlacementTypes.ON_GROUND, Heightmap.Types.MOTION_BLOCKING_NO_LEAVES, Mob::checkMobSpawnRules, RegisterSpawnPlacementsEvent.Operation.REPLACE);
+		// Vanilla water mob rules use Level#getSeaLevel, a constant 63 in 1.21.1, so they never pass in Twilight Forest lakes (sea level 0, bottom -32).
+		// Allow them in lake water, measured against the generator's sea level: glow squids deep (12+ blocks), salmon and tropical fish near the surface (top 13 blocks)
+		event.register(EntityType.GLOW_SQUID, null, null, (type, level, spawnType, pos, random) -> isLakeWater(level, pos, -64, -12), RegisterSpawnPlacementsEvent.Operation.OR);
+		event.register(EntityType.SALMON, null, null, (type, level, spawnType, pos, random) -> isLakeWater(level, pos, -13, 0), RegisterSpawnPlacementsEvent.Operation.OR);
+		event.register(EntityType.TROPICAL_FISH, null, null, (type, level, spawnType, pos, random) -> isLakeWater(level, pos, -13, 0), RegisterSpawnPlacementsEvent.Operation.OR);
 		event.register(TFEntities.HYDRA.get(), SpawnPlacementTypes.ON_GROUND, Heightmap.Types.MOTION_BLOCKING_NO_LEAVES, Mob::checkMobSpawnRules, RegisterSpawnPlacementsEvent.Operation.REPLACE);
 		event.register(TFEntities.LICH.get(), SpawnPlacementTypes.ON_GROUND, Heightmap.Types.MOTION_BLOCKING_NO_LEAVES, Monster::checkMonsterSpawnRules, RegisterSpawnPlacementsEvent.Operation.REPLACE);
 		event.register(TFEntities.PENGUIN.get(), SpawnPlacementTypes.NO_RESTRICTIONS, Heightmap.Types.MOTION_BLOCKING_NO_LEAVES, Penguin::canSpawn, RegisterSpawnPlacementsEvent.Operation.REPLACE);
@@ -615,7 +631,7 @@ public class RegistrationEvents {
 		event.register(TFEntities.SNOW_GUARDIAN.get(), SpawnPlacementTypes.ON_GROUND, Heightmap.Types.MOTION_BLOCKING_NO_LEAVES, Monster::checkMonsterSpawnRules, RegisterSpawnPlacementsEvent.Operation.REPLACE);
 		event.register(TFEntities.STABLE_ICE_CORE.get(), SpawnPlacementTypes.ON_GROUND, Heightmap.Types.MOTION_BLOCKING_NO_LEAVES, Monster::checkMonsterSpawnRules, RegisterSpawnPlacementsEvent.Operation.REPLACE);
 		event.register(TFEntities.UNSTABLE_ICE_CORE.get(), SpawnPlacementTypes.ON_GROUND, Heightmap.Types.MOTION_BLOCKING_NO_LEAVES, Monster::checkMonsterSpawnRules, RegisterSpawnPlacementsEvent.Operation.REPLACE);
-		event.register(TFEntities.SNOW_QUEEN.get(), SpawnPlacementTypes.ON_GROUND, Heightmap.Types.MOTION_BLOCKING_NO_LEAVES, Monster::checkMonsterSpawnRules, RegisterSpawnPlacementsEvent.Operation.REPLACE);
+		event.register(TFEntities.PRINCESS_AURORA.get(), SpawnPlacementTypes.ON_GROUND, Heightmap.Types.MOTION_BLOCKING_NO_LEAVES, Monster::checkMonsterSpawnRules, RegisterSpawnPlacementsEvent.Operation.REPLACE);
 		event.register(TFEntities.TROLL.get(), SpawnPlacementTypes.ON_GROUND, Heightmap.Types.MOTION_BLOCKING_NO_LEAVES, Monster::checkMonsterSpawnRules, RegisterSpawnPlacementsEvent.Operation.REPLACE);
 		event.register(TFEntities.GIANT_MINER.get(), SpawnPlacementTypes.ON_GROUND, Heightmap.Types.MOTION_BLOCKING_NO_LEAVES, GiantMiner::canSpawn, RegisterSpawnPlacementsEvent.Operation.REPLACE);
 		event.register(TFEntities.ARMORED_GIANT.get(), SpawnPlacementTypes.ON_GROUND, Heightmap.Types.MOTION_BLOCKING_NO_LEAVES, GiantMiner::canSpawn, RegisterSpawnPlacementsEvent.Operation.REPLACE);
@@ -647,6 +663,9 @@ public class RegistrationEvents {
 		event.put(TFEntities.DWARF_RABBIT.get(), DwarfRabbit.registerAttributes().build());
 		event.put(TFEntities.RAVEN.get(), Raven.registerAttributes().build());
 		event.put(TFEntities.QUEST_RAM.get(), QuestRam.registerAttributes().build());
+		event.put(TFEntities.QUEST_ALLAY.get(), Allay.createAttributes().build());
+		event.put(TFEntities.SHROOMLING.get(), Shroomling.registerAttributes().build());
+		event.put(TFEntities.BROWNIE.get(), Brownie.registerAttributes().build());
 		event.put(TFEntities.KOBOLD.get(), Kobold.registerAttributes().build());
 		event.put(TFEntities.MOSQUITO_SWARM.get(), MosquitoSwarm.registerAttributes().build());
 		event.put(TFEntities.DEATH_TOME.get(), DeathTome.registerAttributes().build());
@@ -676,7 +695,7 @@ public class RegistrationEvents {
 		event.put(TFEntities.SNOW_GUARDIAN.get(), SnowGuardian.registerAttributes().build());
 		event.put(TFEntities.STABLE_ICE_CORE.get(), StableIceCore.registerAttributes().build());
 		event.put(TFEntities.UNSTABLE_ICE_CORE.get(), UnstableIceCore.registerAttributes().build());
-		event.put(TFEntities.SNOW_QUEEN.get(), SnowQueen.registerAttributes().build());
+		event.put(TFEntities.PRINCESS_AURORA.get(), PrincessAurora.registerAttributes().build());
 		event.put(TFEntities.TROLL.get(), Troll.registerAttributes().build());
 		event.put(TFEntities.GIANT_MINER.get(), GiantMiner.registerAttributes().build());
 		event.put(TFEntities.ARMORED_GIANT.get(), GiantMiner.registerAttributes().build());
@@ -686,7 +705,6 @@ public class RegistrationEvents {
 		event.put(TFEntities.ROVING_CUBE.get(), RovingCube.registerAttributes().build());
 		event.put(TFEntities.PLATEAU_BOSS.get(), PlateauBoss.registerAttributes().build());
 
-		//event.put(TFEntities.BOGGARD.get(), Boggard.registerAttributes().create());
 		event.put(TFEntities.RISING_ZOMBIE.get(), Zombie.createAttributes().build());
 	}
 }

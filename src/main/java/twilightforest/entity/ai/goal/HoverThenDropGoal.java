@@ -2,12 +2,12 @@ package twilightforest.entity.ai.goal;
 
 import net.minecraft.util.Mth;
 import net.minecraft.world.entity.LivingEntity;
-import twilightforest.entity.boss.SnowQueen;
-import twilightforest.entity.boss.SnowQueen.Phase;
+import twilightforest.entity.boss.PrincessAurora;
+import twilightforest.entity.boss.PrincessAurora.Phase;
 
 import java.util.EnumSet;
 
-public class HoverThenDropGoal extends HoverBaseGoal<SnowQueen> {
+public class HoverThenDropGoal extends HoverBaseGoal<PrincessAurora> {
 
 	private int hoverTimer;
 	private int dropTimer;
@@ -20,8 +20,8 @@ public class HoverThenDropGoal extends HoverBaseGoal<SnowQueen> {
 	private double dropY;
 
 	@SuppressWarnings("this-escape")
-	public HoverThenDropGoal(SnowQueen snowQueen, int hoverTime, int dropTime) {
-		super(snowQueen, 6F, 0F);
+	public HoverThenDropGoal(PrincessAurora princessAurora, int hoverTime, int dropTime) {
+		super(princessAurora, 6F, 0F);
 
 		this.setFlags(EnumSet.of(Flag.MOVE, Flag.LOOK));
 		this.maxHoverTime = hoverTime;

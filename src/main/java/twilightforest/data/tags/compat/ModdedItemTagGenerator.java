@@ -72,7 +72,7 @@ public class ModdedItemTagGenerator extends ItemTagsProvider {
 			TFItems.KNIGHT_PHANTOM_TROPHY.get(),
 			TFItems.UR_GHAST_TROPHY.get(),
 			TFItems.ALPHA_YETI_TROPHY.get(),
-			TFItems.SNOW_QUEEN_TROPHY.get(),
+			TFItems.PRINCESS_AURORA_TROPHY.get(),
 			TFItems.QUEST_RAM_TROPHY.get(),
 			TFBlocks.CICADA.get().asItem(),
 			TFBlocks.FIREFLY.get().asItem(),
@@ -112,7 +112,7 @@ public class ModdedItemTagGenerator extends ItemTagsProvider {
 			TFBlocks.NAGA_BOSS_SPAWNER.get().asItem(), TFBlocks.LICH_BOSS_SPAWNER.get().asItem(),
 			TFBlocks.MINOSHROOM_BOSS_SPAWNER.get().asItem(), TFBlocks.HYDRA_BOSS_SPAWNER.get().asItem(),
 			TFBlocks.KNIGHT_PHANTOM_BOSS_SPAWNER.get().asItem(), TFBlocks.UR_GHAST_BOSS_SPAWNER.get().asItem(),
-			TFBlocks.ALPHA_YETI_BOSS_SPAWNER.get().asItem(), TFBlocks.SNOW_QUEEN_BOSS_SPAWNER.get().asItem());
+			TFBlocks.ALPHA_YETI_BOSS_SPAWNER.get().asItem(), TFBlocks.PRINCESS_AURORA_BOSS_SPAWNER.get().asItem());
 	}
 
 	private static TagKey<Item> createTagFor(String modid, String tagName) {

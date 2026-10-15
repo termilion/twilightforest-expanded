@@ -66,8 +66,8 @@ public class TFBiomes {
 		context.register(CLEARING, biomeWithDefaults(defaultAmbientBuilder(), defaultMobSpawning(), clearingGen(featureGetter, carverGetter)).temperature(0.8F).downfall(0.4F).build());
 		context.register(OAK_SAVANNAH, biomeWithDefaults(defaultAmbientBuilder(), defaultMobSpawning(), oakSavannaGen(featureGetter, carverGetter)).temperature(0.9F).downfall(0).build());
 
-		context.register(MUSHROOM_FOREST, biomeWithDefaults(fireflyParticles(defaultAmbientBuilder()), defaultMobSpawning(), mushroomForestGen(featureGetter, carverGetter)).temperature(0.8F).downfall(0.8F).build());
-		context.register(DENSE_MUSHROOM_FOREST, biomeWithDefaults(fireflyParticles(defaultAmbientBuilder()), defaultMobSpawning(), denseMushroomForestGen(featureGetter, carverGetter)).temperature(0.8F).downfall(1).build());
+		context.register(MUSHROOM_FOREST, biomeWithDefaults(fireflyParticles(defaultAmbientBuilder()), mushroomForestSpawning(), mushroomForestGen(featureGetter, carverGetter)).temperature(0.8F).downfall(0.8F).build());
+		context.register(DENSE_MUSHROOM_FOREST, biomeWithDefaults(fireflyParticles(defaultAmbientBuilder()), mushroomForestSpawning(), denseMushroomForestGen(featureGetter, carverGetter)).temperature(0.8F).downfall(1).build());
 
 		context.register(SPOOKY_FOREST, biomeWithDefaults(defaultAmbientBuilder().grassColorOverride(0xC45123).foliageColorOverride(0xFF8501).fogColor(0x827391).waterColor(0xBC8857).waterFogColor(0xBC8857).grassColorModifier(grassColorModifierEnumExtension.SPOOKY_FOREST), spookSpawning(), spookyForestGen(featureGetter, carverGetter)).temperature(0.5F).downfall(1).build());
 		context.register(ENCHANTED_FOREST, biomeWithDefaults(fireflyParticles(defaultAmbientBuilder()).foliageColorOverride(0x00FFFF).grassColorOverride(0x00FFFF).grassColorModifier(grassColorModifierEnumExtension.ENCHANTED_FOREST), enchantedForestSpawning(), enchantedForestGen(featureGetter, carverGetter)).hasPrecipitation(false).build());

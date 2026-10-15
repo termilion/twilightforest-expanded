@@ -7,7 +7,6 @@ import net.minecraft.core.HolderGetter;
 import net.minecraft.core.HolderSet;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.data.worldgen.BootstrapContext;
-import net.minecraft.data.worldgen.features.AquaticFeatures;
 import net.minecraft.data.worldgen.features.VegetationFeatures;
 import net.minecraft.data.worldgen.placement.PlacementUtils;
 import net.minecraft.data.worldgen.placement.VegetationPlacements;
@@ -43,8 +42,7 @@ public class TFPlacedFeatures {
 
 	public static final ResourceKey<PlacedFeature> PLACED_LAKE_LAVA = registerKey("lava_lake");
 	public static final ResourceKey<PlacedFeature> PLACED_LAKE_WATER = registerKey("water_lake");
-	public static final ResourceKey<PlacedFeature> PLACED_LAKE_KELP = registerKey("lake_kelp");
-	public static final ResourceKey<PlacedFeature> PLACED_LAKE_SEAGRASS = registerKey("lake_seagrass");
+	public static final ResourceKey<PlacedFeature> PLACED_LAKE_FLOOR_PLANTS = registerKey("lake_floor_plants");
 	public static final ResourceKey<PlacedFeature> PLACED_LAKE_FROZEN = registerKey("frozen_lake");
 	public static final ResourceKey<PlacedFeature> PLACED_LAKE_AMETHYST = registerKey("amethyst_lake");
 	public static final ResourceKey<PlacedFeature> PLACED_AMETHYST_SPIKE = registerKey("amethyst_spike");
@@ -245,9 +243,9 @@ public class TFPlacedFeatures {
 		HolderSet.Direct<Structure> allowLichTower = HolderSet.direct(lichTowerHolder);
 
 		context.register(PLACED_LAKE_LAVA, new PlacedFeature(features.getOrThrow(TFConfiguredFeatures.LAKE_LAVA), tfFeatureCheckArea(AvoidLandmarkModifier.checkBoth(), 10).build()));
-		// Noise-based counts that drop to zero below the offset, so kelp and seagrass grow in patches instead of everywhere
-		context.register(PLACED_LAKE_KELP, new PlacedFeature(features.getOrThrow(AquaticFeatures.KELP), List.of(NoiseBasedCountPlacement.of(150, 40.0D, -0.3D), InSquarePlacement.spread(), PlacementUtils.HEIGHTMAP_TOP_SOLID, BiomeFilter.biome())));
-		context.register(PLACED_LAKE_SEAGRASS, new PlacedFeature(features.getOrThrow(AquaticFeatures.SEAGRASS_TALL), List.of(NoiseBasedCountPlacement.of(90, 30.0D, -0.35D), InSquarePlacement.spread(), PlacementUtils.HEIGHTMAP_TOP_SOLID, BiomeFilter.biome())));
+		// Once per chunk, the feature itself covers every lake floor column and checks the biome per column (no BiomeFilter: the origin sits at the
+		// bottom of the world, where the biome is underground)
+		context.register(PLACED_LAKE_FLOOR_PLANTS, new PlacedFeature(features.getOrThrow(TFConfiguredFeatures.LAKE_FLOOR_PLANTS), List.of()));
 		context.register(PLACED_LAKE_WATER, new PlacedFeature(features.getOrThrow(TFConfiguredFeatures.LAKE_WATER), tfFeatureCheckArea(AvoidLandmarkModifier.checkBoth(), 32).build()));
 		context.register(PLACED_LAKE_FROZEN, new PlacedFeature(features.getOrThrow(TFConfiguredFeatures.LAKE_FROZEN), tfFeatureCheckArea(AvoidLandmarkModifier.checkBoth(), 4).build()));
 		// No landmark check: amethyst lakes, blackstone columns and bushes are allowed inside the lone citadel's clearing so they blend into it (but not on ruin towns)

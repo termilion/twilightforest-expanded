@@ -16,6 +16,9 @@ public class TFEntityNames {
 	public static final ResourceLocation RAVEN = prefix("raven");
 
 	public static final ResourceLocation QUEST_RAM = prefix("quest_ram");
+	public static final ResourceLocation QUEST_ALLAY = prefix("quest_allay");
+	public static final ResourceLocation SHROOMLING = prefix("shroomling");
+	public static final ResourceLocation BROWNIE = prefix("brownie");
 
 	// Common Enemies
 	public static final ResourceLocation SKELETON_DRUID = prefix("skeleton_druid");
@@ -33,7 +36,6 @@ public class TFEntityNames {
 	public static final ResourceLocation SLIME_BEETLE = prefix("slime_beetle");
 	public static final ResourceLocation PINCH_BEETLE = prefix("pinch_beetle");
 
-	public static final ResourceLocation BOGGARD = prefix("boggard"); // <- ??
 
 	// Graveyard
 	public static final ResourceLocation RISING_ZOMBIE = prefix("rising_zombie");
@@ -80,7 +82,7 @@ public class TFEntityNames {
 	public static final ResourceLocation SNOW_GUARDIAN = prefix("snow_guardian");
 	public static final ResourceLocation STABLE_ICE_CORE = prefix("stable_ice_core");
 	public static final ResourceLocation UNSTABLE_ICE_CORE = prefix("unstable_ice_core");
-	public static final ResourceLocation SNOW_QUEEN = prefix("snow_queen");
+	public static final ResourceLocation PRINCESS_AURORA = prefix("princess_aurora");
 	public static final ResourceLocation ICE_CRYSTAL = prefix("ice_crystal");
 
 	// Highlands

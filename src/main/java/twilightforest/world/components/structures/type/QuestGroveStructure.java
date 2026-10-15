@@ -1,5 +1,11 @@
 package twilightforest.world.components.structures.type;
 
+import twilightforest.world.components.structures.util.GroundFill;
+import net.minecraft.world.level.levelgen.structure.pieces.PiecesContainer;
+import net.minecraft.world.level.levelgen.structure.BoundingBox;
+import net.minecraft.world.level.chunk.ChunkGenerator;
+import net.minecraft.world.level.StructureManager;
+import net.minecraft.world.level.WorldGenLevel;
 import com.mojang.serialization.MapCodec;
 import com.mojang.serialization.codecs.RecordCodecBuilder;
 import net.minecraft.core.BlockPos;
@@ -40,6 +46,13 @@ public class QuestGroveStructure extends ConquerableStructure {
 	@Override
 	public int adjustForTerrain(GenerationContext context, int x, int z) {
 		return super.adjustForTerrain(context, x, z) + 12;
+	}
+
+	// Fill dirt between the structure and the ground below it
+	@Override
+	public void afterPlace(WorldGenLevel level, StructureManager structureManager, ChunkGenerator chunkGenerator, RandomSource random, BoundingBox chunkBounds, ChunkPos chunkPos, PiecesContainer pieces) {
+		super.afterPlace(level, structureManager, chunkGenerator, random, chunkBounds, chunkPos, pieces);
+		GroundFill.fillBelow(level, chunkBounds, pieces);
 	}
 
 	@Override

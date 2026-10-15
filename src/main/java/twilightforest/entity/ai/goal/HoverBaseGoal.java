@@ -18,8 +18,8 @@ public abstract class HoverBaseGoal<T extends Mob> extends Goal {
 	protected double hoverPosY;
 	protected double hoverPosZ;
 
-	protected HoverBaseGoal(T snowQueen, float hoverHeight, float hoverRadius) {
-		this.attacker = snowQueen;
+	protected HoverBaseGoal(T princessAurora, float hoverHeight, float hoverRadius) {
+		this.attacker = princessAurora;
 		this.hoverHeight = hoverHeight;
 		this.hoverRadius = hoverRadius;
 	}

@@ -47,6 +47,7 @@ import twilightforest.data.tags.CustomTagGenerator;
 import twilightforest.util.woods.WoodPalette;
 import twilightforest.world.components.feature.BlockColumnsFeature;
 import twilightforest.world.components.feature.CrystalSpikeFeature;
+import twilightforest.world.components.feature.LakeFloorPlantsFeature;
 import twilightforest.world.components.feature.TFSmallLakeFeature;
 import twilightforest.world.components.feature.config.*;
 import twilightforest.world.registration.TreeConfigurations;
@@ -151,6 +152,7 @@ public final class TFConfiguredFeatures {
 	public static final ResourceKey<ConfiguredFeature<?, ?>> LEGACY_COAL_ORE = registerKey("legacy_coal_ore");
 	public static final ResourceKey<ConfiguredFeature<?, ?>> LEGACY_IRON_ORE = registerKey("legacy_iron_ore");
 	public static final ResourceKey<ConfiguredFeature<?, ?>> IRON_ORE_VEIN = registerKey("iron_ore_vein");
+	public static final ResourceKey<ConfiguredFeature<?, ?>> LAKE_FLOOR_PLANTS = registerKey("lake_floor_plants");
 	public static final ResourceKey<ConfiguredFeature<?, ?>> GOLD_ORE_VEIN = registerKey("gold_ore_vein");
 	public static final ResourceKey<ConfiguredFeature<?, ?>> AMETHYST_ANCIENT_DEBRIS = registerKey("amethyst_ore/ancient_debris");
 	public static final ResourceKey<ConfiguredFeature<?, ?>> LEGACY_GOLD_ORE = registerKey("legacy_gold_ore");
@@ -376,6 +378,8 @@ public final class TFConfiguredFeatures {
 
 		context.register(LEGACY_COAL_ORE, new ConfiguredFeature<>(Feature.ORE, new OreConfiguration(new TagMatchTest(BlockTags.STONE_ORE_REPLACEABLES), Blocks.COAL_ORE.defaultBlockState(), 16)));
 		// Long ore streaks (an ore feature this size stretches into a vein) for the oak savannah underground
+		// Kelp patches over ~60 % of the lake floor (patch noise > -0.25), seagrass (30 % tall) on the rest
+		context.register(LAKE_FLOOR_PLANTS, new ConfiguredFeature<>(TFFeatures.LAKE_FLOOR_PLANTS.get(), new LakeFloorPlantsFeature.Config(TFBiomes.LAKE, context.lookup(Registries.BLOCK).getOrThrow(BlockTagGenerator.LAKE_PLANTS_CANNOT_GROW_ON), 24.0D, -0.25D, 0.3F)));
 		context.register(IRON_ORE_VEIN, new ConfiguredFeature<>(Feature.ORE, new OreConfiguration(new TagMatchTest(BlockTags.STONE_ORE_REPLACEABLES), Blocks.IRON_ORE.defaultBlockState(), 40)));
 		context.register(GOLD_ORE_VEIN, new ConfiguredFeature<>(Feature.ORE, new OreConfiguration(new TagMatchTest(BlockTags.STONE_ORE_REPLACEABLES), Blocks.GOLD_ORE.defaultBlockState(), 28)));
 		context.register(LEGACY_IRON_ORE, new ConfiguredFeature<>(Feature.ORE, new OreConfiguration(new TagMatchTest(BlockTags.STONE_ORE_REPLACEABLES), Blocks.IRON_ORE.defaultBlockState(), 9)));

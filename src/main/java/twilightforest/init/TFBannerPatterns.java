@@ -15,7 +15,7 @@ public class TFBannerPatterns {
 	public static final ResourceKey<BannerPattern> KNIGHT_PHANTOM = register("knight_phantom");
 	public static final ResourceKey<BannerPattern> UR_GHAST = register("ur_ghast");
 	public static final ResourceKey<BannerPattern> ALPHA_YETI = register("alpha_yeti");
-	public static final ResourceKey<BannerPattern> SNOW_QUEEN = register("snow_queen");
+	public static final ResourceKey<BannerPattern> PRINCESS_AURORA = register("princess_aurora");
 	public static final ResourceKey<BannerPattern> QUESTING_RAM = register("questing_ram");
 
 	private static ResourceKey<BannerPattern> register(String name) {
@@ -30,7 +30,7 @@ public class TFBannerPatterns {
 		context.register(KNIGHT_PHANTOM, new BannerPattern(TwilightForestMod.prefix("knight_phantom"), "block.minecraft.banner.twilightforest.knight_phantom"));
 		context.register(UR_GHAST, new BannerPattern(TwilightForestMod.prefix("ur_ghast"), "block.minecraft.banner.twilightforest.ur_ghast"));
 		context.register(ALPHA_YETI, new BannerPattern(TwilightForestMod.prefix("alpha_yeti"), "block.minecraft.banner.twilightforest.alpha_yeti"));
-		context.register(SNOW_QUEEN, new BannerPattern(TwilightForestMod.prefix("snow_queen"), "block.minecraft.banner.twilightforest.snow_queen"));
+		context.register(PRINCESS_AURORA, new BannerPattern(TwilightForestMod.prefix("princess_aurora"), "block.minecraft.banner.twilightforest.princess_aurora"));
 		context.register(QUESTING_RAM, new BannerPattern(TwilightForestMod.prefix("quest_ram"), "block.minecraft.banner.twilightforest.quest_ram"));
 	}
 }

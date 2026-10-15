@@ -1,0 +1,15 @@
+{
+  "name": "joshie:sunken_city",
+  "fallback": "minecraft:empty",
+  "elements": [
+    {
+      "weight": 1,
+      "element": {
+        "element_type": "minecraft:single_pool_element",
+        "location": "joshie:city_ruins/ruins_center",
+        "processors": "twilightforest:protect_bedrock",
+        "projection": "rigid"
+      }
+    }
+  ]
+}

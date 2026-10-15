@@ -28,6 +28,7 @@ import net.minecraft.world.level.levelgen.structure.TemplateStructurePiece;
 import net.minecraft.world.level.levelgen.structure.pieces.StructurePieceSerializationContext;
 import net.minecraft.world.level.levelgen.structure.templatesystem.BlockIgnoreProcessor;
 import net.minecraft.world.level.levelgen.structure.templatesystem.BlockRotProcessor;
+import net.minecraft.world.level.levelgen.structure.templatesystem.ProtectedBlockProcessor;
 import net.minecraft.world.level.levelgen.structure.templatesystem.StructurePlaceSettings;
 import net.minecraft.world.level.levelgen.structure.templatesystem.StructureTemplate;
 import net.minecraft.world.level.levelgen.structure.templatesystem.StructureTemplateManager;
@@ -59,7 +60,8 @@ public class LakeRuinPiece extends TemplateStructurePiece {
 			.setRotation(rotation)
 			.setMirror(Mirror.NONE)
 			.addProcessor(new BlockRotProcessor(integrity))
-			.addProcessor(BlockIgnoreProcessor.STRUCTURE_AND_AIR);
+			.addProcessor(BlockIgnoreProcessor.STRUCTURE_AND_AIR)
+			.addProcessor(new ProtectedBlockProcessor(BlockTags.FEATURES_CANNOT_REPLACE)); // never replace the bedrock floor
 	}
 
 	@Override

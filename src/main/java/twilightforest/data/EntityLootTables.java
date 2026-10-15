@@ -52,6 +52,10 @@ public class EntityLootTables extends EntityLootSubProvider {
 		add(TFEntities.MOSQUITO_SWARM.get(), emptyLootTable());
 		add(TFEntities.PINCH_BEETLE.get(), emptyLootTable());
 		add(TFEntities.QUEST_RAM.get(), emptyLootTable());
+		add(TFEntities.QUEST_ALLAY.get(), emptyLootTable());
+		add(TFEntities.BROWNIE.get(), emptyLootTable());
+		// Same drop as the Mobs of Mythology sporeling
+		add(TFEntities.SHROOMLING.get(), LootTable.lootTable().withPool(LootPool.lootPool().setRolls(ConstantValue.exactly(1)).add(LootItem.lootTableItem(Items.MUSHROOM_STEW))));
 		add(TFEntities.ROVING_CUBE.get(), emptyLootTable());
 		add(TFEntities.SQUIRREL.get(), emptyLootTable());
 		add(TFEntities.DWARF_RABBIT.get(), fromEntityLootTable(EntityType.RABBIT));
@@ -122,24 +126,6 @@ public class EntityLootTables extends EntityLootSubProvider {
 					.setRolls(ConstantValue.exactly(1))
 					.add(NestedLootTable.lootTableReference(EntityType.GHAST.getDefaultLootTable()))
 					.when(IsMinionCondition.builder(true))));
-
-		/*registerLootTable(TFEntities.BOGGARD.get(),
-				LootTable.builder()
-						.addLootPool(LootPool.builder()
-								.rolls(ConstantRange.of(1))
-								.addEntry(ItemLootEntry.builder(TFItems.MAZE_MAP_FOCUS.get())
-										.acceptFunction(LootingEnchantBonus.builder(RandomValueRange.of(1.0F, 1.0F))))
-								.acceptCondition(RandomChance.builder(0.2F)))
-						.addLootPool(LootPool.builder()
-								.rolls(ConstantRange.of(1))
-								.addEntry(ItemLootEntry.builder(Items.IRON_BOOTS)
-										.acceptFunction(LootingEnchantBonus.builder(RandomValueRange.of(1.0F, 1.0F))))
-								.acceptCondition(RandomChance.builder(0.1666F)))
-						.addLootPool(LootPool.builder()
-								.rolls(ConstantRange.of(1))
-								.addEntry(ItemLootEntry.builder(Items.IRON_PICKAXE)
-										.acceptFunction(LootingEnchantBonus.builder(RandomValueRange.of(1.0F, 1.0F))))
-								.acceptCondition(RandomChance.builder(0.1111F))));*/
 
 		add(TFEntities.BOAR.get(),
 			LootTable.lootTable()
@@ -575,28 +561,28 @@ public class EntityLootTables extends EntityLootSubProvider {
 					.setRolls(ConstantValue.exactly(1.0F))
 					.add(LootItem.lootTableItem(TFBlocks.ALPHA_YETI_TROPHY.get().asItem()))));
 
-		add(TFEntities.SNOW_QUEEN.get(),
+		add(TFEntities.PRINCESS_AURORA.get(),
 			LootTable.lootTable()
 				.withPool(LootPool.lootPool()
-					.name("snow_queen_bows")
+					.name("princess_aurora_bows")
 					.setRolls(MultiplayerBasedNumberProvider.rollsForPlayers(UniformGenerator.between(-2.0F, 1.0F), ConstantValue.exactly(1.0F)))
 					.add(LootItem.lootTableItem(TFItems.TRIPLE_BOW.get()))
 					.add(LootItem.lootTableItem(TFItems.SEEKER_BOW.get())))
 				.withPool(LootPool.lootPool()
-					.name("snow_queen_ice")
+					.name("princess_aurora_ice")
 					.setRolls(UniformGenerator.between(1.0F, 4.0F))
 					.add(LootItem.lootTableItem(Blocks.PACKED_ICE.asItem())
 						.apply(SetItemCountFunction.setCount(ConstantValue.exactly(7.0F)))
 						.apply(EnchantedCountIncreaseFunction.lootingMultiplier(this.registries, UniformGenerator.between(0.0F, 1.0F)))))
 				.withPool(LootPool.lootPool()
-					.name("snow_queen_snowballs")
+					.name("princess_aurora_snowballs")
 					.setRolls(UniformGenerator.between(2.0F, 5.0F))
 					.add(LootItem.lootTableItem(Items.SNOWBALL)
 						.apply(SetItemCountFunction.setCount(ConstantValue.exactly(16.0F)))))
 				.withPool(LootPool.lootPool()
-					.name("snow_queen_trophy")
+					.name("princess_aurora_trophy")
 					.setRolls(ConstantValue.exactly(1.0F))
-					.add(LootItem.lootTableItem(TFBlocks.SNOW_QUEEN_TROPHY.get().asItem()))));
+					.add(LootItem.lootTableItem(TFBlocks.PRINCESS_AURORA_TROPHY.get().asItem()))));
 
 		add(TFEntities.QUEST_RAM.get(), TFLootTables.QUESTING_RAM_REWARDS,
 			LootTable.lootTable()

@@ -18,6 +18,13 @@ public class BiomeTagGenerator extends BiomeTagsProvider {
 
 	public static final TagKey<Biome> IS_TWILIGHT = TagKey.create(Registries.BIOME, TwilightForestMod.prefix("in_twilight_forest"));
 
+	public static final TagKey<Biome> VALID_BROWNIE_HUT_BIOMES = TagKey.create(Registries.BIOME, TwilightForestMod.prefix("valid_brownie_hut_biomes"));
+	public static final TagKey<Biome> VALID_BROWNIE_HOLE_BIOMES = TagKey.create(Registries.BIOME, TwilightForestMod.prefix("valid_brownie_hole_biomes"));
+	public static final TagKey<Biome> VALID_ELVEN_PILLAR_BIOMES = TagKey.create(Registries.BIOME, TwilightForestMod.prefix("valid_elven_pillar_biomes"));
+	public static final TagKey<Biome> VALID_SNOWY_RUIN_BIOMES = TagKey.create(Registries.BIOME, TwilightForestMod.prefix("valid_snowy_ruin_biomes"));
+	public static final TagKey<Biome> VALID_ELVEN_TREE_BIOMES = TagKey.create(Registries.BIOME, TwilightForestMod.prefix("valid_elven_tree_biomes"));
+	public static final TagKey<Biome> VALID_REDCAP_FORT_BIOMES = TagKey.create(Registries.BIOME, TwilightForestMod.prefix("valid_redcap_fort_biomes"));
+	public static final TagKey<Biome> VALID_UNDERGROUND_HOUSE_BIOMES = TagKey.create(Registries.BIOME, TwilightForestMod.prefix("valid_underground_house_biomes"));
 	public static final TagKey<Biome> VALID_QUEST_GROVE_BIOMES = TagKey.create(Registries.BIOME, TwilightForestMod.prefix("valid_quest_grove_biomes"));
 
 	public static final TagKey<Biome> VALID_HOLLOW_TREE_BIOMES = TagKey.create(Registries.BIOME, TwilightForestMod.prefix("valid_hollow_tree_biomes"));
@@ -65,7 +72,22 @@ public class BiomeTagGenerator extends BiomeTagsProvider {
 		);
 
 		this.tag(VALID_QUEST_GROVE_BIOMES).add(TFBiomes.ENCHANTED_FOREST);
-		this.tag(VALID_MUSHROOM_TOWER_BIOMES).add(TFBiomes.DENSE_MUSHROOM_FOREST);
+
+		// Trek / Dungeons and Taverns / vanilla imports (structures in data/twilightforest/worldgen/structure, types only generate in the Twilight Forest)
+		this.tag(VALID_BROWNIE_HUT_BIOMES).add(TFBiomes.SWAMP, TFBiomes.FIRE_SWAMP, Biomes.MANGROVE_SWAMP);
+		this.tag(VALID_BROWNIE_HOLE_BIOMES).add(TFBiomes.FOREST, TFBiomes.DENSE_FOREST, TFBiomes.MUSHROOM_FOREST, TFBiomes.DENSE_MUSHROOM_FOREST, TFBiomes.HIGHLANDS, TFBiomes.SNOWY_FOREST, TFBiomes.OAK_SAVANNAH);
+		this.tag(VALID_REDCAP_FORT_BIOMES).add(TFBiomes.OAK_SAVANNAH);
+		// Every surface biome but stream and lake
+		this.tag(VALID_ELVEN_PILLAR_BIOMES).add(
+			TFBiomes.FOREST, TFBiomes.DENSE_FOREST, TFBiomes.FIREFLY_FOREST, TFBiomes.CLEARING, TFBiomes.OAK_SAVANNAH,
+			TFBiomes.MUSHROOM_FOREST, TFBiomes.DENSE_MUSHROOM_FOREST, TFBiomes.ENCHANTED_FOREST, TFBiomes.SPOOKY_FOREST,
+			TFBiomes.SWAMP, TFBiomes.FIRE_SWAMP, Biomes.MANGROVE_SWAMP, TFBiomes.DARK_FOREST, TFBiomes.DARK_FOREST_CENTER,
+			TFBiomes.SNOWY_FOREST, TFBiomes.GLACIER, TFBiomes.HIGHLANDS, TFBiomes.THORNLANDS, TFBiomes.AMETHYST_STRAITS
+		);
+		this.tag(VALID_SNOWY_RUIN_BIOMES).add(TFBiomes.SNOWY_FOREST);
+		this.tag(VALID_ELVEN_TREE_BIOMES).add(TFBiomes.FOREST, TFBiomes.DENSE_FOREST);
+		this.tag(VALID_UNDERGROUND_HOUSE_BIOMES).add(TFBiomes.UNDERGROUND);
+		this.tag(VALID_MUSHROOM_TOWER_BIOMES).add(TFBiomes.MUSHROOM_FOREST, TFBiomes.DENSE_MUSHROOM_FOREST);
 
 		this.tag(VALID_CAMP_BIOMES).add(
 			TFBiomes.CLEARING, TFBiomes.MUSHROOM_FOREST, TFBiomes.FOREST, TFBiomes.FIREFLY_FOREST
@@ -145,6 +167,7 @@ public class BiomeTagGenerator extends BiomeTagsProvider {
 		this.tag(BiomeTags.MORE_FREQUENT_DROWNED_SPAWNS).add(TFBiomes.LAKE);
 		// Vanilla mineshafts; the start is checked at its final (underground) position, the surface biome covers a start that ends up higher
 		this.tag(BiomeTags.HAS_MINESHAFT).add(TFBiomes.OAK_SAVANNAH, TFBiomes.OAK_SAVANNAH_UNDERGROUND);
+		this.tag(BiomeTags.HAS_RUINED_PORTAL_STANDARD).add(TFBiomes.DARK_FOREST_CENTER);
 		this.tag(BiomeTags.SPAWNS_COLD_VARIANT_FROGS).add(TFBiomes.SNOWY_FOREST, TFBiomes.GLACIER);
 		this.tag(BiomeTags.SPAWNS_WARM_VARIANT_FROGS).add(TFBiomes.OAK_SAVANNAH, TFBiomes.FIRE_SWAMP);
 

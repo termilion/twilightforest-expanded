@@ -34,6 +34,10 @@ public class TFStructureTypes {
 	public static final DeferredHolder<StructureType<?>, StructureType<TrollCaveStructure>> TROLL_CAVE = registerType("troll_cave", () -> () -> TrollCaveStructure.CODEC);
 	public static final DeferredHolder<StructureType<?>, StructureType<GiantHouseStructure>> GIANT_HOUSE = registerType("giant_house", () -> () -> GiantHouseStructure.CODEC);
 	public static final DeferredHolder<StructureType<?>, StructureType<LandmarkJigsawStructure>> LANDMARK_JIGSAW = registerType("landmark_jigsaw", () -> () -> LandmarkJigsawStructure.CODEC);
+	public static final DeferredHolder<StructureType<?>, StructureType<TwilightJigsawStructure>> TWILIGHT_JIGSAW = registerType("twilight_jigsaw", () -> () -> TwilightJigsawStructure.CODEC);
+	public static final DeferredHolder<StructureType<?>, StructureType<BrownieHutStructure>> BROWNIE_HUT = registerType("brownie_hut", () -> () -> BrownieHutStructure.CODEC);
+	public static final DeferredHolder<StructureType<?>, StructureType<OverworldRuinedPortalStructure>> OVERWORLD_RUINED_PORTAL = registerType("overworld_ruined_portal", () -> () -> OverworldRuinedPortalStructure.CODEC);
+	public static final DeferredHolder<StructureType<?>, StructureType<DeepWaterJigsawStructure>> DEEP_WATER_JIGSAW = registerType("deep_water_jigsaw", () -> () -> DeepWaterJigsawStructure.CODEC);
 	public static final DeferredHolder<StructureType<?>, StructureType<ExclusiveJigsawStructure>> EXCLUSIVE_JIGSAW = registerType("exclusive_jigsaw", () -> () -> ExclusiveJigsawStructure.CODEC);
 	public static final DeferredHolder<StructureType<?>, StructureType<FinalCastleStructure>> FINAL_CASTLE = registerType("final_castle", () -> () -> FinalCastleStructure.CODEC);
 

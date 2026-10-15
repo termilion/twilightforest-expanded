@@ -1,0 +1,25 @@
+{
+  "type": "twilightforest:twilight_jigsaw",
+  "biomes": "#twilightforest:valid_underground_house_biomes",
+  "step": "underground_structures",
+  "spawn_overrides": {},
+  "terrain_adaptation": "none",
+  "start_pool": "nova_structures:underground_house",
+  "dimension_padding": {
+    "bottom": 3,
+    "top": 0
+  },
+  "liquid_settings": "ignore_waterlogging",
+  "size": 2,
+  "start_height": {
+    "type": "minecraft:uniform",
+    "min_inclusive": {
+      "absolute": -26
+    },
+    "max_inclusive": {
+      "absolute": -16
+    }
+  },
+  "max_distance_from_center": 8,
+  "use_expansion_hack": false
+}

@@ -120,7 +120,7 @@ public abstract class AbstractTrophyBlock extends BaseEntityBlock implements Equ
 					sound = TFSounds.UR_GHAST_AMBIENT.get();
 					pitch = 0.6F;
 				}
-				case SNOW_QUEEN -> sound = TFSounds.SNOW_QUEEN_AMBIENT.get();
+				case PRINCESS_AURORA -> sound = TFSounds.PRINCESS_AURORA_AMBIENT.get();
 				case KNIGHT_PHANTOM -> {
 					sound = TFSounds.KNIGHT_PHANTOM_AMBIENT.get();
 					pitch = 1.1F;
@@ -209,7 +209,7 @@ public abstract class AbstractTrophyBlock extends BaseEntityBlock implements Equ
 							0, 0, 0);
 					}
 					break;
-				case SNOW_QUEEN:
+				case PRINCESS_AURORA:
 					for (int b = 0; b < 20; b++) {
 						particlePacket.queueParticle(TFParticleType.SNOW_WARNING.get(), false,
 							(double) pos.getX() - 1 + (rand.nextDouble() * 3.25D),

@@ -106,6 +106,7 @@ public class BlockTagGenerator extends ModdedBlockTagGenerator {
 	public static final TagKey<Block> SMALL_LAKES_DONT_REPLACE = create("small_lakes_dont_replace");
 	public static final TagKey<Block> RAVEN_SPAWNABLE_ON = create("raven_spawnable_on");
 	public static final TagKey<Block> LAMPPOST_PLACEABLE_ON = create("lamppost_placeable_on");
+	public static final TagKey<Block> LAKE_PLANTS_CANNOT_GROW_ON = create("lake_plants_cannot_grow_on");
 	public static final TagKey<Block> EMITS_OBSIDIAN_MOTES = create("emits_obsidian_motes");
 	public static final TagKey<Block> EMITS_BLACKSTONE_MOTES = create("emits_blackstone_motes");
 	public static final TagKey<Block> DARK_CANOPY_TREE_GROUND = create("dark_canopy_tree_ground");
@@ -415,7 +416,7 @@ public class BlockTagGenerator extends ModdedBlockTagGenerator {
 			TFBlocks.NAGA_TROPHY.get(), TFBlocks.LICH_TROPHY.get(),
 			TFBlocks.MINOSHROOM_TROPHY.get(), TFBlocks.HYDRA_TROPHY.get(),
 			TFBlocks.KNIGHT_PHANTOM_TROPHY.get(), TFBlocks.UR_GHAST_TROPHY.get(),
-			TFBlocks.ALPHA_YETI_TROPHY.get(), TFBlocks.SNOW_QUEEN_TROPHY.get());
+			TFBlocks.ALPHA_YETI_TROPHY.get(), TFBlocks.PRINCESS_AURORA_TROPHY.get());
 
 		this.tag(FIRE_JET_FUEL).add(Blocks.LAVA);
 
@@ -474,7 +475,7 @@ public class BlockTagGenerator extends ModdedBlockTagGenerator {
 			TFBlocks.KNIGHT_PHANTOM_BOSS_SPAWNER.get(),
 			TFBlocks.UR_GHAST_BOSS_SPAWNER.get(),
 			TFBlocks.ALPHA_YETI_BOSS_SPAWNER.get(),
-			TFBlocks.SNOW_QUEEN_BOSS_SPAWNER.get(),
+			TFBlocks.PRINCESS_AURORA_BOSS_SPAWNER.get(),
 			TFBlocks.FINAL_BOSS_BOSS_SPAWNER.get(),
 			TFBlocks.STRONGHOLD_SHIELD.get(),
 			TFBlocks.UNBREAKABLE_VANISHING_BLOCK.get(),
@@ -812,7 +813,7 @@ public class BlockTagGenerator extends ModdedBlockTagGenerator {
 			TFBlocks.NAGA_BOSS_SPAWNER.get(), TFBlocks.LICH_BOSS_SPAWNER.get(),
 			TFBlocks.MINOSHROOM_BOSS_SPAWNER.get(), TFBlocks.HYDRA_BOSS_SPAWNER.get(),
 			TFBlocks.KNIGHT_PHANTOM_BOSS_SPAWNER.get(), TFBlocks.UR_GHAST_BOSS_SPAWNER.get(),
-			TFBlocks.ALPHA_YETI_BOSS_SPAWNER.get(), TFBlocks.SNOW_QUEEN_BOSS_SPAWNER.get());
+			TFBlocks.ALPHA_YETI_BOSS_SPAWNER.get(), TFBlocks.PRINCESS_AURORA_BOSS_SPAWNER.get());
 
 		this.tag(SUPPORTS_STALAGMITES).addTag(DEADROCK).add(Blocks.PACKED_ICE);
 
@@ -842,6 +843,14 @@ public class BlockTagGenerator extends ModdedBlockTagGenerator {
 		this.tag(EMITS_BLACKSTONE_MOTES).add(Blocks.BLACKSTONE);
 		this.tag(DARK_CANOPY_TREE_GROUND).addTag(BlockTags.DIRT).add(Blocks.BLACKSTONE);
 		this.tag(LAMPPOST_PLACEABLE_ON).add(Blocks.GRASS_BLOCK, Blocks.BLACKSTONE, Blocks.OBSIDIAN, Blocks.CRYING_OBSIDIAN);
+		// Lake floor kelp/seagrass blanket: keeps the sunken ruins (prismarine, stone) clear
+		this.tag(LAKE_PLANTS_CANNOT_GROW_ON).add(
+			Blocks.PRISMARINE, Blocks.PRISMARINE_BRICKS, Blocks.DARK_PRISMARINE,
+			Blocks.PRISMARINE_SLAB, Blocks.PRISMARINE_BRICK_SLAB, Blocks.DARK_PRISMARINE_SLAB,
+			Blocks.PRISMARINE_STAIRS, Blocks.PRISMARINE_BRICK_STAIRS, Blocks.DARK_PRISMARINE_STAIRS, Blocks.PRISMARINE_WALL,
+			Blocks.SEA_LANTERN,
+			Blocks.COBBLESTONE, Blocks.MOSSY_COBBLESTONE, Blocks.SMOOTH_STONE
+		).addTags(BlockTags.BASE_STONE_OVERWORLD, BlockTags.STONE_BRICKS);
 		this.tag(RAVEN_SPAWNABLE_ON).addTag(BlockTags.ANIMALS_SPAWNABLE_ON).add(Blocks.BLACKSTONE, Blocks.OBSIDIAN, Blocks.CRYING_OBSIDIAN);
 
 		this.tag(SMALL_LAKES_DONT_REPLACE).addTags(BlockTags.FEATURES_CANNOT_REPLACE, BlockTags.LOGS, BlockTags.LEAVES)

@@ -1,0 +1,15 @@
+{
+  "placement": {
+    "type": "twilightforest:avoid_landmark_grid",
+    "salt": 1802733415,
+    "spacing": 28,
+    "separation": 10,
+    "spread_type": "triangular"
+  },
+  "structures": [
+    {
+      "structure": "twilightforest:redcap_fort",
+      "weight": 1
+    }
+  ]
+}

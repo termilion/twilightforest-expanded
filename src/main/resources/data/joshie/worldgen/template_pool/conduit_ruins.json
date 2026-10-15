@@ -1,0 +1,24 @@
+{
+    "name": "joshie:conduit_ruins",
+    "fallback": "minecraft:empty",
+    "elements": [
+        {
+            "weight": 1,
+            "element": {
+                "element_type": "minecraft:single_pool_element",
+                "projection": "rigid",
+                "location": "joshie:conduit_ruins_3",
+                "processors": "joshie:conduit_ruins"
+            }
+        },
+        {
+            "weight": 1,
+            "element": {
+                "element_type": "minecraft:single_pool_element",
+                "projection": "rigid",
+                "location": "joshie:conduit_ruins_2",
+                "processors": "joshie:conduit_ruins"
+            }
+        }
+    ]
+}

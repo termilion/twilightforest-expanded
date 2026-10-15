@@ -28,7 +28,7 @@ public class TFRemapper {
 		remapEntryFromRegistries("boss_spawner_knight_phantom", "knight_phantom_boss_spawner", blockReg, itemReg);
 		remapEntryFromRegistries("boss_spawner_ur_ghast", "ur_ghast_boss_spawner", blockReg, itemReg);
 		remapEntryFromRegistries("boss_spawner_alpha_yeti", "alpha_yeti_boss_spawner", blockReg, itemReg);
-		remapEntryFromRegistries("boss_spawner_snow_queen", "snow_queen_boss_spawner", blockReg, itemReg);
+		remapEntryFromRegistries("boss_spawner_snow_queen", "princess_aurora_boss_spawner", blockReg, itemReg);
 		remapEntryFromRegistries("boss_spawner_final_boss", "final_boss_boss_spawner", blockReg, itemReg);
 
 		remapEntryFromRegistries("etched_nagastone_weathered", "cracked_etched_nagastone", blockReg, itemReg);
@@ -186,6 +186,19 @@ public class TFRemapper {
 		remapEntry(entityReg, "goblin_knight_upper", "upper_goblin_knight");
 		remapEntry(entityReg, "goblin_knight_lower", "lower_goblin_knight");
 		remapEntry(entityReg, "yeti_alpha", "alpha_yeti");
+
+		// Snow Queen → Princess Aurora, Boggart → Brownie (2026-10-15)
+		remapEntryFromRegistries("snow_queen_trophy", "princess_aurora_trophy", blockReg, itemReg);
+		remapEntry(blockReg, "snow_queen_wall_trophy", "princess_aurora_wall_trophy");
+		remapEntryFromRegistries("snow_queen_boss_spawner", "princess_aurora_boss_spawner", blockReg, itemReg);
+		remapEntry(itemReg, "snow_queen_banner_pattern", "princess_aurora_banner_pattern");
+		remapEntry(TFBlockEntities.BLOCK_ENTITIES, "snow_queen_spawner", "princess_aurora_spawner");
+		remapEntry(entityReg, "snow_queen", "princess_aurora");
+		remapEntry(entityReg, "boggart", "brownie");
+		remapEntry(TFEntities.SPAWN_EGGS, "snow_queen_spawn_egg", "princess_aurora_spawn_egg");
+		remapEntry(TFEntities.SPAWN_EGGS, "boggart_spawn_egg", "brownie_spawn_egg");
+		remapEntry(TFStructureTypes.STRUCTURE_TYPES, "boggart_hut", "brownie_hut");
+		remapEntry(pieceTypeReg, "TFBoggartHut", "TFBrownieHut");
 
 		remapEntry(pieceTypeReg, "TFNCTr", "TFNCTe"); // Terrace Brazier
 		remapEntry(pieceTypeReg, "TFNCDu", "TFNCTe"); // Terrace Duct

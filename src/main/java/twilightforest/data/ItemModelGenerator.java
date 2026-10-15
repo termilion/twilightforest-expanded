@@ -206,7 +206,7 @@ public class ItemModelGenerator extends ItemModelProvider {
 		toBlockModel(TFBlocks.HYDRA_BOSS_SPAWNER.get(), prefix("block/boss_spawner"));
 		toBlockModel(TFBlocks.UR_GHAST_BOSS_SPAWNER.get(), prefix("block/boss_spawner"));
 		toBlockModel(TFBlocks.KNIGHT_PHANTOM_BOSS_SPAWNER.get(), prefix("block/boss_spawner"));
-		toBlockModel(TFBlocks.SNOW_QUEEN_BOSS_SPAWNER.get(), prefix("block/boss_spawner"));
+		toBlockModel(TFBlocks.PRINCESS_AURORA_BOSS_SPAWNER.get(), prefix("block/boss_spawner"));
 		toBlockModel(TFBlocks.MINOSHROOM_BOSS_SPAWNER.get(), prefix("block/boss_spawner"));
 		toBlockModel(TFBlocks.ALPHA_YETI_BOSS_SPAWNER.get(), prefix("block/boss_spawner"));
 		toBlockModel(TFBlocks.FINAL_BOSS_BOSS_SPAWNER.get(), prefix("block/boss_spawner"));
@@ -489,7 +489,7 @@ public class ItemModelGenerator extends ItemModelProvider {
 		withExistingParent(TFItems.ALPHA_YETI_TROPHY.getId().toString(), templateTrophy).transforms()
 			.transform(ItemDisplayContext.HEAD).scale(1.5F).translation(0, 2, 0).rotation(180, 0, 180).end()
 			.transform(itemDisplayContextEnumExtension.JARRED).translation(0, 0, 1).rotation(0, 180, 0).end().end();
-		withExistingParent(TFItems.SNOW_QUEEN_TROPHY.getId().toString(), templateTrophy);
+		withExistingParent(TFItems.PRINCESS_AURORA_TROPHY.getId().toString(), templateTrophy);
 		withExistingParent(TFItems.QUEST_RAM_TROPHY.getId().toString(), templateTrophy).transforms()
 			.transform(itemDisplayContextEnumExtension.JARRED).scale(0.85F).rotation(0, 180, 0).end().end();
 		withExistingParent(TFItems.MYSTIC_CROWN.getId().toString(), templateTrophy);
@@ -789,7 +789,7 @@ public class ItemModelGenerator extends ItemModelProvider {
 		generated(TFItems.KNIGHT_PHANTOM_BANNER_PATTERN.getId().getPath(), prefix("item/tf_banner_pattern"));
 		generated(TFItems.UR_GHAST_BANNER_PATTERN.getId().getPath(), prefix("item/tf_banner_pattern"));
 		generated(TFItems.ALPHA_YETI_BANNER_PATTERN.getId().getPath(), prefix("item/tf_banner_pattern"));
-		generated(TFItems.SNOW_QUEEN_BANNER_PATTERN.getId().getPath(), prefix("item/tf_banner_pattern"));
+		generated(TFItems.PRINCESS_AURORA_BANNER_PATTERN.getId().getPath(), prefix("item/tf_banner_pattern"));
 		generated(TFItems.QUEST_RAM_BANNER_PATTERN.getId().getPath(), prefix("item/tf_banner_pattern"));
 
 		//these models are used as references in other things, they dont have actual items

@@ -1,0 +1,8 @@
+The files in data/joshie are taken from the "Sunken Spires" datapack ("Remnants of an advanced prismarine civilization", namespace joshie).
+
+Imported (2026-10-15) for the Twilight Forest lake (twilightforest:lake_conduit_ruins, lake_ocean_temple, lake_prismarine_forge, lake_sunken_city):
+templates conduit_ruins_2/3, ocean_temple(+_bottom), ocean_forge, city_ruins/*, their template pools, processor list conduit_ruins and loot tables.
+Changes: template DataVersion lowered from 4189 (1.21.4) to 3955 (1.21.1); the elder guardian was removed from ocean_forge; the flooded shaft of ocean_temple_bottom
+was shortened from 11 to 5 blocks (rows 4-9 removed) so the cellar fits above the bottom of the Twilight Forest;
+chest loot tables got two extra pools (twilightforest:hedge_maze in 2 of 3 chests, twilightforest:aurora_room in 1 of 8 chests).
+Placement and height are defined by the twilightforest structures and structure set lake_sunken_ruins.

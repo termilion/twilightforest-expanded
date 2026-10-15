@@ -1,5 +1,11 @@
 package twilightforest.world.components.structures.type;
 
+import twilightforest.world.components.structures.util.GroundFill;
+import net.minecraft.world.level.levelgen.structure.pieces.PiecesContainer;
+import net.minecraft.world.level.levelgen.structure.BoundingBox;
+import net.minecraft.world.level.chunk.ChunkGenerator;
+import net.minecraft.world.level.StructureManager;
+import net.minecraft.world.level.WorldGenLevel;
 import com.mojang.serialization.MapCodec;
 import com.mojang.serialization.codecs.RecordCodecBuilder;
 import net.minecraft.core.Holder;
@@ -35,6 +41,13 @@ public class NagaCourtyardStructure extends ConquerableStructure implements Cust
 	@Override
 	protected StructurePiece getFirstPiece(GenerationContext context, RandomSource random, ChunkPos chunkPos, int x, int y, int z) {
 		return new CourtyardMain(random, 0, x + 1, y, z + 1, context.structureTemplateManager());
+	}
+
+	// Fill dirt between the structure and the ground below it
+	@Override
+	public void afterPlace(WorldGenLevel level, StructureManager structureManager, ChunkGenerator chunkGenerator, RandomSource random, BoundingBox chunkBounds, ChunkPos chunkPos, PiecesContainer pieces) {
+		super.afterPlace(level, structureManager, chunkGenerator, random, chunkBounds, chunkPos, pieces);
+		GroundFill.fillBelow(level, chunkBounds, pieces);
 	}
 
 	@Override

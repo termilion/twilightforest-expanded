@@ -231,6 +231,14 @@ public class SoundGenerator extends TFSoundProvider {
 		this.generateExistingSoundWithSubtitle(TFSounds.SLIME_BEETLE_SQUISH, SoundEvents.SLIME_SQUISH_SMALL, "Slime Beetle shoots");
 		this.makeStepSound(TFSounds.SLIME_BEETLE_STEP, SoundEvents.SPIDER_STEP);
 
+		// Brownie sounds from the Friends & Foes rascal
+		this.generateNewSoundWithSubtitle(TFSounds.BROWNIE_AMBIENT, "mob/brownie/ambient", 5, "Brownie taunts");
+		this.generateNewSoundWithSubtitle(TFSounds.BROWNIE_HURT, "mob/brownie/hurt", 4, "Brownie hurts");
+		this.generateNewSoundWithSubtitle(TFSounds.BROWNIE_NOD, "mob/brownie/nod", 4, "Brownie nods");
+		this.generateNewSoundWithSubtitle(TFSounds.BROWNIE_DISAPPEAR, "mob/brownie/disappear", 2, "Brownie disappears");
+		this.generateNewSoundWithSubtitle(TFSounds.BROWNIE_REAPPEAR, "mob/brownie/reappear", 2, "Brownie appears");
+		this.generateNewSoundWithSubtitle(TFSounds.BROWNIE_REWARD, "mob/brownie/reward", 2, "Brownie gives reward");
+		this.generateNewSoundWithSubtitle(TFSounds.BROWNIE_REWARD_BAD, "mob/brownie/reward_bad", 3, "Brownie gives bad reward");
 		this.generateNewSoundWithSubtitle(TFSounds.SQUIRREL_AMBIENT, "mob/squirrel/idle", 5, "Squirrel chitters");
 		this.generateNewSoundWithSubtitle(TFSounds.SQUIRREL_DEATH, "mob/squirrel/death", 1, "Squirrel dies");
 		this.generateNewSoundWithSubtitle(TFSounds.SQUIRREL_HURT, "mob/squirrel/hurt", 1, "Squirrel hurts");
@@ -239,11 +247,11 @@ public class SoundGenerator extends TFSoundProvider {
 		this.generateNewSoundWithSubtitle(TFSounds.SNOW_GUARDIAN_DEATH, "mob/ice/death", 2, "Snow Guardian dies");
 		this.generateNewSoundWithSubtitle(TFSounds.SNOW_GUARDIAN_HURT, "mob/ice/hurt", 2, "Snow Guardian hurts");
 
-		this.generateNewSoundWithSubtitle(TFSounds.SNOW_QUEEN_AMBIENT, "mob/ice/crackle", 2, "Snow Queen crackles");
-		this.generateExistingSoundWithSubtitle(TFSounds.SNOW_QUEEN_ATTACK, SoundEvents.IRON_GOLEM_ATTACK, "Snow Queen attacks");
-		this.generateExistingSoundWithSubtitle(TFSounds.SNOW_QUEEN_BREAK, SoundEvents.ITEM_BREAK, "Snow Queen deflects attack");
-		this.generateNewSoundWithSubtitle(TFSounds.SNOW_QUEEN_DEATH, "mob/ice/death", 2, "Snow Queen dies");
-		this.generateNewSoundWithSubtitle(TFSounds.SNOW_QUEEN_HURT, "mob/ice/hurt", 2, "Snow Queen hurts");
+		this.generateNewSoundWithSubtitle(TFSounds.PRINCESS_AURORA_AMBIENT, "mob/ice/crackle", 2, "Princess Aurora crackles");
+		this.generateExistingSoundWithSubtitle(TFSounds.PRINCESS_AURORA_ATTACK, SoundEvents.IRON_GOLEM_ATTACK, "Princess Aurora attacks");
+		this.generateExistingSoundWithSubtitle(TFSounds.PRINCESS_AURORA_BREAK, SoundEvents.ITEM_BREAK, "Princess Aurora deflects attack");
+		this.generateNewSoundWithSubtitle(TFSounds.PRINCESS_AURORA_DEATH, "mob/ice/death", 2, "Princess Aurora dies");
+		this.generateNewSoundWithSubtitle(TFSounds.PRINCESS_AURORA_HURT, "mob/ice/hurt", 2, "Princess Aurora hurts");
 
 		this.generateExistingSoundWithSubtitle(TFSounds.SWARM_SPIDER_AMBIENT, SoundEvents.SPIDER_AMBIENT, "Swarm Spider hisses");
 		this.generateExistingSoundWithSubtitle(TFSounds.SWARM_SPIDER_DEATH, SoundEvents.SPIDER_DEATH, "Swarm Spider dies");

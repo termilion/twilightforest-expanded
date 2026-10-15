@@ -1,0 +1,24 @@
+{
+  "name": "joshie:sunken_roads",
+  "fallback": "minecraft:empty",
+  "elements": [
+    {
+      "weight": 1,
+      "element": {
+        "element_type": "minecraft:single_pool_element",
+        "location": "joshie:city_ruins/sunken_road_1",
+        "processors": "twilightforest:protect_bedrock",
+        "projection": "rigid"
+      }
+    },
+    {
+      "weight": 1,
+      "element": {
+        "element_type": "minecraft:single_pool_element",
+        "location": "joshie:city_ruins/sunken_road_2",
+        "processors": "twilightforest:protect_bedrock",
+        "projection": "rigid"
+      }
+    }
+  ]
+}

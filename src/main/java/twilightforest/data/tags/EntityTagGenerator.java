@@ -47,7 +47,7 @@ public class EntityTagGenerator extends ModdedEntityTagGenerator {
 			TFEntities.KNIGHT_PHANTOM.get(),
 			TFEntities.UR_GHAST.get(),
 			TFEntities.ALPHA_YETI.get(),
-			TFEntities.SNOW_QUEEN.get(),
+			TFEntities.PRINCESS_AURORA.get(),
 			TFEntities.PLATEAU_BOSS.get()
 		);
 
@@ -104,7 +104,7 @@ public class EntityTagGenerator extends ModdedEntityTagGenerator {
 			TFEntities.UR_GHAST.get(),
 			TFEntities.CARMINITE_GHASTLING.get(),
 			TFEntities.KNIGHT_PHANTOM.get(),
-			TFEntities.SNOW_QUEEN.get(),
+			TFEntities.PRINCESS_AURORA.get(),
 			TFEntities.PENGUIN.get(),
 			TFEntities.RAVEN.get(),
 			TFEntities.SNOW_GUARDIAN.get(),
@@ -161,7 +161,7 @@ public class EntityTagGenerator extends ModdedEntityTagGenerator {
 			TFEntities.HYDRA.get(),
 			TFEntities.UR_GHAST.get(),
 			TFEntities.ALPHA_YETI.get(),
-			TFEntities.SNOW_QUEEN.get(),
+			TFEntities.PRINCESS_AURORA.get(),
 			TFEntities.PLATEAU_BOSS.get()
 		);
 

@@ -1,0 +1,15 @@
+{
+  "placement": {
+    "type": "twilightforest:avoid_landmark_grid",
+    "salt": 1739462811,
+    "spacing": 36,
+    "separation": 14,
+    "spread_type": "triangular"
+  },
+  "structures": [
+    {
+      "structure": "twilightforest:elven_pillar",
+      "weight": 1
+    }
+  ]
+}

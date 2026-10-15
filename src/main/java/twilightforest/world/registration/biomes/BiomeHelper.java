@@ -109,7 +109,12 @@ public abstract class BiomeHelper {
 		biome.addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, TFPlacedFeatures.PATCH_GRASS_TAIGA_2);
 
 		addForestVegetation(biome);
-		commonFeatures(biome);
+		// commonFeatures without druid hut, well, monolith and hollow log (same order, so feature steps stay consistent)
+		biome.addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, TFPlacedFeatures.PLACED_GROVE_RUINS);
+		biome.addFeature(GenerationStep.Decoration.SURFACE_STRUCTURES, TFPlacedFeatures.PLACED_FOUNDATION);
+		biome.addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, TFPlacedFeatures.PLACED_STONE_CIRCLE);
+		biome.addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, TFPlacedFeatures.PLACED_OUTSIDE_STALAGMITE);
+		biome.addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, TFPlacedFeatures.PLACED_HOLLOW_STUMP);
 		addOreberries(biome);
 
 		biome.addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, TFPlacedFeatures.PLACED_SAVANNAH_OAK_TREE);
@@ -263,8 +268,7 @@ public abstract class BiomeHelper {
 		BiomeGenerationSettings.Builder biome = new BiomeGenerationSettings.Builder(featureGetter, carverGetter);
 
 		if (isLake) {
-			biome.addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, TFPlacedFeatures.PLACED_LAKE_KELP);
-			biome.addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, TFPlacedFeatures.PLACED_LAKE_SEAGRASS);
+			biome.addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, TFPlacedFeatures.PLACED_LAKE_FLOOR_PLANTS);
 		} else {
 			biome.addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, AquaticPlacements.SEAGRASS_NORMAL);
 			BiomeDefaultFeatures.addDefaultSeagrass(biome);
@@ -705,10 +709,20 @@ public abstract class BiomeHelper {
 		return spawnInfo;
 	}
 
+	public static MobSpawnSettings.Builder mushroomForestSpawning() {
+		MobSpawnSettings.Builder spawnInfo = defaultMobSpawning();
+
+		spawnInfo.addSpawn(MobCategory.CREATURE, new MobSpawnSettings.SpawnerData(TFEntities.SHROOMLING.get(), 40, 2, 4));
+
+		return spawnInfo;
+	}
+
 	public static MobSpawnSettings.Builder enchantedForestSpawning() {
 		MobSpawnSettings.Builder spawnInfo = defaultMobSpawning();
 
-		spawnInfo.addSpawn(MobCategory.CREATURE, new MobSpawnSettings.SpawnerData(EntityType.ALLAY, 15, 1, 3));
+		// Lively islands: animals at chunk generation in 3 of 5 chunks (default 0.15), quest allays the most common pick
+		spawnInfo.creatureGenerationProbability(0.6F);
+		spawnInfo.addSpawn(MobCategory.CREATURE, new MobSpawnSettings.SpawnerData(TFEntities.QUEST_ALLAY.get(), 60, 1, 3));
 
 		return spawnInfo;
 	}

@@ -1,0 +1,15 @@
+{
+  "placement": {
+    "type": "twilightforest:avoid_landmark_grid",
+    "salt": 1739462810,
+    "spacing": 12,
+    "separation": 4,
+    "spread_type": "triangular"
+  },
+  "structures": [
+    {
+      "structure": "twilightforest:brownie_hole",
+      "weight": 1
+    }
+  ]
+}

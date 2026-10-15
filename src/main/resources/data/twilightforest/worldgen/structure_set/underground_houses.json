@@ -1,0 +1,15 @@
+{
+  "placement": {
+    "type": "twilightforest:avoid_landmark_grid",
+    "salt": 1739462814,
+    "spacing": 24,
+    "separation": 8,
+    "spread_type": "triangular"
+  },
+  "structures": [
+    {
+      "structure": "twilightforest:underground_house",
+      "weight": 1
+    }
+  ]
+}

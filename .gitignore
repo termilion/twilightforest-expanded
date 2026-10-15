@@ -30,4 +30,4 @@ gource.sh
 profile.jfr
 
 # generated
-src/generated
+src/generated/resources

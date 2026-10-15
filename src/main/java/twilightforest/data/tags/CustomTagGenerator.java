@@ -47,7 +47,7 @@ public class CustomTagGenerator {
 				TFBlockEntities.KNIGHT_PHANTOM_SPAWNER.getKey(),
 				TFBlockEntities.UR_GHAST_SPAWNER.getKey(),
 				TFBlockEntities.ALPHA_YETI_SPAWNER.getKey(),
-				TFBlockEntities.SNOW_QUEEN_SPAWNER.getKey(),
+				TFBlockEntities.PRINCESS_AURORA_SPAWNER.getKey(),
 				TFBlockEntities.FINAL_BOSS_SPAWNER.getKey());
 
 			this.tag(IMMOVABLE).add(
@@ -60,7 +60,7 @@ public class CustomTagGenerator {
 				TFBlockEntities.KNIGHT_PHANTOM_SPAWNER.getKey(),
 				TFBlockEntities.UR_GHAST_SPAWNER.getKey(),
 				TFBlockEntities.ALPHA_YETI_SPAWNER.getKey(),
-				TFBlockEntities.SNOW_QUEEN_SPAWNER.getKey(),
+				TFBlockEntities.PRINCESS_AURORA_SPAWNER.getKey(),
 				TFBlockEntities.FINAL_BOSS_SPAWNER.getKey());
 		}
 
@@ -79,7 +79,7 @@ public class CustomTagGenerator {
 		public static final TagKey<BannerPattern> KNIGHT_PHANTOM_BANNER_PATTERN = create("pattern_item/knight_phantom");
 		public static final TagKey<BannerPattern> UR_GHAST_BANNER_PATTERN = create("pattern_item/ur_ghast");
 		public static final TagKey<BannerPattern> ALPHA_YETI_BANNER_PATTERN = create("pattern_item/alpha_yeti");
-		public static final TagKey<BannerPattern> SNOW_QUEEN_BANNER_PATTERN = create("pattern_item/snow_queen");
+		public static final TagKey<BannerPattern> PRINCESS_AURORA_BANNER_PATTERN = create("pattern_item/princess_aurora");
 		public static final TagKey<BannerPattern> QUEST_RAM_BANNER_PATTERN = create("pattern_item/quest_ram");
 
 		public BannerPatternTagGenerator(PackOutput output, CompletableFuture<HolderLookup.Provider> provider, @Nullable ExistingFileHelper existingFileHelper) {
@@ -95,7 +95,7 @@ public class CustomTagGenerator {
 			this.tag(KNIGHT_PHANTOM_BANNER_PATTERN).add(TFBannerPatterns.KNIGHT_PHANTOM);
 			this.tag(UR_GHAST_BANNER_PATTERN).add(TFBannerPatterns.UR_GHAST);
 			this.tag(ALPHA_YETI_BANNER_PATTERN).add(TFBannerPatterns.ALPHA_YETI);
-			this.tag(SNOW_QUEEN_BANNER_PATTERN).add(TFBannerPatterns.SNOW_QUEEN);
+			this.tag(PRINCESS_AURORA_BANNER_PATTERN).add(TFBannerPatterns.PRINCESS_AURORA);
 			this.tag(QUEST_RAM_BANNER_PATTERN).add(TFBannerPatterns.QUESTING_RAM);
 		}
 

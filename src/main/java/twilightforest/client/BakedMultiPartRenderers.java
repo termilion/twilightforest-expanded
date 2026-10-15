@@ -14,7 +14,7 @@ import twilightforest.entity.TFPart;
 import twilightforest.entity.boss.HydraHead;
 import twilightforest.entity.boss.HydraNeck;
 import twilightforest.entity.boss.NagaSegment;
-import twilightforest.entity.boss.SnowQueenIceShield;
+import twilightforest.entity.boss.PrincessAuroraIceShield;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -27,7 +27,7 @@ public class BakedMultiPartRenderers {
 		renderers.put(TFPart.RENDERER, new LazyLoadedValue<>(() -> new NoopRenderer<>(context)));
 		renderers.put(HydraHead.RENDERER, new LazyLoadedValue<>(() -> new HydraHeadRenderer<>(context, new HydraHeadModel<>(context.bakeLayer(TFModelLayers.HYDRA_HEAD)))));
 		renderers.put(HydraNeck.RENDERER, new LazyLoadedValue<>(() -> new HydraNeckRenderer<>(context, new HydraNeckModel(context.bakeLayer(TFModelLayers.HYDRA_NECK)))));
-		renderers.put(SnowQueenIceShield.RENDERER, new LazyLoadedValue<>(() -> new SnowQueenIceShieldRenderer<>(context)));
+		renderers.put(PrincessAuroraIceShield.RENDERER, new LazyLoadedValue<>(() -> new PrincessAuroraIceShieldRenderer<>(context)));
 		renderers.put(NagaSegment.RENDERER, new LazyLoadedValue<>(() -> new NagaSegmentRenderer<>(context, new NagaModel<>(context.bakeLayer(TFModelLayers.NAGA_BODY)))));
 	}
 

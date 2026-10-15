@@ -28,8 +28,8 @@ public class TFDamageTypes {
 	public static final ResourceKey<DamageType> HYDRA_MORTAR = create("hydra_mortar"); //Hydra
 	public static final ResourceKey<DamageType> LICH_BOLT = create("lich_bolt"); //Lich
 	public static final ResourceKey<DamageType> LICH_BOMB = create("lich_bomb"); //Lich
-	public static final ResourceKey<DamageType> CHILLING_BREATH = create("chilling_breath"); //Snow Queen
-	public static final ResourceKey<DamageType> SQUISH = create("squish"); //Snow Queen
+	public static final ResourceKey<DamageType> CHILLING_BREATH = create("chilling_breath"); //Princess Aurora
+	public static final ResourceKey<DamageType> SQUISH = create("squish"); //Princess Aurora
 	public static final ResourceKey<DamageType> THROWN_AXE = create("thrown_axe");
 	public static final ResourceKey<DamageType> THROWN_PICKAXE = create("thrown_pickaxe");
 	public static final ResourceKey<DamageType> THORNS = create("thorns");

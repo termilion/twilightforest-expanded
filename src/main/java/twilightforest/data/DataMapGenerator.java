@@ -131,7 +131,7 @@ public class DataMapGenerator extends DataMapProvider {
 		parrot.add(TFEntities.SKELETON_DRUID, new ParrotImitation(SoundEvents.PARROT_IMITATE_SKELETON), false);
 		parrot.add(TFEntities.SLIME_BEETLE, new ParrotImitation(SoundEvents.PARROT_IMITATE_SLIME), false);
 		parrot.add(TFEntities.SNOW_GUARDIAN, new ParrotImitation(TFSounds.ICE_CORE_PARROT.get()), false);
-		parrot.add(TFEntities.SNOW_QUEEN, new ParrotImitation(TFSounds.ICE_CORE_PARROT.get()), false);
+		parrot.add(TFEntities.PRINCESS_AURORA, new ParrotImitation(TFSounds.ICE_CORE_PARROT.get()), false);
 		parrot.add(TFEntities.SWARM_SPIDER, new ParrotImitation(SoundEvents.PARROT_IMITATE_SPIDER), false);
 		parrot.add(TFEntities.TOWERWOOD_BORER, new ParrotImitation(SoundEvents.PARROT_IMITATE_SILVERFISH), false);
 		parrot.add(TFEntities.DEATH_TOME, new ParrotImitation(TFSounds.DEATH_TOME_PARROT.get()), false);

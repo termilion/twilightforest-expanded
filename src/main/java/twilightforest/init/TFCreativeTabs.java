@@ -272,7 +272,7 @@ public class TFCreativeTabs {
 			output.accept(TFItems.KNIGHT_PHANTOM_TROPHY);
 			output.accept(TFItems.UR_GHAST_TROPHY);
 			output.accept(TFItems.ALPHA_YETI_TROPHY);
-			output.accept(TFItems.SNOW_QUEEN_TROPHY);
+			output.accept(TFItems.PRINCESS_AURORA_TROPHY);
 			output.accept(TFItems.QUEST_RAM_TROPHY);
 
 			output.accept(TFBlocks.NAGA_BOSS_SPAWNER);
@@ -282,7 +282,7 @@ public class TFCreativeTabs {
 			output.accept(TFBlocks.KNIGHT_PHANTOM_BOSS_SPAWNER);
 			output.accept(TFBlocks.UR_GHAST_BOSS_SPAWNER);
 			output.accept(TFBlocks.ALPHA_YETI_BOSS_SPAWNER);
-			output.accept(TFBlocks.SNOW_QUEEN_BOSS_SPAWNER);
+			output.accept(TFBlocks.PRINCESS_AURORA_BOSS_SPAWNER);
 			output.accept(TFBlocks.SINISTER_SPAWNER);
 
 			output.accept(TFBlocks.ETCHED_NAGASTONE);
@@ -494,7 +494,7 @@ public class TFCreativeTabs {
 			output.accept(TFItems.KNIGHT_PHANTOM_BANNER_PATTERN);
 			output.accept(TFItems.UR_GHAST_BANNER_PATTERN);
 			output.accept(TFItems.ALPHA_YETI_BANNER_PATTERN);
-			output.accept(TFItems.SNOW_QUEEN_BANNER_PATTERN);
+			output.accept(TFItems.PRINCESS_AURORA_BANNER_PATTERN);
 			output.accept(TFItems.QUEST_RAM_BANNER_PATTERN);
 			output.accept(TFItems.TWILIGHT_OAK_BOAT);
 			output.accept(TFItems.CANOPY_BOAT);

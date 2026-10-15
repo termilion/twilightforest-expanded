@@ -5,12 +5,12 @@ import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.phys.AABB;
 import net.minecraft.world.phys.Vec3;
-import twilightforest.entity.boss.SnowQueen;
-import twilightforest.entity.boss.SnowQueen.Phase;
+import twilightforest.entity.boss.PrincessAurora;
+import twilightforest.entity.boss.PrincessAurora.Phase;
 
 import java.util.*;
 
-public class HoverBeamGoal extends HoverBaseGoal<SnowQueen> {
+public class HoverBeamGoal extends HoverBaseGoal<PrincessAurora> {
 
 	private int hoverTimer;
 	private int beamTimer;
@@ -24,8 +24,8 @@ public class HoverBeamGoal extends HoverBaseGoal<SnowQueen> {
 	private boolean isInPosition;
 
 	@SuppressWarnings("this-escape")
-	public HoverBeamGoal(SnowQueen snowQueen, int hoverTime, int dropTime) {
-		super(snowQueen, 3F, 4F);
+	public HoverBeamGoal(PrincessAurora princessAurora, int hoverTime, int dropTime) {
+		super(princessAurora, 3F, 4F);
 
 		this.setFlags(EnumSet.of(Flag.MOVE, Flag.LOOK));
 		this.maxHoverTime = hoverTime;
