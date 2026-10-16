@@ -54,6 +54,7 @@ public class MapBiomesCommand {
 
 		BIOME2COLOR.put(TFBiomes.SWAMP.location(), new BiomeMapColor(0, 204, 187));
 		BIOME2COLOR.put(TFBiomes.FIRE_SWAMP.location(), new BiomeMapColor(140, 0, 0));
+		BIOME2COLOR.put(TFBiomes.MANGROVE_SWAMP.location(), new BiomeMapColor(108, 84, 30));
 
 		BIOME2COLOR.put(TFBiomes.DARK_FOREST.location(), new BiomeMapColor(25, 61, 13));
 		BIOME2COLOR.put(TFBiomes.DARKWOOD_CLEARING.location(), new BiomeMapColor(91, 97, 92));
@@ -61,7 +62,7 @@ public class MapBiomesCommand {
 
 		BIOME2COLOR.put(TFBiomes.SNOWY_FOREST.location(), new BiomeMapColor(255, 255, 255));
 		BIOME2COLOR.put(TFBiomes.GLACIER.location(), new BiomeMapColor(130, 191, 245));
-		BIOME2COLOR.put(TFBiomes.AMETHYST_STRAITS.location(), new BiomeMapColor(180, 220, 255));
+		BIOME2COLOR.put(TFBiomes.AMETHYST_STRAITS.location(), new BiomeMapColor(67, 33, 94));
 
 		BIOME2COLOR.put(TFBiomes.HIGHLANDS.location(), new BiomeMapColor(100, 65, 0));
 		BIOME2COLOR.put(TFBiomes.THORNLANDS.location(), new BiomeMapColor(128, 100, 90));

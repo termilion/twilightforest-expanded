@@ -7,6 +7,9 @@ import net.minecraft.data.worldgen.Carvers;
 import net.minecraft.data.worldgen.placement.AquaticPlacements;
 import net.minecraft.data.worldgen.placement.MiscOverworldPlacements;
 import net.minecraft.data.worldgen.placement.VegetationPlacements;
+import net.minecraft.sounds.Musics;
+import net.minecraft.sounds.SoundEvents;
+import net.minecraft.util.Mth;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.MobCategory;
 import net.minecraft.world.level.biome.*;
@@ -311,6 +314,20 @@ public abstract class BiomeHelper {
 
 		lilypads(biome);
 
+		return biome;
+	}
+
+	// Vanilla mangrove swamp disks and vegetation (same order as OverworldBiomes#mangroveSwamp) on the default Twilight Forest underground
+	public static BiomeGenerationSettings.Builder mangroveSwampGen(HolderGetter<PlacedFeature> featureGetter, HolderGetter<ConfiguredWorldCarver<?>> carverGetter) {
+		BiomeGenerationSettings.Builder biome = new BiomeGenerationSettings.Builder(featureGetter, carverGetter);
+
+		BiomeDefaultFeatures.addMangroveSwampDisks(biome);
+		BiomeDefaultFeatures.addSurfaceFreezing(biome);
+		withWoodRoots(biome);
+		addCaves(biome);
+		addSmallStoneClusters(biome);
+		BiomeDefaultFeatures.addMangroveSwampVegetation(biome);
+		biome.addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, AquaticPlacements.SEAGRASS_SWAMP);
 		return biome;
 	}
 
@@ -678,6 +695,11 @@ public abstract class BiomeHelper {
 		return spawnInfo;
 	}
 
+	// Swamp mobs plus the tropical fish of the vanilla mangrove swamp (warm frogs via #minecraft:spawns_warm_variant_frogs)
+	public static MobSpawnSettings.Builder mangroveSwampSpawning() {
+		return swampSpawning().addSpawn(MobCategory.WATER_AMBIENT, new MobSpawnSettings.SpawnerData(EntityType.TROPICAL_FISH, 25, 8, 8));
+	}
+
 	// Warm frog variant via #minecraft:spawns_warm_variant_frogs
 	public static MobSpawnSettings.Builder fireSwampSpawning() {
 		MobSpawnSettings.Builder spawnInfo = new MobSpawnSettings.Builder();
@@ -708,6 +730,19 @@ public abstract class BiomeHelper {
 			.ambientMoodSound(AmbientMoodSettings.LEGACY_CAVE_SETTINGS) // We should probably change it
 			.backgroundMusic(TFConfiguredFeatures.TFMUSICTYPE);
 
+	}
+
+	// Same as the vanilla mangrove swamp (OverworldBiomes#mangroveSwamp)
+	public static BiomeSpecialEffects.Builder mangroveSwampAmbience() {
+		return new BiomeSpecialEffects.Builder()
+			.waterColor(0x3A7A6A)
+			.waterFogColor(0x4D7A60)
+			.fogColor(0xC0D8FF)
+			.skyColor(Mth.hsvToRgb(0.62222224F - 0.8F / 3.0F * 0.05F, 0.5F + 0.8F / 3.0F * 0.1F, 1.0F))
+			.foliageColorOverride(0x8DB127)
+			.grassColorModifier(BiomeSpecialEffects.GrassColorModifier.SWAMP)
+			.ambientMoodSound(AmbientMoodSettings.LEGACY_CAVE_SETTINGS)
+			.backgroundMusic(Musics.createGameMusic(SoundEvents.MUSIC_BIOME_SWAMP));
 	}
 
 	public static BiomeGenerationSettings.Builder defaultGenSettingBuilder(HolderGetter<PlacedFeature> featureGetter, HolderGetter<ConfiguredWorldCarver<?>> carverGetter) {

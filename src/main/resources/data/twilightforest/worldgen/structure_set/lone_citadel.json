@@ -1,6 +1,7 @@
 {
   "placement": {
-    "type": "twilightforest:landmark_grid"
+    "type": "twilightforest:landmark_grid",
+    "key_tiles_only": true
   },
   "structures": [
     {

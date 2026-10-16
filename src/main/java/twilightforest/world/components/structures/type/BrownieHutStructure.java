@@ -9,25 +9,17 @@ import net.minecraft.world.level.levelgen.structure.Structure;
 import net.minecraft.world.level.levelgen.structure.StructureType;
 import net.minecraft.world.level.levelgen.structure.TerrainAdjustment;
 import twilightforest.init.TFStructureTypes;
-import twilightforest.world.components.biomesources.TFBiomeProvider;
 import twilightforest.world.components.structures.browniehut.BrownieHutPiece;
 
 import java.util.Map;
 import java.util.Optional;
 
-// The vanilla swamp hut with a brownie instead of the witch, Twilight Forest only (its biomes include minecraft:mangrove_swamp)
+// The vanilla swamp hut with a brownie instead of the witch
 public class BrownieHutStructure extends Structure {
 	public static final MapCodec<BrownieHutStructure> CODEC = simpleCodec(BrownieHutStructure::new);
 
 	public BrownieHutStructure(StructureSettings settings) {
 		super(settings);
-	}
-
-	@Override
-	public Optional<GenerationStub> findValidGenerationPoint(GenerationContext context) {
-		if (!(context.biomeSource() instanceof TFBiomeProvider))
-			return Optional.empty();
-		return super.findValidGenerationPoint(context);
 	}
 
 	@Override

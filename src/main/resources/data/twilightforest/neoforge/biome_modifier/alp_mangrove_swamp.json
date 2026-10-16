@@ -1,6 +1,6 @@
 {
   "type": "neoforge:add_spawns",
-  "biomes": "minecraft:mangrove_swamp",
+  "biomes": "twilightforest:mangrove_swamp",
   "spawners": {
     "type": "mythsandlegends:alp",
     "weight": 40,

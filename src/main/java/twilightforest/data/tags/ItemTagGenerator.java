@@ -247,7 +247,6 @@ public class ItemTagGenerator extends ModdedItemTagGenerator {
 		this.tag(WIP).add(
 			TFBlocks.AURORALIZED_GLASS.asItem(),
 			TFItems.QUEST_RAM_BANNER_PATTERN.get(),
-			TFBlocks.FINAL_BOSS_BOSS_SPAWNER.asItem(),
 			TFItems.CUBE_TALISMAN.get(),
 			TFItems.CUBE_OF_ANNIHILATION.get(),
 			TFBlocks.CINDER_FURNACE.asItem(),

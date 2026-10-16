@@ -7,7 +7,6 @@ import net.minecraft.data.PackOutput;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.tags.BlockTags;
 import net.minecraft.world.entity.EntityType;
-import net.minecraft.world.level.biome.Biomes;
 import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.material.MapColor;
 import net.neoforged.neoforge.common.data.DataMapProvider;
@@ -245,12 +244,12 @@ public class DataMapGenerator extends DataMapProvider {
 		magicMap.add(TFBiomes.DARK_FOREST_CENTER, new MagicMapBiomeColor(MapColor.COLOR_ORANGE, 3), false);
 		magicMap.add(TFBiomes.SNOWY_FOREST, new MagicMapBiomeColor(MapColor.SNOW, 1), false);
 		magicMap.add(TFBiomes.GLACIER, new MagicMapBiomeColor(MapColor.ICE, 1), false);
-		magicMap.add(TFBiomes.AMETHYST_STRAITS, new MagicMapBiomeColor(MapColor.SNOW, 1), false);
+		magicMap.add(TFBiomes.AMETHYST_STRAITS, new MagicMapBiomeColor(MapColor.COLOR_PURPLE, 3), false);
 		magicMap.add(TFBiomes.MUSHROOM_FOREST, new MagicMapBiomeColor(MapColor.COLOR_ORANGE, 0), false);
 		magicMap.add(TFBiomes.DENSE_MUSHROOM_FOREST, new MagicMapBiomeColor(MapColor.COLOR_PINK, 0), false);
 		magicMap.add(TFBiomes.ENCHANTED_FOREST, new MagicMapBiomeColor(MapColor.COLOR_CYAN, 2), false);
 		magicMap.add(TFBiomes.SPOOKY_FOREST, new MagicMapBiomeColor(MapColor.COLOR_PURPLE, 0), false);
-		magicMap.add(Biomes.MANGROVE_SWAMP, new MagicMapBiomeColor(MapColor.TERRACOTTA_BROWN, 1), false);
+		magicMap.add(TFBiomes.MANGROVE_SWAMP, new MagicMapBiomeColor(MapColor.TERRACOTTA_BROWN, 1), false);
 
 		var oreMap = this.builder(TFDataMaps.ORE_MAP_ORE_COLOR);
 		oreMap.add(BlockTags.COPPER_ORES, new OreMapOreColor(MapColor.COLOR_ORANGE), false);

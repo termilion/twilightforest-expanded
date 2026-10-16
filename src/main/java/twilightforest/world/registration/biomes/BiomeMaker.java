@@ -7,7 +7,6 @@ import net.minecraft.core.Holder;
 import net.minecraft.core.HolderGetter;
 import net.minecraft.resources.ResourceKey;
 import net.minecraft.world.level.biome.Biome;
-import net.minecraft.world.level.biome.Biomes;
 import net.minecraft.world.level.levelgen.DensityFunction;
 import net.minecraft.world.level.levelgen.DensityFunctions;
 import org.jetbrains.annotations.Unmodifiable;
@@ -35,7 +34,7 @@ public final class BiomeMaker extends BiomeHelper {
 			biomeColumnWithUnderground(5.5D, 2.25D, 1.0D, biomeRegistry, TFBiomes.SPOOKY_FOREST, undergroundBiome),
 
 			biomeColumnWithUnderground(-0.6D, 1.7D, 1.0D, biomeRegistry, TFBiomes.SWAMP, undergroundBiome),
-			biomeColumnWithUnderground(-0.6D, 1.7D, 1.0D, biomeRegistry, Biomes.MANGROVE_SWAMP, undergroundBiome),
+			biomeColumnWithUnderground(-0.6D, 1.7D, 1.0D, biomeRegistry, TFBiomes.MANGROVE_SWAMP, undergroundBiome),
 			biomeColumnWithUnderground(0.2D, 1.25D, 1.0D, biomeRegistry, TFBiomes.FIRE_SWAMP, undergroundBiome),
 
 			biomeColumnWithUnderground(0.1D, 1.25D, 0.5D, biomeRegistry, TFBiomes.DARK_FOREST, undergroundBiome),

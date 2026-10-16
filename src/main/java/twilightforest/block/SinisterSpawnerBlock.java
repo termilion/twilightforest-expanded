@@ -134,8 +134,6 @@ public class SinisterSpawnerBlock extends BaseEntityBlock {
 			return List.of(TFParticleType.SNOW.get(), ParticleTypes.FALLING_WATER);
 		} else if (stack.is(TFItems.PRINCESS_AURORA_TROPHY) || stack.is(TFBlocks.PRINCESS_AURORA_BOSS_SPAWNER.asItem())) {
 			return List.of(TFParticleType.SNOW.get(), TFParticleType.SNOW_WARNING.get());
-		} else if (stack.is(TFBlocks.FINAL_BOSS_BOSS_SPAWNER.asItem())) {
-			return List.of(TFParticleType.ANNIHILATE.get());
 		} else if (stack.is(TFItems.QUEST_RAM_TROPHY)) {
 			return List.of(TFParticleType.TRANSFORMATION_PARTICLE.get());
 		}

@@ -95,7 +95,6 @@ public class TFEntityNames {
 	public static final ResourceLocation ADHERENT = prefix("adherent");
 	public static final ResourceLocation ROVING_CUBE = prefix("roving_cube");
 	public static final ResourceLocation SLIDER = prefix("slider");
-	public static final ResourceLocation PLATEAU_BOSS = prefix("plateau_boss");
 
 	// Technical
 	public static final ResourceLocation CHARM_EFFECT = prefix("charm_effect");

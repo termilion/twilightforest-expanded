@@ -5,7 +5,6 @@ import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.levelgen.structure.StructurePiece;
 import tamaized.beanification.Autowired;
 import twilightforest.world.components.structures.darktower.StructureDecoratorDarkTower;
-import twilightforest.world.components.structures.finalcastle.StructureTFDecoratorCastle;
 import twilightforest.world.components.structures.icetower.IceTowerDecorator;
 import twilightforest.world.components.structures.mushroomtower.MushroomTowerDecorator;
 import twilightforest.world.components.structures.selectors.StrongholdStonesRandomBlockSelectorFactory;
@@ -43,9 +42,6 @@ public class TFStructureDecorator {
 		if (deco instanceof StrongholdDecorator) {
 			return "DecoStronghold";
 		}
-		if (deco instanceof StructureTFDecoratorCastle) {
-			return "DecoCastle";
-		}
 
 		return "";
 	}
@@ -62,9 +58,6 @@ public class TFStructureDecorator {
 		}
 		if (decoString.equals("DecoStronghold")) {
 			return new StrongholdDecorator();
-		}
-		if (decoString.equals("DecoCastle")) {
-			return new StructureTFDecoratorCastle();
 		}
 
 		return new TFStructureDecorator();

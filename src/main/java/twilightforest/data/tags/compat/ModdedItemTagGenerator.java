@@ -108,7 +108,7 @@ public class ModdedItemTagGenerator extends ItemTagsProvider {
 			TFBlocks.GREEN_THORNS.get().asItem(), TFBlocks.BURNT_THORNS.get().asItem(),
 			TFBlocks.PINK_FORCE_FIELD.get().asItem(), TFBlocks.ORANGE_FORCE_FIELD.get().asItem(),
 			TFBlocks.GREEN_FORCE_FIELD.get().asItem(), TFBlocks.BLUE_FORCE_FIELD.get().asItem(),
-			TFBlocks.VIOLET_FORCE_FIELD.get().asItem(), TFBlocks.FINAL_BOSS_BOSS_SPAWNER.get().asItem(),
+			TFBlocks.VIOLET_FORCE_FIELD.get().asItem(),
 			TFBlocks.NAGA_BOSS_SPAWNER.get().asItem(), TFBlocks.LICH_BOSS_SPAWNER.get().asItem(),
 			TFBlocks.MINOSHROOM_BOSS_SPAWNER.get().asItem(), TFBlocks.HYDRA_BOSS_SPAWNER.get().asItem(),
 			TFBlocks.KNIGHT_PHANTOM_BOSS_SPAWNER.get().asItem(), TFBlocks.UR_GHAST_BOSS_SPAWNER.get().asItem(),

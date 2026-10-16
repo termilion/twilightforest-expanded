@@ -41,7 +41,6 @@ import net.minecraft.world.level.block.entity.SkullBlockEntity;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.levelgen.structure.StructurePiece;
 import net.minecraft.world.level.levelgen.structure.StructureStart;
-import net.minecraft.world.phys.AABB;
 import net.minecraft.world.phys.EntityHitResult;
 import net.neoforged.fml.ModList;
 import net.neoforged.neoforge.common.NeoForge;
@@ -52,7 +51,6 @@ import net.neoforged.neoforge.event.entity.EntityJoinLevelEvent;
 import net.neoforged.neoforge.event.entity.ProjectileImpactEvent;
 import net.neoforged.neoforge.event.entity.living.*;
 import net.neoforged.neoforge.event.entity.player.AdvancementEvent;
-import net.neoforged.neoforge.event.entity.player.AttackEntityEvent;
 import net.neoforged.neoforge.event.entity.player.PlayerEvent;
 import net.neoforged.neoforge.event.entity.player.PlayerInteractEvent;
 import net.neoforged.neoforge.event.level.BlockEvent;
@@ -83,7 +81,6 @@ import twilightforest.util.datamaps.EntityTransformation;
 import twilightforest.util.entities.EntityUtil;
 import twilightforest.util.entities.OminousFireDamageSource;
 import twilightforest.world.components.structures.SpawnIndexProvider;
-import twilightforest.world.components.structures.finalcastle.FinalCastleBossGazeboComponent;
 import twilightforest.world.components.structures.start.TFStructureStart;
 import twilightforest.world.components.structures.type.HollowHillStructure;
 import twilightforest.world.components.structures.util.ControlledSpawns;
@@ -113,7 +110,6 @@ public class EntityEvents {
 		NeoForge.EVENT_BUS.addListener(this::createSkullCandle);
 		NeoForge.EVENT_BUS.addListener(this::addCloudJumpParticles);
 		NeoForge.EVENT_BUS.addListener(this::structureSpecialSpawns);
-		NeoForge.EVENT_BUS.addListener(this::removeCastleTextIfAttacked);
 		NeoForge.EVENT_BUS.addListener(this::adjustEntityHealthInMultiplayerFights);
 		NeoForge.EVENT_BUS.addListener(this::addQualifiedGroupPlayerIfNeeded);
 		NeoForge.EVENT_BUS.addListener(this::grantGroupAdvancementIfNeeded);
@@ -403,17 +399,6 @@ public class EntityEvents {
 		if (potentialStructureSpawns != null) {
 			List.copyOf(event.getSpawnerDataList()).forEach(event::removeSpawnerData);
 			potentialStructureSpawns.forEach(event::addSpawnerData);
-		}
-	}
-
-	private void removeCastleTextIfAttacked(AttackEntityEvent event) {
-		// For clearing our Display text entities at the Final Castle Gazebo, there's no other way to remove them otherwise
-		// The tag distinguishes our Interaction entities from other Mods' utilization
-		if (event.getTarget().level() instanceof ServerLevel level && event.getTarget() instanceof Interaction interaction
-			&& interaction.getTags().contains(FinalCastleBossGazeboComponent.INTERACTION_TAG)) {
-			AABB bounds = interaction.getBoundingBox();
-			level.getEntities(interaction, bounds, e -> e instanceof Display).forEach(Entity::discard);
-			interaction.discard();
 		}
 	}
 

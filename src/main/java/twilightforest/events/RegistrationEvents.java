@@ -111,7 +111,6 @@ public class RegistrationEvents {
 		bus.addListener(this::registerGenericItemHandlers);
 		bus.addListener(this::addEntityAttributes);
 		bus.addListener(this::registerSpawnPlacements);
-		bus.addListener(MythsAndLegendsCompat::registerSpawnPlacements);
 		bus.addListener(RottenCreaturesCompat::registerSpawnPlacements);
 		bus.addListener(MythsAndLegendsCompat::removeOverworldBiome);
 		bus.addListener(TFCreativeTabs::addToTabs);
@@ -571,11 +570,9 @@ public class RegistrationEvents {
 		this.tfCommand.register(event.getDispatcher(), event.getBuildContext());
 	}
 
-	// Water in a Twilight Forest lake, between minBelowSea and maxBelowSea blocks relative to the generator's sea level
-	private static boolean isLakeWater(ServerLevelAccessor level, BlockPos pos, int minBelowSea, int maxBelowSea) {
-		int seaLevel = level.getLevel().getChunkSource().getGenerator().getSeaLevel();
-		return pos.getY() >= seaLevel + minBelowSea && pos.getY() <= seaLevel + maxBelowSea
-			&& level.getFluidState(pos).is(FluidTags.WATER) && level.getBiome(pos).is(TFBiomes.LAKE);
+	// Water in a Twilight Forest lake at least 12 blocks below sea level
+	private static boolean isDeepLakeWater(ServerLevelAccessor level, BlockPos pos) {
+		return pos.getY() <= level.getSeaLevel() - 12 && level.getFluidState(pos).is(FluidTags.WATER) && level.getBiome(pos).is(TFBiomes.LAKE);
 	}
 
 	private void registerSpawnPlacements(RegisterSpawnPlacementsEvent event) {
@@ -589,11 +586,8 @@ public class RegistrationEvents {
 		event.register(TFEntities.BROWNIE.get(), SpawnPlacementTypes.ON_GROUND, Heightmap.Types.MOTION_BLOCKING_NO_LEAVES, Brownie::checkBrownieSpawnRules, RegisterSpawnPlacementsEvent.Operation.REPLACE);
 		event.register(TFEntities.SHROOMLING.get(), SpawnPlacementTypes.ON_GROUND, Heightmap.Types.MOTION_BLOCKING_NO_LEAVES, Mob::checkMobSpawnRules, RegisterSpawnPlacementsEvent.Operation.REPLACE);
 		event.register(TFEntities.QUEST_ALLAY.get(), SpawnPlacementTypes.ON_GROUND, Heightmap.Types.MOTION_BLOCKING_NO_LEAVES, Mob::checkMobSpawnRules, RegisterSpawnPlacementsEvent.Operation.REPLACE);
-		// Vanilla water mob rules use Level#getSeaLevel, a constant 63 in 1.21.1, so they never pass in Twilight Forest lakes (sea level 0, bottom -32).
-		// Allow them in lake water, measured against the generator's sea level: glow squids deep (12+ blocks), salmon and tropical fish near the surface (top 13 blocks)
-		event.register(EntityType.GLOW_SQUID, null, null, (type, level, spawnType, pos, random) -> isLakeWater(level, pos, -64, -12), RegisterSpawnPlacementsEvent.Operation.OR);
-		event.register(EntityType.SALMON, null, null, (type, level, spawnType, pos, random) -> isLakeWater(level, pos, -13, 0), RegisterSpawnPlacementsEvent.Operation.OR);
-		event.register(EntityType.TROPICAL_FISH, null, null, (type, level, spawnType, pos, random) -> isLakeWater(level, pos, -13, 0), RegisterSpawnPlacementsEvent.Operation.OR);
+		// Vanilla glow squids need water 33+ blocks below sea level, deeper than Twilight Forest lakes (sea level 0, bottom -32): allow deep lake water
+		event.register(EntityType.GLOW_SQUID, null, null, (type, level, spawnType, pos, random) -> isDeepLakeWater(level, pos), RegisterSpawnPlacementsEvent.Operation.OR);
 		// The glacier top is plain ice, which isn't in #minecraft:goats_spawnable_on
 		event.register(EntityType.GOAT, null, null, (type, level, spawnType, pos, random) -> level.getBlockState(pos.below()).is(Blocks.ICE) && level.getBiome(pos).is(TFBiomes.GLACIER) && level.getRawBrightness(pos, 0) > 8, RegisterSpawnPlacementsEvent.Operation.OR);
 		event.register(TFEntities.HYDRA.get(), SpawnPlacementTypes.ON_GROUND, Heightmap.Types.MOTION_BLOCKING_NO_LEAVES, Mob::checkMobSpawnRules, RegisterSpawnPlacementsEvent.Operation.REPLACE);
@@ -710,7 +704,6 @@ public class RegistrationEvents {
 		event.put(TFEntities.HARBINGER_CUBE.get(), HarbingerCube.registerAttributes().build());
 		event.put(TFEntities.ADHERENT.get(), Adherent.registerAttributes().build());
 		event.put(TFEntities.ROVING_CUBE.get(), RovingCube.registerAttributes().build());
-		event.put(TFEntities.PLATEAU_BOSS.get(), PlateauBoss.registerAttributes().build());
 
 		event.put(TFEntities.RISING_ZOMBIE.get(), Zombie.createAttributes().build());
 	}

@@ -18,7 +18,6 @@ import twilightforest.TwilightForestMod;
 import twilightforest.data.custom.*;
 import twilightforest.data.custom.stalactites.StalactiteGenerator;
 import twilightforest.data.custom.structuredefinitions.CampStructureDefinitionGenerator;
-import twilightforest.data.custom.structuredefinitions.FinalCastleStructureDefinitionGenerator;
 import twilightforest.data.custom.structuredefinitions.LichTowerStructureDefinitionGenerator;
 import twilightforest.data.custom.structuredefinitions.NagaCourtyardStructureDefinitionGenerator;
 import twilightforest.data.tags.*;
@@ -71,7 +70,6 @@ public class DataGenerators {
 		generator.addProvider(event.includeServer(), new LootModifierGenerator(output, lookupProvider));
 
 		generator.addProvider(event.includeServer(), new CampStructureDefinitionGenerator(output, lookupProvider, helper));
-		generator.addProvider(event.includeServer(), new FinalCastleStructureDefinitionGenerator(output, lookupProvider, helper));
 		generator.addProvider(event.includeServer(), new LichTowerStructureDefinitionGenerator(output, lookupProvider, helper));
 		generator.addProvider(event.includeServer(), new NagaCourtyardStructureDefinitionGenerator(output, lookupProvider, helper));
 

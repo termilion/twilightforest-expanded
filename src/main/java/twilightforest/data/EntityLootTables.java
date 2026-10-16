@@ -47,7 +47,6 @@ public class EntityLootTables extends EntityLootSubProvider {
 		add(TFEntities.LICH_MINION.get(), emptyLootTable());
 		add(TFEntities.LOYAL_ZOMBIE.get(), emptyLootTable());
 		//haha no loot for you
-		add(TFEntities.PLATEAU_BOSS.get(), emptyLootTable());
 		add(TFEntities.HARBINGER_CUBE.get(), emptyLootTable());
 		add(TFEntities.MOSQUITO_SWARM.get(), emptyLootTable());
 		add(TFEntities.PINCH_BEETLE.get(), emptyLootTable());

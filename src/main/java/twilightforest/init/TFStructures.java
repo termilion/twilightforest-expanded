@@ -26,7 +26,6 @@ public class TFStructures {
 	public static final ResourceKey<Structure> AURORA_PALACE = registerKey("aurora_palace");
 	public static final ResourceKey<Structure> TROLL_CAVE = registerKey("troll_cave");
 	public static final ResourceKey<Structure> GIANT_HOUSE = registerKey("giant_house");
-	public static final ResourceKey<Structure> FINAL_CASTLE = registerKey("final_castle");
 
 	public static final ResourceKey<Structure> FALLEN_TRUNK = registerKey("fallen_trunk");
 	public static final ResourceKey<Structure> HOLLOW_TREE = registerKey("hollow_tree");

@@ -40,14 +40,21 @@ public record KeyBiomesLayer(List<ResourceKey<Biome>> keyBiomes) implements Area
 		return z | 3;
 	}
 
-	@Override
-	public ResourceKey<Biome> applyPixel(RandomContext randomContext, Area layer, int x, int z) {
+	/**
+	 * Whether this base layer pixel (= landmark grid tile, 256 blocks) holds a key biome.
+	 */
+	public static boolean isKeyPixel(int x, int z) {
 		final Random rand = new Random(WorldUtil.getOverworldSeed() + (x & -4) * 25117L + (z & -4) * 151121L);
 		int ox = rand.nextInt(2) + 1;
 		int oz = rand.nextInt(2) + 1;
-		rand.setSeed(WorldUtil.getOverworldSeed() + (x / 8) * 25117L + (z / 8) * 151121L);
+		return (x & 3) == ox && (z & 3) == oz;
+	}
+
+	@Override
+	public ResourceKey<Biome> applyPixel(RandomContext randomContext, Area layer, int x, int z) {
+		final Random rand = new Random(WorldUtil.getOverworldSeed() + (x / 8) * 25117L + (z / 8) * 151121L);
 		int offset = rand.nextInt(3);
-		if ((x & 3) == ox && (z & 3) == oz) {
+		if (isKeyPixel(x, z)) {
 			// determine which of the 4
 			if ((x & 4) == 0) {
 				if ((z & 4) == 0) {

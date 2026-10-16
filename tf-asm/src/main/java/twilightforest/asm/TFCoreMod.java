@@ -31,6 +31,7 @@ import twilightforest.asm.transformers.multipart.ResolveEntityRendererTransforme
 import twilightforest.asm.transformers.multipart.SendDirtyEntityDataTransformer;
 import twilightforest.asm.transformers.player.GetFieldOfViewModifierTransformer;
 import twilightforest.asm.transformers.player.ReduceMovementFoodExhaustionTransformer;
+import twilightforest.asm.transformers.sealevel.SeaLevelTransformer;
 import twilightforest.asm.transformers.shroom.ModifySoilDecisionForMushroomBlockSurvivabilityTransformer;
 import twilightforest.asm.transformers.snow.KeepGrassSnowyForSnowloggableBlocksTransformer;
 
@@ -96,6 +97,9 @@ public class TFCoreMod implements ICoreMod {
 			// player
 			new GetFieldOfViewModifierTransformer(),
 			new ReduceMovementFoodExhaustionTransformer(),
+
+			// sea level
+			new SeaLevelTransformer(),
 
 			// shroom
 			new ModifySoilDecisionForMushroomBlockSurvivabilityTransformer(),

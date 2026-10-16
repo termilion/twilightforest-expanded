@@ -55,7 +55,7 @@ public class ExclusiveJigsawStructure extends Structure {
 	private final List<ResourceLocation> ignoredStructureSets;
 
 	public ExclusiveJigsawStructure(JigsawStructure jigsaw, int searchRadiusChunks, int margin, List<ResourceLocation> ignoredStructureSets) {
-		super(TwilightJigsawStructure.settingsOf(jigsaw));
+		super(jigsaw.modifiableStructureInfo().getOriginalStructureInfo().structureSettings());
 		this.jigsaw = jigsaw;
 		this.searchRadiusChunks = searchRadiusChunks;
 		this.margin = margin;

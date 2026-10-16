@@ -68,7 +68,6 @@ public class TFEntities {
 	public static final DeferredHolder<EntityType<?>, EntityType<MagicPainting>> MAGIC_PAINTING = buildNoEgg(TFEntityNames.MAGIC_PAINTING, makeCastedBuilder(MagicPainting.class, MagicPainting::new, 0.5F, 0.5F, 10, Integer.MAX_VALUE), false);
 	public static final DeferredHolder<EntityType<?>, EntityType<Penguin>> PENGUIN = make(TFEntityNames.PENGUIN, Penguin::new, MobCategory.CREATURE, 0.5F, 0.9F, 0x12151b, 0xf9edd2);
 	public static final DeferredHolder<EntityType<?>, EntityType<PinchBeetle>> PINCH_BEETLE = make(TFEntityNames.PINCH_BEETLE, PinchBeetle::new, MobCategory.MONSTER, 1.2F, 0.5F, 0xbc9327, 0x241609);
-	public static final DeferredHolder<EntityType<?>, EntityType<PlateauBoss>> PLATEAU_BOSS = make(TFEntityNames.PLATEAU_BOSS, PlateauBoss::new, MobCategory.MONSTER, 1F, 1F, true, 0, 0);
 	public static final DeferredHolder<EntityType<?>, EntityType<ProtectionBox>> PROTECTION_BOX = buildNoEgg(TFEntityNames.PROTECTION_BOX, makeCastedBuilder(ProtectionBox.class, ProtectionBox::new, 0, 0, 80, 3).noSave().noSummon(), true);
 	public static final DeferredHolder<EntityType<?>, EntityType<QuestAllay>> QUEST_ALLAY = make(TFEntityNames.QUEST_ALLAY, QuestAllay::new, MobCategory.CREATURE, 0.35F, 0.6F, 0xb46fe0, 0x6a3fb0);
 	public static final DeferredHolder<EntityType<?>, EntityType<Brownie>> BROWNIE = make(TFEntityNames.BROWNIE, Brownie::new, MobCategory.CREATURE, 0.9F, 1.25F, 0x05736a, 0x8a521c);

@@ -15,7 +15,6 @@ import net.minecraft.client.particle.SpriteSet;
 import net.minecraft.client.renderer.DimensionSpecialEffects;
 import net.minecraft.client.renderer.Sheets;
 import net.minecraft.client.renderer.entity.LivingEntityRenderer;
-import net.minecraft.client.renderer.entity.NoopRenderer;
 import net.minecraft.client.renderer.entity.ThrownItemRenderer;
 import net.minecraft.client.renderer.item.ClampedItemPropertyFunction;
 import net.minecraft.client.renderer.item.ItemProperties;
@@ -416,7 +415,6 @@ public class ClientRegistrationEvents {
 		event.registerEntityRenderer(TFEntities.ADHERENT.get(), AdherentRenderer::new);
 		event.registerEntityRenderer(TFEntities.ROVING_CUBE.get(), RovingCubeRenderer::new);
 		event.registerEntityRenderer(TFEntities.RISING_ZOMBIE.get(), RisingZombieRenderer::new);
-		event.registerEntityRenderer(TFEntities.PLATEAU_BOSS.get(), NoopRenderer::new);
 
 		// projectiles
 		event.registerEntityRenderer(TFEntities.NATURE_BOLT.get(), ThrownItemRenderer::new);
@@ -725,7 +723,6 @@ public class ClientRegistrationEvents {
 		event.register(TFMapDecorations.DARK_TOWER.get(), new ConqueredMapIconRenderer());
 		event.register(TFMapDecorations.YETI_LAIR.get(), new ConqueredMapIconRenderer());
 		event.register(TFMapDecorations.AURORA_PALACE.get(), new ConqueredMapIconRenderer());
-		event.register(TFMapDecorations.FINAL_CASTLE.get(), new ConqueredMapIconRenderer());
 	}
 
 	private void attachRenderLayers(EntityRenderersEvent.AddLayers event) {

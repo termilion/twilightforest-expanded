@@ -36,6 +36,8 @@ public class TFBiomes {
 
 	public static final ResourceKey<Biome> SWAMP = makeKey("swamp");
 	public static final ResourceKey<Biome> FIRE_SWAMP = makeKey("fire_swamp");
+	// Own copy of the vanilla mangrove swamp, so Overworld data (structures, spawns, mod biome modifiers) never reaches it and vice versa
+	public static final ResourceKey<Biome> MANGROVE_SWAMP = makeKey("mangrove_swamp");
 
 	public static final ResourceKey<Biome> DARK_FOREST = makeKey("dark_forest");
 	public static final ResourceKey<Biome> DARK_FOREST_CENTER = makeKey("dark_forest_center");
@@ -77,6 +79,8 @@ public class TFBiomes {
 
 		context.register(SWAMP, biomeWithDefaults(defaultAmbientBuilder().skyColor(0x002112).fogColor(0x003F21).grassColorOverride(0x5C694E).foliageColorOverride(0x496137).waterColor(0x95B55F).waterFogColor(0x95B55F).grassColorModifier(grassColorModifierEnumExtension.SWAMP), swampSpawning(), swampGen(featureGetter, carverGetter)).temperature(0.8F).downfall(0.9F).build());
 		context.register(FIRE_SWAMP, biomeWithDefaults(whiteAshParticles(defaultAmbientBuilder()).waterColor(0x2D0700).fogColor(0x380A00).grassColorOverride(0x572E23).foliageColorOverride(0x64260F).waterColor(0x6C2C2C).waterFogColor(0x6C2C2C), fireSwampSpawning(), fireSwampGen(featureGetter, carverGetter)).hasPrecipitation(false).temperature(1).downfall(0.4F).build());
+		// Vanilla mangrove swamp look and music; Twilight Forest caves, ores and swamp mobs
+		context.register(MANGROVE_SWAMP, biomeWithDefaults(mangroveSwampAmbience(), mangroveSwampSpawning(), mangroveSwampGen(featureGetter, carverGetter)).temperature(0.8F).downfall(0.9F).build());
 
 		context.register(DARK_FOREST, biomeWithDefaults(defaultAmbientBuilder().skyColor(0x000000).fogColor(0x000000).grassColorOverride(0x4B6754).foliageColorOverride(0x3B5E3F).grassColorModifier(grassColorModifierEnumExtension.DARK_FOREST), darkForestSpawning(), darkForestGen(featureGetter, carverGetter)).temperature(0.7F).downfall(0.8F).build());
 		// Treeless clearing on every other darkwood landmark center: darkwood sky and foliage, desaturated grass, spooky forest fog

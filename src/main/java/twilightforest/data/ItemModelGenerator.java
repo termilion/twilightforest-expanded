@@ -209,7 +209,6 @@ public class ItemModelGenerator extends ItemModelProvider {
 		toBlockModel(TFBlocks.PRINCESS_AURORA_BOSS_SPAWNER.get(), prefix("block/boss_spawner"));
 		toBlockModel(TFBlocks.MINOSHROOM_BOSS_SPAWNER.get(), prefix("block/boss_spawner"));
 		toBlockModel(TFBlocks.ALPHA_YETI_BOSS_SPAWNER.get(), prefix("block/boss_spawner"));
-		toBlockModel(TFBlocks.FINAL_BOSS_BOSS_SPAWNER.get(), prefix("block/boss_spawner"));
 		toBlockModel(TFBlocks.FIREFLY_JAR.get(), prefix("item/mason_jar"));
 		toBlock(TFBlocks.FIREFLY_SPAWNER.get());
 		toBlockModel(TFBlocks.CICADA_JAR.get(), prefix("item/mason_jar"));

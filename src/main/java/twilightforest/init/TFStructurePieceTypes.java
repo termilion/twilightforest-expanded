@@ -9,7 +9,6 @@ import twilightforest.world.components.structures.*;
 import twilightforest.world.components.structures.courtyard.*;
 import twilightforest.world.components.structures.darktower.*;
 import twilightforest.world.components.structures.fallentrunk.FallenTrunkPiece;
-import twilightforest.world.components.structures.finalcastle.*;
 import twilightforest.world.components.structures.hollowtree.*;
 import twilightforest.world.components.structures.icetower.*;
 import twilightforest.world.components.structures.lakeruin.LakeRuinPiece;
@@ -209,35 +208,6 @@ public class TFStructurePieceTypes {
 	public static final DeferredHolder<StructurePieceType, StructurePieceType> TFCloud = registerPieceType("TFCloud", CloudComponent::new);
 
 	// Final Castle
-	//public static final DeferredHolder<StructurePieceType, StructurePieceType> TFFC = registerPieceType("TFFC", StructureStartFinalCastle::new);
-	public static final DeferredHolder<StructurePieceType, StructurePieceType> TFFCMain = registerPieceType("TFFCMain", FinalCastleMainComponent::new);
-	public static final DeferredHolder<StructurePieceType, StructurePieceType> TFFCStTo = registerPieceType("TFFCStTo", FinalCastleStairTowerComponent::new);
-	public static final DeferredHolder<StructurePieceType, StructurePieceType> TFFCLaTo = registerPieceType("TFFCLaTo", FinalCastleLargeTowerComponent::new);
-	public static final DeferredHolder<StructurePieceType, StructurePieceType> TFFCMur = registerPieceType("TFFCMur", FinalCastleMuralComponent::new);
-	public static final DeferredHolder<StructurePieceType, StructurePieceType> TFFCToF48 = registerPieceType("TFFCToF48", FinalCastleFoundation48Component::new);
-	public static final DeferredHolder<StructurePieceType, StructurePieceType> TFFCRo48Cr = registerPieceType("TFFCRo48Cr", FinalCastleRoof48CrenellatedComponent::new);
-	public static final DeferredHolder<StructurePieceType, StructurePieceType> TFFCBoGaz = registerPieceType("TFFCBoGaz", FinalCastleBossGazeboComponent::new);
-	public static final DeferredHolder<StructurePieceType, StructurePieceType> TFFCSiTo = registerPieceType("TFFCSiTo", FinalCastleMazeTower13Component::new);
-	public static final DeferredHolder<StructurePieceType, StructurePieceType> TFFCDunSt = registerPieceType("TFFCDunSt", FinalCastleDungeonStepsComponent::new);
-	public static final DeferredHolder<StructurePieceType, StructurePieceType> TFFCDunEn = registerPieceType("TFFCDunEn", FinalCastleDungeonEntranceComponent::new);
-	public static final DeferredHolder<StructurePieceType, StructurePieceType> TFFCDunR31 = registerPieceType("TFFCDunR31", FinalCastleDungeonRoom31Component::new);
-	public static final DeferredHolder<StructurePieceType, StructurePieceType> TFFCDunEx = registerPieceType("TFFCDunEx", FinalCastleDungeonExitComponent::new);
-	public static final DeferredHolder<StructurePieceType, StructurePieceType> TFFCDunBoR = registerPieceType("TFFCDunBoR", FinalCastleDungeonForgeRoomComponent::new);
-	public static final DeferredHolder<StructurePieceType, StructurePieceType> TFFCRo9Cr = registerPieceType("TFFCRo9Cr", FinalCastleRoof9CrenellatedComponent::new);
-	public static final DeferredHolder<StructurePieceType, StructurePieceType> TFFCRo13Cr = registerPieceType("TFFCRo13Cr", FinalCastleRoof13CrenellatedComponent::new);
-	public static final DeferredHolder<StructurePieceType, StructurePieceType> TFFCRo13Con = registerPieceType("TFFCRo13Con", FinalCastleRoof13ConicalComponent::new);
-	public static final DeferredHolder<StructurePieceType, StructurePieceType> TFFCRo13Pk = registerPieceType("TFFCRo13Pk", FinalCastleRoof13PeakedComponent::new);
-	public static final DeferredHolder<StructurePieceType, StructurePieceType> TFFCEnTo = registerPieceType("TFFCEnTo", FinalCastleEntranceTowerComponent::new);
-	public static final DeferredHolder<StructurePieceType, StructurePieceType> TFFCEnSiTo = registerPieceType("TFFCEnSiTo", FinalCastleEntranceSideTowerComponent::new);
-	public static final DeferredHolder<StructurePieceType, StructurePieceType> TFFCEnBoTo = registerPieceType("TFFCEnBoTo", FinalCastleEntranceBottomTowerComponent::new);
-	public static final DeferredHolder<StructurePieceType, StructurePieceType> TFFCEnSt = registerPieceType("TFFCEnSt", FinalCastleEntranceStairsComponent::new);
-	public static final DeferredHolder<StructurePieceType, StructurePieceType> TFFCBelTo = registerPieceType("TFFCBelTo", FinalCastleBellTower21Component::new);
-	public static final DeferredHolder<StructurePieceType, StructurePieceType> TFFCBri = registerPieceType("TFFCBri", FinalCastleBridgeComponent::new);
-	public static final DeferredHolder<StructurePieceType, StructurePieceType> TFFCToF13 = registerPieceType("TFFCToF13", FinalCastleFoundation13Component::new);
-	public static final DeferredHolder<StructurePieceType, StructurePieceType> TFFCBeF21 = registerPieceType("TFFCBeF21", FinalCastleBellFoundation21Component::new);
-	public static final DeferredHolder<StructurePieceType, StructurePieceType> TFFCFTh21 = registerPieceType("TFFCFTh21", FinalCastleFoundation13ComponentThorns::new);
-	public static final DeferredHolder<StructurePieceType, StructurePieceType> TFFCDamT = registerPieceType("TFFCDamT", FinalCastleDamagedTowerComponent::new);
-	public static final DeferredHolder<StructurePieceType, StructurePieceType> TFFCWrT = registerPieceType("TFFCWrT", FinalCastleWreckedTowerComponent::new);
 
 	private static DeferredHolder<StructurePieceType, StructurePieceType> registerPieceType(String name, StructurePieceType structurePieceType) {
 		return TFStructurePieceTypes.STRUCTURE_PIECE_TYPES.register(name.toLowerCase(Locale.ROOT), () -> structurePieceType);

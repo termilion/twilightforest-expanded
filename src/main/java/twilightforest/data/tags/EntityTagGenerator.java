@@ -47,8 +47,7 @@ public class EntityTagGenerator extends ModdedEntityTagGenerator {
 			TFEntities.KNIGHT_PHANTOM.get(),
 			TFEntities.UR_GHAST.get(),
 			TFEntities.ALPHA_YETI.get(),
-			TFEntities.PRINCESS_AURORA.get(),
-			TFEntities.PLATEAU_BOSS.get()
+			TFEntities.PRINCESS_AURORA.get()
 		);
 
 		this.tag(EntityTypeTags.IMPACT_PROJECTILES).add(
@@ -161,8 +160,7 @@ public class EntityTagGenerator extends ModdedEntityTagGenerator {
 			TFEntities.HYDRA.get(),
 			TFEntities.UR_GHAST.get(),
 			TFEntities.ALPHA_YETI.get(),
-			TFEntities.PRINCESS_AURORA.get(),
-			TFEntities.PLATEAU_BOSS.get()
+			TFEntities.PRINCESS_AURORA.get()
 		);
 
 		this.tag(Tags.EntityTypes.BOSSES).addTag(BOSSES);

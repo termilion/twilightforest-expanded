@@ -328,7 +328,6 @@ public class BlockstateGenerator extends BlockModelBuilders {
 		simpleBlock(TFBlocks.PRINCESS_AURORA_BOSS_SPAWNER.get(), bigSpawner);
 		simpleBlock(TFBlocks.MINOSHROOM_BOSS_SPAWNER.get(), bigSpawner);
 		simpleBlock(TFBlocks.ALPHA_YETI_BOSS_SPAWNER.get(), bigSpawner);
-		simpleBlock(TFBlocks.FINAL_BOSS_BOSS_SPAWNER.get(), bigSpawner);
 
 		BlockModelBuilder masonJar = this.makeJar(TFBlocks.MASON_JAR.getId().getPath());
 		simpleBlock(TFBlocks.MASON_JAR.get(), masonJar);

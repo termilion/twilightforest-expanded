@@ -3,9 +3,11 @@ package twilightforest.asmhooks;
 import it.unimi.dsi.fastutil.objects.ObjectArrayList;
 import it.unimi.dsi.fastutil.objects.ObjectListIterator;
 import net.minecraft.nbt.CompoundTag;
+import net.minecraft.server.level.ServerLevel;
 import net.minecraft.server.level.WorldGenRegion;
 import net.minecraft.util.StaticCache2D;
 import net.minecraft.world.level.ChunkPos;
+import net.minecraft.world.level.Level;
 import net.minecraft.world.level.StructureManager;
 import net.minecraft.world.level.chunk.ChunkAccess;
 import net.minecraft.world.level.chunk.status.ChunkStep;
@@ -18,12 +20,28 @@ import net.minecraft.world.level.levelgen.structure.StructureStart;
 import net.minecraft.world.level.levelgen.structure.pieces.PiecesContainer;
 import net.minecraft.world.level.levelgen.structure.pieces.StructurePieceSerializationContext;
 import org.jetbrains.annotations.Nullable;
+import twilightforest.init.TFDimension;
+import twilightforest.init.TFDimensionData;
 import twilightforest.init.custom.ChunkBlanketProcessors;
 import twilightforest.world.components.structures.CustomDensitySource;
 import twilightforest.world.components.structures.util.CustomStructureData;
 
 @SuppressWarnings({"JavadocReference", "unused"})
 public class WorldgenHooks {
+
+	/**
+	 * {@link twilightforest.asm.transformers.sealevel.SeaLevelTransformer}<p/>
+	 *
+	 * Injection point:<br/>
+	 * {@link net.minecraft.world.level.Level#getSeaLevel()}<p/>
+	 * Level#getSeaLevel is a constant 63 in 1.21.1 (1.21.2+ uses the chunk generator's). In the Twilight Forest it returns the generator's
+	 * sea level (0), so vanilla rules that use it (water mob and drowned spawns, ocean ruins, bats...) fit the dimension. Other dimensions are unchanged.
+	 */
+	public static int seaLevel(int seaLevel, Level level) {
+		if (!TFDimension.DIMENSION_KEY.equals(level.dimension()))
+			return seaLevel;
+		return level instanceof ServerLevel serverLevel ? serverLevel.getChunkSource().getGenerator().getSeaLevel() : TFDimensionData.SEALEVEL;
+	}
 
 	/**
 	 * {@link twilightforest.asm.transformers.beardifier.InitializeCustomBeardifierFieldsDuringCreateNoiseChunkTransformer}<p/>

@@ -48,6 +48,7 @@ public class LangGenerator extends TFLangProvider {
 		this.addBiome(TFBiomes.SPOOKY_FOREST, "Spooky Forest");
 		this.addBiome(TFBiomes.SWAMP, "Twilight Swamp");
 		this.addBiome(TFBiomes.FIRE_SWAMP, "Fire Swamp");
+		this.addBiome(TFBiomes.MANGROVE_SWAMP, "Mangrove Swamp");
 		this.addBiome(TFBiomes.DARK_FOREST, "Dark Forest");
 		this.addBiome(TFBiomes.DARKWOOD_CLEARING, "Darkwood Clearing");
 		this.addBiome(TFBiomes.DARK_FOREST_CENTER, "Dark Forest Center");
@@ -78,7 +79,6 @@ public class LangGenerator extends TFLangProvider {
 		this.addStructure(TFStructures.YETI_CAVE, "Yeti Cave");
 		this.addStructure(TFStructures.AURORA_PALACE, "Aurora Palace");
 		this.addStructure(TFStructures.TROLL_CAVE, "Troll Cave");
-		this.addStructure(TFStructures.FINAL_CASTLE, "Final Plateau Castle");
 		this.addStructure(TFStructures.UNDEAD_CRYPT, "Undead Crypt");
 		this.addStructure(TFStructures.LONE_CITADEL, "Lone Citadel");
 		this.addStructure(TFStructures.ARACHNID_DWELLING, "Arachnid Dwelling");
@@ -516,7 +516,6 @@ public class LangGenerator extends TFLangProvider {
 		this.addBlock(TFBlocks.UR_GHAST_BOSS_SPAWNER, "Ur-Ghast Boss Spawner");
 		this.addBlock(TFBlocks.ALPHA_YETI_BOSS_SPAWNER, "Alpha Yeti Boss Spawner");
 		this.addBlock(TFBlocks.PRINCESS_AURORA_BOSS_SPAWNER, "Princess Aurora Boss Spawner");
-		this.addBlock(TFBlocks.FINAL_BOSS_BOSS_SPAWNER, "Final Boss Boss Spawner");
 
 		this.addBannerPattern("naga", "Naga Scales");
 		this.addBannerPattern("lich", "Lich Crown");

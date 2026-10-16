@@ -1,6 +1,5 @@
 package twilightforest.world.registration.surface_rules;
 
-import net.minecraft.world.level.biome.Biomes;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.levelgen.Noises;
@@ -166,7 +165,7 @@ public class TFSurfaceRules {
 		);
 
 		//check if we're in the mangrove swamp
-		return SurfaceRules.ifTrue(SurfaceRules.isBiome(Biomes.MANGROVE_SWAMP), mudSoil);
+		return SurfaceRules.ifTrue(SurfaceRules.isBiome(TFBiomes.MANGROVE_SWAMP), mudSoil);
 	}
 
 	@NotNull

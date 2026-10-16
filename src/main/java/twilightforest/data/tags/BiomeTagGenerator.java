@@ -56,7 +56,6 @@ public class BiomeTagGenerator extends BiomeTagsProvider {
 	public static final TagKey<Biome> VALID_DARKWOOD_ROTTEN_LOG_BIOMES = TagKey.create(Registries.BIOME, TwilightForestMod.prefix("valid_darkwood_rotten_log_biomes"));
 	public static final TagKey<Biome> VALID_HIGHLAND_CASTLE_BIOMES = TagKey.create(Registries.BIOME, TwilightForestMod.prefix("valid_highland_castle_biomes"));
 	public static final TagKey<Biome> VALID_SAVANNA_LANDMARK_BIOMES = TagKey.create(Registries.BIOME, TwilightForestMod.prefix("valid_savanna_landmark_biomes"));
-	public static final TagKey<Biome> VALID_FINAL_CASTLE_BIOMES = TagKey.create(Registries.BIOME, TwilightForestMod.prefix("valid_final_castle_biomes"));
 
 	public BiomeTagGenerator(PackOutput output, CompletableFuture<HolderLookup.Provider> provider, ExistingFileHelper helper) {
 		super(output, provider, TwilightForestMod.ID, helper);
@@ -72,7 +71,7 @@ public class BiomeTagGenerator extends BiomeTagsProvider {
 			TFBiomes.OAK_SAVANNAH, TFBiomes.SPOOKY_FOREST,
 			TFBiomes.ENCHANTED_FOREST, TFBiomes.DENSE_MUSHROOM_FOREST,
 			TFBiomes.LAKE, TFBiomes.STREAM, TFBiomes.UNDERGROUND,
-			TFBiomes.SWAMP, TFBiomes.FIRE_SWAMP,
+			TFBiomes.SWAMP, TFBiomes.FIRE_SWAMP, TFBiomes.MANGROVE_SWAMP,
 			TFBiomes.DARK_FOREST, TFBiomes.DARK_FOREST_CENTER, TFBiomes.DARKWOOD_CLEARING,
 			TFBiomes.SNOWY_FOREST, TFBiomes.GLACIER,
 			TFBiomes.HIGHLANDS, TFBiomes.THORNLANDS,
@@ -82,8 +81,8 @@ public class BiomeTagGenerator extends BiomeTagsProvider {
 
 		this.tag(VALID_QUEST_GROVE_BIOMES).add(TFBiomes.ENCHANTED_FOREST);
 
-		// Trek / Dungeons and Taverns / vanilla imports (structures in data/twilightforest/worldgen/structure, types only generate in the Twilight Forest)
-		this.tag(VALID_BROWNIE_HUT_BIOMES).add(TFBiomes.SWAMP, TFBiomes.FIRE_SWAMP, Biomes.MANGROVE_SWAMP);
+		// Trek / Dungeons and Taverns / vanilla imports (structures in data/twilightforest/worldgen/structure)
+		this.tag(VALID_BROWNIE_HUT_BIOMES).add(TFBiomes.SWAMP, TFBiomes.FIRE_SWAMP, TFBiomes.MANGROVE_SWAMP);
 		this.tag(VALID_BROWNIE_HOLE_BIOMES).add(TFBiomes.FOREST, TFBiomes.DENSE_FOREST, TFBiomes.MUSHROOM_FOREST, TFBiomes.DENSE_MUSHROOM_FOREST, TFBiomes.HIGHLANDS, TFBiomes.SNOWY_FOREST, TFBiomes.OAK_SAVANNAH);
 		this.tag(VALID_REDCAP_FORT_BIOMES).add(TFBiomes.OAK_SAVANNAH);
 		// Myths & Legends structures (start pools referenced from mythsandlegends, not copied)
@@ -93,7 +92,7 @@ public class BiomeTagGenerator extends BiomeTagsProvider {
 		this.tag(VALID_ELVEN_PILLAR_BIOMES).add(
 			TFBiomes.FOREST, TFBiomes.DENSE_FOREST, TFBiomes.FIREFLY_FOREST, TFBiomes.CLEARING, TFBiomes.OAK_SAVANNAH,
 			TFBiomes.MUSHROOM_FOREST, TFBiomes.DENSE_MUSHROOM_FOREST, TFBiomes.ENCHANTED_FOREST, TFBiomes.SPOOKY_FOREST,
-			TFBiomes.SWAMP, TFBiomes.FIRE_SWAMP, Biomes.MANGROVE_SWAMP, TFBiomes.DARK_FOREST, TFBiomes.DARK_FOREST_CENTER,
+			TFBiomes.SWAMP, TFBiomes.FIRE_SWAMP, TFBiomes.MANGROVE_SWAMP, TFBiomes.DARK_FOREST, TFBiomes.DARK_FOREST_CENTER,
 			TFBiomes.SNOWY_FOREST, TFBiomes.GLACIER, TFBiomes.HIGHLANDS, TFBiomes.THORNLANDS, TFBiomes.AMETHYST_STRAITS
 		);
 		this.tag(VALID_SNOWY_RUIN_BIOMES).add(TFBiomes.SNOWY_FOREST);
@@ -126,7 +125,7 @@ public class BiomeTagGenerator extends BiomeTagsProvider {
 			TFBiomes.DENSE_MUSHROOM_FOREST, TFBiomes.FIREFLY_FOREST,
 			TFBiomes.FOREST, TFBiomes.MUSHROOM_FOREST
 		);
-		this.tag(VALID_LICH_TOWER_BIOMES).add(Biomes.MANGROVE_SWAMP);
+		this.tag(VALID_LICH_TOWER_BIOMES).add(TFBiomes.MANGROVE_SWAMP);
 		this.tag(VALID_LABYRINTH_BIOMES).add(TFBiomes.SWAMP);
 		this.tag(VALID_HYDRA_LAIR_BIOMES).add(TFBiomes.FIRE_SWAMP);
 		this.tag(VALID_KNIGHT_STRONGHOLD_BIOMES).add(TFBiomes.DARK_FOREST);
@@ -187,7 +186,7 @@ public class BiomeTagGenerator extends BiomeTagsProvider {
 		this.tag(BiomeTags.HAS_MINESHAFT).add(TFBiomes.OAK_SAVANNAH, TFBiomes.OAK_SAVANNAH_UNDERGROUND);
 		this.tag(BiomeTags.HAS_RUINED_PORTAL_STANDARD).add(TFBiomes.DARK_FOREST_CENTER);
 		this.tag(BiomeTags.SPAWNS_COLD_VARIANT_FROGS).add(TFBiomes.SNOWY_FOREST, TFBiomes.GLACIER);
-		this.tag(BiomeTags.SPAWNS_WARM_VARIANT_FROGS).add(TFBiomes.OAK_SAVANNAH, TFBiomes.FIRE_SWAMP);
+		this.tag(BiomeTags.SPAWNS_WARM_VARIANT_FROGS).add(TFBiomes.OAK_SAVANNAH, TFBiomes.FIRE_SWAMP, TFBiomes.MANGROVE_SWAMP);
 
 		this.tag(BiomeTags.SPAWNS_SNOW_FOXES).add(TFBiomes.SNOWY_FOREST, TFBiomes.GLACIER);
 		this.tag(BiomeTags.SPAWNS_WHITE_RABBITS).add(TFBiomes.SNOWY_FOREST, TFBiomes.GLACIER);

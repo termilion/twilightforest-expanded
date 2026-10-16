@@ -1,5 +1,5 @@
 {
-  "type": "twilightforest:twilight_jigsaw",
+  "type": "minecraft:jigsaw",
   "biomes": "#twilightforest:valid_underground_house_biomes",
   "step": "underground_structures",
   "spawn_overrides": {},

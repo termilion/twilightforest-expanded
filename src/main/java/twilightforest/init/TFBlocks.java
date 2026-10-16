@@ -271,7 +271,6 @@ public class TFBlocks {
 //	public static final DeferredBlock<Block> YETI_CAVE_MINIATURE_STRUCTURE = register("yeti_cave_miniature_structure", () -> new MiniatureStructureBlock(BlockBehaviour.Properties.ofFullCopy(TWILIGHT_PORTAL_MINIATURE_STRUCTURE.get())));
 //	public static final DeferredBlock<Block> AURORA_PALACE_MINIATURE_STRUCTURE = register("aurora_palace_miniature_structure", () -> new MiniatureStructureBlock(BlockBehaviour.Properties.ofFullCopy(TWILIGHT_PORTAL_MINIATURE_STRUCTURE.get())));
 //	public static final DeferredBlock<Block> TROLL_CAVE_COTTAGE_MINIATURE_STRUCTURE = register("troll_cave_cottage_miniature_structure", () -> new MiniatureStructureBlock(BlockBehaviour.Properties.ofFullCopy(TWILIGHT_PORTAL_MINIATURE_STRUCTURE.get())));
-//	public static final DeferredBlock<Block> FINAL_CASTLE_MINIATURE_STRUCTURE = register("final_castle_miniature_structure", () -> new MiniatureStructureBlock(BlockBehaviour.Properties.ofFullCopy(TWILIGHT_PORTAL_MINIATURE_STRUCTURE.get())));
 
 	//storage blocks
 	public static final DeferredBlock<Block> KNIGHTMETAL_BLOCK = register("knightmetal_block", () -> new KnightmetalBlock(BlockBehaviour.Properties.of().mapColor(MapColor.METAL).requiresCorrectToolForDrops().sound(SoundType.NETHERITE_BLOCK).strength(5.0F, 40.0F)));
@@ -290,7 +289,6 @@ public class TFBlocks {
 	public static final DeferredBlock<Block> PRINCESS_AURORA_BOSS_SPAWNER = register("princess_aurora_boss_spawner", () -> new BossSpawnerBlock(BossVariant.PRINCESS_AURORA, BlockBehaviour.Properties.of().mapColor(MapColor.STONE).noLootTable().sound(SoundType.METAL).noOcclusion().strength(-1.0F, 3600000.8F)));
 	public static final DeferredBlock<Block> MINOSHROOM_BOSS_SPAWNER = register("minoshroom_boss_spawner", () -> new BossSpawnerBlock(BossVariant.MINOSHROOM, BlockBehaviour.Properties.of().mapColor(MapColor.STONE).noLootTable().sound(SoundType.METAL).noOcclusion().strength(-1.0F, 3600000.8F)));
 	public static final DeferredBlock<Block> ALPHA_YETI_BOSS_SPAWNER = register("alpha_yeti_boss_spawner", () -> new BossSpawnerBlock(BossVariant.ALPHA_YETI, BlockBehaviour.Properties.of().mapColor(MapColor.STONE).noLootTable().sound(SoundType.METAL).noOcclusion().strength(-1.0F, 3600000.8F)));
-	public static final DeferredBlock<Block> FINAL_BOSS_BOSS_SPAWNER = register("final_boss_boss_spawner", () -> new BossSpawnerBlock(BossVariant.FINAL_BOSS, BlockBehaviour.Properties.of().mapColor(MapColor.STONE).noLootTable().sound(SoundType.METAL).noOcclusion().strength(-1.0F, 3600000.8F)));
 	public static final DeferredBlock<TrophyBlock> NAGA_TROPHY = BLOCKS.register("naga_trophy", () -> new TrophyBlock(BossVariant.NAGA, 5, BlockBehaviour.Properties.of().instabreak()));
 	public static final DeferredBlock<TrophyBlock> LICH_TROPHY = BLOCKS.register("lich_trophy", () -> new TrophyBlock(BossVariant.LICH, 6, BlockBehaviour.Properties.of().instabreak()));
 	public static final DeferredBlock<TrophyBlock> HYDRA_TROPHY = BLOCKS.register("hydra_trophy", () -> new TrophyBlock(BossVariant.HYDRA, 12, BlockBehaviour.Properties.of().instabreak()));

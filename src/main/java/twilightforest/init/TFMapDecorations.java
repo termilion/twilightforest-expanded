@@ -29,7 +29,6 @@ public class TFMapDecorations {
 	public static final DeferredHolder<MapDecorationType, MapDecorationType> YETI_LAIR = register("yeti_lair");
 	public static final DeferredHolder<MapDecorationType, MapDecorationType> AURORA_PALACE = register("aurora_palace");
 	public static final DeferredHolder<MapDecorationType, MapDecorationType> TROLL_CAVES = register("troll_caves");
-	public static final DeferredHolder<MapDecorationType, MapDecorationType> FINAL_CASTLE = register("final_castle");
 	// Jigsaw landmarks (static JSON, field "structure_icon")
 	public static final DeferredHolder<MapDecorationType, MapDecorationType> UNDEAD_CRYPT = register("undead_crypt");
 	public static final DeferredHolder<MapDecorationType, MapDecorationType> LONE_CITADEL = register("lone_citadel");
