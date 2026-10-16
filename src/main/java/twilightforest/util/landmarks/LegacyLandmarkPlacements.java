@@ -1,21 +1,20 @@
 package twilightforest.util.landmarks;
 
-import com.google.common.collect.ImmutableMap;
+import com.google.common.cache.Cache;
+import com.google.common.cache.CacheBuilder;
 import net.minecraft.Util;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Holder;
 import net.minecraft.resources.ResourceKey;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.util.random.SimpleWeightedRandomList;
-import net.minecraft.world.level.LevelReader;
+import net.minecraft.world.level.ChunkPos;
 import net.minecraft.world.level.biome.Biome;
-import net.minecraft.world.level.biome.Biomes;
 import net.minecraft.world.level.chunk.ChunkGeneratorStructureState;
 import net.minecraft.world.level.levelgen.LegacyRandomSource;
 import net.minecraft.world.level.levelgen.WorldgenRandom;
 import net.minecraft.world.level.levelgen.structure.Structure;
 import net.minecraft.world.level.levelgen.structure.StructureSet;
-import twilightforest.init.TFBiomes;
 import twilightforest.init.TFStructures;
 import twilightforest.util.WorldUtil;
 import twilightforest.util.iterators.XZQuadrantIterator;
@@ -26,24 +25,11 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 import java.util.Optional;
+import java.util.concurrent.ExecutionException;
 
 public class LegacyLandmarkPlacements {
-	private static final Map<ResourceKey<Biome>, ResourceKey<Structure>> BIOME_2_STRUCTURES = new ImmutableMap.Builder<ResourceKey<Biome>, ResourceKey<Structure>>()
-		//.put(TFBiomes.DENSE_MUSHROOM_FOREST.location(), MUSHROOM_TOWER)
-		.put(Biomes.MANGROVE_SWAMP, TFStructures.LICH_TOWER)
-		.put(TFBiomes.SPOOKY_FOREST, TFStructures.UNDEAD_CRYPT)
-		.put(TFBiomes.AMETHYST_STRAITS, TFStructures.LONE_CITADEL)
-		.put(TFBiomes.ENCHANTED_FOREST, TFStructures.QUEST_GROVE)
-		.put(TFBiomes.LAKE, TFStructures.QUEST_ISLAND)
-		.put(TFBiomes.SWAMP, TFStructures.LABYRINTH)
-		.put(TFBiomes.FIRE_SWAMP, TFStructures.HYDRA_LAIR)
-		.put(TFBiomes.DARK_FOREST, TFStructures.KNIGHT_STRONGHOLD)
-		.put(TFBiomes.DARKWOOD_CLEARING, TFStructures.ARACHNID_DWELLING)
-		.put(TFBiomes.DARK_FOREST_CENTER, TFStructures.DARK_TOWER)
-		.put(TFBiomes.SNOWY_FOREST, TFStructures.YETI_CAVE)
-		.put(TFBiomes.GLACIER, TFStructures.AURORA_PALACE)
-		.put(TFBiomes.HIGHLANDS, TFStructures.TROLL_CAVE)
-		.build();
+	// Per generator state (one per dimension and server); the landmark of a center is fixed by the seed and the structure sets
+	private static final Cache<ChunkGeneratorStructureState, Map<Long, Optional<Holder<Structure>>>> LANDMARKS = CacheBuilder.newBuilder().weakKeys().build();
 
 	public static final SimpleWeightedRandomList<ResourceKey<Structure>> VARIETY_LANDMARKS = Util.make(() -> {
 		SimpleWeightedRandomList.Builder<ResourceKey<Structure>> varietyLandmarks = new SimpleWeightedRandomList.Builder<>();
@@ -86,40 +72,11 @@ public class LegacyLandmarkPlacements {
 		return deltaChunkX + deltaChunkZ;
 	}
 
-	public static ResourceKey<Structure> pickLandmarkAtBlock(int blockX, int blockZ, LevelReader world) {
-		return pickLandmarkForChunk(blockX >> 4, blockZ >> 4, world);
-	}
-
-	/**
-	 * What feature would go near this chunk.
-	 *
-	 * @return The feature in the chunk "region"
-	 */
-	public static ResourceKey<Structure> pickLandmarkForChunk(int chunkX, int chunkZ, LevelReader world) {
-		// set the chunkX and chunkZ to the center of the biome
-		chunkX = Math.round(chunkX / 16F) * 16;
-		chunkZ = Math.round(chunkZ / 16F) * 16;
-
-		BlockPos pos = new BlockPos((chunkX << 4) + 8, 0, (chunkZ << 4) + 8);
-
-		// what biome is at the center of the chunk?
-		Optional<ResourceKey<Biome>> biomeResourceKey = world.getBiome(pos).unwrapKey();
-
-		if (biomeResourceKey.isPresent()) {
-			ResourceKey<Structure> biomeFeature = BIOME_2_STRUCTURES.get(biomeResourceKey.get());
-
-			if (biomeFeature != null)
-				return biomeFeature;
-		}
-
-		return pickVarietyLandmark(chunkX, chunkZ);
-	}
-
 	/**
 	 * Which landmark generates at the landmark center nearest to this chunk, the same way {@link net.minecraft.world.level.chunk.ChunkGenerator#createStructures} decides it:
 	 * every landmark grid set whose placement accepts the center chunk, the structure biomes tested against the main biome of the grid tile
 	 * (see LandmarkStructure#findValidGenerationPoint) and the same seeded weighted pick for sets with several structures (e.g. savanna_landmarks).
-	 * Unlike {@link #pickLandmarkForChunk} this knows every landmark, including the static-JSON ones.
+	 * Cached, as the magic map, locate and spawn checks ask often.
 	 * Ignores the rare case of a picked structure that finds no room for its pieces (worldgen then tries the next one of the set).
 	 *
 	 * @return empty outside the Twilight Forest or if no landmark fits the biome
@@ -131,19 +88,42 @@ public class LegacyLandmarkPlacements {
 		BlockPos center = getNearestCenterXZ(chunkX, chunkZ);
 		int centerChunkX = center.getX() >> 4;
 		int centerChunkZ = center.getZ() >> 4;
-		Holder<Biome> mainBiome = biomeProvider.getMainBiome((Math.round(centerChunkX / 16F) << 6) + 2, (Math.round(centerChunkZ / 16F) << 6) + 2);
 		ChunkGeneratorStructureState state = level.getChunkSource().getGeneratorState();
-
-		for (Holder<StructureSet> set : state.possibleStructureSets()) {
-			if (!(set.value().placement() instanceof LandmarkGridPlacement placement) || !placement.isStructureChunk(state, centerChunkX, centerChunkZ))
-				continue;
-
-			Optional<Holder<Structure>> picked = pickFromSet(set.value().structures(), mainBiome, state.getLevelSeed(), centerChunkX, centerChunkZ);
-			if (picked.isPresent())
-				return picked;
+		Map<Long, Optional<Holder<Structure>>> landmarks;
+		try {
+			landmarks = LANDMARKS.get(state, () -> CacheBuilder.newBuilder().maximumSize(4096).<Long, Optional<Holder<Structure>>>build().asMap());
+		} catch (ExecutionException e) {
+			throw new IllegalStateException(e);
 		}
 
-		return Optional.empty();
+		return landmarks.computeIfAbsent(ChunkPos.asLong(centerChunkX, centerChunkZ), pos -> {
+			Holder<Biome> mainBiome = getTileMainBiome(biomeProvider, centerChunkX, centerChunkZ);
+			for (Holder<StructureSet> set : state.possibleStructureSets()) {
+				if (set.value().placement() instanceof LandmarkGridPlacement placement && placement.isStructureChunk(state, centerChunkX, centerChunkZ)) {
+					Optional<Holder<Structure>> picked = pickFromSet(set.value().structures(), mainBiome, state.getLevelSeed(), centerChunkX, centerChunkZ);
+					if (picked.isPresent())
+						return picked;
+				}
+			}
+			return Optional.empty();
+		});
+	}
+
+	public static boolean isLandmarkAt(ServerLevel level, int chunkX, int chunkZ, ResourceKey<Structure> landmark) {
+		return findLandmarkForChunk(level, chunkX, chunkZ).filter(structure -> structure.is(landmark)).isPresent();
+	}
+
+	/**
+	 * The biome that decides the landmark of the grid tile around this chunk: the main biome at the tile center,
+	 * which is the quart coordinate {@code (round(chunk / 16) << 6) + 2} on each axis.
+	 * Shared by the landmark structures, the landmark lookup and {@link twilightforest.world.components.layer.LandmarkIslandLayer}, which must all agree.
+	 */
+	public static Holder<Biome> getTileMainBiome(TFBiomeProvider biomeProvider, int chunkX, int chunkZ) {
+		return biomeProvider.getMainBiome(getTileCenterQuart(chunkX), getTileCenterQuart(chunkZ));
+	}
+
+	public static int getTileCenterQuart(int chunkCoord) {
+		return (Math.round(chunkCoord / 16F) << 6) + 2;
 	}
 
 	// Mirrors the structure choice in ChunkGenerator#createStructures

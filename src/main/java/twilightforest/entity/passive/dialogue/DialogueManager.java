@@ -3,6 +3,7 @@ package twilightforest.entity.passive.dialogue;
 import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
+import net.minecraft.network.chat.Component;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.server.packs.resources.Resource;
@@ -87,7 +88,7 @@ public class DialogueManager extends SimplePreparableReloadListener<Map<String, 
 
 	/**
 	 * @return a random line of {@code mob} for {@code key}, if possible not {@code lastLine}, or null if there are none.
-	 * Unresolved, so the caller can keep it as its next {@code lastLine}; see {@link #resolve}.
+	 * Unresolved, so the caller can keep it as its next {@code lastLine}; see {@link #say}.
 	 */
 	@Nullable
 	public String pickLine(Player player, String mob, String key, RandomSource random, @Nullable String lastLine) {
@@ -101,8 +102,12 @@ public class DialogueManager extends SimplePreparableReloadListener<Map<String, 
 		return line;
 	}
 
-	// Replaces the placeholders of a line
-	public String resolve(Player player, String mob, String line, RandomSource random) {
+	// Shows a line, placeholders resolved, in the player's action bar
+	public void say(Player player, String mob, String line, RandomSource random) {
+		player.displayClientMessage(Component.literal(this.resolve(player, mob, line, random)), true);
+	}
+
+	private String resolve(Player player, String mob, String line, RandomSource random) {
 		if (line.contains("{greeting}")) {
 			List<String> greetings = this.getLines(player, mob, "greeting");
 			line = line.replace("{greeting}", greetings.isEmpty() ? "" : greetings.get(random.nextInt(greetings.size())));

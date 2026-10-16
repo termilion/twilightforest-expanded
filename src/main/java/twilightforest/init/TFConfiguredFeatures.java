@@ -317,15 +317,16 @@ public final class TFConfiguredFeatures {
 		context.register(CRYING_OBSIDIAN_SPOT, new ConfiguredFeature<>(Feature.SIMPLE_BLOCK, new SimpleBlockConfiguration(BlockStateProvider.simple(Blocks.CRYING_OBSIDIAN))));
 		// Same vein sizes as the LEGACY_*_ORE features
 		BlockMatchTest blackstone = new BlockMatchTest(Blocks.BLACKSTONE);
-		context.register(AMETHYST_ORE_COAL, new ConfiguredFeature<>(Feature.ORE, new OreConfiguration(blackstone, Blocks.AMETHYST_BLOCK.defaultBlockState(), 16)));
+		BlockState amethyst = Blocks.AMETHYST_BLOCK.defaultBlockState();
+		context.register(AMETHYST_ORE_COAL, new ConfiguredFeature<>(Feature.ORE, new OreConfiguration(blackstone, amethyst, 16)));
 		// Like vanilla ore_debris_small (size 2, never exposed to air): mostly single blocks
 		context.register(AMETHYST_ANCIENT_DEBRIS, new ConfiguredFeature<>(Feature.ORE, new OreConfiguration(blackstone, Blocks.ANCIENT_DEBRIS.defaultBlockState(), 2, 1.0F)));
-		context.register(AMETHYST_ORE_IRON, new ConfiguredFeature<>(Feature.ORE, new OreConfiguration(blackstone, Blocks.AMETHYST_BLOCK.defaultBlockState(), 9)));
-		context.register(AMETHYST_ORE_GOLD, new ConfiguredFeature<>(Feature.ORE, new OreConfiguration(blackstone, Blocks.AMETHYST_BLOCK.defaultBlockState(), 9)));
-		context.register(AMETHYST_ORE_REDSTONE, new ConfiguredFeature<>(Feature.ORE, new OreConfiguration(blackstone, Blocks.AMETHYST_BLOCK.defaultBlockState(), 8)));
-		context.register(AMETHYST_ORE_DIAMOND, new ConfiguredFeature<>(Feature.ORE, new OreConfiguration(blackstone, Blocks.AMETHYST_BLOCK.defaultBlockState(), 8)));
-		context.register(AMETHYST_ORE_LAPIS, new ConfiguredFeature<>(Feature.ORE, new OreConfiguration(blackstone, Blocks.AMETHYST_BLOCK.defaultBlockState(), 7)));
-		context.register(AMETHYST_ORE_COPPER, new ConfiguredFeature<>(Feature.ORE, new OreConfiguration(blackstone, Blocks.AMETHYST_BLOCK.defaultBlockState(), 10)));
+		context.register(AMETHYST_ORE_IRON, new ConfiguredFeature<>(Feature.ORE, new OreConfiguration(blackstone, amethyst, 9)));
+		context.register(AMETHYST_ORE_GOLD, new ConfiguredFeature<>(Feature.ORE, new OreConfiguration(blackstone, amethyst, 9)));
+		context.register(AMETHYST_ORE_REDSTONE, new ConfiguredFeature<>(Feature.ORE, new OreConfiguration(blackstone, amethyst, 8)));
+		context.register(AMETHYST_ORE_DIAMOND, new ConfiguredFeature<>(Feature.ORE, new OreConfiguration(blackstone, amethyst, 8)));
+		context.register(AMETHYST_ORE_LAPIS, new ConfiguredFeature<>(Feature.ORE, new OreConfiguration(blackstone, amethyst, 7)));
+		context.register(AMETHYST_ORE_COPPER, new ConfiguredFeature<>(Feature.ORE, new OreConfiguration(blackstone, amethyst, 10)));
 		// 64 = largest ore vein size (vanilla large granite/diorite/andesite)
 		context.register(CALCITE_VEIN, new ConfiguredFeature<>(Feature.ORE, new OreConfiguration(blackstone, Blocks.CALCITE.defaultBlockState(), 64)));
 		context.register(DEEPSLATE_VEIN, new ConfiguredFeature<>(Feature.ORE, new OreConfiguration(blackstone, Blocks.DEEPSLATE.defaultBlockState(), 64)));

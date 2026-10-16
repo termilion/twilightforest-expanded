@@ -10,6 +10,7 @@ import net.minecraft.client.multiplayer.ClientLevel;
 import net.minecraft.client.particle.FlameParticle;
 import net.minecraft.client.particle.Particle;
 import net.minecraft.client.particle.ParticleEngine;
+import net.minecraft.client.particle.SuspendedTownParticle;
 import net.minecraft.client.particle.SpriteSet;
 import net.minecraft.client.renderer.DimensionSpecialEffects;
 import net.minecraft.client.renderer.Sheets;
@@ -586,7 +587,7 @@ public class ClientRegistrationEvents {
 		event.registerSpriteSet(TFParticleType.WANDERING_FIREFLY.get(), FireflyParticle.WanderingProvider::new);
 		event.registerSpriteSet(TFParticleType.PURPLE_WANDERING_FIREFLY.get(), FireflyParticle.PurpleWanderingProvider::new);
 		event.registerSpriteSet(TFParticleType.OBSIDIAN_MOTE.get(), MoteParticleProviders.Black::new);
-		event.registerSpriteSet(TFParticleType.BLACKSTONE_MOTE.get(), MoteParticleProviders.Grey::new);
+		event.registerSpriteSet(TFParticleType.BLACKSTONE_MOTE.get(), SuspendedTownParticle.Provider::new);
 		event.registerSpriteSet(TFParticleType.PARTICLE_SPAWNER_FIREFLY.get(), FireflyParticle.ParticleSpawnerProvider::new);
 		event.registerSpriteSet(TFParticleType.FALLEN_LEAF.get(), LeafParticle.Factory::new);
 		event.registerSpriteSet(TFParticleType.DIM_FLAME.get(), FlameParticle.SmallFlameProvider::new);

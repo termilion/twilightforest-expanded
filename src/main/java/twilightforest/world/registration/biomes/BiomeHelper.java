@@ -449,15 +449,13 @@ public abstract class BiomeHelper {
 	}
 
 	public static BiomeGenerationSettings.Builder amethystStraitsUndergroundGen(HolderGetter<PlacedFeature> featureGetter, HolderGetter<ConfiguredWorldCarver<?>> carverGetter) {
-		// Copy of undergroundGen: stone is blackstone (TFSurfaceRules), legacy ores are amethyst, calcite/deepslate veins instead of the small stone clusters
+		// Like undergroundGen: stone is blackstone (TFSurfaceRules), legacy ores are amethyst, calcite/deepslate veins instead of the small stone clusters
 		BiomeGenerationSettings.Builder biome = new BiomeGenerationSettings.Builder(featureGetter, carverGetter);
 
 		BiomeDefaultFeatures.addDefaultSoftDisks(biome);
 		BiomeDefaultFeatures.addSurfaceFreezing(biome);
 		withWoodRoots(biome);
-		biome.addCarver(GenerationStep.Carving.AIR, TFCaveCarvers.TFCAVES_CONFIGURED);
-		biome.addFeature(GenerationStep.Decoration.UNDERGROUND_DECORATION, TFPlacedFeatures.PLACED_PLANT_ROOTS);
-		biome.addFeature(GenerationStep.Decoration.UNDERGROUND_DECORATION, TFPlacedFeatures.PLACED_TORCH_BERRIES);
+		addCaveCarverAndPlants(biome);
 		biome.addFeature(GenerationStep.Decoration.UNDERGROUND_ORES, TFPlacedFeatures.PLACED_AMETHYST_ORE_COAL);
 		biome.addFeature(GenerationStep.Decoration.UNDERGROUND_ORES, TFPlacedFeatures.PLACED_AMETHYST_ORE_IRON);
 		biome.addFeature(GenerationStep.Decoration.UNDERGROUND_ORES, TFPlacedFeatures.PLACED_AMETHYST_ORE_GOLD);
@@ -578,11 +576,15 @@ public abstract class BiomeHelper {
 
 	//Caves!
 	public static void addCaves(BiomeGenerationSettings.Builder biome) {
+		addCaveCarverAndPlants(biome);
+		addLegacyOres(biome);
+	}
+
+	private static void addCaveCarverAndPlants(BiomeGenerationSettings.Builder biome) {
 		biome.addCarver(GenerationStep.Carving.AIR, TFCaveCarvers.TFCAVES_CONFIGURED);
 		biome.addFeature(GenerationStep.Decoration.UNDERGROUND_DECORATION, TFPlacedFeatures.PLACED_PLANT_ROOTS);
 		biome.addFeature(GenerationStep.Decoration.UNDERGROUND_DECORATION, TFPlacedFeatures.PLACED_TORCH_BERRIES);
 		//biome.addFeature(GenerationStep.Decoration.UNDERGROUND_DECORATION, TFPlacedFeatures.PLACED_VANILLA_ROOTS);
-		addLegacyOres(biome);
 	}
 
 	public static void addHighlandCaves(BiomeGenerationSettings.Builder biome) {

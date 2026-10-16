@@ -52,15 +52,8 @@ public final class BiomeMaker extends BiomeHelper {
 	}
 
 	private static TerrainColumn biomeColumnWithUnderground(double noiseDepth, double noiseScale, double weight, HolderGetter<Biome> biomeRegistry, ResourceKey<Biome> key, Holder<Biome> undergroundBiome) {
-		Holder.Reference<Biome> biomeHolder = biomeRegistry.getOrThrow(key);
-
-		biomeHolder.bindKey(key);
-
-		return makeColumn(DensityFunctions.constant(noiseDepth), DensityFunctions.constant(noiseScale), DensityFunctions.constant(weight), biomeHolder, treeMap -> {
-			// This will put the transition boundary around Y-8
-			treeMap.put(Math.min(noiseDepth - 1, -1), biomeHolder);
-			treeMap.put(Math.min(noiseDepth - 3, -3), undergroundBiome);
-		});
+		// This will put the transition boundary around Y-8
+		return biomeColumnWithUnderground(noiseDepth, noiseScale, weight, biomeRegistry, key, undergroundBiome, Math.min(noiseDepth - 1, -1), Math.min(noiseDepth - 3, -3));
 	}
 
 	// Explicit surface/underground keys (in quarts), e.g. so the lake biome reaches down to its deep floor (boundary ≈ Y -29)

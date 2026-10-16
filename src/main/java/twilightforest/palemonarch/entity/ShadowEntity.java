@@ -49,7 +49,7 @@ import software.bernie.geckolib.animation.AnimationController.State;
 import software.bernie.geckolib.util.GeckoLibUtil;
 
 @SuppressWarnings({"cast", "unchecked", "rawtypes", "removal", "static", "lossy-conversions"}) // decompiled MCreator code
-public class ShadowEntity extends Monster implements GeoEntity {
+public class ShadowEntity extends Monster implements GeoEntity, SyncedAnimationEntity {
    public static final EntityDataAccessor<Boolean> SHOOT = SynchedEntityData.defineId(ShadowEntity.class, EntityDataSerializers.BOOLEAN);
    public static final EntityDataAccessor<String> ANIMATION = SynchedEntityData.defineId(ShadowEntity.class, EntityDataSerializers.STRING);
    public static final EntityDataAccessor<String> TEXTURE = SynchedEntityData.defineId(ShadowEntity.class, EntityDataSerializers.STRING);
@@ -261,6 +261,10 @@ public class ShadowEntity extends Monster implements GeoEntity {
 
    public void setAnimation(String animation) {
       this.entityData.set(ANIMATION, animation);
+   }
+
+   public void playAnimation(String animation) {
+      this.animationprocedure = animation;
    }
 
    public void registerControllers(ControllerRegistrar data) {

@@ -16,7 +16,6 @@ import net.minecraft.world.level.Level;
 import net.minecraft.world.phys.Vec3;
 import org.jetbrains.annotations.Nullable;
 
-import java.util.Comparator;
 
 /**
  * A purple allay of the enchanted forest. Like the vanilla allay it never despawns, and like a dolphin it blesses
@@ -73,8 +72,8 @@ public class QuestAllay extends Allay {
 
 	@Nullable
 	private Player findBlessedPlayer(ServerLevel level, long time) {
-		return level.getEntitiesOfClass(Player.class, this.getBoundingBox().inflate(ORBIT_RANGE), player -> player.isAlive() && !player.isSpectator() && player.getPersistentData().getLong(BUFF_UNTIL) > time)
-			.stream().min(Comparator.comparingDouble(this::distanceToSqr)).orElse(null);
+		return level.getNearestPlayer(this.getX(), this.getY(), this.getZ(), ORBIT_RANGE, entity ->
+			entity instanceof Player player && player.isAlive() && !player.isSpectator() && player.getPersistentData().getLong(BUFF_UNTIL) > time);
 	}
 
 	// Fly a circle around the player; each allay gets its own phase, so several of them spread out around the player

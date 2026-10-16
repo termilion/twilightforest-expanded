@@ -7,6 +7,7 @@ import net.minecraft.core.particles.ParticleOptions;
 import net.minecraft.tags.TagKey;
 import net.minecraft.util.RandomSource;
 import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.block.Block;
 import net.neoforged.neoforge.client.event.ClientTickEvent;
 import twilightforest.data.tags.BlockTagGenerator;
@@ -62,11 +63,11 @@ public class ObsidianMoteEvents {
 
 	private static Mote findMote(ClientLevel level, BlockPos pos, BlockPos.MutableBlockPos below) {
 		for (int dy = 1; dy <= MAX_HEIGHT_ABOVE; dy++) {
-			below.setWithOffset(pos, 0, -dy, 0);
+			BlockState state = level.getBlockState(below.setWithOffset(pos, 0, -dy, 0));
 			for (Mote mote : MOTES)
-				if (level.getBlockState(below).is(mote.emitters()))
+				if (state.is(mote.emitters()))
 					return mote;
-			if (!level.getBlockState(below).isAir())
+			if (!state.isAir())
 				return null;
 		}
 		return null;

@@ -1,10 +1,13 @@
 package twilightforest.world.components.placements;
 
+import com.google.common.base.Suppliers;
 import com.mojang.serialization.Codec;
 import com.mojang.serialization.MapCodec;
 import com.mojang.serialization.codecs.RecordCodecBuilder;
 import it.unimi.dsi.fastutil.longs.LongSet;
+import it.unimi.dsi.fastutil.objects.ReferenceOpenHashSet;
 import net.minecraft.core.BlockPos;
+import net.minecraft.core.Holder;
 import net.minecraft.core.HolderSet;
 import net.minecraft.core.RegistryCodecs;
 import net.minecraft.core.registries.Registries;
@@ -23,6 +26,8 @@ import twilightforest.init.TFFeatureModifiers;
 import twilightforest.util.BoundingBoxUtils;
 
 import java.util.Map;
+import java.util.Set;
+import java.util.function.Supplier;
 import java.util.stream.Stream;
 
 /**
@@ -39,10 +44,13 @@ public class AvoidStructurePiecesModifier extends PlacementModifier {
 
 	private final HolderSet<Structure> structures;
 	private final int clearance;
+	// Resolved on first use, the structures are bound only after the registries are loaded
+	private final Supplier<Set<Structure>> structureValues;
 
 	public AvoidStructurePiecesModifier(HolderSet<Structure> structures, int clearance) {
 		this.structures = structures;
 		this.clearance = clearance;
+		this.structureValues = Suppliers.memoize(() -> new ReferenceOpenHashSet<>(structures.stream().filter(Holder::isBound).map(Holder::value).toList()));
 	}
 
 	@Override
@@ -52,8 +60,7 @@ public class AvoidStructurePiecesModifier extends PlacementModifier {
 			for (int chunkZ = (pos.getZ() - this.clearance) >> 4; chunkZ <= (pos.getZ() + this.clearance) >> 4; chunkZ++) {
 				ChunkAccess chunk = level.getChunk(chunkX, chunkZ, ChunkStatus.STRUCTURE_REFERENCES);
 				for (Map.Entry<Structure, LongSet> references : chunk.getAllReferences().entrySet()) {
-					if (this.structures.stream().anyMatch(holder -> holder.isBound() && holder.value() == references.getKey())
-						&& this.isNearPiece(level, references.getKey(), references.getValue(), pos))
+					if (this.structureValues.get().contains(references.getKey()) && this.isNearPiece(level, references.getKey(), references.getValue(), pos))
 						return Stream.empty();
 				}
 			}

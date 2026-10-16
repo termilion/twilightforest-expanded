@@ -13,7 +13,6 @@ import net.minecraft.resources.ResourceKey;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.util.Mth;
 import twilightforest.util.landmarks.LegacyLandmarkPlacements;
-import twilightforest.world.components.biomesources.TFBiomeProvider;
 
 import java.util.Optional;
 
@@ -32,10 +31,9 @@ public class CenterCommand {
 		BlockPos cc = LegacyLandmarkPlacements.getNearestCenterXZ(dx >> 4, dz >> 4);
 		boolean fc = LegacyLandmarkPlacements.blockIsInLandmarkCenter(dx, dz);
 
-		// The landmark that actually generates there; outside the Twilight Forest fall back to the old biome guess
-		Optional<ResourceLocation> closestFeature = source.getLevel().getChunkSource().getGenerator().getBiomeSource() instanceof TFBiomeProvider
-			? LegacyLandmarkPlacements.findLandmarkForChunk(source.getLevel(), cc.getX() >> 4, cc.getZ() >> 4).flatMap(Holder::unwrapKey).map(ResourceKey::location)
-			: Optional.of(LegacyLandmarkPlacements.pickLandmarkAtBlock(cc.getX(), cc.getZ(), source.getLevel()).location());
+		Optional<ResourceLocation> closestFeature = LegacyLandmarkPlacements.findLandmarkForChunk(source.getLevel(), cc.getX() >> 4, cc.getZ() >> 4)
+			.flatMap(Holder::unwrapKey)
+			.map(ResourceKey::location);
 
 		if (closestFeature.isPresent()) {
 			String structurename = Component.translatable(closestFeature.get().toLanguageKey("structure")).withStyle(ChatFormatting.DARK_GREEN).getString();

@@ -41,9 +41,9 @@ public record LandmarkIslandLayer(ResourceKey<Biome> hostBiome, ResourceKey<Biom
 		int blockX = (x << 2) + 2;
 		int blockZ = (z << 2) + 2;
 		BlockPos center = LegacyLandmarkPlacements.getNearestCenterXZ(blockX >> 4, blockZ >> 4);
-		// Same tile center LandmarkStructure#findValidGenerationPoint samples
-		int gridX = (Math.round((center.getX() >> 4) / 16F) << 8) + 8;
-		int gridZ = (Math.round((center.getZ() >> 4) / 16F) << 8) + 8;
+		// Same tile center the landmark structures sample, in blocks
+		int gridX = LegacyLandmarkPlacements.getTileCenterQuart(center.getX() >> 4) << 2;
+		int gridZ = LegacyLandmarkPlacements.getTileCenterQuart(center.getZ() >> 4) << 2;
 
 		if (this.gridParity.isPresent() && ((gridX >> 8) & 1) != this.gridParity.get())
 			return biome;

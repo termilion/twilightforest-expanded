@@ -14,6 +14,8 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import tamaized.beanification.BeanContext;
 import tamaized.beanification.Configurable;
+import net.neoforged.neoforge.event.server.ServerStoppedEvent;
+import twilightforest.world.components.structures.type.ExclusiveJigsawStructure;
 import twilightforest.compat.CosmeticArmorCompat;
 import twilightforest.compat.curios.CuriosCompat;
 import twilightforest.config.ConfigSetup;
@@ -100,6 +102,7 @@ public final class TwilightForestMod {
 
 		if (ModList.get().isLoaded("curios")) loadCuriosCompat(bus);
 		if (ModList.get().isLoaded("cosmeticarmorreworked")) NeoForge.EVENT_BUS.addListener(CosmeticArmorCompat::keepCosmeticArmor);
+		NeoForge.EVENT_BUS.addListener((ServerStoppedEvent event) -> ExclusiveJigsawStructure.clearCaches());
 	}
 
 	private static void loadCuriosCompat(IEventBus bus) {

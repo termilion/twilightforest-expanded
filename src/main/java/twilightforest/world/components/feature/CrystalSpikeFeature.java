@@ -27,11 +27,11 @@ import java.util.Optional;
 import java.util.Set;
 
 /**
- * Copy of the vanilla {@link net.minecraft.world.level.levelgen.feature.IceSpikeFeature} with a configurable spike block and ground.
+ * Based on the vanilla {@link net.minecraft.world.level.levelgen.feature.IceSpikeFeature} with a configurable spike block and ground.
  * Spikes only start on a ground block and only replace air, dirt, ground blocks and their own block.
  * Height is configurable (vanilla: 7-10), the radius follows the vanilla height / 4 rule up to max_radius.
- * With a base_height, the cone sits on a straight column one block narrower than its base radius instead (anchored a few blocks into the ground),
- * replacing the vanilla raised spikes, mirrored lower half and Y 50 pillars.
+ * The cone sits on a straight column of base_height blocks, one block narrower than its base radius (anchored a few blocks into the ground),
+ * instead of the vanilla raised spikes, mirrored lower half and Y 50 pillars.
  * Optionally every spike block touching air or fluid becomes a shell block, and the highest remaining inner blocks a core block.
  */
 public class CrystalSpikeFeature extends Feature<CrystalSpikeFeature.Config> {
@@ -57,70 +57,10 @@ public class CrystalSpikeFeature extends Feature<CrystalSpikeFeature.Config> {
 		}
 
 		Set<BlockPos> placed = new HashSet<>();
-		int baseHeight = config.baseHeight().sample(random);
-		if (baseHeight > 0) {
-			this.placeOnColumn(level, random, config, pos, baseHeight, placed);
-		} else {
-			this.placeVanillaShape(level, random, config, pos, placed);
-		}
+		this.placeOnColumn(level, random, config, pos, config.baseHeight().sample(random), placed);
 
 		this.decorate(level, random, config, placed);
 		return true;
-	}
-
-	private void placeVanillaShape(WorldGenLevel level, RandomSource random, Config config, BlockPos pos, Set<BlockPos> placed) {
-		pos = pos.above(random.nextInt(4));
-		int height = config.height().sample(random);
-		int radius = Math.min(height / 4 + random.nextInt(2), config.maxRadius());
-		if (radius > 1 && random.nextInt(60) == 0) {
-			pos = pos.above(10 + random.nextInt(30));
-		}
-
-		for (int k = 0; k < height; k++) {
-			float f = (1.0F - (float) k / (float) height) * (float) radius;
-			int l = Mth.ceil(f);
-
-			for (int dx = -l; dx <= l; dx++) {
-				float fx = (float) Mth.abs(dx) - 0.25F;
-
-				for (int dz = -l; dz <= l; dz++) {
-					float fz = (float) Mth.abs(dz) - 0.25F;
-					if ((dx == 0 && dz == 0 || !(fx * fx + fz * fz > f * f))
-						&& (dx != -l && dx != l && dz != -l && dz != l || !(random.nextFloat() > 0.75F))) {
-						this.placeSpikeBlock(level, random, config, pos.offset(dx, k, dz), placed);
-
-						if (k != 0 && l > 1) {
-							this.placeSpikeBlock(level, random, config, pos.offset(dx, -k, dz), placed);
-						}
-					}
-				}
-			}
-		}
-
-		int baseRadius = Mth.clamp(radius - 1, 0, 1);
-
-		for (int dx = -baseRadius; dx <= baseRadius; dx++) {
-			for (int dz = -baseRadius; dz <= baseRadius; dz++) {
-				BlockPos base = pos.offset(dx, -1, dz);
-				int depth = 50;
-				if (Math.abs(dx) == 1 && Math.abs(dz) == 1) {
-					depth = random.nextInt(5);
-				}
-
-				while (base.getY() > 50) {
-					if (!this.canReplace(level.getBlockState(base), config)) {
-						break;
-					}
-
-					this.placeSpikeBlock(level, random, config, base, placed);
-					base = base.below();
-					if (--depth <= 0) {
-						base = base.below(random.nextInt(5) + 1);
-						depth = random.nextInt(5);
-					}
-				}
-			}
-		}
 	}
 
 	private void placeOnColumn(WorldGenLevel level, RandomSource random, Config config, BlockPos ground, int baseHeight, Set<BlockPos> placed) {
@@ -203,7 +143,7 @@ public class CrystalSpikeFeature extends Feature<CrystalSpikeFeature.Config> {
 	 * @param spikeBlocks blocks the spike consists of (incl. shell and core), so overlapping spikes merge
 	 * @param height      spike height above its base
 	 * @param maxRadius   cap for the base radius of tall spikes
-	 * @param baseHeight  height of the straight column below the cone, 0 for the vanilla ice spike shape
+	 * @param baseHeight  height of the straight column below the cone
 	 * @param shell       optional block for every spike block touching air or fluid
 	 * @param core        optional block for the highest blocks left inside the shell
 	 * @param coreCount   how many of the highest inner blocks become core blocks
@@ -216,7 +156,7 @@ public class CrystalSpikeFeature extends Feature<CrystalSpikeFeature.Config> {
 			RegistryCodecs.homogeneousList(Registries.BLOCK).fieldOf("spike_blocks").forGetter(Config::spikeBlocks),
 			IntProvider.codec(1, 128).optionalFieldOf("height", UniformInt.of(7, 10)).forGetter(Config::height),
 			Codec.intRange(0, 16).optionalFieldOf("max_radius", 16).forGetter(Config::maxRadius),
-			IntProvider.codec(0, 128).optionalFieldOf("base_height", ConstantInt.ZERO).forGetter(Config::baseHeight),
+			IntProvider.codec(1, 128).fieldOf("base_height").forGetter(Config::baseHeight),
 			BlockStateProvider.CODEC.optionalFieldOf("shell").forGetter(Config::shell),
 			BlockStateProvider.CODEC.optionalFieldOf("core").forGetter(Config::core),
 			IntProvider.codec(0, 64).optionalFieldOf("core_count", ConstantInt.ZERO).forGetter(Config::coreCount)

@@ -2,7 +2,7 @@ package twilightforest.client.renderer.entity;
 
 import net.minecraft.client.renderer.entity.EntityRendererProvider;
 import net.minecraft.resources.ResourceLocation;
-import software.bernie.geckolib.model.DefaultedEntityGeoModel;
+import software.bernie.geckolib.model.GeoModel;
 import software.bernie.geckolib.renderer.GeoEntityRenderer;
 import twilightforest.TwilightForestMod;
 import twilightforest.entity.passive.Shroomling;
@@ -17,13 +17,9 @@ public class ShroomlingRenderer extends GeoEntityRenderer<Shroomling> {
 		this.shadowRadius = 0.32F;
 	}
 
-	private static class Model extends DefaultedEntityGeoModel<Shroomling> {
+	private static class Model extends GeoModel<Shroomling> {
 		private static final ResourceLocation MODEL = TwilightForestMod.prefix("geo/shroomling.geo.json");
 		private static final ResourceLocation ANIMATION = TwilightForestMod.prefix("animations/shroomling.animation.json");
-
-		Model() {
-			super(TwilightForestMod.prefix("shroomling"));
-		}
 
 		@Override
 		public ResourceLocation getModelResource(Shroomling entity) {

@@ -6,7 +6,6 @@ import net.minecraft.core.particles.ParticleOptions;
 import net.minecraft.core.particles.ParticleTypes;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.nbt.CompoundTag;
-import net.minecraft.network.chat.Component;
 import net.minecraft.network.syncher.EntityDataAccessor;
 import net.minecraft.network.syncher.EntityDataSerializers;
 import net.minecraft.network.syncher.SynchedEntityData;
@@ -162,8 +161,7 @@ public class Brownie extends PathfinderMob {
 		return this.getEntityData().get(DATA_ACTION);
 	}
 
-	// For the hide-and-seek minigame later on
-	public void setAction(int action) {
+	private void setAction(int action) {
 		this.getEntityData().set(DATA_ACTION, action);
 	}
 
@@ -221,14 +219,14 @@ public class Brownie extends PathfinderMob {
 
 	private void say(Player player, String line) {
 		this.playSound(TFSounds.BROWNIE_AMBIENT.get(), this.getSoundVolume(), this.getVoicePitch());
-		player.displayClientMessage(Component.literal(DialogueManager.INSTANCE.resolve(player, DIALOGUE_MOB, line, this.getRandom())), true);
+		DialogueManager.INSTANCE.say(player, DIALOGUE_MOB, line, this.getRandom());
 	}
 
 	// Says a random line of an event key (hide_and_seek_start/found/won) if the dialogue file has one
 	private void sayEvent(Player player, String key) {
 		String line = DialogueManager.INSTANCE.pickLine(player, DIALOGUE_MOB, key, this.getRandom(), null);
 		if (line != null)
-			player.displayClientMessage(Component.literal(DialogueManager.INSTANCE.resolve(player, DIALOGUE_MOB, line, this.getRandom())), true);
+			DialogueManager.INSTANCE.say(player, DIALOGUE_MOB, line, this.getRandom());
 	}
 
 	private void startAction(int action, int ticks, Player lookAt) {
@@ -302,7 +300,7 @@ public class Brownie extends PathfinderMob {
 		this.seekTicks = 0;
 		if (this.hasEffect(MobEffects.INVISIBILITY)) {
 			this.removeEffect(MobEffects.INVISIBILITY);
-			this.playSound(TFSounds.BROWNIE_REAPPEAR.get(), 2.0F, 1.5F + this.getRandom().nextFloat() * 0.1F);
+			this.playReappearSound();
 		}
 	}
 
@@ -317,6 +315,10 @@ public class Brownie extends PathfinderMob {
 	private void vanish() {
 		this.playSound(TFSounds.BROWNIE_DISAPPEAR.get(), 2.0F, 1.5F + this.getRandom().nextFloat() * 0.1F);
 		this.spawnParticles(ParticleTypes.CLOUD);
+	}
+
+	private void playReappearSound() {
+		this.playSound(TFSounds.BROWNIE_REAPPEAR.get(), 2.0F, 1.5F + this.getRandom().nextFloat() * 0.1F);
 	}
 
 	// Like the rascal: random spots up to 8 blocks away (±4 in height), first one more than 10 blocks from the seeker wins
@@ -355,7 +357,7 @@ public class Brownie extends PathfinderMob {
 	public void onEffectRemoved(MobEffectInstance effect) {
 		super.onEffectRemoved(effect);
 		if (this.seeker != null && effect.getEffect().is(MobEffects.INVISIBILITY))
-			this.playSound(TFSounds.BROWNIE_REAPPEAR.get(), 2.0F, 1.5F + this.getRandom().nextFloat() * 0.1F);
+			this.playReappearSound();
 	}
 
 	@Override
@@ -422,8 +424,7 @@ public class Brownie extends PathfinderMob {
 			return super.hurt(source, amount);
 
 		this.playHurtSound(source);
-		this.playSound(TFSounds.BROWNIE_DISAPPEAR.get(), 2.0F, 1.5F + this.getRandom().nextFloat() * 0.1F);
-		this.spawnParticles(ParticleTypes.CLOUD);
+		this.vanish();
 		this.spawnParticles(ParticleTypes.ANGRY_VILLAGER);
 		this.discard();
 		return false;

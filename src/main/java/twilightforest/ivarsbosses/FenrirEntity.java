@@ -225,8 +225,9 @@ public class FenrirEntity extends PathfinderMob implements GeoEntity {
          Player nearestPlayer = null;
          double nearestDistSq = followRange * followRange;
 
-         for (Player player : this.level().getEntitiesOfClass(Player.class, this.getBoundingBox().inflate(followRange))) {
-            if (this.isValidCombatTarget(player)) {
+         // Players are few, a box query over all entity sections around the boss is not needed
+         for (Player player : this.level().players()) {
+            if (Math.abs(player.getY() - this.getY()) <= followRange && this.isValidCombatTarget(player)) {
                double distSq = this.horizDistSq(player);
                if (distSq < nearestDistSq) {
                   nearestPlayer = player;

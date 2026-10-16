@@ -11,7 +11,6 @@ import net.minecraft.util.RandomSource;
 import net.minecraft.world.level.ChunkPos;
 import net.minecraft.world.level.StructureManager;
 import net.minecraft.world.level.WorldGenLevel;
-import net.minecraft.world.level.biome.Biome;
 import net.minecraft.world.level.block.Mirror;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.chunk.ChunkGenerator;
@@ -35,10 +34,10 @@ import net.minecraft.world.level.levelgen.structure.templatesystem.StructureTemp
 import net.minecraft.world.level.saveddata.maps.MapDecorationType;
 import twilightforest.init.TFStructureTypes;
 import twilightforest.world.components.structures.SpiralStairShaftPiece;
-import twilightforest.world.components.biomesources.TFBiomeProvider;
 import twilightforest.world.components.structures.util.DecorationClearance;
 import twilightforest.world.components.structures.util.GroundFill;
 import twilightforest.world.components.structures.util.LandmarkMapIcon;
+import twilightforest.world.components.structures.util.LandmarkStructure;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -146,17 +145,7 @@ public class LandmarkJigsawStructure extends Structure implements DecorationClea
 
 	@Override
 	public Optional<GenerationStub> findValidGenerationPoint(GenerationContext context) {
-		// Landmarks only belong in the Twilight Forest, see LandmarkStructure#findValidGenerationPoint
-		if (!(context.biomeSource() instanceof TFBiomeProvider twilightBiomeProvider))
-			return Optional.empty();
-
-		// Same biome-grid tile center as LandmarkStructure
-		ChunkPos chunkPos = context.chunkPos();
-		int biomeX = (Math.round(chunkPos.x / 16F) << 6) + 2;
-		int biomeZ = (Math.round(chunkPos.z / 16F) << 6) + 2;
-		Holder<Biome> biomeAt = twilightBiomeProvider.getMainBiome(biomeX, biomeZ);
-
-		return context.validBiome().test(biomeAt) ? this.findGenerationPoint(context) : Optional.empty();
+		return LandmarkStructure.isValidLandmarkTile(context) ? this.findGenerationPoint(context) : Optional.empty();
 	}
 
 	/**

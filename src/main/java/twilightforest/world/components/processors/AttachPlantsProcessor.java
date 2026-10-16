@@ -40,22 +40,23 @@ public class AttachPlantsProcessor extends StructureProcessor {
 
 	@Override
 	public List<StructureTemplate.StructureBlockInfo> finalizeProcessing(ServerLevelAccessor level, BlockPos offset, BlockPos pos, List<StructureTemplate.StructureBlockInfo> originalBlockInfos, List<StructureTemplate.StructureBlockInfo> processedBlockInfos, StructurePlaceSettings settings) {
+		BoundingBox bounds = settings.getBoundingBox();
+		// Only spots inside the bounds are ever looked up
 		Map<BlockPos, BlockState> template = new HashMap<>();
 		for (StructureTemplate.StructureBlockInfo info : processedBlockInfos)
-			template.put(info.pos(), info.state());
+			if (bounds == null || bounds.isInside(info.pos()))
+				template.put(info.pos(), info.state());
 
-		BoundingBox bounds = settings.getBoundingBox();
 		List<StructureTemplate.StructureBlockInfo> result = new ArrayList<>(processedBlockInfos);
 		for (StructureTemplate.StructureBlockInfo info : processedBlockInfos) {
-			for (int ruleIndex = 0; ruleIndex < this.rules.size(); ruleIndex++) {
-				Rule rule = this.rules.get(ruleIndex);
+			// Per-position random, shared by the rules so each rule rolls independently
+			RandomSource random = null;
+			for (Rule rule : this.rules) {
 				if (!info.state().is(rule.targets()))
 					continue;
 
-				// Per-position random, advanced per rule so rules on the same block roll independently
-				RandomSource random = settings.getRandom(info.pos());
-				for (int skip = 0; skip < ruleIndex; skip++)
-					random.nextFloat();
+				if (random == null)
+					random = settings.getRandom(info.pos());
 				if (random.nextFloat() >= rule.chance())
 					continue;
 

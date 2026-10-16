@@ -11,17 +11,14 @@ import net.neoforged.neoforge.event.tick.EntityTickEvent;
 import net.neoforged.neoforge.event.tick.ServerTickEvent;
 import twilightforest.palemonarch.client.PaleMonarchClient;
 import twilightforest.palemonarch.client.PaleMonarchMusic;
-import twilightforest.palemonarch.entity.FalseKing1Entity;
-import twilightforest.palemonarch.entity.FalseKing2Entity;
-import twilightforest.palemonarch.entity.PaleMonarchDeathEntityEntity;
-import twilightforest.palemonarch.entity.PaleMonarchEntity;
-import twilightforest.palemonarch.entity.ShadowEntity;
+import twilightforest.palemonarch.entity.SyncedAnimationEntity;
 import twilightforest.palemonarch.init.PaleMonarchModEntities;
 import twilightforest.palemonarch.init.PaleMonarchModItems;
 import twilightforest.palemonarch.init.PaleMonarchModMobEffects;
 
 import java.util.ArrayList;
 import java.util.Collection;
+import java.util.Iterator;
 import java.util.List;
 import java.util.concurrent.ConcurrentLinkedQueue;
 
@@ -53,58 +50,24 @@ public class PaleMonarchMod {
 	}
 
 	private static void tick(ServerTickEvent.Post event) {
-		List<Tuple<Runnable, Integer>> actions = new ArrayList<>();
-		workQueue.forEach(work -> {
+		if (workQueue.isEmpty())
+			return;
+
+		List<Runnable> due = new ArrayList<>();
+		for (Iterator<Tuple<Runnable, Integer>> iterator = workQueue.iterator(); iterator.hasNext(); ) {
+			Tuple<Runnable, Integer> work = iterator.next();
 			work.setB(work.getB() - 1);
 			if (work.getB() == 0) {
-				actions.add(work);
-			}
-		});
-		actions.forEach(e -> e.getA().run());
-		workQueue.removeAll(actions);
-	}
-
-	// The server writes the clip name into synced data; every side copies it into the field the GeckoLib controllers read.
-	private static void syncAnimations(EntityTickEvent.Pre event) {
-		switch (event.getEntity()) {
-			case PaleMonarchEntity e -> {
-				String animation = e.getSyncedAnimation();
-				if (!animation.equals("undefined")) {
-					e.setAnimation("undefined");
-					e.animationprocedure = animation;
-				}
-			}
-			case PaleMonarchDeathEntityEntity e -> {
-				String animation = e.getSyncedAnimation();
-				if (!animation.equals("undefined")) {
-					e.setAnimation("undefined");
-					e.animationprocedure = animation;
-				}
-			}
-			case FalseKing1Entity e -> {
-				String animation = e.getSyncedAnimation();
-				if (!animation.equals("undefined")) {
-					e.setAnimation("undefined");
-					e.animationprocedure = animation;
-				}
-			}
-			case FalseKing2Entity e -> {
-				String animation = e.getSyncedAnimation();
-				if (!animation.equals("undefined")) {
-					e.setAnimation("undefined");
-					e.animationprocedure = animation;
-				}
-			}
-			case ShadowEntity e -> {
-				String animation = e.getSyncedAnimation();
-				if (!animation.equals("undefined")) {
-					e.setAnimation("undefined");
-					e.animationprocedure = animation;
-				}
-			}
-			default -> {
+				due.add(work.getA());
+				iterator.remove();
 			}
 		}
+		due.forEach(Runnable::run);
+	}
+
+	private static void syncAnimations(EntityTickEvent.Pre event) {
+		if (event.getEntity() instanceof SyncedAnimationEntity entity)
+			entity.syncAnimation();
 	}
 
 	private static void addToTabs(BuildCreativeModeTabContentsEvent event) {

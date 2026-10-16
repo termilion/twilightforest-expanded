@@ -33,7 +33,7 @@ import software.bernie.geckolib.animation.AnimationController.State;
 import software.bernie.geckolib.util.GeckoLibUtil;
 
 @SuppressWarnings({"cast", "unchecked", "rawtypes", "removal", "static", "lossy-conversions"}) // decompiled MCreator code
-public class PaleMonarchDeathEntityEntity extends Monster implements GeoEntity {
+public class PaleMonarchDeathEntityEntity extends Monster implements GeoEntity, SyncedAnimationEntity {
    public static final EntityDataAccessor<Boolean> SHOOT = SynchedEntityData.defineId(PaleMonarchDeathEntityEntity.class, EntityDataSerializers.BOOLEAN);
    public static final EntityDataAccessor<String> ANIMATION = SynchedEntityData.defineId(PaleMonarchDeathEntityEntity.class, EntityDataSerializers.STRING);
    public static final EntityDataAccessor<String> TEXTURE = SynchedEntityData.defineId(PaleMonarchDeathEntityEntity.class, EntityDataSerializers.STRING);
@@ -161,6 +161,10 @@ public class PaleMonarchDeathEntityEntity extends Monster implements GeoEntity {
 
    public void setAnimation(String animation) {
       this.entityData.set(ANIMATION, animation);
+   }
+
+   public void playAnimation(String animation) {
+      this.animationprocedure = animation;
    }
 
    public void registerControllers(ControllerRegistrar data) {

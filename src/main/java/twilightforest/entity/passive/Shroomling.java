@@ -3,7 +3,6 @@ package twilightforest.entity.passive;
 import net.minecraft.Util;
 import net.minecraft.core.BlockPos;
 import net.minecraft.nbt.CompoundTag;
-import net.minecraft.network.chat.Component;
 import net.minecraft.network.syncher.EntityDataAccessor;
 import net.minecraft.network.syncher.EntityDataSerializers;
 import net.minecraft.network.syncher.SynchedEntityData;
@@ -133,12 +132,11 @@ public class Shroomling extends PathfinderMob implements GeoEntity {
 			if (!this.level().isClientSide()) {
 				boolean red = this.getVariant() == Variant.RED;
 				String line = DialogueManager.INSTANCE.pickLine(player, DIALOGUE_MOB, red ? "red" : "brown", this.getRandom(), this.lastLine);
-				if (line == null)
-					return super.mobInteract(player, hand);
-				this.lastLine = line;
-				line = DialogueManager.INSTANCE.resolve(player, DIALOGUE_MOB, line, this.getRandom());
-				this.playSound(red ? SoundEvents.VILLAGER_YES : SoundEvents.VILLAGER_NO, 1.0F, 2.0F);
-				player.displayClientMessage(Component.literal(line), true);
+				if (line != null) {
+					this.lastLine = line;
+					this.playSound(red ? SoundEvents.VILLAGER_YES : SoundEvents.VILLAGER_NO, 1.0F, 2.0F);
+					DialogueManager.INSTANCE.say(player, DIALOGUE_MOB, line, this.getRandom());
+				}
 			}
 		}
 		return super.mobInteract(player, hand);

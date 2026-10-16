@@ -16,7 +16,8 @@ public class PaleMonarchMusic {
 	private static final double RANGE = 32.0D;
 	private static final Music BOSS_MUSIC = new Music(TFSounds.MUSIC_DISC_RADIANCE, 0, 0, true);
 
-	private static boolean wasNearBoss;
+	// Updated once per client tick
+	private static boolean nearBoss;
 
 	public static void register() {
 		NeoForge.EVENT_BUS.addListener(EventPriority.LOW, PaleMonarchMusic::selectMusic);
@@ -30,7 +31,7 @@ public class PaleMonarchMusic {
 	}
 
 	private static void selectMusic(SelectMusicEvent event) {
-		if (isNearBoss()) {
+		if (nearBoss) {
 			event.setMusic(BOSS_MUSIC);
 		}
 	}
@@ -38,9 +39,9 @@ public class PaleMonarchMusic {
 	// Vanilla only swaps tracks when the new music may replace the current one, so stop the boss track ourselves.
 	private static void stopWhenGone(ClientTickEvent.Post event) {
 		boolean near = isNearBoss();
-		if (wasNearBoss && !near && Minecraft.getInstance().getMusicManager().isPlayingMusic(BOSS_MUSIC)) {
+		if (nearBoss && !near && Minecraft.getInstance().getMusicManager().isPlayingMusic(BOSS_MUSIC)) {
 			Minecraft.getInstance().getMusicManager().stopPlaying();
 		}
-		wasNearBoss = near;
+		nearBoss = near;
 	}
 }

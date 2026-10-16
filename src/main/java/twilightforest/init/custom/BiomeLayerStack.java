@@ -39,14 +39,15 @@ public class BiomeLayerStack {
 	}
 
 	public static void bootstrap(BootstrapContext<BiomeLayerFactory> context) {
-		BiomeLayerFactory biomes = new RandomBiomeLayer.Factory(1L, 15, ImmutableList.of(
+		List<ResourceKey<Biome>> commonBiomes = ImmutableList.of(
 			TFBiomes.FOREST,
 			TFBiomes.DENSE_FOREST,
 			TFBiomes.MUSHROOM_FOREST,
 			TFBiomes.OAK_SAVANNAH,
 			TFBiomes.FIREFLY_FOREST,
 			Biomes.MANGROVE_SWAMP
-		), ImmutableList.of(
+		);
+		BiomeLayerFactory biomes = new RandomBiomeLayer.Factory(1L, 15, commonBiomes, ImmutableList.of(
 			TFBiomes.LAKE,
 			TFBiomes.DENSE_MUSHROOM_FOREST,
 			TFBiomes.LAKE, // Former enchanted forest slot, enchanted forests are now islands inside lakes (LandmarkIslandLayer)
@@ -75,16 +76,8 @@ public class BiomeLayerStack {
 		biomes = new BorderLayer.Factory(501L, TFBiomes.AMETHYST_STRAITS, TFBiomes.THORNLANDS, Holder.direct(biomes));
 
 		// Larger lakes: grow by one pixel (64 blocks), only into the common random biomes so key biomes and their rings stay intact
-		biomes = new ExpandBiomeLayer.Factory(602L, List.of(TFBiomes.LAKE), Optional.of(List.of(
-			TFBiomes.FOREST,
-			TFBiomes.DENSE_FOREST,
-			TFBiomes.MUSHROOM_FOREST,
-			TFBiomes.OAK_SAVANNAH,
-			TFBiomes.FIREFLY_FOREST,
-			Biomes.MANGROVE_SWAMP,
-			TFBiomes.DENSE_MUSHROOM_FOREST,
-			TFBiomes.CLEARING
-		)), Holder.direct(biomes));
+		List<ResourceKey<Biome>> lakeGrowsInto = ImmutableList.<ResourceKey<Biome>>builder().addAll(commonBiomes).add(TFBiomes.DENSE_MUSHROOM_FOREST).add(TFBiomes.CLEARING).build();
+		biomes = new ExpandBiomeLayer.Factory(602L, List.of(TFBiomes.LAKE), Optional.of(lakeGrowsInto), Holder.direct(biomes));
 
 		biomes = new ZoomLayer.Factory(1002L, false, Holder.direct(biomes));
 		// Smaller clearings: lose 32 + 16 blocks on every side

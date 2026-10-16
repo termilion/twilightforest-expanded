@@ -5,7 +5,6 @@ import it.unimi.dsi.fastutil.ints.IntArrayList;
 import it.unimi.dsi.fastutil.ints.IntComparators;
 import it.unimi.dsi.fastutil.ints.IntList;
 import it.unimi.dsi.fastutil.objects.Object2ObjectArrayMap;
-import it.unimi.dsi.fastutil.objects.ObjectArraySet;
 import net.minecraft.Util;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Holder;
@@ -36,7 +35,6 @@ import java.util.List;
 import java.util.Map;
 import java.util.Objects;
 import java.util.Optional;
-import java.util.Set;
 
 public final class WorldUtil {
 	private WorldUtil() {
@@ -105,15 +103,12 @@ public final class WorldUtil {
 
 		ChunkGeneratorStructureState state = level.getChunkSource().getGeneratorState();
 
-		Map<LandmarkGridPlacement, Set<Holder<Structure>>> seekStructures = new Object2ObjectArrayMap<>();
-
-		for (Holder<Structure> holder : targetStructures) {
-			for (StructurePlacement structureplacement : state.getPlacementsForStructure(holder)) {
-				if (structureplacement instanceof LandmarkGridPlacement landmarkPlacement) {
-					seekStructures.computeIfAbsent(landmarkPlacement, v -> new ObjectArraySet<>()).add(holder);
-				}
-			}
-		}
+		// Only targets on the landmark grid, with their placement for the presence check
+		Map<Structure, LandmarkGridPlacement> seekStructures = new Object2ObjectArrayMap<>();
+		for (Holder<Structure> holder : targetStructures)
+			for (StructurePlacement placement : state.getPlacementsForStructure(holder))
+				if (placement instanceof LandmarkGridPlacement landmarkPlacement)
+					seekStructures.put(holder.value(), landmarkPlacement);
 
 		if (seekStructures.isEmpty()) return Optional.empty();
 
@@ -125,24 +120,18 @@ public final class WorldUtil {
 		for (BlockPos landmarkCenterPosition : LegacyLandmarkPlacements.landmarkCenterScanner(pos, chunkSearchRadius)) {
 			// The landmark that actually generates there, not just one whose biomes fit (several may share a biome, e.g. the savanna landmarks)
 			Optional<Holder<Structure>> landmark = LegacyLandmarkPlacements.findLandmarkForChunk(level, landmarkCenterPosition.getX() >> 4, landmarkCenterPosition.getZ() >> 4);
-			if (landmark.isEmpty())
+			LandmarkGridPlacement placement = landmark.map(holder -> seekStructures.get(holder.value())).orElse(null);
+			if (placement == null)
 				continue;
 
-			for (Map.Entry<LandmarkGridPlacement, Set<Holder<Structure>>> landmarkPlacement : seekStructures.entrySet()) {
-				for (Holder<Structure> targetStructure : landmarkPlacement.getValue()) {
-					if (targetStructure.value() != landmark.get().value())
-						continue;
+			if (skipKnownStructures && structureManager.checkStructurePresence(new ChunkPos(landmarkCenterPosition), landmark.get().value(), placement, true) == StructureCheckResult.START_PRESENT)
+				continue;
 
-					if (skipKnownStructures && structureManager.checkStructurePresence(new ChunkPos(landmarkCenterPosition), targetStructure.value(), landmarkPlacement.getKey(), true) == StructureCheckResult.START_PRESENT)
-						continue;
+			final double newDistance = landmarkCenterPosition.distToLowCornerSqr(pos.getX(), 0, pos.getZ());
 
-					final double newDistance = landmarkCenterPosition.distToLowCornerSqr(pos.getX(), 0, pos.getZ());
-
-					if (newDistance < distance) {
-						nearest = new Pair<>(landmarkCenterPosition, targetStructure);
-						distance = newDistance;
-					}
-				}
+			if (newDistance < distance) {
+				nearest = new Pair<>(landmarkCenterPosition, landmark.get());
+				distance = newDistance;
 			}
 		}
 

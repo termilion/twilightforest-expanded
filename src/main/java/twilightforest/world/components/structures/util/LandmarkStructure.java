@@ -8,12 +8,12 @@ import net.minecraft.core.Holder;
 import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.util.RandomSource;
 import net.minecraft.world.level.ChunkPos;
-import net.minecraft.world.level.biome.Biome;
 import net.minecraft.world.level.levelgen.structure.Structure;
 import net.minecraft.world.level.levelgen.structure.StructurePiece;
 import net.minecraft.world.level.levelgen.structure.pieces.StructurePiecesBuilder;
 import net.minecraft.world.level.saveddata.maps.MapDecorationType;
 import org.jetbrains.annotations.Nullable;
+import twilightforest.util.landmarks.LegacyLandmarkPlacements;
 import twilightforest.world.components.biomesources.TFBiomeProvider;
 import twilightforest.world.components.structures.TFStructureComponentTemplate;
 
@@ -117,18 +117,16 @@ public abstract class LandmarkStructure extends Structure implements DecorationC
 
 	@Override
 	public Optional<GenerationStub> findValidGenerationPoint(GenerationContext context) {
-		// Landmarks only belong in the Twilight Forest, even if a biome tag contains biomes shared with other dimensions
-		if (!(context.biomeSource() instanceof TFBiomeProvider twilightBiomeProvider))
-			return Optional.empty();
+		return isValidLandmarkTile(context) ? this.findGenerationPoint(context) : Optional.empty();
+	}
 
-		ChunkPos chunkPos = context.chunkPos();
-		// set biomeX and biomeZ to center of the biome-grid tile.
-		// Otherwise some tightly-fitting biomes like Highlands vs Thornlands may fail the Troll-Clouds structure generation
-		int biomeX = (Math.round(chunkPos.x / 16F) << 6) + 2;
-		int biomeZ = (Math.round(chunkPos.z / 16F) << 6) + 2;
-
-		Holder<Biome> biomeAt = twilightBiomeProvider.getMainBiome(biomeX, biomeZ);
-
-		return context.validBiome().test(biomeAt) ? this.findGenerationPoint(context) : Optional.empty();
+	/**
+	 * Landmarks only belong in the Twilight Forest, even if a biome tag contains biomes shared with other dimensions.
+	 * The biome is the main biome of the biome-grid tile instead of the one at the start position,
+	 * otherwise some tightly-fitting biomes like Highlands vs Thornlands may fail the Troll-Clouds structure generation.
+	 */
+	public static boolean isValidLandmarkTile(GenerationContext context) {
+		return context.biomeSource() instanceof TFBiomeProvider twilightBiomeProvider
+			&& context.validBiome().test(LegacyLandmarkPlacements.getTileMainBiome(twilightBiomeProvider, context.chunkPos().x, context.chunkPos().z));
 	}
 }

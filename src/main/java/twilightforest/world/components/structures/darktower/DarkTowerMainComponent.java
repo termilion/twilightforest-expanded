@@ -327,13 +327,8 @@ public class DarkTowerMainComponent extends DarkTowerWingComponent {
 		}
 
 		// one middle floor of the lower section is always the nether wart room, so every tower has a blaze spawner
-		int blazeFloor = Integer.MIN_VALUE;
-		for (int y = bottom; lowerSection && y < top - spacing; y += spacing) {
-			if (!(y == bottom && bottom != spacing)) {
-				blazeFloor = y;
-				break;
-			}
-		}
+		// (the floor just above the entrance, the first one the loop below builds in the lower section)
+		int blazeFloor = lowerSection && bottom < top - spacing ? bottom : Integer.MIN_VALUE;
 
 		// fill with 3/4 floors
 		for (int y = bottom; y < top; y += spacing) {

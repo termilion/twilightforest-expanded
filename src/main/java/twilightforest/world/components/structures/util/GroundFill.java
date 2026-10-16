@@ -24,18 +24,9 @@ public final class GroundFill {
 	}
 
 	public static void fillBelow(WorldGenLevel level, BoundingBox chunkBounds, PiecesContainer pieces) {
-		int bottom = pieces.pieces().stream().mapToInt(piece -> piece.getBoundingBox().minY()).min().orElse(level.getMinBuildHeight());
+		int bottom = lowestBottom(level, pieces);
 		BlockPos.MutableBlockPos cursor = new BlockPos.MutableBlockPos();
-
-		for (StructurePiece piece : pieces.pieces()) {
-			BoundingBox box = piece.getBoundingBox();
-			if (!box.intersects(chunkBounds))
-				continue;
-
-			for (int x = Math.max(box.minX(), chunkBounds.minX()); x <= Math.min(box.maxX(), chunkBounds.maxX()); x++)
-				for (int z = Math.max(box.minZ(), chunkBounds.minZ()); z <= Math.min(box.maxZ(), chunkBounds.maxZ()); z++)
-					fillColumn(level, cursor, x, z, bottom - SEARCH_BELOW, bottom + SEARCH_ABOVE);
-		}
+		forEachColumn(chunkBounds, pieces, 0, (x, z) -> fillColumn(level, cursor, x, z, bottom - SEARCH_BELOW, bottom + SEARCH_ABOVE));
 	}
 
 	// Bottom-up: the lowest open block with a solid block right above it is the top of the gap; fill downwards until the ground
@@ -62,26 +53,46 @@ public final class GroundFill {
 	 * removed, with the cover block. Also for {@code Structure#afterPlace}.
 	 */
 	public static void coverExposedDirt(WorldGenLevel level, BoundingBox chunkBounds, PiecesContainer pieces, BlockState cover) {
-		int bottom = pieces.pieces().stream().mapToInt(piece -> piece.getBoundingBox().minY()).min().orElse(level.getMinBuildHeight());
+		int bottom = lowestBottom(level, pieces);
 		BlockPos.MutableBlockPos cursor = new BlockPos.MutableBlockPos();
 		BlockPos.MutableBlockPos above = new BlockPos.MutableBlockPos();
 
+		forEachColumn(chunkBounds, pieces, COVER_MARGIN, (x, z) -> {
+			for (int y = bottom - SEARCH_BELOW; y <= bottom + SEARCH_ABOVE; y++) {
+				cursor.set(x, y, z);
+				above.set(x, y + 1, z);
+				BlockState aboveState = level.getBlockState(above);
+				if (level.getBlockState(cursor).is(Blocks.DIRT) && aboveState.canBeReplaced() && aboveState.getFluidState().isEmpty())
+					level.setBlock(cursor, cover, Block.UPDATE_CLIENTS);
+			}
+		});
+	}
+
+	private static int lowestBottom(WorldGenLevel level, PiecesContainer pieces) {
+		return pieces.pieces().stream().mapToInt(piece -> piece.getBoundingBox().minY()).min().orElse(level.getMinBuildHeight());
+	}
+
+	// Runs the action once for every column of the chunk within margin blocks of a piece, even where pieces overlap
+	private static void forEachColumn(BoundingBox chunkBounds, PiecesContainer pieces, int margin, IntBiConsumer action) {
+		int sizeZ = chunkBounds.getZSpan();
+		boolean[] covered = new boolean[chunkBounds.getXSpan() * sizeZ];
 		for (StructurePiece piece : pieces.pieces()) {
-			BoundingBox box = piece.getBoundingBox().inflatedBy(COVER_MARGIN);
+			BoundingBox box = piece.getBoundingBox().inflatedBy(margin);
 			if (!box.intersects(chunkBounds))
 				continue;
 
-			for (int x = Math.max(box.minX(), chunkBounds.minX()); x <= Math.min(box.maxX(), chunkBounds.maxX()); x++) {
-				for (int z = Math.max(box.minZ(), chunkBounds.minZ()); z <= Math.min(box.maxZ(), chunkBounds.maxZ()); z++) {
-					for (int y = bottom - SEARCH_BELOW; y <= bottom + SEARCH_ABOVE; y++) {
-						cursor.set(x, y, z);
-						above.set(x, y + 1, z);
-						BlockState aboveState = level.getBlockState(above);
-						if (level.getBlockState(cursor).is(Blocks.DIRT) && aboveState.canBeReplaced() && aboveState.getFluidState().isEmpty())
-							level.setBlock(cursor, cover, Block.UPDATE_CLIENTS);
-					}
-				}
-			}
+			for (int x = Math.max(box.minX(), chunkBounds.minX()); x <= Math.min(box.maxX(), chunkBounds.maxX()); x++)
+				for (int z = Math.max(box.minZ(), chunkBounds.minZ()); z <= Math.min(box.maxZ(), chunkBounds.maxZ()); z++)
+					covered[(x - chunkBounds.minX()) * sizeZ + z - chunkBounds.minZ()] = true;
 		}
+
+		for (int i = 0; i < covered.length; i++)
+			if (covered[i])
+				action.accept(chunkBounds.minX() + i / sizeZ, chunkBounds.minZ() + i % sizeZ);
+	}
+
+	@FunctionalInterface
+	private interface IntBiConsumer {
+		void accept(int x, int z);
 	}
 }
