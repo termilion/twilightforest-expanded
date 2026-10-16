@@ -1,0 +1,15 @@
+{
+  "name": "twilightforest:rotten_log/canopy",
+  "fallback": "minecraft:empty",
+  "elements": [
+    {
+      "element": {
+        "element_type": "minecraft:single_pool_element",
+        "projection": "rigid",
+        "processors": "twilightforest:mossify_20_canopy",
+        "location": "ati_structures:rotten_log"
+      },
+      "weight": 1
+    }
+  ]
+}

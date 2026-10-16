@@ -19,7 +19,6 @@ import net.minecraft.world.Difficulty;
 import net.minecraft.world.level.ChunkPos;
 import net.minecraft.world.level.LevelAccessor;
 import net.minecraft.world.level.StructureManager;
-import net.minecraft.world.level.biome.Biome;
 import net.minecraft.world.level.chunk.ChunkGeneratorStructureState;
 import net.minecraft.world.level.levelgen.Heightmap;
 import net.minecraft.world.level.levelgen.structure.Structure;
@@ -124,25 +123,24 @@ public final class WorldUtil {
 		StructureManager structureManager = level.structureManager();
 
 		for (BlockPos landmarkCenterPosition : LegacyLandmarkPlacements.landmarkCenterScanner(pos, chunkSearchRadius)) {
+			// The landmark that actually generates there, not just one whose biomes fit (several may share a biome, e.g. the savanna landmarks)
+			Optional<Holder<Structure>> landmark = LegacyLandmarkPlacements.findLandmarkForChunk(level, landmarkCenterPosition.getX() >> 4, landmarkCenterPosition.getZ() >> 4);
+			if (landmark.isEmpty())
+				continue;
+
 			for (Map.Entry<LandmarkGridPlacement, Set<Holder<Structure>>> landmarkPlacement : seekStructures.entrySet()) {
-				if (!landmarkPlacement.getKey().isStructureChunk(state, landmarkCenterPosition.getX() >> 4, landmarkCenterPosition.getZ() >> 4))
-					continue;
+				for (Holder<Structure> targetStructure : landmarkPlacement.getValue()) {
+					if (targetStructure.value() != landmark.get().value())
+						continue;
 
-				for (Holder<Structure> targetStructure : targetStructures) {
-					if (landmarkPlacement.getValue().contains(targetStructure)) {
-						Holder<Biome> biome = level.getBiome(landmarkCenterPosition);
+					if (skipKnownStructures && structureManager.checkStructurePresence(new ChunkPos(landmarkCenterPosition), targetStructure.value(), landmarkPlacement.getKey(), true) == StructureCheckResult.START_PRESENT)
+						continue;
 
-						if (targetStructure.value().biomes().contains(biome)) {
-							if (skipKnownStructures && structureManager.checkStructurePresence(new ChunkPos(landmarkCenterPosition), targetStructure.value(), landmarkPlacement.getKey(), true) == StructureCheckResult.START_PRESENT)
-								break;
+					final double newDistance = landmarkCenterPosition.distToLowCornerSqr(pos.getX(), 0, pos.getZ());
 
-							final double newDistance = landmarkCenterPosition.distToLowCornerSqr(pos.getX(), 0, pos.getZ());
-
-							if (newDistance < distance) {
-								nearest = new Pair<>(landmarkCenterPosition, targetStructure);
-								distance = newDistance;
-							}
-						}
+					if (newDistance < distance) {
+						nearest = new Pair<>(landmarkCenterPosition, targetStructure);
+						distance = newDistance;
 					}
 				}
 			}

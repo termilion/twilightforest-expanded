@@ -3,13 +3,12 @@ package twilightforest.item;
 import net.minecraft.ChatFormatting;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Holder;
-import net.minecraft.core.Registry;
 import net.minecraft.core.component.DataComponents;
-import net.minecraft.core.registries.Registries;
 import net.minecraft.network.chat.Component;
 import net.minecraft.network.protocol.Packet;
 import net.minecraft.resources.ResourceKey;
 import net.minecraft.server.level.ColumnPos;
+import net.minecraft.server.level.ServerLevel;
 import net.minecraft.util.Mth;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.player.Player;
@@ -31,11 +30,12 @@ import twilightforest.item.mapdata.TFMagicMapData;
 import twilightforest.util.landmarks.LandmarkUtil;
 import twilightforest.util.landmarks.LegacyLandmarkPlacements;
 import twilightforest.util.datamaps.MagicMapBiomeColor;
-import twilightforest.world.components.structures.util.LandmarkStructure;
+import twilightforest.world.components.structures.util.LandmarkMapIcon;
 
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Optional;
 
 // [VanillaCopy] super everything, but with appropriate redirections to our own datastructures. finer details noted
 public class MagicMapItem extends MapItem {
@@ -126,8 +126,6 @@ public class MagicMapItem extends MapItem {
 				return array;
 			});
 
-			Registry<Structure> structureRegistry = level.registryAccess().registryOrThrow(Registries.STRUCTURE);
-
 			for (int xPixel = viewerX - viewRadiusPixels + 1; xPixel < viewerX + viewRadiusPixels; ++xPixel) {
 				for (int zPixel = viewerZ - viewRadiusPixels - 1; zPixel < viewerZ + viewRadiusPixels; ++zPixel) {
 					if (xPixel >= 0 && zPixel >= 0 && xPixel < 128 && zPixel < 128) {
@@ -160,12 +158,12 @@ public class MagicMapItem extends MapItem {
 							int worldX = (centerX / blocksPerPixel + xPixel - 64) * blocksPerPixel;
 							int worldZ = (centerZ / blocksPerPixel + zPixel - 64) * blocksPerPixel;
 							if (LegacyLandmarkPlacements.blockIsInLandmarkCenter(worldX, worldZ)) {
-								ResourceKey<Structure> structureKey = LegacyLandmarkPlacements.pickLandmarkAtBlock(worldX, worldZ, level);
+								Optional<Holder<Structure>> landmark = LegacyLandmarkPlacements.findLandmarkForChunk((ServerLevel) level, worldX >> 4, worldZ >> 4);
 								// Filters by structures we want to give icons for
-								if (structureRegistry.getHolder(structureKey).map(structureRef -> structureRef.is(StructureTagGenerator.LANDMARK)).orElse(false)) {
+								if (landmark.isPresent() && landmark.get().is(StructureTagGenerator.LANDMARK)) {
 									TFMagicMapData tfData = (TFMagicMapData) data;
-									if (structureRegistry.getOrThrow(structureKey) instanceof LandmarkStructure landmark) {
-										landmark.getMapIcon().ifPresent(icon -> tfData.addTFDecoration(icon, level, makeName(icon, worldX, worldZ), worldX, worldZ, 180.0F, LandmarkUtil.isConquered(level, worldX, worldZ)));
+									if (landmark.get().value() instanceof LandmarkMapIcon landmarkIcon) {
+										landmarkIcon.getMapIcon().ifPresent(icon -> tfData.addTFDecoration(icon, level, makeName(icon, worldX, worldZ), worldX, worldZ, 180.0F, LandmarkUtil.isConquered(level, worldX, worldZ)));
 										//TwilightForestMod.LOGGER.info("Found feature at {}, {}. Placing it on the map at {}, {}", worldX, worldZ, mapX, mapZ);
 									}
 								}

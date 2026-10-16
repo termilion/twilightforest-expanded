@@ -7,9 +7,15 @@ import net.minecraft.ChatFormatting;
 import net.minecraft.commands.CommandSourceStack;
 import net.minecraft.commands.Commands;
 import net.minecraft.core.BlockPos;
+import net.minecraft.core.Holder;
 import net.minecraft.network.chat.Component;
+import net.minecraft.resources.ResourceKey;
+import net.minecraft.resources.ResourceLocation;
 import net.minecraft.util.Mth;
 import twilightforest.util.landmarks.LegacyLandmarkPlacements;
+import twilightforest.world.components.biomesources.TFBiomeProvider;
+
+import java.util.Optional;
 
 @tamaized.beanification.Component
 public class CenterCommand {
@@ -24,11 +30,19 @@ public class CenterCommand {
 		int dx = Mth.floor(source.getPosition().x());
 		int dz = Mth.floor(source.getPosition().z());
 		BlockPos cc = LegacyLandmarkPlacements.getNearestCenterXZ(dx >> 4, dz >> 4);
-		var closestFeature = LegacyLandmarkPlacements.pickLandmarkAtBlock(cc.getX(), cc.getZ(), source.getLevel()).location();
 		boolean fc = LegacyLandmarkPlacements.blockIsInLandmarkCenter(dx, dz);
 
-		String structurename = Component.translatable(closestFeature.toLanguageKey("structure")).withStyle(ChatFormatting.DARK_GREEN).getString();
-		source.sendSuccess(() -> Component.translatable("commands.tffeature.nearest", structurename), false);
+		// The landmark that actually generates there; outside the Twilight Forest fall back to the old biome guess
+		Optional<ResourceLocation> closestFeature = source.getLevel().getChunkSource().getGenerator().getBiomeSource() instanceof TFBiomeProvider
+			? LegacyLandmarkPlacements.findLandmarkForChunk(source.getLevel(), cc.getX() >> 4, cc.getZ() >> 4).flatMap(Holder::unwrapKey).map(ResourceKey::location)
+			: Optional.of(LegacyLandmarkPlacements.pickLandmarkAtBlock(cc.getX(), cc.getZ(), source.getLevel()).location());
+
+		if (closestFeature.isPresent()) {
+			String structurename = Component.translatable(closestFeature.get().toLanguageKey("structure")).withStyle(ChatFormatting.DARK_GREEN).getString();
+			source.sendSuccess(() -> Component.translatable("commands.tffeature.nearest", structurename), false);
+		} else {
+			source.sendSuccess(() -> Component.translatable("commands.tffeature.none_nearby"), false);
+		}
 		source.sendSuccess(() -> Component.translatable("commands.tffeature.center", cc.toShortString()), false);
 		source.sendSuccess(() -> Component.translatable("commands.tffeature.chunk", fc), false);
 

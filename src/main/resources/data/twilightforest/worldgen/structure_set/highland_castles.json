@@ -1,0 +1,15 @@
+{
+  "placement": {
+    "type": "twilightforest:avoid_landmark_grid",
+    "salt": 1093847261,
+    "spacing": 20,
+    "separation": 8,
+    "spread_type": "triangular"
+  },
+  "structures": [
+    {
+      "structure": "twilightforest:highland_ruined_castle",
+      "weight": 1
+    }
+  ]
+}

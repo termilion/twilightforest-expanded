@@ -52,6 +52,7 @@ import tamaized.beanification.Autowired;
 import tamaized.beanification.Component;
 import tamaized.beanification.PostConstruct;
 import twilightforest.compat.mythsandlegends.MythsAndLegendsCompat;
+import twilightforest.compat.rottencreatures.RottenCreaturesCompat;
 import twilightforest.TFRegistries;
 import twilightforest.TwilightForestMod;
 import twilightforest.block.entity.DryingRackBlockEntity;
@@ -111,6 +112,7 @@ public class RegistrationEvents {
 		bus.addListener(this::addEntityAttributes);
 		bus.addListener(this::registerSpawnPlacements);
 		bus.addListener(MythsAndLegendsCompat::registerSpawnPlacements);
+		bus.addListener(RottenCreaturesCompat::registerSpawnPlacements);
 		bus.addListener(MythsAndLegendsCompat::removeOverworldBiome);
 		bus.addListener(TFCreativeTabs::addToTabs);
 
@@ -592,6 +594,8 @@ public class RegistrationEvents {
 		event.register(EntityType.GLOW_SQUID, null, null, (type, level, spawnType, pos, random) -> isLakeWater(level, pos, -64, -12), RegisterSpawnPlacementsEvent.Operation.OR);
 		event.register(EntityType.SALMON, null, null, (type, level, spawnType, pos, random) -> isLakeWater(level, pos, -13, 0), RegisterSpawnPlacementsEvent.Operation.OR);
 		event.register(EntityType.TROPICAL_FISH, null, null, (type, level, spawnType, pos, random) -> isLakeWater(level, pos, -13, 0), RegisterSpawnPlacementsEvent.Operation.OR);
+		// The glacier top is plain ice, which isn't in #minecraft:goats_spawnable_on
+		event.register(EntityType.GOAT, null, null, (type, level, spawnType, pos, random) -> level.getBlockState(pos.below()).is(Blocks.ICE) && level.getBiome(pos).is(TFBiomes.GLACIER) && level.getRawBrightness(pos, 0) > 8, RegisterSpawnPlacementsEvent.Operation.OR);
 		event.register(TFEntities.HYDRA.get(), SpawnPlacementTypes.ON_GROUND, Heightmap.Types.MOTION_BLOCKING_NO_LEAVES, Mob::checkMobSpawnRules, RegisterSpawnPlacementsEvent.Operation.REPLACE);
 		event.register(TFEntities.LICH.get(), SpawnPlacementTypes.ON_GROUND, Heightmap.Types.MOTION_BLOCKING_NO_LEAVES, Monster::checkMonsterSpawnRules, RegisterSpawnPlacementsEvent.Operation.REPLACE);
 		event.register(TFEntities.PENGUIN.get(), SpawnPlacementTypes.NO_RESTRICTIONS, Heightmap.Types.MOTION_BLOCKING_NO_LEAVES, Penguin::canSpawn, RegisterSpawnPlacementsEvent.Operation.REPLACE);

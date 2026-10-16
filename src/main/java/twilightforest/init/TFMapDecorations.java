@@ -30,6 +30,13 @@ public class TFMapDecorations {
 	public static final DeferredHolder<MapDecorationType, MapDecorationType> AURORA_PALACE = register("aurora_palace");
 	public static final DeferredHolder<MapDecorationType, MapDecorationType> TROLL_CAVES = register("troll_caves");
 	public static final DeferredHolder<MapDecorationType, MapDecorationType> FINAL_CASTLE = register("final_castle");
+	// Jigsaw landmarks (static JSON, field "structure_icon")
+	public static final DeferredHolder<MapDecorationType, MapDecorationType> UNDEAD_CRYPT = register("undead_crypt");
+	public static final DeferredHolder<MapDecorationType, MapDecorationType> LONE_CITADEL = register("lone_citadel");
+	public static final DeferredHolder<MapDecorationType, MapDecorationType> ARACHNID_DWELLING = register("arachnid_dwelling");
+	public static final DeferredHolder<MapDecorationType, MapDecorationType> SAVANNA_QUARRY = register("savanna_quarry");
+	public static final DeferredHolder<MapDecorationType, MapDecorationType> SAVANNA_GNOME_HUT = register("savanna_gnome_hut");
+	public static final DeferredHolder<MapDecorationType, MapDecorationType> SAVANNA_STONEWORKS = register("savanna_stoneworks");
 
 	private static DeferredHolder<MapDecorationType, MapDecorationType> register(String name) {
 		return DECORATIONS.register(name, () -> new MapDecorationType(TwilightForestMod.prefix(name), true, -1, false, true));

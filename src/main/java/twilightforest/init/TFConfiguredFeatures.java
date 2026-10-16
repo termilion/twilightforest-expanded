@@ -193,6 +193,10 @@ public final class TFConfiguredFeatures {
 	public static final ResourceKey<ConfiguredFeature<?, ?>> DEAD_CANOPY_TREE = registerKey("tree/dead_canopy_tree");
 	public static final ResourceKey<ConfiguredFeature<?, ?>> MANGROVE_TREE = registerKey("tree/mangrove_tree");
 	public static final ResourceKey<ConfiguredFeature<?, ?>> DARKWOOD_TREE = registerKey("tree/darkwood_tree");
+	public static final ResourceKey<ConfiguredFeature<?, ?>> DARKWOOD_TREE_1 = registerKey("tree/darkwood_tree_1");
+	public static final ResourceKey<ConfiguredFeature<?, ?>> DARKWOOD_TREE_2 = registerKey("tree/darkwood_tree_2");
+	public static final ResourceKey<ConfiguredFeature<?, ?>> DARKWOOD_TREE_3 = registerKey("tree/darkwood_tree_3");
+	public static final ResourceKey<ConfiguredFeature<?, ?>> DARKWOOD_TREE_4 = registerKey("tree/darkwood_tree_4");
 	public static final ResourceKey<ConfiguredFeature<?, ?>> HOMEGROWN_DARKWOOD_TREE = registerKey("tree/homegrown_darkwood_tree");
 	public static final ResourceKey<ConfiguredFeature<?, ?>> DARKWOOD_LANTERN_TREE = registerKey("tree/darkwood_lantern_tree");
 	public static final ResourceKey<ConfiguredFeature<?, ?>> TIME_TREE = registerKey("tree/time_tree");
@@ -226,6 +230,7 @@ public final class TFConfiguredFeatures {
 	public static final ResourceKey<ConfiguredFeature<?, ?>> DENSE_CANOPY_TREES = registerKey("tree/selector/dense_canopy_trees");
 	public static final ResourceKey<ConfiguredFeature<?, ?>> FIREFLY_FOREST_TREES = registerKey("tree/selector/firefly_forest_trees");
 	public static final ResourceKey<ConfiguredFeature<?, ?>> DARK_FOREST_TREES = registerKey("tree/selector/dark_forest_trees");
+	public static final ResourceKey<ConfiguredFeature<?, ?>> DARKWOOD_TREES = registerKey("tree/selector/darkwood_trees");
 	public static final ResourceKey<ConfiguredFeature<?, ?>> HIGHLANDS_TREES = registerKey("tree/selector/highlands_trees");
 	public static final ResourceKey<ConfiguredFeature<?, ?>> ENCHANTED_FOREST_TREES = registerKey("tree/selector/enchanted_forest_trees");
 	public static final ResourceKey<ConfiguredFeature<?, ?>> SNOWY_FOREST_TREES = registerKey("tree/selector/snowy_forest_trees");
@@ -418,6 +423,10 @@ public final class TFConfiguredFeatures {
 		context.register(DEAD_CANOPY_TREE, new ConfiguredFeature<>(Feature.TREE, TreeConfigurations.CANOPY_TREE_DEAD));
 		context.register(MANGROVE_TREE, new ConfiguredFeature<>(Feature.TREE, TreeConfigurations.MANGROVE_TREE));
 		context.register(DARKWOOD_TREE, new ConfiguredFeature<>(TFFeatures.DARK_CANOPY_TREE.get(), TreeConfigurations.DARKWOOD_TREE));
+		context.register(DARKWOOD_TREE_1, new ConfiguredFeature<>(TFFeatures.DARK_CANOPY_TREE.get(), TreeConfigurations.darkwoodTree(1)));
+		context.register(DARKWOOD_TREE_2, new ConfiguredFeature<>(TFFeatures.DARK_CANOPY_TREE.get(), TreeConfigurations.darkwoodTree(2)));
+		context.register(DARKWOOD_TREE_3, new ConfiguredFeature<>(TFFeatures.DARK_CANOPY_TREE.get(), TreeConfigurations.darkwoodTree(3)));
+		context.register(DARKWOOD_TREE_4, new ConfiguredFeature<>(TFFeatures.DARK_CANOPY_TREE.get(), TreeConfigurations.darkwoodTree(4)));
 		context.register(HOMEGROWN_DARKWOOD_TREE, new ConfiguredFeature<>(TFFeatures.DARK_CANOPY_TREE.get(), TreeConfigurations.HOMEGROWN_DARKWOOD_TREE));
 		context.register(DARKWOOD_LANTERN_TREE, new ConfiguredFeature<>(TFFeatures.DARK_CANOPY_TREE.get(), TreeConfigurations.DARKWOOD_LANTERN_TREE));
 		context.register(TIME_TREE, new ConfiguredFeature<>(TFFeatures.TREE_OF_TIME.get(), TreeConfigurations.TIME_TREE));
@@ -480,7 +489,9 @@ public final class TFConfiguredFeatures {
 		context.register(CANOPY_TREES, new ConfiguredFeature<>(Feature.RANDOM_SELECTOR, new RandomFeatureConfiguration(ImmutableList.of(new WeightedPlacedFeature(PlacementUtils.inlinePlaced(features.getOrThrow(CANOPY_TREE)), 0.6F)), PlacementUtils.inlinePlaced(features.getOrThrow(TWILIGHT_OAK_TREE)))));
 		context.register(DENSE_CANOPY_TREES, new ConfiguredFeature<>(Feature.RANDOM_SELECTOR, new RandomFeatureConfiguration(ImmutableList.of(new WeightedPlacedFeature(PlacementUtils.inlinePlaced(features.getOrThrow(CANOPY_TREE)), 0.7F)), PlacementUtils.inlinePlaced(features.getOrThrow(TWILIGHT_OAK_TREE)))));
 		context.register(FIREFLY_FOREST_TREES, new ConfiguredFeature<>(Feature.RANDOM_SELECTOR, new RandomFeatureConfiguration(ImmutableList.of(new WeightedPlacedFeature(PlacementUtils.inlinePlaced(features.getOrThrow(CANOPY_TREE)), 0.33F), new WeightedPlacedFeature(PlacementUtils.inlinePlaced(features.getOrThrow(FIREFLY_CANOPY_TREE)), 0.45F)), PlacementUtils.inlinePlaced(features.getOrThrow(TWILIGHT_OAK_TREE)))));
-		context.register(DARK_FOREST_TREES, new ConfiguredFeature<>(Feature.RANDOM_SELECTOR, new RandomFeatureConfiguration(ImmutableList.of(new WeightedPlacedFeature(PlacementUtils.inlinePlaced(features.getOrThrow(DARK_FOREST_BIRCH_TREE)), 0.2F), new WeightedPlacedFeature(PlacementUtils.inlinePlaced(features.getOrThrow(DARK_FOREST_OAK_TREE)), 0.2F), new WeightedPlacedFeature(PlacementUtils.inlinePlaced(features.getOrThrow(DARK_OAK_BUSH)), 0.4F)), PlacementUtils.inlinePlaced(features.getOrThrow(DARKWOOD_TREE)))));
+		context.register(DARK_FOREST_TREES, new ConfiguredFeature<>(Feature.RANDOM_SELECTOR, new RandomFeatureConfiguration(ImmutableList.of(new WeightedPlacedFeature(PlacementUtils.inlinePlaced(features.getOrThrow(DARK_FOREST_BIRCH_TREE)), 0.2F), new WeightedPlacedFeature(PlacementUtils.inlinePlaced(features.getOrThrow(DARK_FOREST_OAK_TREE)), 0.2F), new WeightedPlacedFeature(PlacementUtils.inlinePlaced(features.getOrThrow(DARK_OAK_BUSH)), 0.4F)), PlacementUtils.inlinePlaced(features.getOrThrow(DARKWOOD_TREES)))));
+		// Darkwood trees 0-4 blocks taller, 1/5 each (chances apply in order)
+		context.register(DARKWOOD_TREES, new ConfiguredFeature<>(Feature.RANDOM_SELECTOR, new RandomFeatureConfiguration(ImmutableList.of(new WeightedPlacedFeature(PlacementUtils.inlinePlaced(features.getOrThrow(DARKWOOD_TREE_1)), 1 / 5F), new WeightedPlacedFeature(PlacementUtils.inlinePlaced(features.getOrThrow(DARKWOOD_TREE_2)), 1 / 4F), new WeightedPlacedFeature(PlacementUtils.inlinePlaced(features.getOrThrow(DARKWOOD_TREE_3)), 1 / 3F), new WeightedPlacedFeature(PlacementUtils.inlinePlaced(features.getOrThrow(DARKWOOD_TREE_4)), 1 / 2F)), PlacementUtils.inlinePlaced(features.getOrThrow(DARKWOOD_TREE)))));
 		context.register(HIGHLANDS_TREES, new ConfiguredFeature<>(Feature.RANDOM_SELECTOR, new RandomFeatureConfiguration(ImmutableList.of(new WeightedPlacedFeature(PlacementUtils.inlinePlaced(features.getOrThrow(VANILLA_BIRCH_TREE)), 0.25F), new WeightedPlacedFeature(PlacementUtils.inlinePlaced(features.getOrThrow(TreeFeatures.SPRUCE)), 0.25F), new WeightedPlacedFeature(PlacementUtils.inlinePlaced(features.getOrThrow(TreeFeatures.PINE)), 0.1F)), PlacementUtils.inlinePlaced(features.getOrThrow(MEGA_SPRUCE_TREE)))));
 		context.register(ENCHANTED_FOREST_TREES, new ConfiguredFeature<>(Feature.RANDOM_SELECTOR, new RandomFeatureConfiguration(ImmutableList.of(new WeightedPlacedFeature(PlacementUtils.inlinePlaced(features.getOrThrow(VANILLA_OAK_TREE)), 0.15F), new WeightedPlacedFeature(PlacementUtils.inlinePlaced(features.getOrThrow(VANILLA_BIRCH_TREE)), 0.15F), new WeightedPlacedFeature(PlacementUtils.inlinePlaced(features.getOrThrow(LARGE_RAINBOW_OAK_TREE)), 0.15F)), PlacementUtils.inlinePlaced(features.getOrThrow(RAINBOW_OAK_TREE)))));
 		context.register(SNOWY_FOREST_TREES, new ConfiguredFeature<>(Feature.RANDOM_SELECTOR, new RandomFeatureConfiguration(ImmutableList.of(new WeightedPlacedFeature(PlacementUtils.inlinePlaced(features.getOrThrow(MEGA_SPRUCE_TREE)), 0.33F), new WeightedPlacedFeature(PlacementUtils.inlinePlaced(features.getOrThrow(LARGE_WINTER_TREE)), 0.125F)), PlacementUtils.inlinePlaced(features.getOrThrow(SNOWY_SPRUCE_TREE)))));

@@ -49,6 +49,12 @@ public class BiomeTagGenerator extends BiomeTagsProvider {
 	public static final TagKey<Biome> VALID_UNDEAD_CRYPT_BIOMES = TagKey.create(Registries.BIOME, TwilightForestMod.prefix("valid_undead_crypt_biomes"));
 	public static final TagKey<Biome> VALID_LONE_CITADEL_BIOMES = TagKey.create(Registries.BIOME, TwilightForestMod.prefix("valid_lone_citadel_biomes"));
 	public static final TagKey<Biome> VALID_SPOOKY_RUIN_BIOMES = TagKey.create(Registries.BIOME, TwilightForestMod.prefix("valid_spooky_ruin_biomes"));
+	// Imported ruins re-skinned with the wood of their biome
+	public static final TagKey<Biome> VALID_TWILIGHT_OAK_RUIN_BIOMES = TagKey.create(Registries.BIOME, TwilightForestMod.prefix("valid_twilight_oak_ruin_biomes"));
+	public static final TagKey<Biome> VALID_CANOPY_RUIN_BIOMES = TagKey.create(Registries.BIOME, TwilightForestMod.prefix("valid_canopy_ruin_biomes"));
+	public static final TagKey<Biome> VALID_DARKWOOD_RUIN_BIOMES = TagKey.create(Registries.BIOME, TwilightForestMod.prefix("valid_darkwood_ruin_biomes"));
+	public static final TagKey<Biome> VALID_DARKWOOD_ROTTEN_LOG_BIOMES = TagKey.create(Registries.BIOME, TwilightForestMod.prefix("valid_darkwood_rotten_log_biomes"));
+	public static final TagKey<Biome> VALID_HIGHLAND_CASTLE_BIOMES = TagKey.create(Registries.BIOME, TwilightForestMod.prefix("valid_highland_castle_biomes"));
 	public static final TagKey<Biome> VALID_SAVANNA_LANDMARK_BIOMES = TagKey.create(Registries.BIOME, TwilightForestMod.prefix("valid_savanna_landmark_biomes"));
 	public static final TagKey<Biome> VALID_FINAL_CASTLE_BIOMES = TagKey.create(Registries.BIOME, TwilightForestMod.prefix("valid_final_castle_biomes"));
 
@@ -132,6 +138,11 @@ public class BiomeTagGenerator extends BiomeTagsProvider {
 		this.tag(VALID_ARACHNID_DWELLING_BIOMES).add(TFBiomes.DARKWOOD_CLEARING);
 		this.tag(VALID_LONE_CITADEL_BIOMES).add(TFBiomes.AMETHYST_STRAITS);
 		this.tag(VALID_SPOOKY_RUIN_BIOMES).add(TFBiomes.SPOOKY_FOREST);
+		this.tag(VALID_TWILIGHT_OAK_RUIN_BIOMES).add(TFBiomes.FOREST);
+		this.tag(VALID_CANOPY_RUIN_BIOMES).add(TFBiomes.DENSE_FOREST, TFBiomes.MUSHROOM_FOREST);
+		this.tag(VALID_DARKWOOD_RUIN_BIOMES).add(TFBiomes.DARK_FOREST);
+		this.tag(VALID_DARKWOOD_ROTTEN_LOG_BIOMES).add(TFBiomes.DARK_FOREST, TFBiomes.DARK_FOREST_CENTER);
+		this.tag(VALID_HIGHLAND_CASTLE_BIOMES).add(TFBiomes.HIGHLANDS);
 		this.tag(VALID_SAVANNA_LANDMARK_BIOMES).add(TFBiomes.OAK_SAVANNAH);
 		this.tag(VALID_GIANT_HOUSE_BIOMES).add(TFBiomes.HIGHLANDS);
 

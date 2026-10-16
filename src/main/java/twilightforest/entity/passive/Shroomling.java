@@ -37,13 +37,12 @@ import software.bernie.geckolib.animation.AnimationController;
 import software.bernie.geckolib.animation.PlayState;
 import software.bernie.geckolib.animation.RawAnimation;
 import software.bernie.geckolib.util.GeckoLibUtil;
-
-import java.util.List;
+import twilightforest.entity.passive.dialogue.DialogueManager;
 
 /**
  * Port of the Sporeling from Mobs of Mythology (Pixel Dream Studios, GPL-3.0), AzureLib → GeckoLib. A small walking mushroom
  * (red or brown) of the mushroom forest that panics when hurt and answers with a random line when a player clicks it:
- * red ones are cheerful, brown ones grumpy. Passive (creature), unlike the original monster-category spawn.
+ * red ones are cheerful, brown ones grumpy (lines from {@link DialogueManager}, mob {@code shroomling}, keys {@code red}/{@code brown}/{@code greeting}). Passive (creature), unlike the original monster-category spawn.
  */
 public class Shroomling extends PathfinderMob implements GeoEntity {
 	private static final RawAnimation IDLE = RawAnimation.begin().thenLoop("idle");
@@ -52,43 +51,7 @@ public class Shroomling extends PathfinderMob implements GeoEntity {
 	private static final EntityDataAccessor<Integer> DATA_VARIANT = SynchedEntityData.defineId(Shroomling.class, EntityDataSerializers.INT);
 	private static final int LINE_COOLDOWN = 60;
 
-	private static final List<String> RED_LINES = List.of(
-		"playerGreeting",
-		"Seen any smurfs lately?",
-		"I hate Gargamel...",
-		"Mondays, huh?",
-		"You're a big fellow!",
-		"Please don't eat me!",
-		"Why did the Creeper hang out with me? Because I'm such a fun-gi to be around!",
-		"They say I'm a fun-gi, but I think I'm just a cap-tivating conversationalist!",
-		"Looking for a spore-tacular time? You've found the right mushroom!",
-		"Did you hear about the fungi who threw a party? It was a real spore-gy!",
-		"I'm not edibles!",
-		"My cousin Brownie is an alchemist.",
-		"Do you know of a bard named Smash Mouth? I hear he's an All Star.",
-		"I'm not a regular mushroom; I'm a spore-tacular mushroom!",
-		"Some people blame me for the apocalypse...",
-		"Γειά σου Ελλάδα!");
-	private static final List<String> BROWN_LINES = List.of(
-		"Why do I feel like a fun-guy in a no-fun zone?",
-		"You want a piece of my spore attitude? Take a hike!",
-		"Life's a spore-t, and then you decompose.",
-		"Step back, or I'll give you a spore-tacular scowl!",
-		"Why do players always pick on mushrooms? Can't we just have a cap-py existence?",
-		"I'd rather be left alone in my dark corner. No mushroom for company!",
-		"I don't have mushroom for joy, just a whole lot of fung-titude!",
-		"Have a fung-tastic day...",
-		"I am responsible for the apocalypse.",
-		"I'm not grumpy, I'm just a fungi with a perpetual frown.",
-		"Why are you bothering me? Can't you see I'm having a spore day?",
-		"Why do players keep trying to cheer me up? Do I look like a sunflower to you?",
-		"I'm like a mushroom, growing in the darkness of my grumpy thoughts.",
-		"Step lightly, or you might awaken the wrath of the grumpy mushroom!",
-		"Why be a fun-guy when you can be a grump-guy?",
-		"I've mastered the art of being perpetually annoyed. It's my spore-cialty!",
-		"Let's get blazed! Go bring the blaze rod.",
-		"Is it 4:20 already?");
-	private static final List<String> GREETINGS = List.of("Hello there, ", "Hey there, ", "Howdy, ", "Howdy-do, ", "Salutations, ", "Hiya, ", "Godspeed, ");
+	private static final String DIALOGUE_MOB = "shroomling";
 
 	private final AnimatableInstanceCache cache = GeckoLibUtil.createInstanceCache(this);
 	private int lineCooldown;
@@ -169,14 +132,11 @@ public class Shroomling extends PathfinderMob implements GeoEntity {
 			this.touched = true;
 			if (!this.level().isClientSide()) {
 				boolean red = this.getVariant() == Variant.RED;
-				List<String> lines = red ? RED_LINES : BROWN_LINES;
-				String line;
-				do {
-					line = lines.get(this.getRandom().nextInt(lines.size()));
-				} while (line.equals(this.lastLine) && lines.size() > 1);
+				String line = DialogueManager.INSTANCE.pickLine(player, DIALOGUE_MOB, red ? "red" : "brown", this.getRandom(), this.lastLine);
+				if (line == null)
+					return super.mobInteract(player, hand);
 				this.lastLine = line;
-				if (line.equals("playerGreeting"))
-					line = GREETINGS.get(this.getRandom().nextInt(GREETINGS.size())) + player.getScoreboardName() + "!";
+				line = DialogueManager.INSTANCE.resolve(player, DIALOGUE_MOB, line, this.getRandom());
 				this.playSound(red ? SoundEvents.VILLAGER_YES : SoundEvents.VILLAGER_NO, 1.0F, 2.0F);
 				player.displayClientMessage(Component.literal(line), true);
 			}

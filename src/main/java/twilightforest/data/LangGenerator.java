@@ -79,6 +79,12 @@ public class LangGenerator extends TFLangProvider {
 		this.addStructure(TFStructures.AURORA_PALACE, "Aurora Palace");
 		this.addStructure(TFStructures.TROLL_CAVE, "Troll Cave");
 		this.addStructure(TFStructures.FINAL_CASTLE, "Final Plateau Castle");
+		this.addStructure(TFStructures.UNDEAD_CRYPT, "Undead Crypt");
+		this.addStructure(TFStructures.LONE_CITADEL, "Lone Citadel");
+		this.addStructure(TFStructures.ARACHNID_DWELLING, "Arachnid Dwelling");
+		this.add("structure.twilightforest.savanna_quarry", "Savanna Quarry");
+		this.add("structure.twilightforest.savanna_gnome_hut", "Gnome Hut");
+		this.add("structure.twilightforest.savanna_stoneworks", "Stoneworks");
 
 		this.addCommand("usage", "/%s <info | reactivate | conquer | center>");
 		this.addCommand("not_player", "This command must be run by a valid player!");

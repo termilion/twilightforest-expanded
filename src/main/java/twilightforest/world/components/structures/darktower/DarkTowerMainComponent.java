@@ -318,11 +318,21 @@ public class DarkTowerMainComponent extends DarkTowerWingComponent {
 
 		int spacing = 5;
 		Rotation rotation = RotationUtil.ROTATIONS[Math.abs((this.boundingBox.minY() + bottom) % 4)];
+		boolean lowerSection = bottom == 0;
 		if (bottom == 0) {
 			makeLargeStairsUp(world, sbb, rotation, 0);
 			rotation = rotation.getRotated(Rotation.COUNTERCLOCKWISE_90);
 			makeBottomEntrance(world, sbb, rotation, bottom);
 			bottom += spacing;
+		}
+
+		// one middle floor of the lower section is always the nether wart room, so every tower has a blaze spawner
+		int blazeFloor = Integer.MIN_VALUE;
+		for (int y = bottom; lowerSection && y < top - spacing; y += spacing) {
+			if (!(y == bottom && bottom != spacing)) {
+				blazeFloor = y;
+				break;
+			}
 		}
 
 		// fill with 3/4 floors
@@ -337,7 +347,9 @@ public class DarkTowerMainComponent extends DarkTowerWingComponent {
 				makeLargeStairsUp(world, sbb, rotation, y);
 			}
 
-			if (!isTopFloor || isTowerTopFloor) {
+			if (y == blazeFloor) {
+				decorateNetherwart(world, decoRNG, sbb, rotation, y, false);
+			} else if (!isTopFloor || isTowerTopFloor) {
 				decorateFloor(world, manager, generator, decoRNG, sbb, rotation, y, isBottomFloor, isTopFloor);
 			}
 

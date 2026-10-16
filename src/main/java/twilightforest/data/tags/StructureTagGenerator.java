@@ -43,7 +43,12 @@ public class StructureTagGenerator extends StructureTagsProvider {
 			TFStructures.YETI_CAVE,
 			TFStructures.AURORA_PALACE,
 			TFStructures.TROLL_CAVE
-		);
+		).addOptional(TwilightForestMod.prefix("undead_crypt"))
+			.addOptional(TwilightForestMod.prefix("lone_citadel"))
+			.addOptional(TwilightForestMod.prefix("arachnid_dwelling"))
+			.addOptional(TwilightForestMod.prefix("savanna_quarry"))
+			.addOptional(TwilightForestMod.prefix("savanna_gnome_hut"))
+			.addOptional(TwilightForestMod.prefix("savanna_stoneworks"));
 
 		this.tag(BROWNIE_HAUNTS).add(
 			TFStructures.HOLLOW_HILL_SMALL,

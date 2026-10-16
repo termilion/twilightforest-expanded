@@ -1,0 +1,35 @@
+{
+  "placement": {
+    "type": "twilightforest:avoid_landmark_grid",
+    "salt": 1428570913,
+    "spacing": 12,
+    "separation": 4,
+    "spread_type": "triangular"
+  },
+  "structures": [
+    {
+      "structure": "twilightforest:forest_wild_ruin",
+      "weight": 3
+    },
+    {
+      "structure": "twilightforest:canopy_wild_ruin",
+      "weight": 3
+    },
+    {
+      "structure": "twilightforest:darkwood_wild_ruin",
+      "weight": 3
+    },
+    {
+      "structure": "twilightforest:canopy_rotten_log",
+      "weight": 2
+    },
+    {
+      "structure": "twilightforest:darkwood_rotten_log",
+      "weight": 2
+    },
+    {
+      "structure": "twilightforest:darkwood_haunted_ruin",
+      "weight": 2
+    }
+  ]
+}

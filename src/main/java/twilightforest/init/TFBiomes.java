@@ -65,7 +65,7 @@ public class TFBiomes {
 		context.register(DENSE_FOREST, biomeWithDefaults(fireflyParticles(defaultAmbientBuilder()).waterColor(0x005522).waterFogColor(0x005522), defaultMobSpawning(), denseForestGen(featureGetter, carverGetter)).temperature(0.7F).downfall(0.8F).build());
 		context.register(FIREFLY_FOREST, biomeWithDefaults(fireflyForestParticles(defaultAmbientBuilder()), defaultMobSpawning(), fireflyForestGen(featureGetter, carverGetter)).temperature(0.5F).downfall(1).build());
 		context.register(CLEARING, biomeWithDefaults(defaultAmbientBuilder(), defaultMobSpawning(), clearingGen(featureGetter, carverGetter)).temperature(0.8F).downfall(0.4F).build());
-		context.register(OAK_SAVANNAH, biomeWithDefaults(defaultAmbientBuilder(), defaultMobSpawning(), oakSavannaGen(featureGetter, carverGetter)).temperature(0.9F).downfall(0).build());
+		context.register(OAK_SAVANNAH, biomeWithDefaults(defaultAmbientBuilder(), oakSavannahSpawning(), oakSavannaGen(featureGetter, carverGetter)).temperature(0.9F).downfall(0).build());
 
 		context.register(MUSHROOM_FOREST, biomeWithDefaults(fireflyParticles(defaultAmbientBuilder()), mushroomForestSpawning(), mushroomForestGen(featureGetter, carverGetter)).temperature(0.8F).downfall(0.8F).build());
 		context.register(DENSE_MUSHROOM_FOREST, biomeWithDefaults(fireflyParticles(defaultAmbientBuilder()), mushroomForestSpawning(), denseMushroomForestGen(featureGetter, carverGetter)).temperature(0.8F).downfall(1).build());
@@ -76,7 +76,7 @@ public class TFBiomes {
 		context.register(LAKE, biomeWithDefaults(defaultAmbientBuilder().waterColor(0x3FABDA).waterFogColor(0x05333F), lakeSpawning(), streamsAndLakes(featureGetter, carverGetter, true)).temperature(0.66F).downfall(1).build());
 
 		context.register(SWAMP, biomeWithDefaults(defaultAmbientBuilder().skyColor(0x002112).fogColor(0x003F21).grassColorOverride(0x5C694E).foliageColorOverride(0x496137).waterColor(0x95B55F).waterFogColor(0x95B55F).grassColorModifier(grassColorModifierEnumExtension.SWAMP), swampSpawning(), swampGen(featureGetter, carverGetter)).temperature(0.8F).downfall(0.9F).build());
-		context.register(FIRE_SWAMP, biomeWithDefaults(whiteAshParticles(defaultAmbientBuilder()).waterColor(0x2D0700).fogColor(0x380A00).grassColorOverride(0x572E23).foliageColorOverride(0x64260F).waterColor(0x6C2C2C).waterFogColor(0x6C2C2C), new MobSpawnSettings.Builder(), fireSwampGen(featureGetter, carverGetter)).hasPrecipitation(false).temperature(1).downfall(0.4F).build());
+		context.register(FIRE_SWAMP, biomeWithDefaults(whiteAshParticles(defaultAmbientBuilder()).waterColor(0x2D0700).fogColor(0x380A00).grassColorOverride(0x572E23).foliageColorOverride(0x64260F).waterColor(0x6C2C2C).waterFogColor(0x6C2C2C), fireSwampSpawning(), fireSwampGen(featureGetter, carverGetter)).hasPrecipitation(false).temperature(1).downfall(0.4F).build());
 
 		context.register(DARK_FOREST, biomeWithDefaults(defaultAmbientBuilder().skyColor(0x000000).fogColor(0x000000).grassColorOverride(0x4B6754).foliageColorOverride(0x3B5E3F).grassColorModifier(grassColorModifierEnumExtension.DARK_FOREST), darkForestSpawning(), darkForestGen(featureGetter, carverGetter)).temperature(0.7F).downfall(0.8F).build());
 		// Treeless clearing on every other darkwood landmark center: darkwood sky and foliage, desaturated grass, spooky forest fog

@@ -150,16 +150,21 @@ public class TreeConfigurations {
 		)
 		.build();
 
-	public static final TreeConfiguration DARKWOOD_TREE = new TreeConfiguration.TreeConfigurationBuilder(
-		BlockStateProvider.simple(TFBlocks.DARK_LOG.get()),
-		new BranchingTrunkPlacer(9, 1, 1, 6, new BranchesConfig(BlockStateProvider.simple(TFBlocks.DARK_WOOD.get()), 4, 0, 8, 2, 0.23, 0.23), false, false),
-		BlockStateProvider.simple(TFBlocks.HARDENED_DARK_LEAVES.get()),
-		new LeafSpheroidFoliagePlacer(4.5f, 2.25f, ConstantInt.of(0), 1, 0, 0.45f, (int) (LEAF_SHAG_FACTOR * 1.5f)),
-		new TwoLayersFeatureSize(4, 1, 1)
-	)
-		.decorators(ImmutableList.of(TreeDecorators.LIVING_ROOTS))
-		.ignoreVines()
-		.build();
+	public static final TreeConfiguration DARKWOOD_TREE = darkwoodTree(0);
+
+	// Darkwood tree with extraHeight more logs at the bottom of the trunk (branches and canopy move up with it)
+	public static TreeConfiguration darkwoodTree(int extraHeight) {
+		return new TreeConfiguration.TreeConfigurationBuilder(
+			BlockStateProvider.simple(TFBlocks.DARK_LOG.get()),
+			new BranchingTrunkPlacer(9 + extraHeight, 1, 1, 6, new BranchesConfig(BlockStateProvider.simple(TFBlocks.DARK_WOOD.get()), 4, 0, 8, 2, 0.23, 0.23), false, false),
+			BlockStateProvider.simple(TFBlocks.HARDENED_DARK_LEAVES.get()),
+			new LeafSpheroidFoliagePlacer(4.5f, 2.25f, ConstantInt.of(0), 1, 0, 0.45f, (int) (LEAF_SHAG_FACTOR * 1.5f)),
+			new TwoLayersFeatureSize(4, 1, 1)
+		)
+			.decorators(ImmutableList.of(TreeDecorators.LIVING_ROOTS))
+			.ignoreVines()
+			.build();
+	}
 
 	public static final TreeConfiguration HOMEGROWN_DARKWOOD_TREE = new TreeConfiguration.TreeConfigurationBuilder(
 		BlockStateProvider.simple(TFBlocks.DARK_LOG.get()),

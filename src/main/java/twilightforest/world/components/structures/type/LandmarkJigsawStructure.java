@@ -5,6 +5,7 @@ import com.mojang.serialization.MapCodec;
 import com.mojang.serialization.codecs.RecordCodecBuilder;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Holder;
+import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.util.RandomSource;
 import net.minecraft.world.level.ChunkPos;
@@ -31,11 +32,13 @@ import net.minecraft.world.level.levelgen.structure.pieces.PiecesContainer;
 import net.minecraft.world.level.levelgen.structure.pieces.StructurePiecesBuilder;
 import net.minecraft.world.level.levelgen.structure.templatesystem.LiquidSettings;
 import net.minecraft.world.level.levelgen.structure.templatesystem.StructureTemplate;
+import net.minecraft.world.level.saveddata.maps.MapDecorationType;
 import twilightforest.init.TFStructureTypes;
 import twilightforest.world.components.structures.SpiralStairShaftPiece;
 import twilightforest.world.components.biomesources.TFBiomeProvider;
 import twilightforest.world.components.structures.util.DecorationClearance;
 import twilightforest.world.components.structures.util.GroundFill;
+import twilightforest.world.components.structures.util.LandmarkMapIcon;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -47,7 +50,7 @@ import java.util.Optional;
  * so the structure can start underground (where the biome is twilightforest:underground) and still be bound to the surface biome.
  * An optional entrance places a second jigsaw structure on the surface above the start piece and connects both with a spiral staircase.
  */
-public class LandmarkJigsawStructure extends Structure implements DecorationClearance {
+public class LandmarkJigsawStructure extends Structure implements DecorationClearance, LandmarkMapIcon {
 	public static final MapCodec<LandmarkJigsawStructure> CODEC = RecordCodecBuilder.mapCodec(instance -> instance.group(
 		settingsCodec(instance),
 		StructureTemplatePool.CODEC.fieldOf("start_pool").forGetter(s -> s.startPool),
@@ -60,7 +63,8 @@ public class LandmarkJigsawStructure extends Structure implements DecorationClea
 		LiquidSettings.CODEC.optionalFieldOf("liquid_settings", JigsawStructure.DEFAULT_LIQUID_SETTINGS).forGetter(s -> s.liquidSettings),
 		Entrance.CODEC.optionalFieldOf("entrance").forGetter(s -> s.entrance),
 		DecorationConfig.CODEC.optionalFieldOf(DecorationClearance.CODEC_NAME).forGetter(s -> s.decorationConfig),
-		BlockState.CODEC.optionalFieldOf("exposed_dirt_cover").forGetter(s -> s.exposedDirtCover)
+		BlockState.CODEC.optionalFieldOf("exposed_dirt_cover").forGetter(s -> s.exposedDirtCover),
+		BuiltInRegistries.MAP_DECORATION_TYPE.holderByNameCodec().optionalFieldOf("structure_icon").forGetter(s -> s.structureIcon)
 	).apply(instance, LandmarkJigsawStructure::new));
 
 	private final Holder<StructureTemplatePool> startPool;
@@ -76,8 +80,9 @@ public class LandmarkJigsawStructure extends Structure implements DecorationClea
 	private final Optional<DecorationConfig> decorationConfig;
 	// Dirt the structure leaves uncovered at its bottom (where its air blocks cut away the grass of higher ground) becomes this block
 	private final Optional<BlockState> exposedDirtCover;
+	private final Optional<Holder<MapDecorationType>> structureIcon;
 
-	public LandmarkJigsawStructure(StructureSettings settings, Holder<StructureTemplatePool> startPool, Optional<ResourceLocation> startJigsawName, int maxDepth, HeightProvider startHeight, Optional<Heightmap.Types> projectStartToHeightmap, int maxDistanceFromCenter, DimensionPadding dimensionPadding, LiquidSettings liquidSettings, Optional<Entrance> entrance, Optional<DecorationConfig> decorationConfig, Optional<BlockState> exposedDirtCover) {
+	public LandmarkJigsawStructure(StructureSettings settings, Holder<StructureTemplatePool> startPool, Optional<ResourceLocation> startJigsawName, int maxDepth, HeightProvider startHeight, Optional<Heightmap.Types> projectStartToHeightmap, int maxDistanceFromCenter, DimensionPadding dimensionPadding, LiquidSettings liquidSettings, Optional<Entrance> entrance, Optional<DecorationConfig> decorationConfig, Optional<BlockState> exposedDirtCover, Optional<Holder<MapDecorationType>> structureIcon) {
 		super(settings);
 		this.startPool = startPool;
 		this.startJigsawName = startJigsawName;
@@ -90,6 +95,7 @@ public class LandmarkJigsawStructure extends Structure implements DecorationClea
 		this.entrance = entrance;
 		this.decorationConfig = decorationConfig;
 		this.exposedDirtCover = exposedDirtCover;
+		this.structureIcon = structureIcon;
 	}
 
 	@Override
@@ -171,6 +177,11 @@ public class LandmarkJigsawStructure extends Structure implements DecorationClea
 	@Override
 	public void afterPlace(WorldGenLevel level, StructureManager structureManager, ChunkGenerator chunkGenerator, RandomSource random, BoundingBox chunkBounds, ChunkPos chunkPos, PiecesContainer pieces) {
 		this.exposedDirtCover.ifPresent(cover -> GroundFill.coverExposedDirt(level, chunkBounds, pieces, cover));
+	}
+
+	@Override
+	public Optional<Holder<MapDecorationType>> getMapIcon() {
+		return this.structureIcon;
 	}
 
 	@Override

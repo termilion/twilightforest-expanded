@@ -210,13 +210,9 @@ public class Brownie extends PathfinderMob {
 		} else if (this.getRandom().nextFloat() < GAME_CHANCE) {
 			this.startHideAndSeek(player);
 		} else {
-			List<String> lines = DialogueManager.INSTANCE.getLines(player, DIALOGUE_MOB, "default");
-			if (lines.isEmpty())
+			String line = DialogueManager.INSTANCE.pickLine(player, DIALOGUE_MOB, "default", this.getRandom(), this.lastLine);
+			if (line == null)
 				return;
-			String line;
-			do {
-				line = lines.get(this.getRandom().nextInt(lines.size()));
-			} while (line.equals(this.lastLine) && lines.size() > 1);
 			this.lastLine = line;
 			this.say(player, line);
 			this.startAction(ACTION_NOD, TALK_TICKS, player);
@@ -225,14 +221,14 @@ public class Brownie extends PathfinderMob {
 
 	private void say(Player player, String line) {
 		this.playSound(TFSounds.BROWNIE_AMBIENT.get(), this.getSoundVolume(), this.getVoicePitch());
-		player.displayClientMessage(Component.literal(line), true);
+		player.displayClientMessage(Component.literal(DialogueManager.INSTANCE.resolve(player, DIALOGUE_MOB, line, this.getRandom())), true);
 	}
 
 	// Says a random line of an event key (hide_and_seek_start/found/won) if the dialogue file has one
 	private void sayEvent(Player player, String key) {
-		List<String> lines = DialogueManager.INSTANCE.getLines(player, DIALOGUE_MOB, key);
-		if (!lines.isEmpty())
-			player.displayClientMessage(Component.literal(lines.get(this.getRandom().nextInt(lines.size()))), true);
+		String line = DialogueManager.INSTANCE.pickLine(player, DIALOGUE_MOB, key, this.getRandom(), null);
+		if (line != null)
+			player.displayClientMessage(Component.literal(DialogueManager.INSTANCE.resolve(player, DIALOGUE_MOB, line, this.getRandom())), true);
 	}
 
 	private void startAction(int action, int ticks, Player lookAt) {

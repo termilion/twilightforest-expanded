@@ -1,0 +1,33 @@
+{
+  "name": "twilightforest:haunted_ruin/dark",
+  "fallback": "minecraft:empty",
+  "elements": [
+    {
+      "element": {
+        "element_type": "minecraft:single_pool_element",
+        "projection": "rigid",
+        "processors": "twilightforest:mossify_20_dark",
+        "location": "ati_structures:haunted_ruin/haunted_ruin"
+      },
+      "weight": 2
+    },
+    {
+      "element": {
+        "element_type": "minecraft:single_pool_element",
+        "projection": "rigid",
+        "processors": "twilightforest:mossify_20_dark",
+        "location": "ati_structures:haunted_ruin/haunted_ruin2"
+      },
+      "weight": 2
+    },
+    {
+      "element": {
+        "element_type": "minecraft:single_pool_element",
+        "projection": "rigid",
+        "processors": "twilightforest:mossify_20_dark",
+        "location": "ati_structures:haunted_ruin/haunted_ruin3"
+      },
+      "weight": 2
+    }
+  ]
+}

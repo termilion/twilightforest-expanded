@@ -17,3 +17,7 @@ pointed at a non-existing terrain/ folder).
 Also imported for the darkwood clearing landmark (twilightforest:arachnid_dwelling): arachnid_dwelling (template + pool). Wood blocks
 swapped to Twilight Forest darkwood (bookshelf → canopy bookshelf), spiders made persistent, chests retargeted to
 twilightforest:chests/arachnid_dwelling/* = the original ATi pools + Lich Tower and woodland mansion loot.
+
+2026-10-16: ruined_castle (template + pool, loot stone_storage, potion_storage, archer_chest2, armory; armory trident enchant level fixed)
+for twilightforest:highland_ruined_castle. rotten_log and haunted_ruin are also used by twilightforest:{canopy,darkwood}_rotten_log and
+darkwood_haunted_ruin. Wood is swapped by processors (twilightforest:block_swap) to the wood of the biome; templates unchanged.

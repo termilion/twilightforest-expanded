@@ -8,8 +8,10 @@ import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.server.packs.resources.Resource;
 import net.minecraft.server.packs.resources.ResourceManager;
 import net.minecraft.server.packs.resources.SimplePreparableReloadListener;
+import net.minecraft.util.RandomSource;
 import net.minecraft.util.profiling.ProfilerFiller;
 import net.minecraft.world.entity.player.Player;
+import org.jetbrains.annotations.Nullable;
 import twilightforest.TwilightForestMod;
 
 import java.io.Reader;
@@ -23,6 +25,7 @@ import java.util.Optional;
  * Loads the lines of talking mobs from {@code data/twilightforest/dialogue.json}:
  * {@code { "<language>": { "<mob>": { "<key>": ["line", ...] } } }}. Keys are biome ids, {@code default} or event names.
  * Lines are looked up in the player's client language (full code, then its prefix, e.g. {@code en_us} → {@code en}), falling back to {@code en}.
+ * In a line, {@code {greeting}} stands for a random line of the mob's {@code greeting} key and {@code {player}} for the player's name.
  */
 public class DialogueManager extends SimplePreparableReloadListener<Map<String, Map<String, Map<String, List<String>>>>> {
 	public static final DialogueManager INSTANCE = new DialogueManager();
@@ -80,5 +83,30 @@ public class DialogueManager extends SimplePreparableReloadListener<Map<String, 
 				return lines;
 		}
 		return List.of();
+	}
+
+	/**
+	 * @return a random line of {@code mob} for {@code key}, if possible not {@code lastLine}, or null if there are none.
+	 * Unresolved, so the caller can keep it as its next {@code lastLine}; see {@link #resolve}.
+	 */
+	@Nullable
+	public String pickLine(Player player, String mob, String key, RandomSource random, @Nullable String lastLine) {
+		List<String> lines = this.getLines(player, mob, key);
+		if (lines.isEmpty())
+			return null;
+		String line;
+		do {
+			line = lines.get(random.nextInt(lines.size()));
+		} while (line.equals(lastLine) && lines.size() > 1);
+		return line;
+	}
+
+	// Replaces the placeholders of a line
+	public String resolve(Player player, String mob, String line, RandomSource random) {
+		if (line.contains("{greeting}")) {
+			List<String> greetings = this.getLines(player, mob, "greeting");
+			line = line.replace("{greeting}", greetings.isEmpty() ? "" : greetings.get(random.nextInt(greetings.size())));
+		}
+		return line.replace("{player}", player.getScoreboardName());
 	}
 }

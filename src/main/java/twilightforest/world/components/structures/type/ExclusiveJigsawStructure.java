@@ -55,7 +55,8 @@ public class ExclusiveJigsawStructure extends Structure {
 		DimensionPadding.CODEC.optionalFieldOf("dimension_padding", JigsawStructure.DEFAULT_DIMENSION_PADDING).forGetter(s -> s.dimensionPadding),
 		LiquidSettings.CODEC.optionalFieldOf("liquid_settings", JigsawStructure.DEFAULT_LIQUID_SETTINGS).forGetter(s -> s.liquidSettings),
 		Codec.intRange(0, 32).optionalFieldOf("search_radius_chunks", 8).forGetter(s -> s.searchRadiusChunks),
-		Codec.intRange(0, 64).optionalFieldOf("margin", 2).forGetter(s -> s.margin)
+		Codec.intRange(0, 64).optionalFieldOf("margin", 2).forGetter(s -> s.margin),
+		ResourceLocation.CODEC.listOf().optionalFieldOf("ignored_structure_sets", List.of()).forGetter(s -> s.ignoredStructureSets)
 	).apply(instance, ExclusiveJigsawStructure::new)).validate(ExclusiveJigsawStructure::verifyRange);
 
 	// One placement state per dimension (RandomState is unique per dimension and server)
@@ -82,9 +83,11 @@ public class ExclusiveJigsawStructure extends Structure {
 	private final int searchRadiusChunks;
 	// Extra blocks kept free around this structure's pieces
 	private final int margin;
+	// Structure sets this structure may overlap (e.g. small ruins that would otherwise block a large town almost everywhere)
+	private final List<ResourceLocation> ignoredStructureSets;
 	private final JigsawStructure jigsaw;
 
-	public ExclusiveJigsawStructure(StructureSettings settings, Holder<StructureTemplatePool> startPool, Optional<ResourceLocation> startJigsawName, int maxDepth, HeightProvider startHeight, boolean useExpansionHack, Optional<Heightmap.Types> projectStartToHeightmap, int maxDistanceFromCenter, List<PoolAliasBinding> poolAliases, DimensionPadding dimensionPadding, LiquidSettings liquidSettings, int searchRadiusChunks, int margin) {
+	public ExclusiveJigsawStructure(StructureSettings settings, Holder<StructureTemplatePool> startPool, Optional<ResourceLocation> startJigsawName, int maxDepth, HeightProvider startHeight, boolean useExpansionHack, Optional<Heightmap.Types> projectStartToHeightmap, int maxDistanceFromCenter, List<PoolAliasBinding> poolAliases, DimensionPadding dimensionPadding, LiquidSettings liquidSettings, int searchRadiusChunks, int margin, List<ResourceLocation> ignoredStructureSets) {
 		super(settings);
 		this.jigsaw = new JigsawStructure(settings, startPool, startJigsawName, maxDepth, startHeight, useExpansionHack, projectStartToHeightmap, maxDistanceFromCenter, poolAliases, dimensionPadding, liquidSettings);
 		this.startPool = startPool;
@@ -99,6 +102,7 @@ public class ExclusiveJigsawStructure extends Structure {
 		this.liquidSettings = liquidSettings;
 		this.searchRadiusChunks = searchRadiusChunks;
 		this.margin = margin;
+		this.ignoredStructureSets = ignoredStructureSets;
 	}
 
 	// Same limit as JigsawStructure#verifyRange
@@ -141,6 +145,8 @@ public class ExclusiveJigsawStructure extends Structure {
 		int maxChunkZ = (box.maxZ() >> 4) + this.searchRadiusChunks;
 
 		for (Holder<StructureSet> set : state.possibleStructureSets()) {
+			if (set.unwrapKey().map(key -> this.ignoredStructureSets.contains(key.location())).orElse(false))
+				continue;
 			StructurePlacement placement = set.value().placement();
 			for (int chunkX = minChunkX; chunkX <= maxChunkX; chunkX++) {
 				for (int chunkZ = minChunkZ; chunkZ <= maxChunkZ; chunkZ++) {

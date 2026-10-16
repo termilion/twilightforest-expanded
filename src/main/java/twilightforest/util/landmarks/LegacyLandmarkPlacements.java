@@ -3,18 +3,27 @@ package twilightforest.util.landmarks;
 import com.google.common.collect.ImmutableMap;
 import net.minecraft.Util;
 import net.minecraft.core.BlockPos;
+import net.minecraft.core.Holder;
 import net.minecraft.resources.ResourceKey;
+import net.minecraft.server.level.ServerLevel;
 import net.minecraft.util.random.SimpleWeightedRandomList;
 import net.minecraft.world.level.LevelReader;
 import net.minecraft.world.level.biome.Biome;
 import net.minecraft.world.level.biome.Biomes;
+import net.minecraft.world.level.chunk.ChunkGeneratorStructureState;
 import net.minecraft.world.level.levelgen.LegacyRandomSource;
+import net.minecraft.world.level.levelgen.WorldgenRandom;
 import net.minecraft.world.level.levelgen.structure.Structure;
+import net.minecraft.world.level.levelgen.structure.StructureSet;
 import twilightforest.init.TFBiomes;
 import twilightforest.init.TFStructures;
 import twilightforest.util.WorldUtil;
 import twilightforest.util.iterators.XZQuadrantIterator;
+import twilightforest.world.components.biomesources.TFBiomeProvider;
+import twilightforest.world.components.structures.placements.LandmarkGridPlacement;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Map;
 import java.util.Optional;
 
@@ -104,6 +113,66 @@ public class LegacyLandmarkPlacements {
 		}
 
 		return pickVarietyLandmark(chunkX, chunkZ);
+	}
+
+	/**
+	 * Which landmark generates at the landmark center nearest to this chunk, the same way {@link net.minecraft.world.level.chunk.ChunkGenerator#createStructures} decides it:
+	 * every landmark grid set whose placement accepts the center chunk, the structure biomes tested against the main biome of the grid tile
+	 * (see LandmarkStructure#findValidGenerationPoint) and the same seeded weighted pick for sets with several structures (e.g. savanna_landmarks).
+	 * Unlike {@link #pickLandmarkForChunk} this knows every landmark, including the static-JSON ones.
+	 * Ignores the rare case of a picked structure that finds no room for its pieces (worldgen then tries the next one of the set).
+	 *
+	 * @return empty outside the Twilight Forest or if no landmark fits the biome
+	 */
+	public static Optional<Holder<Structure>> findLandmarkForChunk(ServerLevel level, int chunkX, int chunkZ) {
+		if (!(level.getChunkSource().getGenerator().getBiomeSource() instanceof TFBiomeProvider biomeProvider))
+			return Optional.empty();
+
+		BlockPos center = getNearestCenterXZ(chunkX, chunkZ);
+		int centerChunkX = center.getX() >> 4;
+		int centerChunkZ = center.getZ() >> 4;
+		Holder<Biome> mainBiome = biomeProvider.getMainBiome((Math.round(centerChunkX / 16F) << 6) + 2, (Math.round(centerChunkZ / 16F) << 6) + 2);
+		ChunkGeneratorStructureState state = level.getChunkSource().getGeneratorState();
+
+		for (Holder<StructureSet> set : state.possibleStructureSets()) {
+			if (!(set.value().placement() instanceof LandmarkGridPlacement placement) || !placement.isStructureChunk(state, centerChunkX, centerChunkZ))
+				continue;
+
+			Optional<Holder<Structure>> picked = pickFromSet(set.value().structures(), mainBiome, state.getLevelSeed(), centerChunkX, centerChunkZ);
+			if (picked.isPresent())
+				return picked;
+		}
+
+		return Optional.empty();
+	}
+
+	// Mirrors the structure choice in ChunkGenerator#createStructures
+	private static Optional<Holder<Structure>> pickFromSet(List<StructureSet.StructureSelectionEntry> entries, Holder<Biome> mainBiome, long seed, int chunkX, int chunkZ) {
+		if (entries.size() == 1)
+			return Optional.of(entries.getFirst().structure()).filter(structure -> structure.value().biomes().contains(mainBiome));
+
+		List<StructureSet.StructureSelectionEntry> remaining = new ArrayList<>(entries);
+		WorldgenRandom random = new WorldgenRandom(new LegacyRandomSource(0L));
+		random.setLargeFeatureSeed(seed, chunkX, chunkZ);
+		int totalWeight = remaining.stream().mapToInt(StructureSet.StructureSelectionEntry::weight).sum();
+
+		while (!remaining.isEmpty()) {
+			int roll = random.nextInt(totalWeight);
+			int index = 0;
+			for (StructureSet.StructureSelectionEntry entry : remaining) {
+				roll -= entry.weight();
+				if (roll < 0)
+					break;
+				index++;
+			}
+
+			StructureSet.StructureSelectionEntry entry = remaining.remove(index);
+			if (entry.structure().value().biomes().contains(mainBiome))
+				return Optional.of(entry.structure());
+			totalWeight -= entry.weight();
+		}
+
+		return Optional.empty();
 	}
 
 	public static ResourceKey<Structure> pickVarietyLandmark(int chunkX, int chunkZ) {

@@ -35,3 +35,7 @@ remnant/woodland_hut (2026-10-15): a persistent twilightforest:brownie was added
 underground_house (2026-10-15): templates underground_house_1..5 / _trap_1..5, pool underground_house, the witch_hut/foundation pool and
 witch_hut_base feature (renamed nova_structures:underground_house_foundation / underground_house_base). Loot replaced by Twilight Forest lich tower
 tables (dungeon_1 tower_room, 2 tower_foyer, 3 tower_library, 4 tower_potion, 5 tower_enchanting, pots tower_jars); one persistent brownie per house.
+
+2026-10-16: wild_ruin also used by twilightforest:{forest,canopy,darkwood}_wild_ruin (wood swapped by processors). ruin_town copied to
+darkwood_ruin_town/ (jigsaw pools renamed to nova_structures:darkwood_ruin_town*, center = original DnT template) for
+twilightforest:darkwood_ruin_town; processors = DnT ruined_town_(road_)degradation + darkwood block swap.

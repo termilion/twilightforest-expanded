@@ -3,8 +3,10 @@ package twilightforest.world.components.structures.type;
 import com.mojang.serialization.MapCodec;
 import com.mojang.serialization.codecs.RecordCodecBuilder;
 import net.minecraft.core.Holder;
+import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.data.worldgen.BootstrapContext;
+import net.minecraft.resources.ResourceLocation;
 import net.minecraft.util.RandomSource;
 import net.minecraft.util.random.WeightedRandomList;
 import net.minecraft.world.entity.EntityType;
@@ -27,6 +29,7 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 public class DarkTowerStructure extends ControlledSpawningStructure {
 	public static final MapCodec<DarkTowerStructure> CODEC = RecordCodecBuilder.mapCodec(instance ->
@@ -49,7 +52,7 @@ public class DarkTowerStructure extends ControlledSpawningStructure {
 
 	public static DarkTowerStructure buildDarkTowerConfig(BootstrapContext<Structure> context) {
 		return new DarkTowerStructure(
-			ControlledSpawningConfig.create(List.of(List.of(
+			ControlledSpawningConfig.create(List.of(Stream.concat(Stream.of(
 				new MobSpawnSettings.SpawnerData(TFEntities.CARMINITE_GOLEM.get(), 10, 1, 2),
 				new MobSpawnSettings.SpawnerData(EntityType.SKELETON, 10, 1, 2),
 				new MobSpawnSettings.SpawnerData(EntityType.CREEPER, 5, 1, 1),
@@ -58,7 +61,9 @@ public class DarkTowerStructure extends ControlledSpawningStructure {
 				new MobSpawnSettings.SpawnerData(TFEntities.CARMINITE_GHASTLING.get(), 10, 1, 2),
 				new MobSpawnSettings.SpawnerData(TFEntities.CARMINITE_BROODLING.get(), 10, 4, 4),
 				new MobSpawnSettings.SpawnerData(TFEntities.PINCH_BEETLE.get(), 10, 1, 1)
-			), List.of(
+			), // Myths & Legends imps (runtime-only dependency, so looked up by id)
+				BuiltInRegistries.ENTITY_TYPE.getOptional(ResourceLocation.fromNamespaceAndPath("mythsandlegends", "imp")).map(imp -> new MobSpawnSettings.SpawnerData(imp, 5, 1, 1)).stream()
+			).toList(), List.of(
 				// roof ghasts
 				new MobSpawnSettings.SpawnerData(TFEntities.CARMINITE_GHASTGUARD.get(), 10, 1, 2)
 			)), List.of(), List.of(
