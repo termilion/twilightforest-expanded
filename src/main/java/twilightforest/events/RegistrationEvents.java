@@ -51,6 +51,7 @@ import org.jetbrains.annotations.Nullable;
 import tamaized.beanification.Autowired;
 import tamaized.beanification.Component;
 import tamaized.beanification.PostConstruct;
+import twilightforest.compat.mythsandlegends.MythsAndLegendsCompat;
 import twilightforest.TFRegistries;
 import twilightforest.TwilightForestMod;
 import twilightforest.block.entity.DryingRackBlockEntity;
@@ -109,6 +110,8 @@ public class RegistrationEvents {
 		bus.addListener(this::registerGenericItemHandlers);
 		bus.addListener(this::addEntityAttributes);
 		bus.addListener(this::registerSpawnPlacements);
+		bus.addListener(MythsAndLegendsCompat::registerSpawnPlacements);
+		bus.addListener(MythsAndLegendsCompat::removeOverworldBiome);
 		bus.addListener(TFCreativeTabs::addToTabs);
 
 		bus.addListener(ConfigSetup::loadConfigs);

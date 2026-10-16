@@ -1,0 +1,529 @@
+{
+  "type": "minecraft:chest",
+  "pools": [
+    {
+      "rolls": {
+        "min": 3,
+        "max": 6
+      },
+      "entries": [
+        {
+          "type": "minecraft:item",
+          "name": "minecraft:phantom_membrane",
+          "weight": 5,
+          "functions": [
+            {
+              "function": "minecraft:set_count",
+              "count": {
+                "min": 4,
+                "max": 6
+              }
+            }
+          ]
+        },
+        {
+          "type": "minecraft:item",
+          "name": "minecraft:paper",
+          "weight": 5,
+          "functions": [
+            {
+              "function": "minecraft:set_count",
+              "count": {
+                "min": 4,
+                "max": 12
+              }
+            }
+          ]
+        },
+        {
+          "type": "minecraft:item",
+          "name": "minecraft:bone_meal",
+          "weight": 5,
+          "functions": [
+            {
+              "function": "minecraft:set_count",
+              "count": {
+                "min": 3,
+                "max": 6
+              }
+            }
+          ]
+        },
+        {
+          "type": "minecraft:item",
+          "name": "minecraft:rabbit_foot",
+          "weight": 5,
+          "functions": [
+            {
+              "function": "minecraft:set_count",
+              "count": {
+                "min": 4,
+                "max": 8
+              }
+            }
+          ]
+        },
+        {
+          "type": "minecraft:item",
+          "name": "minecraft:fire_charge",
+          "weight": 4,
+          "functions": [
+            {
+              "function": "minecraft:set_count",
+              "count": {
+                "min": 3,
+                "max": 6
+              }
+            }
+          ]
+        },
+        {
+          "type": "minecraft:item",
+          "name": "minecraft:leather",
+          "weight": 5,
+          "functions": [
+            {
+              "function": "minecraft:set_count",
+              "count": {
+                "min": 4,
+                "max": 12
+              }
+            }
+          ]
+        },
+        {
+          "type": "minecraft:item",
+          "name": "minecraft:glow_ink_sac",
+          "weight": 4,
+          "functions": [
+            {
+              "function": "minecraft:set_count",
+              "count": {
+                "min": 5,
+                "max": 12
+              }
+            }
+          ]
+        },
+        {
+          "type": "minecraft:item",
+          "name": "minecraft:dragon_breath",
+          "weight": 2,
+          "functions": [
+            {
+              "function": "minecraft:set_count",
+              "count": {
+                "min": 2,
+                "max": 4
+              }
+            }
+          ]
+        },
+        {
+          "type": "minecraft:item",
+          "name": "minecraft:experience_bottle",
+          "weight": 5,
+          "functions": [
+            {
+              "function": "minecraft:set_count",
+              "count": {
+                "min": 5,
+                "max": 15
+              }
+            }
+          ]
+        },
+        {
+          "type": "minecraft:item",
+          "name": "minecraft:glass_bottle",
+          "weight": 4,
+          "functions": [
+            {
+              "function": "minecraft:set_count",
+              "count": {
+                "min": 4,
+                "max": 10
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "rolls": 1,
+      "entries": [
+        {
+          "type": "minecraft:item",
+          "name": "minecraft:splash_potion",
+          "weight": 2,
+          "functions": [
+            {
+              "function": "minecraft:set_name",
+              "name": {
+                "text": "Dark Brew",
+                "color": "#fc3265",
+                "bold": true,
+                "italic": false
+              }
+            },
+            {
+              "function": "minecraft:set_lore",
+              "lore": [
+                {
+                  "text": "Conjured by the Baba Yaga",
+                  "color": "#b93e42"
+                }
+              ],
+              "mode": "append"
+            },
+            {
+              "function": "minecraft:set_components",
+              "components": {
+                "minecraft:potion_contents": {
+                  "custom_color": 657930,
+                  "custom_effects": [
+                    {
+                      "id": "minecraft:wither",
+                      "duration": 1200
+                    },
+                    {
+                      "id": "minecraft:weakness",
+                      "duration": 1200
+                    },
+                    {
+                      "id": "minecraft:mining_fatigue",
+                      "duration": 1200
+                    }
+                  ]
+                }
+              }
+            }
+          ],
+          "conditions": [
+            {
+              "condition": "minecraft:random_chance",
+              "chance": 0.4
+            }
+          ]
+        },
+        {
+          "type": "minecraft:item",
+          "name": "minecraft:potion",
+          "weight": 2,
+          "functions": [
+            {
+              "function": "minecraft:set_name",
+              "name": {
+                "text": "Villager Ectoplasm",
+                "color": "#f86bff",
+                "bold": true,
+                "italic": false
+              }
+            },
+            {
+              "function": "minecraft:set_lore",
+              "lore": [
+                {
+                  "text": "Mitochondria is the power house of the cell"
+                }
+              ],
+              "mode": "append",
+              "conditions": []
+            },
+            {
+              "function": "minecraft:set_components",
+              "components": {
+                "minecraft:potion_contents": {
+                  "custom_color": 15728892,
+                  "custom_effects": [
+                    {
+                      "id": "minecraft:hero_of_the_village",
+                      "amplifier": 2,
+                      "duration": 2400
+                    },
+                    {
+                      "id": "minecraft:slowness",
+                      "duration": 2400
+                    }
+                  ]
+                }
+              }
+            }
+          ],
+          "conditions": [
+            {
+              "condition": "minecraft:random_chance",
+              "chance": 0.5
+            }
+          ]
+        },
+        {
+          "type": "minecraft:item",
+          "name": "minecraft:potion",
+          "functions": [
+            {
+              "function": "minecraft:set_name",
+              "name": {
+                "text": "Tvarda Voda",
+                "color": "#0097ca",
+                "bold": true,
+                "italic": false
+              }
+            },
+            {
+              "function": "minecraft:set_lore",
+              "lore": [
+                {
+                  "text": "Hard Water",
+                  "color": "#7575ff"
+                }
+              ],
+              "mode": "append"
+            },
+            {
+              "function": "minecraft:set_components",
+              "components": {
+                "minecraft:potion_contents": {
+                  "custom_color": 5143023,
+                  "custom_effects": [
+                    {
+                      "id": "minecraft:health_boost",
+                      "duration": 1200
+                    },
+                    {
+                      "id": "minecraft:instant_health",
+                      "duration": 1200
+                    },
+                    {
+                      "id": "minecraft:regeneration",
+                      "duration": 1200
+                    }
+                  ]
+                }
+              }
+            }
+          ],
+          "conditions": [
+            {
+              "condition": "minecraft:random_chance",
+              "chance": 0.5
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "rolls": 1,
+      "entries": [
+        {
+          "type": "minecraft:item",
+          "name": "minecraft:potion",
+          "functions": [
+            {
+              "function": "minecraft:set_name",
+              "name": {
+                "text": "Atomized Doritos",
+                "color": "#f05705",
+                "bold": true,
+                "italic": false
+              }
+            },
+            {
+              "function": "minecraft:set_lore",
+              "lore": [
+                {
+                  "text": "Includes Allura Red AC",
+                  "color": "#c6642f"
+                }
+              ],
+              "mode": "append"
+            },
+            {
+              "function": "minecraft:set_components",
+              "components": {
+                "minecraft:potion_contents": {
+                  "custom_color": 16418048,
+                  "custom_effects": [
+                    {
+                      "id": "minecraft:fire_resistance",
+                      "amplifier": 2,
+                      "duration": 4800
+                    },
+                    {
+                      "id": "minecraft:absorption",
+                      "duration": 4800
+                    }
+                  ]
+                }
+              }
+            }
+          ],
+          "conditions": []
+        },
+        {
+          "type": "minecraft:item",
+          "name": "minecraft:potion",
+          "functions": [
+            {
+              "function": "minecraft:set_name",
+              "name": {
+                "text": "Krtek Juice",
+                "color": "#659797",
+                "bold": true,
+                "italic": false
+              }
+            },
+            {
+              "function": "minecraft:set_lore",
+              "lore": [
+                {
+                  "text": "I love Krtek",
+                  "color": "#54777b"
+                }
+              ],
+              "mode": "append"
+            },
+            {
+              "function": "minecraft:set_components",
+              "components": {
+                "minecraft:potion_contents": {
+                  "custom_color": 9356743,
+                  "custom_effects": [
+                    {
+                      "id": "minecraft:haste",
+                      "amplifier": 4,
+                      "duration": 1200
+                    },
+                    {
+                      "id": "minecraft:dolphins_grace",
+                      "amplifier": 3,
+                      "duration": 1200
+                    }
+                  ]
+                }
+              }
+            }
+          ],
+          "conditions": []
+        },
+        {
+          "type": "minecraft:item",
+          "name": "minecraft:lingering_potion",
+          "functions": [
+            {
+              "function": "minecraft:set_name",
+              "name": {
+                "text": "Pomegranate Juice",
+                "color": "#ff5c5c",
+                "bold": true,
+                "italic": false
+              }
+            },
+            {
+              "function": "minecraft:set_lore",
+              "lore": [
+                {
+                  "text": "Juicy and Yummy!",
+                  "color": "#bf4a4a"
+                }
+              ],
+              "mode": "insert"
+            },
+            {
+              "function": "minecraft:set_components",
+              "components": {
+                "minecraft:potion_contents": {
+                  "custom_color": 12536394,
+                  "custom_effects": [
+                    {
+                      "id": "minecraft:wither",
+                      "duration": 800
+                    },
+                    {
+                      "id": "minecraft:levitation",
+                      "amplifier": 2,
+                      "duration": 800
+                    }
+                  ]
+                }
+              }
+            }
+          ],
+          "conditions": []
+        },
+        {
+          "type": "minecraft:item",
+          "name": "minecraft:splash_potion",
+          "functions": [
+            {
+              "function": "minecraft:set_name",
+              "name": {
+                "text": "Mango Solution",
+                "color": "#f4c10b",
+                "bold": true,
+                "italic": false
+              }
+            },
+            {
+              "function": "minecraft:set_lore",
+              "lore": [
+                {
+                  "text": "MANGO MANGO MANGO!",
+                  "color": "#c1a12f"
+                }
+              ],
+              "mode": "append"
+            },
+            {
+              "function": "minecraft:set_components",
+              "components": {
+                "minecraft:potion_contents": {
+                  "custom_color": 16040203,
+                  "custom_effects": [
+                    {
+                      "id": "minecraft:speed",
+                      "amplifier": 4,
+                      "duration": 200
+                    },
+                    {
+                      "id": "minecraft:poison",
+                      "duration": 200
+                    }
+                  ]
+                }
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "rolls": 1,
+      "entries": [
+        {
+          "type": "minecraft:loot_table",
+          "value": "twilightforest:chests/tower_potion",
+          "weight": 1
+        },
+        {
+          "type": "minecraft:empty",
+          "weight": 1
+        }
+      ]
+    },
+    {
+      "rolls": 1,
+      "entries": [
+        {
+          "type": "minecraft:loot_table",
+          "value": "minecraft:chests/woodland_mansion",
+          "weight": 1
+        },
+        {
+          "type": "minecraft:empty",
+          "weight": 1
+        }
+      ]
+    }
+  ]
+}

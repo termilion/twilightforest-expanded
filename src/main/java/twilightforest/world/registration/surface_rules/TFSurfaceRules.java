@@ -43,8 +43,18 @@ public class TFSurfaceRules {
 			glacierSurface(),
 			mangroveSwampSurface(),
 			amethystStraitsSurface(),
+			darkwoodClearingSurface(),
 			overworldLikeFloor()
 		);
+	}
+
+	// The arachnid dwelling's clearing has a podzol floor
+	@NotNull
+	private static SurfaceRules.RuleSource darkwoodClearingSurface() {
+		return SurfaceRules.ifTrue(SurfaceRules.isBiome(TFBiomes.DARKWOOD_CLEARING), SurfaceRules.ifTrue(SurfaceRules.ON_FLOOR, SurfaceRules.sequence(
+			SurfaceRules.ifTrue(SurfaceRules.waterBlockCheck(-1, 0), PODZOL),
+			DIRT
+		)));
 	}
 
 	@NotNull

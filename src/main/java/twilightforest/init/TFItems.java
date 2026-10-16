@@ -170,6 +170,7 @@ public class TFItems {
 	public static final DeferredItem<Item> ENDER_BOW = ITEMS.register("ender_bow", () -> new EnderBowItem(new Item.Properties().rarity(Rarity.UNCOMMON).durability(384)));
 	public static final DeferredItem<Item> ICE_SWORD = ITEMS.register("ice_sword", () -> new IceSwordItem(TFToolMaterials.ICE, new Item.Properties().attributes(SwordItem.createAttributes(TFToolMaterials.ICE, 3, -2.4F))));
 	public static final DeferredItem<Item> GLASS_SWORD = ITEMS.register("glass_sword", () -> new GlassSwordItem(TFToolMaterials.GLASS, new Item.Properties().setNoRepair().rarity(Rarity.UNCOMMON).attributes(SwordItem.createAttributes(TFToolMaterials.GLASS, 3, -2.4F))));
+	public static final DeferredItem<Item> STINGER = ITEMS.register("stinger", () -> new StingerItem(TFToolMaterials.STINGER, new Item.Properties().rarity(Rarity.RARE).attributes(SwordItem.createAttributes(TFToolMaterials.STINGER, 3, -2.4F))));
 	public static final DeferredItem<Item> MAGIC_BEANS = ITEMS.register("magic_beans", () -> new MagicBeansItem(new Item.Properties()));
 	public static final DeferredItem<Item> GIANT_PICKAXE = ITEMS.register("giant_pickaxe", () -> new GiantPickItem(TFToolMaterials.GIANT, new Item.Properties().attributes(GiantPickItem.createGiantAttributes(TFToolMaterials.GIANT, 8, -3.5F))));
 	public static final DeferredItem<Item> GIANT_SWORD = ITEMS.register("giant_sword", () -> new GiantSwordItem(TFToolMaterials.GIANT, new Item.Properties().attributes(GiantSwordItem.createGiantAttributes(TFToolMaterials.GIANT, 10, -3.5F))));

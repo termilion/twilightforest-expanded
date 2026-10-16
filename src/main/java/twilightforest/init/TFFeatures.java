@@ -20,6 +20,7 @@ public class TFFeatures {
 
 	public static final DeferredHolder<Feature<?>, Feature<BlockColumnsFeature.Config>> BLOCK_COLUMNS = FEATURES.register("block_columns", () -> new BlockColumnsFeature(BlockColumnsFeature.Config.CODEC));
 	public static final DeferredHolder<Feature<?>, Feature<LakeFloorPlantsFeature.Config>> LAKE_FLOOR_PLANTS = FEATURES.register("lake_floor_plants", () -> new LakeFloorPlantsFeature(LakeFloorPlantsFeature.Config.CODEC));
+	public static final DeferredHolder<Feature<?>, Feature<NoneFeatureConfiguration>> AMETHYST_BUSH = FEATURES.register("amethyst_bush", () -> new AmethystBushFeature(NoneFeatureConfiguration.CODEC));
 	public static final DeferredHolder<Feature<?>, Feature<CrystalSpikeFeature.Config>> CRYSTAL_SPIKE = FEATURES.register("crystal_spike", () -> new CrystalSpikeFeature(CrystalSpikeFeature.Config.CODEC));
 	public static final DeferredHolder<Feature<?>, Feature<TFSmallLakeFeature.Configuration>> SMALL_LAKE = FEATURES.register("small_lake", () -> new TFSmallLakeFeature(TFSmallLakeFeature.Configuration.CODEC));
 	public static final DeferredHolder<Feature<?>, Feature<HugeMushroomFeatureConfiguration>> BIG_MUSHGLOOM = FEATURES.register("big_mushgloom", () -> new BigMushgloomFeature(HugeMushroomFeatureConfiguration.CODEC));

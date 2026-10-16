@@ -1,0 +1,10 @@
+{
+  "type": "neoforge:add_spawns",
+  "biomes": "twilightforest:swamp",
+  "spawners": {
+    "type": "rottencreatures:swampy",
+    "weight": 10,
+    "minCount": 1,
+    "maxCount": 2
+  }
+}

@@ -38,6 +38,7 @@ public class TFStructures {
 	public static final ResourceKey<Structure> QUEST_ISLAND = registerKey("quest_island");
 	// Defined as static data in src/main/resources, since its template pools are imported from Dungeons and Taverns and unknown to datagen
 	public static final ResourceKey<Structure> UNDEAD_CRYPT = registerKey("undead_crypt");
+	public static final ResourceKey<Structure> ARACHNID_DWELLING = registerKey("arachnid_dwelling");
 	public static final ResourceKey<Structure> LONE_CITADEL = registerKey("lone_citadel");
 	public static final ResourceKey<Structure> DRUID_GROVE = registerKey("druid_grove");
 	public static final ResourceKey<Structure> FLOATING_RUINS = registerKey("floating_ruins");

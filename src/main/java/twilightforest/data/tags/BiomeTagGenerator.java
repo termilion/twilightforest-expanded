@@ -24,6 +24,8 @@ public class BiomeTagGenerator extends BiomeTagsProvider {
 	public static final TagKey<Biome> VALID_SNOWY_RUIN_BIOMES = TagKey.create(Registries.BIOME, TwilightForestMod.prefix("valid_snowy_ruin_biomes"));
 	public static final TagKey<Biome> VALID_ELVEN_TREE_BIOMES = TagKey.create(Registries.BIOME, TwilightForestMod.prefix("valid_elven_tree_biomes"));
 	public static final TagKey<Biome> VALID_REDCAP_FORT_BIOMES = TagKey.create(Registries.BIOME, TwilightForestMod.prefix("valid_redcap_fort_biomes"));
+	public static final TagKey<Biome> VALID_ANCIENT_VESTIGES_BIOMES = TagKey.create(Registries.BIOME, TwilightForestMod.prefix("valid_ancient_vestiges_biomes"));
+	public static final TagKey<Biome> VALID_OLD_CAMP_BIOMES = TagKey.create(Registries.BIOME, TwilightForestMod.prefix("valid_old_camp_biomes"));
 	public static final TagKey<Biome> VALID_UNDERGROUND_HOUSE_BIOMES = TagKey.create(Registries.BIOME, TwilightForestMod.prefix("valid_underground_house_biomes"));
 	public static final TagKey<Biome> VALID_QUEST_GROVE_BIOMES = TagKey.create(Registries.BIOME, TwilightForestMod.prefix("valid_quest_grove_biomes"));
 
@@ -43,6 +45,7 @@ public class BiomeTagGenerator extends BiomeTagsProvider {
 	public static final TagKey<Biome> VALID_AURORA_PALACE_BIOMES = TagKey.create(Registries.BIOME, TwilightForestMod.prefix("valid_aurora_palace_biomes"));
 	public static final TagKey<Biome> VALID_TROLL_CAVE_BIOMES = TagKey.create(Registries.BIOME, TwilightForestMod.prefix("valid_troll_cave_biomes"));
 	public static final TagKey<Biome> VALID_GIANT_HOUSE_BIOMES = TagKey.create(Registries.BIOME, TwilightForestMod.prefix("valid_giant_house_biomes"));
+	public static final TagKey<Biome> VALID_ARACHNID_DWELLING_BIOMES = TagKey.create(Registries.BIOME, TwilightForestMod.prefix("valid_arachnid_dwelling_biomes"));
 	public static final TagKey<Biome> VALID_UNDEAD_CRYPT_BIOMES = TagKey.create(Registries.BIOME, TwilightForestMod.prefix("valid_undead_crypt_biomes"));
 	public static final TagKey<Biome> VALID_LONE_CITADEL_BIOMES = TagKey.create(Registries.BIOME, TwilightForestMod.prefix("valid_lone_citadel_biomes"));
 	public static final TagKey<Biome> VALID_SPOOKY_RUIN_BIOMES = TagKey.create(Registries.BIOME, TwilightForestMod.prefix("valid_spooky_ruin_biomes"));
@@ -64,7 +67,7 @@ public class BiomeTagGenerator extends BiomeTagsProvider {
 			TFBiomes.ENCHANTED_FOREST, TFBiomes.DENSE_MUSHROOM_FOREST,
 			TFBiomes.LAKE, TFBiomes.STREAM, TFBiomes.UNDERGROUND,
 			TFBiomes.SWAMP, TFBiomes.FIRE_SWAMP,
-			TFBiomes.DARK_FOREST, TFBiomes.DARK_FOREST_CENTER,
+			TFBiomes.DARK_FOREST, TFBiomes.DARK_FOREST_CENTER, TFBiomes.DARKWOOD_CLEARING,
 			TFBiomes.SNOWY_FOREST, TFBiomes.GLACIER,
 			TFBiomes.HIGHLANDS, TFBiomes.THORNLANDS,
 			TFBiomes.AMETHYST_STRAITS, TFBiomes.AMETHYST_STRAITS_UNDERGROUND,
@@ -77,6 +80,9 @@ public class BiomeTagGenerator extends BiomeTagsProvider {
 		this.tag(VALID_BROWNIE_HUT_BIOMES).add(TFBiomes.SWAMP, TFBiomes.FIRE_SWAMP, Biomes.MANGROVE_SWAMP);
 		this.tag(VALID_BROWNIE_HOLE_BIOMES).add(TFBiomes.FOREST, TFBiomes.DENSE_FOREST, TFBiomes.MUSHROOM_FOREST, TFBiomes.DENSE_MUSHROOM_FOREST, TFBiomes.HIGHLANDS, TFBiomes.SNOWY_FOREST, TFBiomes.OAK_SAVANNAH);
 		this.tag(VALID_REDCAP_FORT_BIOMES).add(TFBiomes.OAK_SAVANNAH);
+		// Myths & Legends structures (start pools referenced from mythsandlegends, not copied)
+		this.tag(VALID_ANCIENT_VESTIGES_BIOMES).add(TFBiomes.FOREST, TFBiomes.MUSHROOM_FOREST, TFBiomes.OAK_SAVANNAH);
+		this.tag(VALID_OLD_CAMP_BIOMES).add(TFBiomes.CLEARING);
 		// Every surface biome but stream and lake
 		this.tag(VALID_ELVEN_PILLAR_BIOMES).add(
 			TFBiomes.FOREST, TFBiomes.DENSE_FOREST, TFBiomes.FIREFLY_FOREST, TFBiomes.CLEARING, TFBiomes.OAK_SAVANNAH,
@@ -123,6 +129,7 @@ public class BiomeTagGenerator extends BiomeTagsProvider {
 		this.tag(VALID_AURORA_PALACE_BIOMES).add(TFBiomes.GLACIER);
 		this.tag(VALID_TROLL_CAVE_BIOMES).add(TFBiomes.HIGHLANDS);
 		this.tag(VALID_UNDEAD_CRYPT_BIOMES).add(TFBiomes.SPOOKY_FOREST);
+		this.tag(VALID_ARACHNID_DWELLING_BIOMES).add(TFBiomes.DARKWOOD_CLEARING);
 		this.tag(VALID_LONE_CITADEL_BIOMES).add(TFBiomes.AMETHYST_STRAITS);
 		this.tag(VALID_SPOOKY_RUIN_BIOMES).add(TFBiomes.SPOOKY_FOREST);
 		this.tag(VALID_SAVANNA_LANDMARK_BIOMES).add(TFBiomes.OAK_SAVANNAH);

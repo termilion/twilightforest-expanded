@@ -241,6 +241,7 @@ public class DataMapGenerator extends DataMapProvider {
 		magicMap.add(TFBiomes.THORNLANDS, new MagicMapBiomeColor(MapColor.WOOD, 3), false);
 		magicMap.add(TFBiomes.FIREFLY_FOREST, new MagicMapBiomeColor(MapColor.EMERALD, 1), false);
 		magicMap.add(TFBiomes.DARK_FOREST, new MagicMapBiomeColor(MapColor.COLOR_GREEN, 3), false);
+		magicMap.add(TFBiomes.DARKWOOD_CLEARING, new MagicMapBiomeColor(MapColor.COLOR_GRAY, 1), false);
 		magicMap.add(TFBiomes.DARK_FOREST_CENTER, new MagicMapBiomeColor(MapColor.COLOR_ORANGE, 3), false);
 		magicMap.add(TFBiomes.SNOWY_FOREST, new MagicMapBiomeColor(MapColor.SNOW, 1), false);
 		magicMap.add(TFBiomes.GLACIER, new MagicMapBiomeColor(MapColor.ICE, 1), false);

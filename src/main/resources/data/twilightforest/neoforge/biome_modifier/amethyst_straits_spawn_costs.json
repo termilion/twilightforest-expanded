@@ -1,0 +1,12 @@
+{
+  "type": "neoforge:add_spawn_costs",
+  "biomes": "twilightforest:amethyst_straits",
+  "entity_types": [
+    "mythsandlegends:possessed_armor",
+    "mythsandlegends:gargoyle"
+  ],
+  "spawn_cost": {
+    "charge": 0.8,
+    "energy_budget": 0.2
+  }
+}

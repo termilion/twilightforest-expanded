@@ -29,6 +29,7 @@ public class LegacyLandmarkPlacements {
 		.put(TFBiomes.SWAMP, TFStructures.LABYRINTH)
 		.put(TFBiomes.FIRE_SWAMP, TFStructures.HYDRA_LAIR)
 		.put(TFBiomes.DARK_FOREST, TFStructures.KNIGHT_STRONGHOLD)
+		.put(TFBiomes.DARKWOOD_CLEARING, TFStructures.ARACHNID_DWELLING)
 		.put(TFBiomes.DARK_FOREST_CENTER, TFStructures.DARK_TOWER)
 		.put(TFBiomes.SNOWY_FOREST, TFStructures.YETI_CAVE)
 		.put(TFBiomes.GLACIER, TFStructures.AURORA_PALACE)

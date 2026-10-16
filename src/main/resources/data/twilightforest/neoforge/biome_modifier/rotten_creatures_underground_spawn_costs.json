@@ -1,0 +1,13 @@
+{
+  "type": "neoforge:add_spawn_costs",
+  "biomes": [
+    "twilightforest:underground",
+    "twilightforest:highlands_underground",
+    "twilightforest:oak_savannah_underground"
+  ],
+  "entity_types": "rottencreatures:undead_miner",
+  "spawn_cost": {
+    "charge": 0.2,
+    "energy_budget": 0.15
+  }
+}

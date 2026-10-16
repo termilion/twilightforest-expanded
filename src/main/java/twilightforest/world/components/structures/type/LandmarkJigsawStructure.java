@@ -6,9 +6,14 @@ import com.mojang.serialization.codecs.RecordCodecBuilder;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Holder;
 import net.minecraft.resources.ResourceLocation;
+import net.minecraft.util.RandomSource;
 import net.minecraft.world.level.ChunkPos;
+import net.minecraft.world.level.StructureManager;
+import net.minecraft.world.level.WorldGenLevel;
 import net.minecraft.world.level.biome.Biome;
 import net.minecraft.world.level.block.Mirror;
+import net.minecraft.world.level.block.state.BlockState;
+import net.minecraft.world.level.chunk.ChunkGenerator;
 import net.minecraft.world.level.levelgen.Heightmap;
 import net.minecraft.world.level.levelgen.WorldGenerationContext;
 import net.minecraft.world.level.levelgen.heightproviders.HeightProvider;
@@ -22,6 +27,7 @@ import net.minecraft.world.level.levelgen.structure.pools.JigsawPlacement;
 import net.minecraft.world.level.levelgen.structure.pools.StructureTemplatePool;
 import net.minecraft.world.level.levelgen.structure.pools.alias.PoolAliasLookup;
 import net.minecraft.world.level.levelgen.structure.structures.JigsawStructure;
+import net.minecraft.world.level.levelgen.structure.pieces.PiecesContainer;
 import net.minecraft.world.level.levelgen.structure.pieces.StructurePiecesBuilder;
 import net.minecraft.world.level.levelgen.structure.templatesystem.LiquidSettings;
 import net.minecraft.world.level.levelgen.structure.templatesystem.StructureTemplate;
@@ -29,6 +35,7 @@ import twilightforest.init.TFStructureTypes;
 import twilightforest.world.components.structures.SpiralStairShaftPiece;
 import twilightforest.world.components.biomesources.TFBiomeProvider;
 import twilightforest.world.components.structures.util.DecorationClearance;
+import twilightforest.world.components.structures.util.GroundFill;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -52,7 +59,8 @@ public class LandmarkJigsawStructure extends Structure implements DecorationClea
 		DimensionPadding.CODEC.optionalFieldOf("dimension_padding", JigsawStructure.DEFAULT_DIMENSION_PADDING).forGetter(s -> s.dimensionPadding),
 		LiquidSettings.CODEC.optionalFieldOf("liquid_settings", JigsawStructure.DEFAULT_LIQUID_SETTINGS).forGetter(s -> s.liquidSettings),
 		Entrance.CODEC.optionalFieldOf("entrance").forGetter(s -> s.entrance),
-		DecorationConfig.CODEC.optionalFieldOf(DecorationClearance.CODEC_NAME).forGetter(s -> s.decorationConfig)
+		DecorationConfig.CODEC.optionalFieldOf(DecorationClearance.CODEC_NAME).forGetter(s -> s.decorationConfig),
+		BlockState.CODEC.optionalFieldOf("exposed_dirt_cover").forGetter(s -> s.exposedDirtCover)
 	).apply(instance, LandmarkJigsawStructure::new));
 
 	private final Holder<StructureTemplatePool> startPool;
@@ -66,8 +74,10 @@ public class LandmarkJigsawStructure extends Structure implements DecorationClea
 	private final Optional<Entrance> entrance;
 	// Without a config, biome features may generate anywhere around and inside the structure
 	private final Optional<DecorationConfig> decorationConfig;
+	// Dirt the structure leaves uncovered at its bottom (where its air blocks cut away the grass of higher ground) becomes this block
+	private final Optional<BlockState> exposedDirtCover;
 
-	public LandmarkJigsawStructure(StructureSettings settings, Holder<StructureTemplatePool> startPool, Optional<ResourceLocation> startJigsawName, int maxDepth, HeightProvider startHeight, Optional<Heightmap.Types> projectStartToHeightmap, int maxDistanceFromCenter, DimensionPadding dimensionPadding, LiquidSettings liquidSettings, Optional<Entrance> entrance, Optional<DecorationConfig> decorationConfig) {
+	public LandmarkJigsawStructure(StructureSettings settings, Holder<StructureTemplatePool> startPool, Optional<ResourceLocation> startJigsawName, int maxDepth, HeightProvider startHeight, Optional<Heightmap.Types> projectStartToHeightmap, int maxDistanceFromCenter, DimensionPadding dimensionPadding, LiquidSettings liquidSettings, Optional<Entrance> entrance, Optional<DecorationConfig> decorationConfig, Optional<BlockState> exposedDirtCover) {
 		super(settings);
 		this.startPool = startPool;
 		this.startJigsawName = startJigsawName;
@@ -79,6 +89,7 @@ public class LandmarkJigsawStructure extends Structure implements DecorationClea
 		this.liquidSettings = liquidSettings;
 		this.entrance = entrance;
 		this.decorationConfig = decorationConfig;
+		this.exposedDirtCover = exposedDirtCover;
 	}
 
 	@Override
@@ -155,6 +166,11 @@ public class LandmarkJigsawStructure extends Structure implements DecorationClea
 			BlockPos.CODEC.fieldOf("shaft_position").forGetter(Entrance::shaftPosition),
 			Codec.intRange(0, JigsawStructure.MAX_DEPTH).optionalFieldOf("size", 1).forGetter(Entrance::size)
 		).apply(instance, Entrance::new));
+	}
+
+	@Override
+	public void afterPlace(WorldGenLevel level, StructureManager structureManager, ChunkGenerator chunkGenerator, RandomSource random, BoundingBox chunkBounds, ChunkPos chunkPos, PiecesContainer pieces) {
+		this.exposedDirtCover.ifPresent(cover -> GroundFill.coverExposedDirt(level, chunkBounds, pieces, cover));
 	}
 
 	@Override

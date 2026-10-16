@@ -1,0 +1,15 @@
+{
+  "placement": {
+    "type": "twilightforest:avoid_landmark_grid",
+    "salt": 1694767180,
+    "spacing": 32,
+    "separation": 12,
+    "spread_type": "triangular"
+  },
+  "structures": [
+    {
+      "structure": "twilightforest:ancient_vestiges",
+      "weight": 1
+    }
+  ]
+}

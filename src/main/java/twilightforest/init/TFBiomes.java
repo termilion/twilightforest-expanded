@@ -39,6 +39,7 @@ public class TFBiomes {
 
 	public static final ResourceKey<Biome> DARK_FOREST = makeKey("dark_forest");
 	public static final ResourceKey<Biome> DARK_FOREST_CENTER = makeKey("dark_forest_center");
+	public static final ResourceKey<Biome> DARKWOOD_CLEARING = makeKey("darkwood_clearing");
 
 	public static final ResourceKey<Biome> SNOWY_FOREST = makeKey("snowy_forest");
 	public static final ResourceKey<Biome> GLACIER = makeKey("glacier");
@@ -78,6 +79,8 @@ public class TFBiomes {
 		context.register(FIRE_SWAMP, biomeWithDefaults(whiteAshParticles(defaultAmbientBuilder()).waterColor(0x2D0700).fogColor(0x380A00).grassColorOverride(0x572E23).foliageColorOverride(0x64260F).waterColor(0x6C2C2C).waterFogColor(0x6C2C2C), new MobSpawnSettings.Builder(), fireSwampGen(featureGetter, carverGetter)).hasPrecipitation(false).temperature(1).downfall(0.4F).build());
 
 		context.register(DARK_FOREST, biomeWithDefaults(defaultAmbientBuilder().skyColor(0x000000).fogColor(0x000000).grassColorOverride(0x4B6754).foliageColorOverride(0x3B5E3F).grassColorModifier(grassColorModifierEnumExtension.DARK_FOREST), darkForestSpawning(), darkForestGen(featureGetter, carverGetter)).temperature(0.7F).downfall(0.8F).build());
+		// Treeless clearing on every other darkwood landmark center: darkwood sky and foliage, desaturated grass, spooky forest fog
+		context.register(DARKWOOD_CLEARING, biomeWithDefaults(defaultAmbientBuilder().skyColor(0x000000).fogColor(0x827391).grassColorOverride(0x5A6C57).foliageColorOverride(0x3B5E3F), darkForestSpawning(), darkwoodClearingGen(featureGetter, carverGetter)).temperature(0.7F).downfall(0.8F).build());
 		context.register(DARK_FOREST_CENTER, biomeWithDefaults(defaultAmbientBuilder().skyColor(0x000000).fogColor(0x493000).grassColorOverride(0x667540).foliageColorOverride(0xF9821E).grassColorModifier(grassColorModifierEnumExtension.DARK_FOREST_CENTER), new MobSpawnSettings.Builder(), darkForestCenterGen(featureGetter, carverGetter)).build());
 
 		context.register(SNOWY_FOREST, biomeWithDefaults(defaultAmbientBuilder().skyColor(0x808080).fogColor(0xFFFFFF).foliageColorOverride(0xFFFFFF).grassColorOverride(0xFFFFFF), snowForestSpawning(), snowyForestGen(featureGetter, carverGetter)).hasPrecipitation(true).temperature(0.09F).downfall(0.9F).build());

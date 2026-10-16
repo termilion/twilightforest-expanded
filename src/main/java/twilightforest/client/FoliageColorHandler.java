@@ -27,6 +27,7 @@ public final class FoliageColorHandler {
 		put(TFBiomes.ENCHANTED_FOREST, (o, x, z) -> biomeColorAlgorithms.enchanted(o, (int) x, (int) z));
 		put(TFBiomes.DARK_FOREST_CENTER, (o, x, z) -> biomeColorAlgorithms.darkForestCenterFoliage(x, z));
 		put(TFBiomes.DARK_FOREST, (o, x, z) -> biomeColorAlgorithms.darkForest(BiomeColorAlgorithms.Type.Foliage));
+		put(TFBiomes.DARKWOOD_CLEARING, (o, x, z) -> biomeColorAlgorithms.darkForest(BiomeColorAlgorithms.Type.Foliage));
 		put(TFBiomes.SWAMP, (o, x, z) -> biomeColorAlgorithms.swamp(BiomeColorAlgorithms.Type.Foliage));
 	}};
 

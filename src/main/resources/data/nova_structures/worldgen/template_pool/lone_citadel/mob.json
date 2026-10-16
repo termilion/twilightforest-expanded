@@ -22,7 +22,7 @@
     {
       "element": {
         "element_type": "minecraft:single_pool_element",
-        "location": "nova_structures:lone_citadel/mob/citadel_druid",
+        "location": "nova_structures:lone_citadel/mob/citadel_possessed_lancer",
         "processors": "nova_structures:citadel_degradation",
         "projection": "rigid"
       },
@@ -31,29 +31,29 @@
     {
       "element": {
         "element_type": "minecraft:single_pool_element",
-        "location": "nova_structures:lone_citadel/mob/citadel_stray",
+        "location": "nova_structures:lone_citadel/mob/citadel_possessed_archer",
         "processors": "nova_structures:citadel_degradation",
         "projection": "rigid"
       },
-      "weight": 9
+      "weight": 18
     },
     {
       "element": {
         "element_type": "minecraft:single_pool_element",
-        "location": "nova_structures:lone_citadel/mob/citadel_skeleton",
+        "location": "nova_structures:lone_citadel/mob/citadel_possessed_armor",
         "processors": "nova_structures:citadel_degradation",
         "projection": "rigid"
       },
-      "weight": 9
+      "weight": 5
     },
     {
       "element": {
         "element_type": "minecraft:single_pool_element",
-        "location": "nova_structures:lone_citadel/mob/citadel_goblin_knight",
+        "location": "nova_structures:lone_citadel/mob/citadel_gargoyle",
         "processors": "nova_structures:citadel_degradation",
         "projection": "rigid"
       },
-      "weight": 10
+      "weight": 5
     },
     {
       "element": {

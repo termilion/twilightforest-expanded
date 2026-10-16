@@ -56,6 +56,7 @@ public class MapBiomesCommand {
 		BIOME2COLOR.put(TFBiomes.FIRE_SWAMP.location(), new BiomeMapColor(140, 0, 0));
 
 		BIOME2COLOR.put(TFBiomes.DARK_FOREST.location(), new BiomeMapColor(25, 61, 13));
+		BIOME2COLOR.put(TFBiomes.DARKWOOD_CLEARING.location(), new BiomeMapColor(91, 97, 92));
 		BIOME2COLOR.put(TFBiomes.DARK_FOREST_CENTER.location(), new BiomeMapColor(157, 79, 0));
 
 		BIOME2COLOR.put(TFBiomes.SNOWY_FOREST.location(), new BiomeMapColor(255, 255, 255));

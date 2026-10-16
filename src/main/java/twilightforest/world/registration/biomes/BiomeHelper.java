@@ -35,6 +35,8 @@ public abstract class BiomeHelper {
 		biome.addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, TFPlacedFeatures.PLACED_MEGA_CANOPY_TREE);
 		biome.addFeature(GenerationStep.Decoration.LAKES, TFPlacedFeatures.PLACED_LAKE_WATER);
 
+		addMossPatches(biome);
+
 		return biome;
 	}
 
@@ -58,6 +60,8 @@ public abstract class BiomeHelper {
 		biome.addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, TFPlacedFeatures.PLACED_FOREST_MEGA_OAK_TREE);
 		biome.addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, TFPlacedFeatures.PLACED_MEGA_CANOPY_TREE);
 		biome.addFeature(GenerationStep.Decoration.LAKES, TFPlacedFeatures.PLACED_LAKE_WATER);
+
+		addMossPatches(biome);
 
 		return biome;
 	}
@@ -155,6 +159,8 @@ public abstract class BiomeHelper {
 
 		addCanopyTrees(biome);
 
+		addMossPatches(biome);
+
 		return biome;
 	}
 
@@ -202,6 +208,8 @@ public abstract class BiomeHelper {
 		biome.addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, TFPlacedFeatures.PLACED_MEGA_CANOPY_TREE);
 		biome.addFeature(GenerationStep.Decoration.LAKES, TFPlacedFeatures.PLACED_LAKE_WATER);
 
+		addMossPatches(biome);
+
 		return biome;
 	}
 
@@ -224,6 +232,8 @@ public abstract class BiomeHelper {
 		addCanopyTrees(biome);
 		biome.addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, TFPlacedFeatures.PLACED_MEGA_CANOPY_TREE);
 		biome.addFeature(GenerationStep.Decoration.LAKES, TFPlacedFeatures.PLACED_LAKE_WATER);
+
+		addMossPatches(biome);
 
 		return biome;
 	}
@@ -327,6 +337,24 @@ public abstract class BiomeHelper {
 		BiomeGenerationSettings.Builder biome = new BiomeGenerationSettings.Builder(featureGetter, carverGetter);
 
 		addDarkForestVegetation(biome);
+		addCaves(biome);
+
+		return biome;
+	}
+
+	// Dark forest ground cover without any trees, ferns instead of grass (the floor is podzol, see TFSurfaceRules)
+	public static BiomeGenerationSettings.Builder darkwoodClearingGen(HolderGetter<PlacedFeature> featureGetter, HolderGetter<ConfiguredWorldCarver<?>> carverGetter) {
+		BiomeGenerationSettings.Builder biome = new BiomeGenerationSettings.Builder(featureGetter, carverGetter);
+
+		biome.addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, TFPlacedFeatures.PLACED_CLEARING_FERNS);
+		biome.addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, TFPlacedFeatures.PLACED_DARK_DEAD_BUSHES);
+		biome.addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, TFPlacedFeatures.PLACED_DARK_PUMPKINS);
+		biome.addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, TFPlacedFeatures.PLACED_DARK_MUSHGLOOMS);
+		biome.addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, TFPlacedFeatures.PLACED_DARK_BROWN_MUSHROOMS);
+		biome.addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, TFPlacedFeatures.PLACED_DARK_RED_MUSHROOMS);
+		biome.addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, TFPlacedFeatures.PLACED_CLEARING_DARKWOOD_BUSH);
+		biome.addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, TFPlacedFeatures.PLACED_AMETHYST_BUSH);
+		biome.addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, TFPlacedFeatures.PLACED_CLEARING_COBWEBS);
 		addCaves(biome);
 
 		return biome;
@@ -441,6 +469,11 @@ public abstract class BiomeHelper {
 		biome.addFeature(GenerationStep.Decoration.UNDERGROUND_ORES, TFPlacedFeatures.PLACED_DEEPSLATE_VEIN);
 		biome.addFeature(GenerationStep.Decoration.UNDERGROUND_ORES, TFPlacedFeatures.PLACED_AMETHYST_ANCIENT_DEBRIS);
 		return biome;
+	}
+
+	// Random moss patches with TF ground plants and dripleaf; generated before trees and plants, which then grow on the moss too
+	public static void addMossPatches(BiomeGenerationSettings.Builder biome) {
+		biome.addFeature(GenerationStep.Decoration.LOCAL_MODIFICATIONS, TFPlacedFeatures.PLACED_FOREST_MOSS_PATCH);
 	}
 
 	public static void withWoodRoots(BiomeGenerationSettings.Builder biome) {
@@ -625,9 +658,7 @@ public abstract class BiomeHelper {
 
 		spawnInfo.creatureGenerationProbability(0.07F);
 		spawnInfo.addSpawn(MobCategory.CREATURE, new MobSpawnSettings.SpawnerData(TFEntities.RAVEN.get(), 10, 4, 4));
-		// Lower goblin knights get their upper knight rider in finalizeSpawn
-		spawnInfo.addSpawn(MobCategory.MONSTER, new MobSpawnSettings.SpawnerData(TFEntities.LOWER_GOBLIN_KNIGHT.get(), 5, 1, 2)).addMobCharge(TFEntities.LOWER_GOBLIN_KNIGHT.get(), 0.8D, 0.2D);
-		spawnInfo.addSpawn(MobCategory.MONSTER, new MobSpawnSettings.SpawnerData(TFEntities.TROLL.get(), 2, 1, 2)).addMobCharge(TFEntities.TROLL.get(), 0.8D, 0.2D);
+		// Possessed armor knights (5) and gargoyles (2) from Myths & Legends are added by data/twilightforest/neoforge/biome_modifier/amethyst_straits_spawns.json
 		spawnInfo.addSpawn(MobCategory.MONSTER, new MobSpawnSettings.SpawnerData(EntityType.VEX, 2, 1, 1)).addMobCharge(EntityType.VEX, 0.7D, 0.15D);
 
 		return spawnInfo;

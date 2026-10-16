@@ -73,7 +73,7 @@
                 "The darkwood is a dangerous place. The trees are alive and they do not like visitors.",
                 "This is an ancient place. It was not affected by the kingdoms curse, it's darkness is way older than that.",
                 "These woods hide a secret of the wizard. He has a crimson tower in it's midst. Strange experiments happened there.",
-                "There is an old mansion in this forest. You should not go there, it is haunted by those that should remain forgotten.",
+                "There is an old mansion in this forest. You should not go there, the mother of spiders has made it her dwelling.",
                 "After the queen's death, the king brought his royal guard to the old fortress. His axe struck them down one by one. Their spirits still linger in it's depths."
             ],
             "twilightforest:snowy_forest": [
@@ -94,10 +94,9 @@
                 "What brings you to these parts of the woods? Only the dead walk upon these paths.",
                 "This place was once the beautiful garden of the queen and her death has left this place in mourning",
                 "Her guards still defend her castle and the catacombs beneath. Many treasures are hidden there, but many dangers as well.",
-                "She was buried somewhere in the catacombs. But no one knows where.",
-                "Be careful around graveyards in this part of the woods. The queen of spiders has taken up residence there."
+                "She was buried somewhere in the catacombs. But no one knows where."
             ],
-            "twilightforest:twilight_swamp": [
+            "twilightforest:swamp": [
                 "Oh dear, you look bitten to shreds by these blood sucking mosquitoes. You should be careful out there.",
                 "Most folks would say, these swamps are filthy. But I don't know what they are talking about. I think they are beautiful.",
                 "Be careful around the well. The kingdoms most dangerous criminals were once thrown into the labyrinth at its bottom.",

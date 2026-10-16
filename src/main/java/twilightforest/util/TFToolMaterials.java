@@ -1,5 +1,7 @@
 package twilightforest.util;
 
+import net.minecraft.tags.BlockTags;
+import net.minecraft.world.item.Items;
 import net.minecraft.world.item.Tier;
 import net.minecraft.world.item.crafting.Ingredient;
 import net.minecraft.world.level.block.Blocks;
@@ -16,5 +18,7 @@ public class TFToolMaterials {
 	public static final Tier KNIGHTMETAL = new SimpleTier(BlockTagGenerator.INCORRECT_FOR_KNIGHTMETAL_TOOL, 512, 8.0F, 3, 8, () -> Ingredient.of(ItemTagGenerator.REPAIRS_KNIGHTMETAL_TOOLS));
 	public static final Tier GIANT = new SimpleTier(BlockTagGenerator.INCORRECT_FOR_GIANT_TOOL, 1024, 4.0F, 1.0F, 5, () -> Ingredient.of(ItemTagGenerator.REPAIRS_GIANT_TOOLS));
 	public static final Tier ICE = new SimpleTier(BlockTagGenerator.INCORRECT_FOR_ICE_TOOL, 32, 1.0F, 3.5F, 5, () -> Ingredient.of(ItemTagGenerator.REPAIRS_ICE_TOOLS));
+	// Diamond strength and enchantability, 1024 uses, repaired with diamonds
+	public static final Tier STINGER = new SimpleTier(BlockTags.INCORRECT_FOR_DIAMOND_TOOL, 1024, 8.0F, 3.0F, 10, () -> Ingredient.of(Items.DIAMOND));
 	public static final Tier GLASS = new SimpleTier(BlockTagGenerator.INCORRECT_FOR_GLASS_TOOL, 1, 1.0F, 36.0F, 30, () -> Ingredient.EMPTY);
 }

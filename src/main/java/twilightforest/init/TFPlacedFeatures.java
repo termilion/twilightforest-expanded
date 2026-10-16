@@ -11,6 +11,7 @@ import net.minecraft.data.worldgen.features.VegetationFeatures;
 import net.minecraft.data.worldgen.placement.PlacementUtils;
 import net.minecraft.data.worldgen.placement.VegetationPlacements;
 import net.minecraft.resources.ResourceKey;
+import net.minecraft.tags.BlockTags;
 import net.minecraft.util.valueproviders.ClampedInt;
 import net.minecraft.util.valueproviders.ConstantInt;
 import net.minecraft.util.valueproviders.IntProvider;
@@ -127,6 +128,11 @@ public class TFPlacedFeatures {
 	public static final ResourceKey<PlacedFeature> PLACED_DARK_FERNS = registerKey("dark_ferns");
 	public static final ResourceKey<PlacedFeature> PLACED_DARK_BROWN_MUSHROOMS = registerKey("dark_brown_mushrooms");
 	public static final ResourceKey<PlacedFeature> PLACED_DARK_RED_MUSHROOMS = registerKey("dark_red_mushrooms");
+	public static final ResourceKey<PlacedFeature> PLACED_CLEARING_DARKWOOD_BUSH = registerKey("tree/clearing_darkwood_bush");
+	public static final ResourceKey<PlacedFeature> PLACED_CLEARING_FERNS = registerKey("clearing_ferns");
+	public static final ResourceKey<PlacedFeature> PLACED_AMETHYST_BUSH = registerKey("amethyst_bush");
+	public static final ResourceKey<PlacedFeature> PLACED_CLEARING_COBWEBS = registerKey("clearing_cobwebs");
+	public static final ResourceKey<PlacedFeature> PLACED_FOREST_MOSS_PATCH = registerKey("forest_moss_patch");
 	public static final ResourceKey<PlacedFeature> PLACED_DARK_DEAD_BUSHES = registerKey("dark_dead_bushes");
 
 	//Ores!
@@ -330,6 +336,13 @@ public class TFPlacedFeatures {
 		context.register(PLACED_DARK_FERNS, new PlacedFeature(features.getOrThrow(TFConfiguredFeatures.DARK_FERNS), ImmutableList.<PlacementModifier>builder().add(RarityFilter.onAverageOnceEvery(3), InSquarePlacement.spread(), PlacementUtils.HEIGHTMAP_WORLD_SURFACE, BiomeFilter.biome()).build()));
 		context.register(PLACED_DARK_MUSHGLOOMS, new PlacedFeature(features.getOrThrow(TFConfiguredFeatures.DARK_MUSHGLOOMS), ImmutableList.<PlacementModifier>builder().add(RarityFilter.onAverageOnceEvery(12), InSquarePlacement.spread(), PlacementUtils.HEIGHTMAP_WORLD_SURFACE, BiomeFilter.biome()).build()));
 		context.register(PLACED_DARK_BROWN_MUSHROOMS, new PlacedFeature(features.getOrThrow(TFConfiguredFeatures.DARK_BROWN_MUSHROOMS), ImmutableList.<PlacementModifier>builder().add(RarityFilter.onAverageOnceEvery(3), InSquarePlacement.spread(), PlacementUtils.HEIGHTMAP_WORLD_SURFACE, BiomeFilter.biome()).build()));
+		// Darkwood clearing; kept out of the arachnid dwelling and its graveyard (their decoration clearance forbids surface features and vegetation)
+		AvoidLandmarkModifier clearOfDwelling = new AvoidLandmarkModifier(true, false, true, 1, HolderSet.empty());
+		context.register(PLACED_CLEARING_DARKWOOD_BUSH, new PlacedFeature(features.getOrThrow(TFConfiguredFeatures.CLEARING_DARKWOOD_BUSH), List.of(CountPlacement.of(UniformInt.of(0, 2)), InSquarePlacement.spread(), PlacementUtils.HEIGHTMAP, BlockPredicateFilter.forPredicate(BlockPredicate.matchesTag(Direction.DOWN.getNormal(), BlockTags.DIRT)), clearOfDwelling, BiomeFilter.biome())));
+		context.register(PLACED_CLEARING_FERNS, new PlacedFeature(features.getOrThrow(TFConfiguredFeatures.DARK_FERNS), List.of(CountPlacement.of(20), InSquarePlacement.spread(), PlacementUtils.HEIGHTMAP_WORLD_SURFACE, BiomeFilter.biome())));
+		context.register(PLACED_AMETHYST_BUSH, new PlacedFeature(features.getOrThrow(TFConfiguredFeatures.AMETHYST_BUSH), List.of(RarityFilter.onAverageOnceEvery(2), InSquarePlacement.spread(), PlacementUtils.HEIGHTMAP, clearOfDwelling, BiomeFilter.biome())));
+		context.register(PLACED_CLEARING_COBWEBS, new PlacedFeature(features.getOrThrow(TFConfiguredFeatures.CLEARING_COBWEBS), List.of(CountPlacement.of(2), InSquarePlacement.spread(), PlacementUtils.HEIGHTMAP_WORLD_SURFACE, clearOfDwelling, BiomeFilter.biome())));
+		context.register(PLACED_FOREST_MOSS_PATCH, new PlacedFeature(features.getOrThrow(TFConfiguredFeatures.FOREST_MOSS_PATCH), List.of(RarityFilter.onAverageOnceEvery(3), InSquarePlacement.spread(), PlacementUtils.HEIGHTMAP, AvoidLandmarkModifier.checkSurface(), BiomeFilter.biome())));
 		context.register(PLACED_DARK_RED_MUSHROOMS, new PlacedFeature(features.getOrThrow(TFConfiguredFeatures.DARK_RED_MUSHROOMS), ImmutableList.<PlacementModifier>builder().add(RarityFilter.onAverageOnceEvery(3), InSquarePlacement.spread(), PlacementUtils.HEIGHTMAP_WORLD_SURFACE, BiomeFilter.biome()).build()));
 		context.register(PLACED_DARK_DEAD_BUSHES, new PlacedFeature(features.getOrThrow(TFConfiguredFeatures.DARK_DEAD_BUSHES), ImmutableList.<PlacementModifier>builder().add(RarityFilter.onAverageOnceEvery(3), InSquarePlacement.spread(), PlacementUtils.HEIGHTMAP_WORLD_SURFACE, BiomeFilter.biome()).build()));
 

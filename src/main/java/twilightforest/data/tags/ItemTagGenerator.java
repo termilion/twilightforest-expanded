@@ -345,7 +345,8 @@ public class ItemTagGenerator extends ModdedItemTagGenerator {
 			TFItems.FIERY_SWORD.get(),
 			TFItems.GIANT_SWORD.get(),
 			TFItems.ICE_SWORD.get(),
-			TFItems.GLASS_SWORD.get());
+			TFItems.GLASS_SWORD.get(),
+			TFItems.STINGER.get());
 
 		this.tag(ItemTags.PICKAXES).add(
 			TFItems.IRONWOOD_PICKAXE.get(),

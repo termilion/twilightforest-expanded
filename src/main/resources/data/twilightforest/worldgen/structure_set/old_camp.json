@@ -1,0 +1,15 @@
+{
+  "placement": {
+    "type": "twilightforest:avoid_landmark_grid",
+    "salt": 1694767182,
+    "spacing": 10,
+    "separation": 4,
+    "spread_type": "triangular"
+  },
+  "structures": [
+    {
+      "structure": "twilightforest:old_camp",
+      "weight": 1
+    }
+  ]
+}

@@ -1,0 +1,15 @@
+{
+  "type": "neoforge:add_spawn_costs",
+  "biomes": [
+    "twilightforest:snowy_forest",
+    "twilightforest:glacier"
+  ],
+  "entity_types": [
+    "rottencreatures:frostbitten",
+    "rottencreatures:glacial_hunter"
+  ],
+  "spawn_cost": {
+    "charge": 0.6,
+    "energy_budget": 0.15
+  }
+}

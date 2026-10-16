@@ -4,7 +4,7 @@
     {
       "element": {
         "element_type": "minecraft:single_pool_element",
-        "location": "nova_structures:lone_citadel/citadel_spawner_undead",
+        "location": "nova_structures:lone_citadel/citadel_spawner_armor",
         "processors": "nova_structures:citadel_degradation",
         "projection": "rigid"
       },

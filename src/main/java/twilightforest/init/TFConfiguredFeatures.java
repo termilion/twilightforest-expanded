@@ -6,6 +6,7 @@ import net.minecraft.core.Holder;
 import net.minecraft.core.HolderGetter;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.data.worldgen.BootstrapContext;
+import net.minecraft.data.worldgen.features.CaveFeatures;
 import net.minecraft.data.worldgen.features.FeatureUtils;
 import net.minecraft.data.worldgen.features.TreeFeatures;
 import net.minecraft.data.worldgen.placement.PlacementUtils;
@@ -32,6 +33,7 @@ import net.minecraft.world.level.levelgen.feature.foliageplacers.BlobFoliagePlac
 import net.minecraft.world.level.levelgen.feature.foliageplacers.SpruceFoliagePlacer;
 import net.minecraft.world.level.levelgen.feature.stateproviders.*;
 import net.minecraft.world.level.levelgen.feature.trunkplacers.StraightTrunkPlacer;
+import net.minecraft.world.level.levelgen.placement.CaveSurface;
 import net.minecraft.world.level.levelgen.placement.PlacedFeature;
 import net.minecraft.world.level.levelgen.structure.templatesystem.AlwaysTrueTest;
 import net.minecraft.world.level.levelgen.structure.templatesystem.BlockMatchTest;
@@ -168,6 +170,11 @@ public final class TFConfiguredFeatures {
 	public static final ResourceKey<ConfiguredFeature<?, ?>> DARK_MUSHGLOOMS = registerKey("dark_mushglooms");
 	public static final ResourceKey<ConfiguredFeature<?, ?>> DARK_BROWN_MUSHROOMS = registerKey("dark_brown_mushrooms");
 	public static final ResourceKey<ConfiguredFeature<?, ?>> DARK_RED_MUSHROOMS = registerKey("dark_red_mushrooms");
+	public static final ResourceKey<ConfiguredFeature<?, ?>> CLEARING_DARKWOOD_BUSH = registerKey("tree/clearing_darkwood_bush");
+	public static final ResourceKey<ConfiguredFeature<?, ?>> AMETHYST_BUSH = registerKey("amethyst_bush");
+	public static final ResourceKey<ConfiguredFeature<?, ?>> CLEARING_COBWEBS = registerKey("clearing_cobwebs");
+	public static final ResourceKey<ConfiguredFeature<?, ?>> FOREST_MOSS_VEGETATION = registerKey("forest_moss_vegetation");
+	public static final ResourceKey<ConfiguredFeature<?, ?>> FOREST_MOSS_PATCH = registerKey("forest_moss_patch");
 	public static final ResourceKey<ConfiguredFeature<?, ?>> DARK_DEAD_BUSHES = registerKey("dark_dead_bushes");
 
 	//troll caves special stuff
@@ -444,6 +451,23 @@ public final class TFConfiguredFeatures {
 		context.register(DARK_OAK_BUSH, new ConfiguredFeature<>(TFFeatures.DARK_CANOPY_TREE.get(), TreeConfigurations.OAK_BUSH));
 		context.register(RAINBOW_CANOPY_BUSH, new ConfiguredFeature<>(TFFeatures.DARK_CANOPY_TREE.get(), TreeConfigurations.RAINBOW_CANOPY_BUSH));
 		context.register(DARKWOOD_BUSH, new ConfiguredFeature<>(TFFeatures.DARK_CANOPY_TREE.get(), TreeConfigurations.DARKWOOD_BUSH));
+		// Darkwood clearing
+		context.register(CLEARING_DARKWOOD_BUSH, new ConfiguredFeature<>(Feature.TREE, TreeConfigurations.CLEARING_DARKWOOD_BUSH));
+		context.register(AMETHYST_BUSH, new ConfiguredFeature<>(TFFeatures.AMETHYST_BUSH.get(), NoneFeatureConfiguration.INSTANCE));
+		// Moss patches of the forest biomes: TF ground plants, sometimes vanilla (small or big) dripleaf
+		context.register(FOREST_MOSS_VEGETATION, new ConfiguredFeature<>(Feature.RANDOM_SELECTOR, new RandomFeatureConfiguration(
+			List.of(new WeightedPlacedFeature(PlacementUtils.inlinePlaced(features.getOrThrow(CaveFeatures.DRIPLEAF)), 0.15F)),
+			PlacementUtils.inlinePlaced(Feature.SIMPLE_BLOCK, new SimpleBlockConfiguration(new WeightedStateProvider(SimpleWeightedRandomList.<BlockState>builder()
+				.add(TFBlocks.MOSS_PATCH.get().defaultBlockState(), 25)
+				.add(TFBlocks.CLOVER_PATCH.get().defaultBlockState(), 15)
+				.add(TFBlocks.MAYAPPLE.get().defaultBlockState(), 15)
+				.add(TFBlocks.FIDDLEHEAD.get().defaultBlockState(), 15)
+				.add(TFBlocks.FALLEN_LEAVES.get().defaultBlockState(), 10)
+				.add(Blocks.MOSS_CARPET.defaultBlockState(), 10))))
+		)));
+		context.register(FOREST_MOSS_PATCH, new ConfiguredFeature<>(Feature.VEGETATION_PATCH, new VegetationPatchConfiguration(BlockTags.MOSS_REPLACEABLE, BlockStateProvider.simple(Blocks.MOSS_BLOCK), PlacementUtils.inlinePlaced(features.getOrThrow(FOREST_MOSS_VEGETATION)), CaveSurface.FLOOR, ConstantInt.of(1), 0.0F, 5, 0.25F, UniformInt.of(3, 6), 0.3F)));
+		// Some ferns become cobwebs
+		context.register(CLEARING_COBWEBS, new ConfiguredFeature<>(Feature.RANDOM_PATCH, new RandomPatchConfiguration(20, 5, 2, PlacementUtils.filtered(Feature.SIMPLE_BLOCK, new SimpleBlockConfiguration(BlockStateProvider.simple(Blocks.COBWEB)), BlockPredicate.matchesBlocks(Blocks.FERN)))));
 		context.register(VANILLA_OAK_TREE, new ConfiguredFeature<>(Feature.TREE, new TreeConfiguration.TreeConfigurationBuilder(BlockStateProvider.simple(Blocks.OAK_LOG), new StraightTrunkPlacer(4, 2, 0), BlockStateProvider.simple(Blocks.OAK_LEAVES), new BlobFoliagePlacer(ConstantInt.of(2), ConstantInt.of(0), 3), new TwoLayersFeatureSize(1, 0, 1)).ignoreVines().build()));
 		context.register(VANILLA_BIRCH_TREE, new ConfiguredFeature<>(Feature.TREE, new TreeConfiguration.TreeConfigurationBuilder(BlockStateProvider.simple(Blocks.BIRCH_LOG), new StraightTrunkPlacer(5, 2, 0), BlockStateProvider.simple(Blocks.BIRCH_LEAVES), new BlobFoliagePlacer(ConstantInt.of(2), ConstantInt.of(0), 3), new TwoLayersFeatureSize(1, 0, 1)).ignoreVines().build()));
 		context.register(SMALLER_JUNGLE_TREE, new ConfiguredFeature<>(Feature.TREE, TreeConfigurations.SMALL_JUNGLE));

@@ -47,7 +47,7 @@ public class TwilightForestRenderInfo extends DimensionSpecialEffects {
 					return false; // If player is above the dark forest then no need to make it so spooky. The darkwood leaves cover everything as low as y42.
 				}
 
-				return spooky || biome.get() == TFBiomes.DARK_FOREST || biome.get() == TFBiomes.DARK_FOREST_CENTER;
+				return spooky || biome.get() == TFBiomes.DARK_FOREST || biome.get() == TFBiomes.DARK_FOREST_CENTER || biome.get() == TFBiomes.DARKWOOD_CLEARING;
 			}
 		}
 

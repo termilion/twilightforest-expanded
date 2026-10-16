@@ -1,0 +1,9 @@
+{
+  "type": "neoforge:add_spawn_costs",
+  "biomes": "twilightforest:swamp",
+  "entity_types": "rottencreatures:swampy",
+  "spawn_cost": {
+    "charge": 0.7,
+    "energy_budget": 0.15
+  }
+}

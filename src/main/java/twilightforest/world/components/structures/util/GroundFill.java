@@ -4,6 +4,7 @@ import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.tags.BlockTags;
 import net.minecraft.world.level.WorldGenLevel;
+import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.levelgen.structure.BoundingBox;
@@ -51,5 +52,36 @@ public final class GroundFill {
 
 	private static boolean isOpen(BlockState state) {
 		return state.isAir() || state.canBeReplaced() || state.is(BlockTags.LEAVES);
+	}
+
+	// Columns around the pieces that are checked too: the cut-away grass can reach a little past a piece's box
+	private static final int COVER_MARGIN = 3;
+
+	/**
+	 * Replaces dirt with open space above it (air or plants) near the bottom of the structure, i.e. ground whose grass the structure's air blocks
+	 * removed, with the cover block. Also for {@code Structure#afterPlace}.
+	 */
+	public static void coverExposedDirt(WorldGenLevel level, BoundingBox chunkBounds, PiecesContainer pieces, BlockState cover) {
+		int bottom = pieces.pieces().stream().mapToInt(piece -> piece.getBoundingBox().minY()).min().orElse(level.getMinBuildHeight());
+		BlockPos.MutableBlockPos cursor = new BlockPos.MutableBlockPos();
+		BlockPos.MutableBlockPos above = new BlockPos.MutableBlockPos();
+
+		for (StructurePiece piece : pieces.pieces()) {
+			BoundingBox box = piece.getBoundingBox().inflatedBy(COVER_MARGIN);
+			if (!box.intersects(chunkBounds))
+				continue;
+
+			for (int x = Math.max(box.minX(), chunkBounds.minX()); x <= Math.min(box.maxX(), chunkBounds.maxX()); x++) {
+				for (int z = Math.max(box.minZ(), chunkBounds.minZ()); z <= Math.min(box.maxZ(), chunkBounds.maxZ()); z++) {
+					for (int y = bottom - SEARCH_BELOW; y <= bottom + SEARCH_ABOVE; y++) {
+						cursor.set(x, y, z);
+						above.set(x, y + 1, z);
+						BlockState aboveState = level.getBlockState(above);
+						if (level.getBlockState(cursor).is(Blocks.DIRT) && aboveState.canBeReplaced() && aboveState.getFluidState().isEmpty())
+							level.setBlock(cursor, cover, Block.UPDATE_CLIENTS);
+					}
+				}
+			}
+		}
 	}
 }

@@ -21,7 +21,8 @@ import twilightforest.TwilightForestMod;
 import twilightforest.ivarsbosses.client.IvarsBossesClient;
 
 /**
- * Bosses ported from Ivar's Bosses (ferocious_creature 1.0.0). Only Fenrir so far; it spawns in the amethyst straits ruin towns.
+ * Bosses ported from Ivar's Bosses (ferocious_creature 1.0.0): Fenrir (amethyst straits ruin towns) and the Spider Mother ("mother_spider"
+ * in the original; arachnid dwelling in the darkwood clearings), both spawned by trial spawners in their structures.
  * The summon rituals and the login promo message of the original mod are not ported.
  */
 public class IvarsBosses {
@@ -33,6 +34,13 @@ public class IvarsBosses {
 		() -> EntityType.Builder.of(FenrirEntity::new, MobCategory.MONSTER).sized(3.0F, 3.0F).clientTrackingRange(18).updateInterval(3).build("fenrir"));
 	public static final DeferredItem<Item> FENRIR_SPAWN_EGG = ITEMS.register("fenrir_spawn_egg",
 		() -> new DeferredSpawnEggItem(FENRIR, 0xD65EA3, 0xF4D8E8, new Item.Properties()));
+
+	public static final DeferredHolder<EntityType<?>, EntityType<SpiderMotherEntity>> SPIDER_MOTHER = ENTITIES.register("spider_mother",
+		() -> EntityType.Builder.of(SpiderMotherEntity::new, MobCategory.MONSTER).sized(4.0F, 2.6F).clientTrackingRange(16).updateInterval(3).build("spider_mother"));
+	public static final DeferredHolder<EntityType<?>, EntityType<SpiderSpitProjectileEntity>> SPIDER_SPIT = ENTITIES.register("spider_spit",
+		() -> EntityType.Builder.<SpiderSpitProjectileEntity>of(SpiderSpitProjectileEntity::new, MobCategory.MISC).sized(0.5F, 0.5F).clientTrackingRange(8).updateInterval(1).build("spider_spit"));
+	public static final DeferredItem<Item> SPIDER_MOTHER_SPAWN_EGG = ITEMS.register("spider_mother_spawn_egg",
+		() -> new DeferredSpawnEggItem(SPIDER_MOTHER, 0x1B1022, 0xB4366B, new Item.Properties()));
 
 	public static final DeferredHolder<SoundEvent, SoundEvent> FENRIR_AWAKENING = sound("entity.twilightforest.fenrir.awakening");
 	public static final DeferredHolder<SoundEvent, SoundEvent> FENRIR_HURT = sound("entity.twilightforest.fenrir.hurt");
@@ -59,6 +67,7 @@ public class IvarsBosses {
 
 	private static void registerAttributes(EntityAttributeCreationEvent event) {
 		event.put(FENRIR.get(), FenrirEntity.createAttributes().build());
+		event.put(SPIDER_MOTHER.get(), SpiderMotherEntity.createAttributes().build());
 	}
 
 	private static void dropSavedEffects(EntityJoinLevelEvent event) {
@@ -70,6 +79,7 @@ public class IvarsBosses {
 	private static void addToTabs(BuildCreativeModeTabContentsEvent event) {
 		if (event.getTabKey() == CreativeModeTabs.SPAWN_EGGS) {
 			event.accept(FENRIR_SPAWN_EGG.get());
+			event.accept(SPIDER_MOTHER_SPAWN_EGG.get());
 		}
 	}
 }

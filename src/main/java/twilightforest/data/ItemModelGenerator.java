@@ -656,6 +656,7 @@ public class ItemModelGenerator extends ItemModelProvider {
 		trimmedArmor(TFItems.KNIGHTMETAL_LEGGINGS);
 		trimmedArmor(TFItems.KNIGHTMETAL_BOOTS);
 		singleTexTool(TFItems.KNIGHTMETAL_SWORD);
+		singleTexTool(TFItems.STINGER);
 		singleTexTool(TFItems.KNIGHTMETAL_PICKAXE);
 		singleTexTool(TFItems.KNIGHTMETAL_AXE);
 		singleTex(TFItems.KNIGHTMETAL_RING);

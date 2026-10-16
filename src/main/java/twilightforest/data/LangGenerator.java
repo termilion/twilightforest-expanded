@@ -49,6 +49,7 @@ public class LangGenerator extends TFLangProvider {
 		this.addBiome(TFBiomes.SWAMP, "Twilight Swamp");
 		this.addBiome(TFBiomes.FIRE_SWAMP, "Fire Swamp");
 		this.addBiome(TFBiomes.DARK_FOREST, "Dark Forest");
+		this.addBiome(TFBiomes.DARKWOOD_CLEARING, "Darkwood Clearing");
 		this.addBiome(TFBiomes.DARK_FOREST_CENTER, "Dark Forest Center");
 		this.addBiome(TFBiomes.SNOWY_FOREST, "Snowy Forest");
 		this.addBiome(TFBiomes.GLACIER, "Twilight Glacier");
@@ -660,6 +661,8 @@ public class LangGenerator extends TFLangProvider {
 		this.addItem(TFItems.ICE_SWORD, "Ice Sword");
 		this.addItem(TFItems.ICE_BOMB, "Ice Bomb");
 		this.addItem(TFItems.GLASS_SWORD, "Glass Sword");
+		this.addItem(TFItems.STINGER, "Stinger");
+		this.add("item.twilightforest.stinger.desc", "The sword of a brave knight, who fell to the mother's maw.");
 		this.add("item.twilightforest.glass_sword.desc", "Creative Mode-only");
 		this.addItem(TFItems.TRIPLE_BOW, "Tri-Bow");
 		this.addItem(TFItems.SEEKER_BOW, "Seeker Bow");
@@ -831,6 +834,9 @@ public class LangGenerator extends TFLangProvider {
 		this.addEntityAndEgg(TFEntities.WRAITH, "Wraith");
 		this.add(IvarsBosses.FENRIR.get(), "Fenrir");
 		this.add(IvarsBosses.FENRIR_SPAWN_EGG.get(), "Fenrir Spawn Egg");
+		this.add(IvarsBosses.SPIDER_MOTHER.get(), "Spider Mother");
+		this.add(IvarsBosses.SPIDER_MOTHER_SPAWN_EGG.get(), "Spider Mother Spawn Egg");
+		this.add(IvarsBosses.SPIDER_SPIT.get(), "Spider Spit");
 		this.add(PaleMonarchModEntities.PALE_MONARCH.get(), "Pale Monarch");
 		this.add(PaleMonarchModItems.PALE_MONARCH_SPAWN_EGG.get(), "Pale Monarch Spawn Egg");
 		this.add(PaleMonarchModEntities.PALE_MONARCH_DEATH_ENTITY.get(), "Pale Monarch");

@@ -20,14 +20,18 @@ import twilightforest.world.components.layer.vanillalegacy.context.RandomContext
 import twilightforest.world.components.layer.vanillalegacy.traits.AreaTransformer1;
 import twilightforest.world.components.layer.vanillalegacy.traits.DimensionOffset0Transformer;
 
+import java.util.Optional;
 import java.util.function.LongFunction;
 
 /**
  * Runs at full (quart) resolution. Where a landmark center lies inside the host biome (e.g. a lake), an island of the island biome is placed on it.
  * The island spans from the landmark grid tile center (where {@code LandmarkStructure} checks the biome) to the jittered landmark center
  * (where the structure is built), so the island's landmark always generates on it.
+ * With a grid parity, only landmark centers whose grid tile X coordinate has that parity (0 or 1) get an island, i.e. every other
+ * column of landmark centers; the others keep the host biome and its landmark. Columns instead of a checkerboard: of the four tiles
+ * orthogonally next to any tile, two lie in each column parity, so a host biome ring around a key biome always keeps some of its landmarks.
  */
-public record LandmarkIslandLayer(ResourceKey<Biome> hostBiome, ResourceKey<Biome> islandBiome, int radius) implements AreaTransformer1, DimensionOffset0Transformer {
+public record LandmarkIslandLayer(ResourceKey<Biome> hostBiome, ResourceKey<Biome> islandBiome, int radius, Optional<Integer> gridParity) implements AreaTransformer1, DimensionOffset0Transformer {
 	@Override
 	public ResourceKey<Biome> applyPixel(RandomContext randomContext, Area layer, int x, int z) {
 		ResourceKey<Biome> biome = layer.getBiome(x, z);
@@ -40,6 +44,9 @@ public record LandmarkIslandLayer(ResourceKey<Biome> hostBiome, ResourceKey<Biom
 		// Same tile center LandmarkStructure#findValidGenerationPoint samples
 		int gridX = (Math.round((center.getX() >> 4) / 16F) << 8) + 8;
 		int gridZ = (Math.round((center.getZ() >> 4) / 16F) << 8) + 8;
+
+		if (this.gridParity.isPresent() && ((gridX >> 8) & 1) != this.gridParity.get())
+			return biome;
 
 		if (distanceSqToSegment(blockX, blockZ, gridX, gridZ, center.getX(), center.getZ()) > this.radius * this.radius)
 			return biome;
@@ -66,23 +73,26 @@ public record LandmarkIslandLayer(ResourceKey<Biome> hostBiome, ResourceKey<Biom
 			ResourceKey.codec(Registries.BIOME).fieldOf("host_biome").forGetter(Factory::hostBiome),
 			ResourceKey.codec(Registries.BIOME).fieldOf("island_biome").forGetter(Factory::islandBiome),
 			Codec.intRange(1, 256).fieldOf("radius").forGetter(Factory::radius),
+			Codec.intRange(0, 1).optionalFieldOf("grid_parity").forGetter(Factory::gridParity),
 			BiomeLayerStack.HOLDER_CODEC.fieldOf("parent").forGetter(Factory::parent)
 		).apply(inst, Factory::new));
 		private final long salt;
 		private final ResourceKey<Biome> hostBiome;
 		private final ResourceKey<Biome> islandBiome;
 		private final int radius;
+		private final Optional<Integer> gridParity;
 		private final Holder<BiomeLayerFactory> parent;
 		private final LandmarkIslandLayer instance;
 
-		public Factory(long salt, ResourceKey<Biome> hostBiome, ResourceKey<Biome> islandBiome, int radius, Holder<BiomeLayerFactory> parent) {
+		public Factory(long salt, ResourceKey<Biome> hostBiome, ResourceKey<Biome> islandBiome, int radius, Optional<Integer> gridParity, Holder<BiomeLayerFactory> parent) {
 			this.salt = salt;
 			this.hostBiome = hostBiome;
 			this.islandBiome = islandBiome;
 			this.radius = radius;
+			this.gridParity = gridParity;
 			this.parent = parent;
 
-			this.instance = new LandmarkIslandLayer(hostBiome, islandBiome, radius);
+			this.instance = new LandmarkIslandLayer(hostBiome, islandBiome, radius, gridParity);
 		}
 
 		@Override
@@ -109,6 +119,10 @@ public record LandmarkIslandLayer(ResourceKey<Biome> hostBiome, ResourceKey<Biom
 
 		public int radius() {
 			return this.radius;
+		}
+
+		public Optional<Integer> gridParity() {
+			return this.gridParity;
 		}
 
 		public Holder<BiomeLayerFactory> parent() {

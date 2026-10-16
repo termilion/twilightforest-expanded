@@ -97,11 +97,13 @@ public class BiomeLayerStack {
 		biomes = new ZoomLayer.Factory(1005L, false, Holder.direct(biomes));
 
 		// Enchanted forests only exist as islands on the landmark centers of lakes, carrying the quest grove
-		biomes = new LandmarkIslandLayer.Factory(900L, TFBiomes.LAKE, TFBiomes.ENCHANTED_FOREST, 56, Holder.direct(biomes));
+		biomes = new LandmarkIslandLayer.Factory(900L, TFBiomes.LAKE, TFBiomes.ENCHANTED_FOREST, 56, Optional.empty(), Holder.direct(biomes));
+		// Every other darkwood landmark center becomes a small clearing carrying the arachnid dwelling, the rest keep the knight stronghold
+		biomes = new LandmarkIslandLayer.Factory(901L, TFBiomes.DARK_FOREST, TFBiomes.DARKWOOD_CLEARING, 40, Optional.of(1), Holder.direct(biomes));
 
 		Holder.Reference<BiomeLayerFactory> randomBiomes = context.register(RANDOM_FOREST_BIOMES, biomes);
 
-		BiomeLayerFactory riverLayer = new SeamLayer.Factory(1L, TFBiomes.STREAM, List.of(TFBiomes.LAKE, TFBiomes.ENCHANTED_FOREST, TFBiomes.THORNLANDS, TFBiomes.CLEARING, TFBiomes.OAK_SAVANNAH), List.of(
+		BiomeLayerFactory riverLayer = new SeamLayer.Factory(1L, TFBiomes.STREAM, List.of(TFBiomes.LAKE, TFBiomes.ENCHANTED_FOREST, TFBiomes.DARKWOOD_CLEARING, TFBiomes.THORNLANDS, TFBiomes.CLEARING, TFBiomes.OAK_SAVANNAH), List.of(
 			Pair.of(TFBiomes.SNOWY_FOREST, TFBiomes.GLACIER),
 			Pair.of(TFBiomes.MUSHROOM_FOREST, TFBiomes.DENSE_MUSHROOM_FOREST),
 			Pair.of(TFBiomes.SWAMP, TFBiomes.FIRE_SWAMP),

@@ -681,6 +681,7 @@ public class TFCreativeTabs {
 		loreSword.set(TFDataComponents.INFINITE_GLASS_SWORD, Unit.INSTANCE);
 
 		output.accept(loreSword);
+		output.accept(TFItems.STINGER);
 	}
 
 	private static final Comparator<Holder<MagicPaintingVariant>> MAGIC_COMPARATOR = Comparator.comparing(Holder::value, Comparator.<MagicPaintingVariant>comparingInt((variant) ->

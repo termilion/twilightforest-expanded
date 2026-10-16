@@ -230,6 +230,16 @@ public class TreeConfigurations {
 		.build();
 
 	// Same bush with darkwood wood and dark leaves (amethyst straits)
+	// Darkwood bush on normal ground (DARKWOOD_BUSH turns the block under it into blackstone for the amethyst straits)
+	public static final TreeConfiguration CLEARING_DARKWOOD_BUSH = new TreeConfiguration.TreeConfigurationBuilder(
+		BlockStateProvider.simple(TFBlocks.DARK_WOOD.get()),
+		new StraightTrunkPlacer(1, 0, 0),
+		BlockStateProvider.simple(TFBlocks.DARK_LEAVES.get()),
+		new BushFoliagePlacer(ConstantInt.of(2), ConstantInt.of(1), 2),
+		new TwoLayersFeatureSize(0, 0, 0))
+		.ignoreVines()
+		.build();
+
 	public static final TreeConfiguration DARKWOOD_BUSH = new TreeConfiguration.TreeConfigurationBuilder(
 		BlockStateProvider.simple(TFBlocks.DARK_WOOD.get()),
 		new StraightTrunkPlacer(1, 0, 0),

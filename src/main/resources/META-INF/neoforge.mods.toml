@@ -38,5 +38,19 @@ versionRange = "[4.8.3,)"
 ordering = "NONE"
 side = "BOTH"
 
+[[dependencies.twilightforest]]
+modId = "mythsandlegends"
+type = "required"
+versionRange = "[1.0.9,)"
+ordering = "AFTER" # our data/mythsandlegends overrides must win
+side = "BOTH"
+
+[[dependencies.twilightforest]]
+modId = "rottencreatures"
+type = "required"
+versionRange = "[1.1.2,)"
+ordering = "AFTER"
+side = "BOTH"
+
 [modproperties.twilightforest]
 configuredBackground = "twilightforest:textures/block/mazestone_large_brick.png"

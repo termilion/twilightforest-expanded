@@ -777,6 +777,37 @@
           "weight": 21
         }
       ]
+    },
+    {
+      "name": "mythsandlegends",
+      "rolls": 1,
+      "bonus_rolls": 0,
+      "entries": [
+        {
+          "type": "minecraft:empty",
+          "weight": 6
+        },
+        {
+          "type": "minecraft:item",
+          "name": "mythsandlegends:possessed_armor_fragment",
+          "weight": 3,
+          "functions": [
+            {
+              "function": "minecraft:set_count",
+              "count": {
+                "type": "minecraft:uniform",
+                "min": 1,
+                "max": 3
+              }
+            }
+          ]
+        },
+        {
+          "type": "minecraft:item",
+          "name": "mythsandlegends:cursed_core",
+          "weight": 1
+        }
+      ]
     }
   ]
 }
