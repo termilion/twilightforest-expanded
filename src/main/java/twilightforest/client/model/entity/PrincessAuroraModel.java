@@ -1,225 +1,121 @@
 package twilightforest.client.model.entity;
 
-import com.mojang.blaze3d.vertex.PoseStack;
-import com.mojang.blaze3d.vertex.VertexConsumer;
-import net.minecraft.client.model.AnimationUtils;
-import net.minecraft.client.model.HumanoidModel;
+import net.minecraft.client.model.HierarchicalModel;
 import net.minecraft.client.model.geom.ModelPart;
 import net.minecraft.client.model.geom.PartPose;
 import net.minecraft.client.model.geom.builders.*;
-import net.minecraft.client.renderer.MultiBufferSource;
-import net.minecraft.client.renderer.RenderType;
 import net.minecraft.util.Mth;
-import net.minecraft.world.item.ItemDisplayContext;
-import twilightforest.client.JappaPackReloadListener;
-import twilightforest.client.renderer.entity.PrincessAuroraRenderer;
+import twilightforest.client.model.entity.animations.PrincessAuroraAnimations;
 import twilightforest.entity.boss.PrincessAurora;
-import twilightforest.entity.boss.PrincessAurora.Phase;
 
-public class PrincessAuroraModel extends HumanoidModel<PrincessAurora> implements TrophyBlockModel {
+/**
+ * Queen Mab model, ported from Feywild (MIT, SaphieNyako) MabModel.
+ */
+public class PrincessAuroraModel extends HierarchicalModel<PrincessAurora> {
+
+	private final ModelPart mab;
+	private final ModelPart head;
 
 	public PrincessAuroraModel(ModelPart root) {
-		super(root);
+		this.mab = root.getChild("mab");
+		this.head = this.mab.getChild("head");
 	}
 
-	public static LayerDefinition checkForPack() {
-		return JappaPackReloadListener.INSTANCE.isJappaPackLoaded() ? createJappaModel() : create();
-	}
-
-	private static LayerDefinition create() {
-		MeshDefinition meshdefinition = HumanoidModel.createMesh(CubeDeformation.NONE, 0);
-		PartDefinition partdefinition = meshdefinition.getRoot();
-
-		var head = partdefinition.addOrReplaceChild("head", CubeListBuilder.create()
-				.texOffs(0, 0)
-				.addBox(-4.0F, -8.0F, -4.0F, 8.0F, 8.0F, 8.0F),
-			PartPose.offset(0.0F, -4.0F, 0.0F));
-
-		partdefinition.addOrReplaceChild("hat", CubeListBuilder.create(), PartPose.ZERO);
-
-		var crown = head.addOrReplaceChild("crown", CubeListBuilder.create(), PartPose.ZERO);
-
-		makeFrontCrown(crown, -1.0F, -4.0F, 10.0F, 0);
-		makeFrontCrown(crown, 0.0F, 4.0F, -10.0F, 1);
-		makeSideCrown(crown, -1.0F, -4.0F, 10.0F, 0);
-		makeSideCrown(crown, 0.0F, 4.0F, -10.0F, 1);
-
-		partdefinition.addOrReplaceChild("body", CubeListBuilder.create()
-				.texOffs(32, 0)
-				.addBox(-4.0F, 0.0F, -2.0F, 8.0F, 23.0F, 4.0F),
-			PartPose.ZERO);
-
-		partdefinition.addOrReplaceChild("right_arm", CubeListBuilder.create()
-				.texOffs(16, 16)
-				.addBox(-2.0F, -2.0F, -1.5F, 3.0F, 12.0F, 3.0F),
-			PartPose.offset(-5.0F, 2.0F, 0.0F));
-
-		partdefinition.addOrReplaceChild("left_arm", CubeListBuilder.create()
-				.texOffs(16, 16)
-				.addBox(-1.0F, -2.0F, -1.3F, 3.0F, 12.0F, 3.0F),
-			PartPose.offset(5.0F, 2.0F, 0.0F));
-
-		partdefinition.addOrReplaceChild("right_leg", CubeListBuilder.create()
-				.texOffs(0, 16)
-				.addBox(-1.5F, 0.0F, -1.5F, 3.0F, 12.0F, 3.0F),
-			PartPose.offset(-1.9F, 12.0F, 0.0F));
-
-		partdefinition.addOrReplaceChild("left_leg", CubeListBuilder.create()
-				.texOffs(0, 16)
-				.addBox(-1.5F, 0.0F, -1.5F, 3.0F, 12.0F, 3.0F),
-			PartPose.offset(1.9F, 12.0F, 0.0F));
-
-		return LayerDefinition.create(meshdefinition, 64, 32);
-	}
-
-	private static void makeSideCrown(PartDefinition parent, float spikeDepth, float crownX, float angle, int iteration) {
-
-		var crownSide = parent.addOrReplaceChild("crown_side_" + iteration, CubeListBuilder.create()
-				.texOffs(28, 28)
-				.addBox(-3.5F, -0.5F, -0.5F, 7.0F, 1.0F, 1.0F),
-			PartPose.offsetAndRotation(crownX, -6.0F, 0.0F, 0.0F, Mth.HALF_PI, 0.0F));
-
-		crownSide.addOrReplaceChild("spike_4", CubeListBuilder.create()
-				.texOffs(48, 27)
-				.addBox(-0.5F, -3.5F, spikeDepth, 1.0F, 4.0F, 1.0F),
-			PartPose.offsetAndRotation(0.0F, 0.0F, 0.0F, angle * 1.5F * Mth.DEG_TO_RAD, 0.0F, 0.0F));
-
-		crownSide.addOrReplaceChild("spike_3l", CubeListBuilder.create()
-				.texOffs(52, 28)
-				.addBox(-0.5F, -2.5F, spikeDepth, 1.0F, 3.0F, 1.0F),
-			PartPose.offsetAndRotation(-2.5F, 0.0F, 0.0F, angle * Mth.DEG_TO_RAD, 0.0F, -10.0F * Mth.DEG_TO_RAD));
-
-		crownSide.addOrReplaceChild("spike_3r", CubeListBuilder.create()
-				.texOffs(52, 28)
-				.addBox(-0.5F, -2.5F, spikeDepth, 1.0F, 3.0F, 1.0F),
-			PartPose.offsetAndRotation(2.5F, 0.0F, 0.0F, angle * Mth.DEG_TO_RAD, 0.0F, 10.0F * Mth.DEG_TO_RAD));
-
-	}
-
-	private static void makeFrontCrown(PartDefinition parent, float spikeDepth, float crownZ, float angle, int iteration) {
-
-		var crownFront = parent.addOrReplaceChild("crown_front_" + iteration, CubeListBuilder.create()
-				.texOffs(28, 30)
-				.addBox(-4.5F, -0.5F, -0.5F, 9.0F, 1.0F, 1.0F),
-			PartPose.offset(0.0F, -6.0F, crownZ));
-
-		crownFront.addOrReplaceChild("spike_4", CubeListBuilder.create()
-				.texOffs(48, 27)
-				.addBox(-0.5F, -3.5F, spikeDepth, 1.0F, 4.0F, 1.0F),
-			PartPose.offsetAndRotation(0.0F, 0.0F, 0.0F, angle * 1.5F * Mth.DEG_TO_RAD, 0.0F, 0.0F));
-
-		crownFront.addOrReplaceChild("spike_3l", CubeListBuilder.create()
-				.texOffs(52, 28)
-				.addBox(-0.5F, -2.5F, spikeDepth, 1.0F, 3.0F, 1.0F),
-			PartPose.offsetAndRotation(-2.5F, 0.0F, 0.0F, angle * Mth.DEG_TO_RAD, 0.0F, -10.0F * Mth.DEG_TO_RAD));
-
-		crownFront.addOrReplaceChild("spike_3r", CubeListBuilder.create()
-				.texOffs(52, 28)
-				.addBox(-0.5F, -2.5F, spikeDepth, 1.0F, 3.0F, 1.0F),
-			PartPose.offsetAndRotation(2.5F, 0.0F, 0.0F, angle * Mth.DEG_TO_RAD, 0.0F, 10.0F * Mth.DEG_TO_RAD));
-
-	}
-
-	private static LayerDefinition createJappaModel() {
+	public static LayerDefinition create() {
 		MeshDefinition meshdefinition = new MeshDefinition();
 		PartDefinition partdefinition = meshdefinition.getRoot();
 
-		partdefinition.addOrReplaceChild("body", CubeListBuilder.create()
-				.texOffs(0, 16)
-				.addBox(-4.0F, 0.0F, -2.0F, 8.0F, 12.0F, 4.0F)
-				.texOffs(32, 45)
-				.addBox(-4.5F, 10.0F, -2.5F, 9.0F, 14.0F, 5.0F),
-			PartPose.ZERO);
+		PartDefinition mab = partdefinition.addOrReplaceChild("mab", CubeListBuilder.create(), PartPose.offset(0.0F, -5.0F, 0.0F));
 
-		var head = partdefinition.addOrReplaceChild("head", CubeListBuilder.create()
-				.texOffs(0, 0)
-				.addBox(-4.0F, -8.0F, -4.0F, 8.0F, 8.0F, 8.0F),
-			PartPose.ZERO);
+		addHead(mab, PartPose.offset(0.0F, -16.0F, 0.0F));
 
-		partdefinition.addOrReplaceChild("left_arm", CubeListBuilder.create()
-				.texOffs(14, 32)
-				.addBox(-1.0F, -2.0F, -2.0F, 3.0F, 12.0F, 4.0F),
-			PartPose.offset(5.0F, 2.0F, 0.0F));
+		mab.addOrReplaceChild("body", CubeListBuilder.create().texOffs(88, 56).addBox(-4.5F, -14.6667F, -2.1667F, 9.0F, 9.0F, 7.0F, new CubeDeformation(0.0F))
+			.texOffs(86, 0).mirror().addBox(0.5F, -13.6667F, -3.1667F, 4.0F, 5.0F, 1.0F, new CubeDeformation(0.0F)).mirror(false)
+			.texOffs(86, 0).addBox(-4.5F, -13.6667F, -3.1667F, 4.0F, 5.0F, 1.0F, new CubeDeformation(0.0F))
+			.texOffs(116, 90).addBox(-3.5F, -5.6667F, -1.1667F, 7.0F, 6.0F, 5.0F, new CubeDeformation(0.0F)), PartPose.offset(0.0F, -0.3333F, -1.3333F));
 
-		partdefinition.addOrReplaceChild("left_leg", CubeListBuilder.create()
-				.texOffs(16, 48)
-				.addBox(-2.0F, 0.0F, -2.0F, 4.0F, 12.0F, 4.0F),
-			PartPose.offset(1.9F, 12.0F, 0.0F));
+		PartDefinition right_arm = mab.addOrReplaceChild("right_arm", CubeListBuilder.create().texOffs(113, 23).addBox(-0.5F, -2.0F, -2.0F, 4.0F, 18.0F, 4.0F, new CubeDeformation(0.0F)), PartPose.offsetAndRotation(4.0F, -12.0F, 0.0F, 0.0F, 0.0F, -0.48F));
 
-		partdefinition.addOrReplaceChild("right_leg", CubeListBuilder.create()
-				.texOffs(0, 48)
-				.addBox(-2.0F, 0.0F, -2.0F, 4.0F, 12.0F, 4.0F),
-			PartPose.offset(-1.9F, 12.0F, 0.0F));
+		PartDefinition sword = right_arm.addOrReplaceChild("sword", CubeListBuilder.create().texOffs(237, 0).addBox(-1.0F, -2.4369F, -0.5F, 2.0F, 4.0F, 1.0F, new CubeDeformation(0.0F))
+			.texOffs(246, 0).addBox(-1.5F, 1.5631F, -1.0F, 3.0F, 2.0F, 2.0F, new CubeDeformation(0.0F))
+			.texOffs(240, 5).addBox(-3.0F, -3.4369F, -1.0F, 6.0F, 1.0F, 2.0F, new CubeDeformation(0.0F))
+			.texOffs(229, 4).addBox(-1.5F, -5.4369F, -1.0F, 3.0F, 2.0F, 2.0F, new CubeDeformation(0.0F))
+			.texOffs(228, 10).addBox(-2.0F, -32.4369F, -0.5F, 4.0F, 29.0F, 1.0F, new CubeDeformation(0.0F)), PartPose.offsetAndRotation(1.0F, 13.9369F, -0.5F, 1.5708F, -0.9163F, 1.5708F));
 
-		partdefinition.addOrReplaceChild("right_arm", CubeListBuilder.create()
-				.texOffs(0, 32)
-				.addBox(-2.0F, -2.0F, -2.0F, 3.0F, 12.0F, 4.0F),
-			PartPose.offset(-5.0F, 2.0F, 0.0F));
+		sword.addOrReplaceChild("cube_r3", CubeListBuilder.create().texOffs(238, 13).addBox(0.0F, 0.0F, -0.5F, 3.0F, 3.0F, 1.0F, new CubeDeformation(0.1F)), PartPose.offsetAndRotation(0.0F, -34.4369F, 0.0F, 0.0F, 0.0F, 0.7854F));
 
-		partdefinition.addOrReplaceChild("hat", CubeListBuilder.create(), PartPose.ZERO);
-		var crown = head.addOrReplaceChild("crown", CubeListBuilder.create(), PartPose.ZERO);
+		PartDefinition left_arm = mab.addOrReplaceChild("left_arm", CubeListBuilder.create().texOffs(113, 23).mirror().addBox(-3.5F, -1.0F, -2.0F, 4.0F, 18.0F, 4.0F, new CubeDeformation(0.0F)).mirror(false), PartPose.offsetAndRotation(-4.0F, -13.0F, 0.0F, 0.0F, 0.0F, 0.48F));
 
-		crown.addOrReplaceChild("crown_front", CubeListBuilder.create()
-				.texOffs(24, 0)
-				.addBox(-5.0F, -4.0F, 0.0F, 10.0F, 4.0F, 0.0F),
-			PartPose.offsetAndRotation(0.0F, -6.0F, -4.0F, 0.39269908169872414F, 0.0F, 0.0F));
+		left_arm.addOrReplaceChild("bone3", CubeListBuilder.create(), PartPose.offsetAndRotation(-4.5753F, 7.4975F, 0.0F, 0.0F, 3.1416F, -0.3491F));
 
-		crown.addOrReplaceChild("crown_right", CubeListBuilder.create()
-				.texOffs(24, 4)
-				.addBox(-5.0F, -4.0F, 0.0F, 10.0F, 4.0F, 0.0F),
-			PartPose.offsetAndRotation(-4.0F, -6.0F, 0.0F, 0.39269908169872414F, 1.5707963267948966F, 0.0F));
+		PartDefinition leftwing = mab.addOrReplaceChild("leftwing", CubeListBuilder.create(), PartPose.offsetAndRotation(-2.25F, -11.0F, 8.5F, 0.2758F, -1.1541F, -0.923F));
 
-		crown.addOrReplaceChild("crown_left", CubeListBuilder.create()
-				.texOffs(44, 4)
-				.addBox(-5.0F, -4.0F, 0.0F, 10.0F, 4.0F, 0.0F),
-			PartPose.offsetAndRotation(4.0F, -6.0F, 0.0F, -0.39269908169872414F, 1.5707963267948966F, 0.0F));
+		leftwing.addOrReplaceChild("bottom_left_wing", CubeListBuilder.create().texOffs(0, 67).addBox(0.0F, 0.0F, 0.0F, 0.0F, 34.0F, 25.0F, new CubeDeformation(0.0F)), PartPose.offsetAndRotation(0.0F, -2.0F, 0.0F, 0.2618F, 0.0F, 0.0F));
 
-		crown.addOrReplaceChild("crown_back", CubeListBuilder.create()
-				.texOffs(44, 0)
-				.addBox(-5.0F, -4.0F, 0.0F, 10.0F, 4.0F, 0.0F),
-			PartPose.offsetAndRotation(0.0F, -6.0F, 4.0F, -0.39269908169872414F, 0.0F, 0.0F));
+		leftwing.addOrReplaceChild("upper_left_wing", CubeListBuilder.create().texOffs(0, 0).addBox(0.0F, -24.0F, 0.0F, 0.0F, 24.0F, 44.0F, new CubeDeformation(0.0F)), PartPose.offsetAndRotation(0.0F, -3.0F, 0.0F, -0.9548F, -0.1675F, 0.0406F));
 
-		return LayerDefinition.create(meshdefinition, 64, 64);
+		PartDefinition rightwing = mab.addOrReplaceChild("rightwing", CubeListBuilder.create(), PartPose.offsetAndRotation(2.25F, -11.0F, 8.5F, 0.2758F, 1.1541F, 0.923F));
+
+		rightwing.addOrReplaceChild("bottom_right_wing", CubeListBuilder.create().texOffs(0, 67).mirror().addBox(0.0F, 0.0F, 0.0F, 0.0F, 34.0F, 25.0F, new CubeDeformation(0.0F)).mirror(false), PartPose.offsetAndRotation(0.0F, -2.0F, 0.0F, 0.2618F, 0.0F, 0.0F));
+
+		rightwing.addOrReplaceChild("upper_right_wing", CubeListBuilder.create().texOffs(0, 0).mirror().addBox(0.0F, -24.0F, 0.0F, 0.0F, 24.0F, 44.0F, new CubeDeformation(0.0F)).mirror(false), PartPose.offsetAndRotation(0.0F, -3.0F, 0.0F, -0.9548F, 0.1675F, -0.0406F));
+
+		PartDefinition skirt = mab.addOrReplaceChild("skirt", CubeListBuilder.create(), PartPose.ZERO);
+
+		skirt.addOrReplaceChild("rightskirt", CubeListBuilder.create().texOffs(0, 0).mirror().addBox(0.0F, -1.0F, -3.5F, 7.0F, 30.0F, 7.0F, new CubeDeformation(0.0F)).mirror(false), PartPose.offsetAndRotation(0.0F, 0.0F, 0.0F, 0.0F, 0.0F, -0.1309F));
+
+		skirt.addOrReplaceChild("leftskirt", CubeListBuilder.create().texOffs(0, 0).addBox(-7.0F, -1.0F, -3.5F, 7.0F, 30.0F, 7.0F, new CubeDeformation(0.0F)), PartPose.offsetAndRotation(0.0F, 0.0F, 0.0F, 0.0F, 0.0F, 0.1309F));
+
+		mab.addOrReplaceChild("right_leg", CubeListBuilder.create().texOffs(112, 0).addBox(-2.0F, -0.5F, -2.0F, 4.0F, 19.0F, 4.0F, new CubeDeformation(0.0F)), PartPose.offset(2.0F, 0.5F, 0.0F));
+
+		mab.addOrReplaceChild("left_leg", CubeListBuilder.create().texOffs(112, 0).addBox(-2.0F, -0.5F, -2.0F, 4.0F, 19.0F, 4.0F, new CubeDeformation(0.0F)), PartPose.offset(-2.0F, 0.5F, 0.0F));
+
+		return LayerDefinition.create(meshdefinition, 256, 256);
+	}
+
+	/**
+	 * Head with crown, ears and hair. Shared with {@link PrincessAuroraTrophyModel}.
+	 */
+	public static void addHead(PartDefinition parent, PartPose pose) {
+		PartDefinition head = parent.addOrReplaceChild("head", CubeListBuilder.create().texOffs(56, 20).addBox(-5.0F, -10.0F, -5.0F, 10.0F, 10.0F, 10.0F, new CubeDeformation(0.0F))
+			.texOffs(21, 0).addBox(-1.5F, 0.0F, -2.0F, 3.0F, 1.0F, 4.0F, new CubeDeformation(0.0F)), pose);
+
+		PartDefinition crown = head.addOrReplaceChild("crown", CubeListBuilder.create().texOffs(129, 3).addBox(-4.5F, -20.0F, -6.0F, 9.0F, 11.0F, 0.0F, new CubeDeformation(0.0F)), PartPose.offset(0.0F, 0.5F, 0.0F));
+
+		crown.addOrReplaceChild("cube_r1", CubeListBuilder.create().texOffs(24, 30).addBox(0.0F, -3.5F, 0.0F, 0.0F, 7.0F, 7.0F, new CubeDeformation(0.0F)), PartPose.offsetAndRotation(4.5F, -12.5F, -6.0F, 0.0F, 0.4363F, 0.0F));
+
+		crown.addOrReplaceChild("cube_r2", CubeListBuilder.create().texOffs(24, 30).addBox(0.0F, -3.5F, 0.0F, 0.0F, 7.0F, 7.0F, new CubeDeformation(0.0F)), PartPose.offsetAndRotation(-4.5F, -12.5F, -6.0F, 0.0F, -0.4363F, 0.0F));
+
+		head.addOrReplaceChild("righthear", CubeListBuilder.create().texOffs(56, 0).addBox(0.0F, -3.25F, 0.0F, 0.0F, 5.0F, 5.0F, new CubeDeformation(0.0F)), PartPose.offsetAndRotation(5.0F, -3.75F, -2.0F, 0.0F, 0.48F, 0.0F));
+
+		head.addOrReplaceChild("lefthear", CubeListBuilder.create().texOffs(56, 0).addBox(0.0F, -3.25F, 0.0F, 0.0F, 5.0F, 5.0F, new CubeDeformation(0.0F)), PartPose.offsetAndRotation(-5.0F, -3.75F, -2.0F, 0.0F, -0.48F, 0.0F));
+
+		PartDefinition hair = head.addOrReplaceChild("hair", CubeListBuilder.create().texOffs(56, 0).addBox(-5.0F, -10.0F, -5.0F, 10.0F, 10.0F, 10.0F, new CubeDeformation(0.5F)), PartPose.ZERO);
+
+		hair.addOrReplaceChild("leftfronthair", CubeListBuilder.create().texOffs(104, 23).addBox(-4.0F, 0.0F, 0.0F, 4.0F, 16.0F, 0.0F, new CubeDeformation(0.0F)), PartPose.offsetAndRotation(0.0F, -10.1667F, -5.2333F, -0.0873F, 0.0F, 0.6981F));
+
+		hair.addOrReplaceChild("rightfronthair", CubeListBuilder.create().texOffs(104, 23).mirror().addBox(0.0F, 0.0F, 0.0F, 4.0F, 16.0F, 0.0F, new CubeDeformation(0.0F)).mirror(false), PartPose.offsetAndRotation(0.0F, -10.1667F, -5.2333F, -0.0873F, 0.0F, -0.6981F));
+
+		hair.addOrReplaceChild("backhair", CubeListBuilder.create().texOffs(88, 72).addBox(-6.0F, -1.25F, -0.5F, 12.0F, 14.0F, 1.0F, new CubeDeformation(0.0F))
+			.texOffs(0, 37).addBox(-6.0F, 12.75F, 0.0F, 12.0F, 7.0F, 0.0F, new CubeDeformation(0.0F)), PartPose.offsetAndRotation(0.0F, -8.75F, 5.5F, 0.1309F, 0.0F, 0.0F));
 	}
 
 	@Override
 	public void setupAnim(PrincessAurora entity, float limbSwing, float limbSwingAmount, float ageInTicks, float netHeadYaw, float headPitch) {
-		super.setupAnim(entity, limbSwing, limbSwingAmount, ageInTicks, netHeadYaw, headPitch);
+		this.root().getAllParts().forEach(ModelPart::resetPose);
 
-		// in beam phase, arms forwards
-		if (entity.getCurrentPhase() == Phase.BEAM) {
-			if (entity.isBreathing()) {
-				float f6 = Mth.sin(this.attackTime * Mth.PI);
-				float f7 = Mth.sin((1.0F - (1.0F - this.attackTime) * (1.0F - this.attackTime)) * Mth.PI);
-				this.rightArm.zRot = 0.0F;
-				this.leftArm.zRot = 0.0F;
-				this.rightArm.yRot = -(0.1F - f6 * 0.6F);
-				this.leftArm.yRot = 0.1F - f6 * 0.6F;
-				this.rightArm.xRot = -Mth.HALF_PI;
-				this.leftArm.xRot = -Mth.HALF_PI;
-				this.rightArm.xRot -= f6 * 1.2F - f7 * 0.4F;
-				this.leftArm.xRot -= f6 * 1.2F - f7 * 0.4F;
-				AnimationUtils.bobArms(this.rightArm, this.leftArm, ageInTicks);
-			} else {
-				// arms up
-				this.rightArm.xRot += Mth.PI;
-				this.leftArm.xRot += Mth.PI;
-			}
-		}
+		this.head.yRot = Mth.clamp(netHeadYaw, -30.0F, 30.0F) * Mth.DEG_TO_RAD;
+		this.head.xRot = Mth.clamp(headPitch, -25.0F, 45.0F) * Mth.DEG_TO_RAD;
+
+		this.animate(entity.flyingIdleAnimationState, PrincessAuroraAnimations.FLYING_IDLE, ageInTicks);
+		this.animate(entity.flyingAnimationState, PrincessAuroraAnimations.FLYING, ageInTicks);
+		this.animate(entity.channelAnimationState, PrincessAuroraAnimations.CHANNEL, ageInTicks);
+		this.animate(entity.intimidationAnimationState, PrincessAuroraAnimations.INTIMIDATION, ageInTicks);
+		this.animate(entity.attackAnimationState, PrincessAuroraAnimations.ATTACK, ageInTicks);
 	}
 
 	@Override
-	public void renderTrophy(PoseStack stack, MultiBufferSource buffer, int light, int overlay, int color, ItemDisplayContext context) {
-		if (!JappaPackReloadListener.INSTANCE.isJappaPackLoaded()) {
-			stack.translate(0.0F, 0.25F, 0.0F);
-		}
-		VertexConsumer consumer = buffer.getBuffer(RenderType.entityCutoutNoCull(PrincessAuroraRenderer.TEXTURE));
-		this.head.render(stack, consumer, light, overlay, color);
-	}
-
-	@Override
-	public void setupRotationsForTrophy(float x, float y, float z, float mouthAngle) {
-		this.head.yRot = y * Mth.DEG_TO_RAD;
-		this.head.xRot = z * Mth.DEG_TO_RAD;
+	public ModelPart root() {
+		return this.mab;
 	}
 }

@@ -84,7 +84,7 @@ public class TFEntities {
 	public static final DeferredHolder<EntityType<?>, EntityType<SlimeBeetle>> SLIME_BEETLE = make(TFEntityNames.SLIME_BEETLE, SlimeBeetle::new, MobCategory.MONSTER, 0.9F, 0.5F, 0x0c1606, 0x60a74c);
 	public static final DeferredHolder<EntityType<?>, EntityType<SlimeProjectile>> SLIME_BLOB = buildNoEgg(TFEntityNames.SLIME_BLOB, makeCastedBuilder(SlimeProjectile.class, SlimeProjectile::new, 0.25F, 0.25F, 150, 3), false);
 	public static final DeferredHolder<EntityType<?>, EntityType<SnowGuardian>> SNOW_GUARDIAN = make(TFEntityNames.SNOW_GUARDIAN, SnowGuardian::new, MobCategory.MONSTER, 0.6F, 1.8F, 0xd3e7bc, 0xfefefe);
-	public static final DeferredHolder<EntityType<?>, EntityType<PrincessAurora>> PRINCESS_AURORA = make(TFEntityNames.PRINCESS_AURORA, PrincessAurora::new, MobCategory.MONSTER, 0.7F, 2.5F, 0xb1b2d4, 0x87006e);
+	public static final DeferredHolder<EntityType<?>, EntityType<PrincessAurora>> PRINCESS_AURORA = make(TFEntityNames.PRINCESS_AURORA, PrincessAurora::new, MobCategory.MONSTER, 1.2F, 2.6F, 0xb1b2d4, 0x87006e);
 	public static final DeferredHolder<EntityType<?>, EntityType<Squirrel>> SQUIRREL = make(TFEntityNames.SQUIRREL, Squirrel::new, MobCategory.CREATURE, 0.3F, 0.5F, 0x904f12, 0xeeeeee);
 	public static final DeferredHolder<EntityType<?>, EntityType<StableIceCore>> STABLE_ICE_CORE = make(TFEntityNames.STABLE_ICE_CORE, StableIceCore::new, MobCategory.MONSTER, 0.8F, 1.8F, 1.35F, false, 0xa1bff3, 0x7000f8);
 	public static final DeferredHolder<EntityType<?>, EntityType<SwarmSpider>> SWARM_SPIDER = make(TFEntityNames.SWARM_SPIDER, SwarmSpider::new, MobCategory.MONSTER, 0.8F, 0.4F, 0x32022e, 0x17251e);

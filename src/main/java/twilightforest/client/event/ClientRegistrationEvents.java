@@ -404,7 +404,7 @@ public class ClientRegistrationEvents {
 		event.registerEntityRenderer(TFEntities.SNOW_GUARDIAN.get(), m -> new SnowGuardianRenderer(m, new NoopModel<>(m.bakeLayer(TFModelLayers.NOOP))));
 		event.registerEntityRenderer(TFEntities.STABLE_ICE_CORE.get(), m -> new StableIceCoreRenderer(m, new StableIceCoreModel(m.bakeLayer(TFModelLayers.STABLE_ICE_CORE))));
 		event.registerEntityRenderer(TFEntities.UNSTABLE_ICE_CORE.get(), m -> new UnstableIceCoreRenderer<>(m, new UnstableIceCoreModel<>(m.bakeLayer(TFModelLayers.UNSTABLE_ICE_CORE))));
-		event.registerEntityRenderer(TFEntities.PRINCESS_AURORA.get(), m -> new PrincessAuroraRenderer<>(m, new PrincessAuroraModel(m.bakeLayer(TFModelLayers.PRINCESS_AURORA))));
+		event.registerEntityRenderer(TFEntities.PRINCESS_AURORA.get(), PrincessAuroraRenderer::new);
 		event.registerEntityRenderer(TFEntities.TROLL.get(), m -> new TFBipedRenderer<>(m, new TrollModel(m.bakeLayer(TFModelLayers.TROLL)), 0.625F, "troll.png"));
 		event.registerEntityRenderer(TFEntities.GIANT_MINER.get(), TFGiantRenderer::new);
 		event.registerEntityRenderer(TFEntities.ARMORED_GIANT.get(), TFGiantRenderer::new);
@@ -480,7 +480,7 @@ public class ClientRegistrationEvents {
 		event.registerLayerDefinition(TFModelLayers.MINOSHROOM_TROPHY, MinoshroomModel::checkForPack);
 		event.registerLayerDefinition(TFModelLayers.NAGA_TROPHY, NagaModel::checkForPack);
 		event.registerLayerDefinition(TFModelLayers.QUEST_RAM_TROPHY, QuestRamModel::checkForPackTrophyEdition);
-		event.registerLayerDefinition(TFModelLayers.PRINCESS_AURORA_TROPHY, PrincessAuroraModel::checkForPack);
+		event.registerLayerDefinition(TFModelLayers.PRINCESS_AURORA_TROPHY, PrincessAuroraTrophyModel::create);
 		event.registerLayerDefinition(TFModelLayers.UR_GHAST_TROPHY, UrGhastModel::create);
 
 		event.registerLayerDefinition(TFModelLayers.ADHERENT, AdherentModel::create);
@@ -538,7 +538,7 @@ public class ClientRegistrationEvents {
 		event.registerLayerDefinition(TFModelLayers.SKELETON_DRUID, SkeletonDruidModel::create);
 		event.registerLayerDefinition(TFModelLayers.SLIME_BEETLE, SlimeBeetleModel::checkForPack);
 		event.registerLayerDefinition(TFModelLayers.SLIME_BEETLE_TAIL, SlimeBeetleModel::checkForPack);
-		event.registerLayerDefinition(TFModelLayers.PRINCESS_AURORA, PrincessAuroraModel::checkForPack);
+		event.registerLayerDefinition(TFModelLayers.PRINCESS_AURORA, PrincessAuroraModel::create);
 		event.registerLayerDefinition(TFModelLayers.CHAIN_BLOCK, SpikeBlockModel::create);
 		event.registerLayerDefinition(TFModelLayers.SQUIRREL, SquirrelModel::checkForPack);
 		event.registerLayerDefinition(TFModelLayers.BROWNIE, BrownieModel::create);

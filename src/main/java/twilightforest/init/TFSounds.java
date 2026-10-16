@@ -253,9 +253,10 @@ public final class TFSounds {
 	public static final DeferredHolder<SoundEvent, SoundEvent> SNOW_GUARDIAN_HURT = createEvent("entity.twilightforest.snow_guardian.hurt");
 	public static final DeferredHolder<SoundEvent, SoundEvent> PRINCESS_AURORA_AMBIENT = createEvent("entity.twilightforest.princess_aurora.ambient");
 	public static final DeferredHolder<SoundEvent, SoundEvent> PRINCESS_AURORA_ATTACK = createEvent("entity.twilightforest.princess_aurora.attack");
-	public static final DeferredHolder<SoundEvent, SoundEvent> PRINCESS_AURORA_BREAK = createEvent("entity.twilightforest.princess_aurora.break");
 	public static final DeferredHolder<SoundEvent, SoundEvent> PRINCESS_AURORA_DEATH = createEvent("entity.twilightforest.princess_aurora.death");
 	public static final DeferredHolder<SoundEvent, SoundEvent> PRINCESS_AURORA_HURT = createEvent("entity.twilightforest.princess_aurora.hurt");
+	public static final DeferredHolder<SoundEvent, SoundEvent> PRINCESS_AURORA_INTIMIDATE = createEvent("entity.twilightforest.princess_aurora.intimidate");
+	public static final DeferredHolder<SoundEvent, SoundEvent> PRINCESS_AURORA_SUMMON = createEvent("entity.twilightforest.princess_aurora.summon");
 	public static final DeferredHolder<SoundEvent, SoundEvent> BROWNIE_AMBIENT = createEvent("entity.twilightforest.brownie.ambient");
 	public static final DeferredHolder<SoundEvent, SoundEvent> BROWNIE_HURT = createEvent("entity.twilightforest.brownie.hurt");
 	public static final DeferredHolder<SoundEvent, SoundEvent> BROWNIE_NOD = createEvent("entity.twilightforest.brownie.nod");

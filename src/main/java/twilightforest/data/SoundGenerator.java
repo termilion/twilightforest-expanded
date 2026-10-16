@@ -247,11 +247,12 @@ public class SoundGenerator extends TFSoundProvider {
 		this.generateNewSoundWithSubtitle(TFSounds.SNOW_GUARDIAN_DEATH, "mob/ice/death", 2, "Snow Guardian dies");
 		this.generateNewSoundWithSubtitle(TFSounds.SNOW_GUARDIAN_HURT, "mob/ice/hurt", 2, "Snow Guardian hurts");
 
-		this.generateNewSoundWithSubtitle(TFSounds.PRINCESS_AURORA_AMBIENT, "mob/ice/crackle", 2, "Princess Aurora crackles");
-		this.generateExistingSoundWithSubtitle(TFSounds.PRINCESS_AURORA_ATTACK, SoundEvents.IRON_GOLEM_ATTACK, "Princess Aurora attacks");
-		this.generateExistingSoundWithSubtitle(TFSounds.PRINCESS_AURORA_BREAK, SoundEvents.ITEM_BREAK, "Princess Aurora deflects attack");
-		this.generateNewSoundWithSubtitle(TFSounds.PRINCESS_AURORA_DEATH, "mob/ice/death", 2, "Princess Aurora dies");
-		this.generateNewSoundWithSubtitle(TFSounds.PRINCESS_AURORA_HURT, "mob/ice/hurt", 2, "Princess Aurora hurts");
+		this.generateNewSoundWithSubtitle(TFSounds.PRINCESS_AURORA_AMBIENT, "mob/princess_aurora/ambient", 5, "Princess Aurora hums");
+		this.generateNewSoundWithSubtitle(TFSounds.PRINCESS_AURORA_ATTACK, "mob/princess_aurora/attack", 2, "Princess Aurora attacks");
+		this.generateNewSoundWithSubtitle(TFSounds.PRINCESS_AURORA_DEATH, "mob/princess_aurora/death", 4, "Princess Aurora dies");
+		this.generateNewSoundWithSubtitle(TFSounds.PRINCESS_AURORA_HURT, "mob/princess_aurora/hurt", 3, "Princess Aurora hurts");
+		this.generateNewSoundWithSubtitle(TFSounds.PRINCESS_AURORA_INTIMIDATE, "mob/princess_aurora/intimidate", 4, "Princess Aurora intimidates");
+		this.generateNewSoundWithSubtitle(TFSounds.PRINCESS_AURORA_SUMMON, "mob/princess_aurora/summon", 3, "Princess Aurora summons vexes");
 
 		this.generateExistingSoundWithSubtitle(TFSounds.SWARM_SPIDER_AMBIENT, SoundEvents.SPIDER_AMBIENT, "Swarm Spider hisses");
 		this.generateExistingSoundWithSubtitle(TFSounds.SWARM_SPIDER_DEATH, SoundEvents.SPIDER_DEATH, "Swarm Spider dies");
