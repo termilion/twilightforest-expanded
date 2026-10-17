@@ -410,6 +410,25 @@ public abstract class BiomeHelper {
 		return biome;
 	}
 
+	public static BiomeGenerationSettings.Builder snowMountainGen(HolderGetter<PlacedFeature> featureGetter, HolderGetter<ConfiguredWorldCarver<?>> carverGetter) {
+		BiomeGenerationSettings.Builder biome = new BiomeGenerationSettings.Builder(featureGetter, carverGetter);
+
+		BiomeDefaultFeatures.addSurfaceFreezing(biome);
+
+		addCaves(biome);
+
+		return biome;
+	}
+
+	// The summit clearing stays empty for the landmark on top
+	public static BiomeGenerationSettings.Builder mountainPeakGen(HolderGetter<PlacedFeature> featureGetter, HolderGetter<ConfiguredWorldCarver<?>> carverGetter) {
+		BiomeGenerationSettings.Builder biome = new BiomeGenerationSettings.Builder(featureGetter, carverGetter);
+
+		BiomeDefaultFeatures.addSurfaceFreezing(biome);
+
+		return biome;
+	}
+
 	public static BiomeGenerationSettings.Builder amethystStraitsGen(HolderGetter<PlacedFeature> featureGetter, HolderGetter<ConfiguredWorldCarver<?>> carverGetter) {
 		// Started as a copy of vanilla ice spikes
 		BiomeGenerationSettings.Builder biome = new BiomeGenerationSettings.Builder(featureGetter, carverGetter);

@@ -29,6 +29,8 @@ public class TFModelLayers {
 	public static final ModelLayerLocation NAGA_TROPHY = register("naga_trophy");
 	public static final ModelLayerLocation QUEST_RAM_TROPHY = register("quest_ram_trophy");
 	public static final ModelLayerLocation PRINCESS_AURORA_TROPHY = register("princess_aurora_trophy");
+	public static final ModelLayerLocation ASHEN_LORD_TROPHY = register("ashen_lord_trophy");
+	public static final ModelLayerLocation PALE_MONARCH_TROPHY = register("pale_monarch_trophy");
 	public static final ModelLayerLocation UR_GHAST_TROPHY = register("ur_ghast_trophy");
 
 	public static final ModelLayerLocation ADHERENT = register("adherent");
@@ -85,6 +87,7 @@ public class TFModelLayers {
 	public static final ModelLayerLocation SLIME_BEETLE = register("slime_beetle");
 	public static final ModelLayerLocation SLIME_BEETLE_TAIL = register("slime_beetle", "tail");
 	public static final ModelLayerLocation PRINCESS_AURORA = register("princess_aurora");
+	public static final ModelLayerLocation ASHEN_LORD = register("ashen_lord");
 	public static final ModelLayerLocation SQUIRREL = register("squirrel");
 	public static final ModelLayerLocation STABLE_ICE_CORE = register("stable_ice_core");
 	public static final ModelLayerLocation SWARM_SPIDER = register("swarm_spider");

@@ -55,6 +55,8 @@ public class LangGenerator extends TFLangProvider {
 		this.addBiome(TFBiomes.SNOWY_FOREST, "Snowy Forest");
 		this.addBiome(TFBiomes.GLACIER, "Twilight Glacier");
 		this.addBiome(TFBiomes.AMETHYST_STRAITS, "Amethyst Straits");
+		this.addBiome(TFBiomes.SNOW_MOUNTAIN, "Snow Mountain");
+		this.addBiome(TFBiomes.MOUNTAIN_PEAK, "Mountain Peak");
 		this.addBiome(TFBiomes.HIGHLANDS, "Twilight Highlands");
 		this.addBiome(TFBiomes.HIGHLANDS_UNDERGROUND, "Troll Caves");
 		this.addBiome(TFBiomes.THORNLANDS, "Thornlands");
@@ -175,7 +177,46 @@ public class LangGenerator extends TFLangProvider {
 		this.addAdvancement("beanstalk", "Jack and the Beanstalk", "Obtain some %s in the troll caves and use them on the glowing soil beneath the clouds");
 		this.addAdvancement("giants", "I'm on Cloud Nine", "Kill a %s in the clouds, retrieve a %s, and return back to the troll caves");
 		this.addAdvancement("progress_troll", "I Wish For More Burning", "Find the %s in the troll caves, and you can burn away the thorn barriers");
-		this.addAdvancement("progression_end", "End of Progression", "Anything past this point in the Highlands is a work in progress. It will be finished in the future");
+		this.addAdvancement("progress_monarch", "Dethroned", "Defeat the %s in the lone citadel. Its fall breaks the frost on the snow mountain");
+		this.addAdvancement("progress_summit", "End of Progression", "Defeat the %s on the summit of the snow mountain");
+		// Questlog quests, see quest.TFQuests
+		this.add("quest.twilightforest.caged_allay.title", "Caged Allay");
+		this.add("quest.twilightforest.caged_allay.objective", "Speak to the caged Allay");
+		this.add("quest.twilightforest.caged_allay.description", "Somewhere in this structure an Allay is locked in a cage. Its captors will not be pleased if you let it out. Speak to it.");
+		this.add("quest.twilightforest.caged_allay.description_completed", "The Allay gave you a Twilight Shard and a map to a pool that will open the way to its realm.");
+		this.add("quest.twilightforest.into_the_twilight.title", "Into the Twilight");
+		this.add("quest.twilightforest.into_the_twilight.objective", "Enter the Twilight Forest");
+		this.add("quest.twilightforest.into_the_twilight.description", "Follow the Twilight Pool Map to the pool it marks, then throw the Twilight Shard into the water to open the portal.");
+		this.add("quest.twilightforest.into_the_twilight.description_completed", "You stepped through the portal into the Twilight Forest.");
+		this.add("quest.twilightforest.find_the_ram.objective", "Speak to the Questing Ram");
+		this.add("quest.twilightforest.find_the_ram.title", "A Questing Ram");
+		this.add("quest.twilightforest.find_the_ram.description", "The twilight is thick here. Somewhere in this enchanted forest a grove shelters a ram that has watched many adventurers come and go. Find it and speak to it.");
+		this.add("quest.twilightforest.find_the_ram.description_completed", "You found the Questing Ram. It studies everything you bring it, and it remembers.");
+		this.add("quest.twilightforest.lich.objective", "Show the Lich's trophy to a Questing Ram");
+		this.add("quest.twilightforest.lich.title", "The Lich's Trophy");
+		this.add("quest.twilightforest.lich.description", "The ram speaks of a lich in a tower of stone and spells. Defeat it, then show its trophy to a Questing Ram.");
+		this.add("quest.twilightforest.lich.description_completed", "The ram studied the lich's trophy and gave it back. Its progress is yours now.");
+		this.add("quest.twilightforest.hydra.objective", "Show the Hydra's trophy to a Questing Ram");
+		this.add("quest.twilightforest.hydra.title", "The Many-Headed");
+		this.add("quest.twilightforest.hydra.description", "A hydra stirs in the fire swamp. Slay it and let a Questing Ram study its trophy.");
+		this.add("quest.twilightforest.hydra.description_completed", "The ram studied the hydra's trophy and nodded.");
+		this.add("quest.twilightforest.ur_ghast.objective", "Show the Ur-Ghast's trophy to a Questing Ram");
+		this.add("quest.twilightforest.ur_ghast.title", "The Ghast of the Dark Tower");
+		this.add("quest.twilightforest.ur_ghast.description", "A great ghast drifts above the dark tower. Slay it and show its trophy to a Questing Ram.");
+		this.add("quest.twilightforest.ur_ghast.description_completed", "The ram studied the Ur-Ghast's trophy and nodded.");
+		this.add("quest.twilightforest.aurora.objective", "Show Princess Aurora's trophy to a Questing Ram");
+		this.add("quest.twilightforest.aurora.title", "The Frozen Princess");
+		this.add("quest.twilightforest.aurora.description", "A glacier hides a princess of ice. Slay her and show her trophy to a Questing Ram.");
+		this.add("quest.twilightforest.aurora.description_completed", "The ram studied Princess Aurora's trophy and nodded.");
+		this.add("quest.twilightforest.pale_monarch.objective", "Show the Pale Monarch's trophy to a Questing Ram");
+		this.add("quest.twilightforest.pale_monarch.title", "The Pale Monarch");
+		this.add("quest.twilightforest.pale_monarch.description", "Once the three trophies are home, the ram speaks of a pale king in a lone citadel. Slay him and show his trophy to a Questing Ram.");
+		this.add("quest.twilightforest.pale_monarch.description_completed", "The ram studied the Pale Monarch's trophy. The frost on the mountain begins to break.");
+		this.add("quest.twilightforest.ashen_lord.objective", "Show the Ashen Lord's trophy to a Questing Ram");
+		this.add("quest.twilightforest.ashen_lord.title", "The Summit");
+		this.add("quest.twilightforest.ashen_lord.description", "The mountain is open. At its summit an ashen lord guards the end of the road. Slay it and show its trophy to a Questing Ram.");
+		this.add("quest.twilightforest.ashen_lord.description_completed", "The ram studied the Ashen Lord's trophy. There is nothing left to teach you.");
+		this.add("quest.twilightforest.chapter", "The Twilight Forest");
 		//this.addAdvancement("progress_thorns", "Past the Thorns [NYI]", "Make it past the Thornlands, and unlock the door of the castle");
 		//this.addAdvancement("progress_castle", "So Castle Very Wow [NYI]", "What could even be in that castle?!?");
 		this.addAdvancement("twilight_dining", "We Dine At Eternal Sundown", "Eat every edible item type exclusive to Twilight Forest");
@@ -506,6 +547,8 @@ public class LangGenerator extends TFLangProvider {
 		this.addBlock(TFBlocks.UR_GHAST_TROPHY, "Ur-Ghast Trophy");
 		this.addBlock(TFBlocks.ALPHA_YETI_TROPHY, "Alpha Yeti Trophy");
 		this.addBlock(TFBlocks.PRINCESS_AURORA_TROPHY, "Princess Aurora Trophy");
+		this.addBlock(TFBlocks.ASHEN_LORD_TROPHY, "Ashen Lord Trophy");
+		this.addBlock(TFBlocks.PALE_MONARCH_TROPHY, "Pale Monarch Trophy");
 		this.addBlock(TFBlocks.QUEST_RAM_TROPHY, "Questing Ram Trophy");
 
 		this.addBlock(TFBlocks.NAGA_BOSS_SPAWNER, "Naga Boss Spawner");
@@ -516,6 +559,7 @@ public class LangGenerator extends TFLangProvider {
 		this.addBlock(TFBlocks.UR_GHAST_BOSS_SPAWNER, "Ur-Ghast Boss Spawner");
 		this.addBlock(TFBlocks.ALPHA_YETI_BOSS_SPAWNER, "Alpha Yeti Boss Spawner");
 		this.addBlock(TFBlocks.PRINCESS_AURORA_BOSS_SPAWNER, "Princess Aurora Boss Spawner");
+		this.addBlock(TFBlocks.ASHEN_LORD_BOSS_SPAWNER, "Ashen Lord Boss Spawner");
 
 		this.addBannerPattern("naga", "Naga Scales");
 		this.addBannerPattern("lich", "Lich Crown");
@@ -557,6 +601,9 @@ public class LangGenerator extends TFLangProvider {
 
 		this.add("item.twilightforest.boarkchop", "Raw Boarkchop");
 		this.addItem(TFItems.NAGA_SCALE, "Naga Scale");
+		this.addItem(TFItems.TWILIGHT_SHARD, "Twilight Shard");
+		this.add("item.twilightforest.twilight_shard.desc", "A shard of never ending Twilight.");
+		this.add("item.twilightforest.twilight_pool_map", "Twilight Pool Map");
 		this.addItem(TFItems.NAGA_CHESTPLATE, "Naga Scale Tunic");
 		this.addItem(TFItems.NAGA_LEGGINGS, "Naga Scale Leggings");
 		this.addItem(TFItems.FORTIFICATION_SCEPTER, "Scepter of Fortification");
@@ -824,6 +871,8 @@ public class LangGenerator extends TFLangProvider {
 		this.addEntityAndEgg(TFEntities.SLIME_BEETLE, "Slime Beetle");
 		this.addEntityAndEgg(TFEntities.SNOW_GUARDIAN, "Snow Guardian");
 		this.addEntityAndEgg(TFEntities.PRINCESS_AURORA, "Princess Aurora");
+		this.addEntityAndEgg(TFEntities.ASHEN_LORD, "Ashen Lord");
+		this.addEntityType(TFEntities.LEAF_PROJECTILE, "Leaf");
 		this.addEntityAndEgg(TFEntities.SQUIRREL, "Squirrel");
 		this.addEntityAndEgg(TFEntities.QUEST_ALLAY, "Quest Allay");
 		this.addEntityAndEgg(TFEntities.SHROOMLING, "Shroomling");
@@ -1031,7 +1080,7 @@ public class LangGenerator extends TFLangProvider {
 		this.addScreenMessage("optifine.message", "Before proceeding, please note that Optifine is known to cause crashes, multipart entity visual bugs and many other issues.\n\nBefore reporting a bug, please remove Optifine first and check again to see if the bug is still present.\n\nOptifine-related issues are not solvable on Twilight Forest's end!\n\nThis screen may be disabled in the Client Config.");
 		this.addScreenMessage("optifine.suggestions", "Here's a selection of mods that we recommend using instead.");
 
-		this.addScreenMessage("progression_end.message", "This is the end of progression for now. The Final Castle that awaits on the plateau is still unfinished and a work in progress. If you would like to keep up with the mod's development you can join our %s.");
+		this.addScreenMessage("progression_end.message", "You have conquered the summit. This is the end of progression for now. If you would like to keep up with the mod's development you can join our %s.");
 		this.addScreenMessage("progression_end.discord", "Discord Server");
 
 		this.addScreenMessage("drying_jei", "Drying Rack");
@@ -1278,7 +1327,6 @@ public class LangGenerator extends TFLangProvider {
 		this.configEntry("portal_permission", "Portal Creation Permission", ConfigComments.PORTAL_PERMISSION);
 		this.configEntry("disable_portal", "Disable Portal Creation", ConfigComments.DISABLE_PORTAL);
 		this.configEntry("check_portal_placement", "Check Portal Placement", ConfigComments.CHECK_PORTAL);
-		this.configEntry("destructive_portal_lighting", "Destructive Lightning", ConfigComments.PORTAL_LIGHTNING);
 		this.configEntry("portal_return", "Lock Return Portal", ConfigComments.RETURN_PORTAL);
 		this.configEntry("portal_unlocked_by_advancement", "Portal Unlock Advancement", ConfigComments.PORTAL_ADVANCEMENT);
 		this.configEntry("max_portal_size", "Max Portal Size", ConfigComments.PORTAL_SIZE);

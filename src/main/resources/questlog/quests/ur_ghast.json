@@ -1,0 +1,39 @@
+{
+  "title": "quest.twilightforest.ur_ghast.title",
+  "description": "quest.twilightforest.ur_ghast.description",
+  "description_completed": "quest.twilightforest.ur_ghast.description_completed",
+  "translatable": true,
+  "icon": {
+    "item": "twilightforest:ur_ghast_trophy"
+  },
+  "chapter": "twilightforest",
+  "include_in_main": true,
+  "sort_order": 4,
+  "requirements": [
+    {
+      "type": "questlog:quest_complete",
+      "quest": "questlog:twilightforest/lich"
+    }
+  ],
+  "objectives": [
+    {
+      "type": "questlog:or",
+      "objectives": [
+        {
+          "type": "questlog:advancement",
+          "advancement": "twilightforest:progress_ur_ghast"
+        },
+        {
+          "type": "twilightforest:entity_interact",
+          "entity": "twilightforest:quest_ram",
+          "item": "twilightforest:ur_ghast_trophy"
+        }
+      ],
+      "name": "quest.twilightforest.ur_ghast.objective",
+      "translatable": true
+    }
+  ],
+  "toast_on_unlock": true,
+  "toast_on_complete": true,
+  "show_popup_on_unlock": true
+}

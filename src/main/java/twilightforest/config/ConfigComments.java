@@ -44,7 +44,6 @@ public final class ConfigComments {
 	public static final String CHECK_PORTAL = """
 					Determines if new portals should be pre-checked for safety. If false, portals will fail to form rather than redirect to a safe alternate destination.
 					Note that disabling this also reduces the rate at which portal formation checks are performed.""";
-	public static final String PORTAL_LIGHTNING = "Set this to false if you want the lightning that zaps the portal to not set things on fire. For those who don't like fun.";
 	public static final String RETURN_PORTAL = "If false, the return portal will require the activation item.";
 	public static final String PORTAL_ADVANCEMENT = "Use a valid advancement resource location as a string. For example, using the string \"minecraft:story/mine_diamond\" will lock the portal behind the \"Diamonds!\" advancement. Invalid/Empty Advancement resource IDs will leave the portal entirely unlocked.";
 	public static final String PORTAL_SIZE = "The max amount of water spaces the mod will check for when creating a portal. Very high numbers may cause performance issues.";

@@ -1,0 +1,48 @@
+{
+  "title": "quest.twilightforest.lich.title",
+  "description": "quest.twilightforest.lich.description",
+  "description_completed": "quest.twilightforest.lich.description_completed",
+  "translatable": true,
+  "icon": {
+    "item": "twilightforest:lich_trophy"
+  },
+  "chapter": "twilightforest",
+  "include_in_main": true,
+  "sort_order": 2,
+  "requirements": [
+    {
+      "type": "questlog:or",
+      "objectives": [
+        {
+          "type": "questlog:quest_complete",
+          "quest": "questlog:twilightforest/find_the_ram"
+        },
+        {
+          "type": "questlog:advancement",
+          "advancement": "twilightforest:progress_naga"
+        }
+      ]
+    }
+  ],
+  "objectives": [
+    {
+      "type": "questlog:or",
+      "objectives": [
+        {
+          "type": "questlog:advancement",
+          "advancement": "twilightforest:progress_lich"
+        },
+        {
+          "type": "twilightforest:entity_interact",
+          "entity": "twilightforest:quest_ram",
+          "item": "twilightforest:lich_trophy"
+        }
+      ],
+      "name": "quest.twilightforest.lich.objective",
+      "translatable": true
+    }
+  ],
+  "toast_on_unlock": true,
+  "toast_on_complete": true,
+  "show_popup_on_unlock": true
+}

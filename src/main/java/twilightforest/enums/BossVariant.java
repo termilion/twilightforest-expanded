@@ -19,6 +19,8 @@ public enum BossVariant implements StringRepresentable {
 	PRINCESS_AURORA(TrophyType.GOLD, TFBlockEntities.PRINCESS_AURORA_SPAWNER::get),
 	MINOSHROOM(TrophyType.IRON, TFBlockEntities.MINOSHROOM_SPAWNER::get),
 	ALPHA_YETI(TrophyType.IRON, TFBlockEntities.ALPHA_YETI_SPAWNER::get),
+	ASHEN_LORD(TrophyType.GOLD, TFBlockEntities.ASHEN_LORD_SPAWNER::get),
+	PALE_MONARCH(TrophyType.GOLD, null),
 	QUEST_RAM(TrophyType.IRONWOOD, null);
 
 	public static final EnumCodec<BossVariant> CODEC = StringRepresentable.fromEnum(BossVariant::values);

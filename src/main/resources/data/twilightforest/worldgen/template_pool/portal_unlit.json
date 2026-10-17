@@ -1,0 +1,15 @@
+{
+  "name": "twilightforest:portal_unlit",
+  "fallback": "minecraft:empty",
+  "elements": [
+    {
+      "weight": 1,
+      "element": {
+        "element_type": "minecraft:single_pool_element",
+        "location": "twilightforest:portal_unlit",
+        "projection": "rigid",
+        "processors": "twilightforest:portal_unlit"
+      }
+    }
+  ]
+}

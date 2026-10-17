@@ -1,4 +1,4 @@
-Princess Aurora model, animations, texture, sounds and fight are ported from Feywild (https://github.com/SaphieNyako/Feywild).
+Princess Aurora (model, animations, texture, sounds, fight) and the Ashen Lord (entity, goals, leaf projectile, model, animations, texture, sounds, leaf and sparkle particles) are ported from Feywild (https://github.com/SaphieNyako/Feywild).
 
 MIT License
 

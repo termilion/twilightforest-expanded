@@ -21,6 +21,8 @@ import java.util.concurrent.CompletableFuture;
 
 public class ItemTagGenerator extends ModdedItemTagGenerator {
 	public static final TagKey<Item> TWILIGHT_OAK_LOGS = create("twilight_oak_logs");
+	// Trophies the quest ram studies; the skipped progression stages (naga, minoshroom, knights, yeti) stay out on purpose
+	public static final TagKey<Item> QUEST_RAM_STUDIABLE = create("quest_ram_studiable");
 	public static final TagKey<Item> CANOPY_LOGS = create("canopy_logs");
 	public static final TagKey<Item> MANGROVE_LOGS = create("mangrove_logs");
 	public static final TagKey<Item> DARKWOOD_LOGS = create("darkwood_logs");
@@ -211,7 +213,7 @@ public class ItemTagGenerator extends ModdedItemTagGenerator {
 		this.tag(RAW_MATERIALS_KNIGHTMETAL).add(TFItems.ARMOR_SHARD_CLUSTER.get());
 		this.tag(Tags.Items.RAW_MATERIALS).addTag(RAW_MATERIALS_IRONWOOD).addTag(RAW_MATERIALS_KNIGHTMETAL);
 
-		this.tag(PORTAL_ACTIVATOR).addTag(Tags.Items.GEMS_DIAMOND);
+		this.tag(PORTAL_ACTIVATOR).addTag(Tags.Items.GEMS_DIAMOND).add(TFItems.TWILIGHT_SHARD.get());
 
 		this.tag(ItemTags.BOATS).add(
 			TFItems.TWILIGHT_OAK_BOAT.get(), TFItems.CANOPY_BOAT.get(),
@@ -513,7 +515,11 @@ public class ItemTagGenerator extends ModdedItemTagGenerator {
 			TFItems.NAGA_TROPHY.get(), TFItems.LICH_TROPHY.get(),
 			TFItems.MINOSHROOM_TROPHY.get(), TFItems.HYDRA_TROPHY.get(),
 			TFItems.KNIGHT_PHANTOM_TROPHY.get(), TFItems.UR_GHAST_TROPHY.get(),
-			TFItems.ALPHA_YETI_TROPHY.get(), TFItems.PRINCESS_AURORA_TROPHY.get());
+			TFItems.ALPHA_YETI_TROPHY.get(), TFItems.PRINCESS_AURORA_TROPHY.get(), TFItems.ASHEN_LORD_TROPHY.get(), TFItems.PALE_MONARCH_TROPHY.get());
+
+		this.tag(QUEST_RAM_STUDIABLE).add(
+			TFItems.LICH_TROPHY.get(), TFItems.HYDRA_TROPHY.get(), TFItems.UR_GHAST_TROPHY.get(),
+			TFItems.PRINCESS_AURORA_TROPHY.get(), TFItems.PALE_MONARCH_TROPHY.get(), TFItems.ASHEN_LORD_TROPHY.get());
 
 		this.tag(EMPERORS_CLOTH_APPLICABLE).addTag(Tags.Items.ARMORS).add(Items.ELYTRA);
 	}

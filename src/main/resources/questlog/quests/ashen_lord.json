@@ -1,0 +1,39 @@
+{
+  "title": "quest.twilightforest.ashen_lord.title",
+  "description": "quest.twilightforest.ashen_lord.description",
+  "description_completed": "quest.twilightforest.ashen_lord.description_completed",
+  "translatable": true,
+  "icon": {
+    "item": "twilightforest:ashen_lord_trophy"
+  },
+  "chapter": "twilightforest",
+  "include_in_main": true,
+  "sort_order": 7,
+  "requirements": [
+    {
+      "type": "questlog:quest_complete",
+      "quest": "questlog:twilightforest/pale_monarch"
+    }
+  ],
+  "objectives": [
+    {
+      "type": "questlog:or",
+      "objectives": [
+        {
+          "type": "questlog:advancement",
+          "advancement": "twilightforest:progress_summit"
+        },
+        {
+          "type": "twilightforest:entity_interact",
+          "entity": "twilightforest:quest_ram",
+          "item": "twilightforest:ashen_lord_trophy"
+        }
+      ],
+      "name": "quest.twilightforest.ashen_lord.objective",
+      "translatable": true
+    }
+  ],
+  "toast_on_unlock": true,
+  "toast_on_complete": true,
+  "show_popup_on_unlock": true
+}

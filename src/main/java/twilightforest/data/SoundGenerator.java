@@ -206,6 +206,9 @@ public class SoundGenerator extends TFSoundProvider {
 		this.generateExistingSoundWithSubtitle(TFSounds.QUEST_RAM_DEATH, SoundEvents.SHEEP_DEATH, "Questing Ram dies");
 		this.generateExistingSoundWithSubtitle(TFSounds.QUEST_RAM_HURT, SoundEvents.SHEEP_HURT, "Questing Ram hurts");
 		this.makeStepSound(TFSounds.QUEST_RAM_STEP, SoundEvents.SHEEP_STEP);
+		// Placeholders until custom audio exists
+		this.generateExistingSoundWithSubtitle(TFSounds.QUEST_RAM_STUDY_START, SoundEvents.ALLAY_ITEM_TAKEN, "Questing Ram inspects an item");
+		this.generateExistingSoundWithSubtitle(TFSounds.QUEST_RAM_STUDY_DONE, SoundEvents.ALLAY_ITEM_GIVEN, "Questing Ram hands back an item");
 
 		this.generateNewSoundWithSubtitle(TFSounds.RAVEN_CAW, "mob/raven/caw", 2, "Raven caws");
 		this.generateNewSoundWithSubtitle(TFSounds.RAVEN_SQUAWK, "mob/raven/squawk", 2, "Raven squawks in pain");
@@ -253,6 +256,12 @@ public class SoundGenerator extends TFSoundProvider {
 		this.generateNewSoundWithSubtitle(TFSounds.PRINCESS_AURORA_HURT, "mob/princess_aurora/hurt", 3, "Princess Aurora hurts");
 		this.generateNewSoundWithSubtitle(TFSounds.PRINCESS_AURORA_INTIMIDATE, "mob/princess_aurora/intimidate", 4, "Princess Aurora intimidates");
 		this.generateNewSoundWithSubtitle(TFSounds.PRINCESS_AURORA_SUMMON, "mob/princess_aurora/summon", 3, "Princess Aurora summons vexes");
+		this.generateNewSoundWithSubtitle(TFSounds.ASHEN_LORD_AMBIENT, "mob/ashen_lord/ambient", 3, "Ashen Lord rumbles");
+		this.generateNewSoundWithSubtitle(TFSounds.ASHEN_LORD_HURT, "mob/ashen_lord/hurt", 3, "Ashen Lord hurts");
+		this.generateNewSoundWithSubtitle(TFSounds.ASHEN_LORD_DEATH, "mob/ashen_lord/death", 2, "Ashen Lord dies");
+		this.generateNewSoundWithSubtitle(TFSounds.ASHEN_LORD_ATTACK, "mob/ashen_lord/attack", 3, "Ashen Lord attacks");
+		this.generateNewSoundWithSubtitle(TFSounds.ASHEN_LORD_CHANNEL_01, "mob/ashen_lord/channel_short", 1, "Ashen Lord channels");
+		this.generateNewSoundWithSubtitle(TFSounds.ASHEN_LORD_CHANNEL_02, "mob/ashen_lord/channel_long", 1, "Ashen Lord channels");
 
 		this.generateExistingSoundWithSubtitle(TFSounds.SWARM_SPIDER_AMBIENT, SoundEvents.SPIDER_AMBIENT, "Swarm Spider hisses");
 		this.generateExistingSoundWithSubtitle(TFSounds.SWARM_SPIDER_DEATH, SoundEvents.SPIDER_DEATH, "Swarm Spider dies");

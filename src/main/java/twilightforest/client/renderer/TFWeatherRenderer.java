@@ -396,7 +396,7 @@ public class TFWeatherRenderer {
 	}
 
 	private static @Nullable RenderType getRenderType(Restriction restriction) {
-		if (restriction.enforcement().equals(Enforcements.FROST.getKey())) return RenderType.BLIZZARD;
+		if (restriction.enforcement().equals(Enforcements.FROST.getKey()) || restriction.enforcement().equals(Enforcements.FREEZE.getKey())) return RenderType.BLIZZARD;
 		else if (restriction.enforcement().equals(Enforcements.HUNGER.getKey())) return RenderType.MOSQUITO;
 		else if (restriction.enforcement().equals(Enforcements.FIRE.getKey())) return RenderType.ASHES;
 		else if (restriction.enforcement().equals(Enforcements.DARKNESS.getKey())) return random.nextBoolean() ? RenderType.DARK_STREAM : null;

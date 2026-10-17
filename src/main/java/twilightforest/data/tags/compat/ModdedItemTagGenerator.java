@@ -73,6 +73,8 @@ public class ModdedItemTagGenerator extends ItemTagsProvider {
 			TFItems.UR_GHAST_TROPHY.get(),
 			TFItems.ALPHA_YETI_TROPHY.get(),
 			TFItems.PRINCESS_AURORA_TROPHY.get(),
+			TFItems.ASHEN_LORD_TROPHY.get(),
+			TFItems.PALE_MONARCH_TROPHY.get(),
 			TFItems.QUEST_RAM_TROPHY.get(),
 			TFBlocks.CICADA.get().asItem(),
 			TFBlocks.FIREFLY.get().asItem(),

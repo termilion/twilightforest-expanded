@@ -13,6 +13,8 @@ import net.minecraft.world.level.levelgen.synth.NormalNoise;
 import net.neoforged.neoforge.registries.DeferredHolder;
 import net.neoforged.neoforge.registries.DeferredRegister;
 import org.jetbrains.annotations.NotNull;
+
+import java.util.List;
 import twilightforest.TFRegistries;
 import twilightforest.TwilightForestMod;
 import twilightforest.init.custom.BiomeLayerStack;
@@ -31,8 +33,15 @@ public class TFDensityFunctions {
 	public static final DeferredHolder<MapCodec<? extends DensityFunction>, MapCodec<AbsoluteDifferenceFunction.Max>> COORD_MAX = register("coord_max", AbsoluteDifferenceFunction.Max.CODEC);
 	public static final DeferredHolder<MapCodec<? extends DensityFunction>, MapCodec<SqrtDensityFunction>> SQRT = register("sqrt", SqrtDensityFunction.CODEC);
 
+	public static final DeferredHolder<MapCodec<? extends DensityFunction>, MapCodec<LandmarkPeakFunction>> LANDMARK_PEAK = register("landmark_peak", LandmarkPeakFunction.CODEC);
+
+	// Snow mountain: summit ~Y 300 on a base column of ~Y 17, plateau radius = LandmarkIslandLayer radius of the mountain peak
+	private static final double MOUNTAIN_HEIGHT = 285;
+	private static final double MOUNTAIN_CRAGS = 30;
+
 	public static final ResourceKey<DensityFunction> BIOME_TERRAIN_RAW = ResourceKey.create(Registries.DENSITY_FUNCTION, TwilightForestMod.prefix("raw_biome_terrain"));
 	public static final ResourceKey<DensityFunction> BIOME_NOISE_RAW = ResourceKey.create(Registries.DENSITY_FUNCTION, TwilightForestMod.prefix("raw_biome_noise"));
+	public static final ResourceKey<DensityFunction> MOUNTAIN_RAISE = ResourceKey.create(Registries.DENSITY_FUNCTION, TwilightForestMod.prefix("mountain_raise"));
 	public static final ResourceKey<DensityFunction> FORESTED_TERRAIN = ResourceKey.create(Registries.DENSITY_FUNCTION, TwilightForestMod.prefix("forested_terrain"));
 	public static final ResourceKey<DensityFunction> SKYLIGHT_TERRAIN = ResourceKey.create(Registries.DENSITY_FUNCTION, TwilightForestMod.prefix("skylight_terrain"));
 
@@ -42,7 +51,7 @@ public class TFDensityFunctions {
 
 	public static void bootstrap(BootstrapContext<DensityFunction> context) {
 		Holder.Reference<BiomeDensitySource> biomeGrid = context.lookup(TFRegistries.Keys.BIOME_TERRAIN_DATA).getOrThrow(BiomeLayerStack.BIOME_GRID);
-		DensityFunction referencedBiomeDensity = makeBiomeDensityRaw(context, biomeGrid);
+		DensityFunction referencedBiomeDensity = DensityFunctions.add(makeBiomeDensityRaw(context, biomeGrid), makeMountainRaise(context, biomeGrid));
 		DensityFunction ambientTerrainNoise = makeAmbientNoise2D(context);
 		DensityFunction referencedNoiseDensity = makeStreamDensityRaw(context, biomeGrid);
 
@@ -65,6 +74,23 @@ public class TFDensityFunctions {
 		//if (false) rawBiomeDensityReferenced = DensityFunctions.yClampedGradient(-31, 32, 2, -2);
 
 		return new DensityFunctions.HolderHolder(context.register(BIOME_TERRAIN_RAW, rawBiomeDensityReferenced));
+	}
+
+	/**
+	 * Height in blocks the snow mountain adds on top of the biome terrain: a cone with a flat summit, rough crags on the slopes only.
+	 */
+	@NotNull
+	private static DensityFunction makeMountainRaise(BootstrapContext<DensityFunction> context, Holder.Reference<BiomeDensitySource> biomeGrid) {
+		DensityFunction shape = DensityFunctions.flatCache(new LandmarkPeakFunction(biomeGrid, List.of(TFBiomes.SNOW_MOUNTAIN, TFBiomes.MOUNTAIN_PEAK), 190, 24, 1.5));
+		// 4 s (1 - s): 0 on the summit and at the foot, 1 halfway up
+		DensityFunction slopes = DensityFunctions.mul(DensityFunctions.constant(4), DensityFunctions.mul(shape, DensityFunctions.add(DensityFunctions.constant(1), DensityFunctions.mul(DensityFunctions.constant(-1), shape))));
+		DensityFunction crags = DensityFunctions.noise(context.lookup(Registries.NOISE).getOrThrow(Noises.RIDGE), 3, 0);
+
+		DensityFunction raise = DensityFunctions.add(
+			DensityFunctions.mul(DensityFunctions.constant(MOUNTAIN_HEIGHT), shape),
+			DensityFunctions.mul(DensityFunctions.mul(DensityFunctions.constant(MOUNTAIN_CRAGS), slopes), crags)
+		);
+		return new DensityFunctions.HolderHolder(context.register(MOUNTAIN_RAISE, raise));
 	}
 
 	@NotNull
@@ -119,7 +145,7 @@ public class TFDensityFunctions {
 			DensityFunctions.constant(1 / 6f),
 			DensityFunctions.add(
 				rawBiomeDensity,
-				DensityFunctions.yClampedGradient(-31, 256, 31, -256)
+				DensityFunctions.yClampedGradient(-31, TFDimensionData.MAX_Y, 31, -TFDimensionData.MAX_Y)
 			)
 		);
 
@@ -158,7 +184,7 @@ public class TFDensityFunctions {
 			DensityFunctions.constant(-0.25),
 			DensityFunctions.mul(DensityFunctions.add(
 				rawBiomeDensity,
-				DensityFunctions.yClampedGradient(-31, 256, 31, -256)
+				DensityFunctions.yClampedGradient(-31, TFDimensionData.MAX_Y, 31, -TFDimensionData.MAX_Y)
 			), DensityFunctions.constant(-1)).halfNegative().abs()
 		);
 

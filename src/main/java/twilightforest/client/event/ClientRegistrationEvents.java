@@ -15,6 +15,7 @@ import net.minecraft.client.particle.SpriteSet;
 import net.minecraft.client.renderer.DimensionSpecialEffects;
 import net.minecraft.client.renderer.Sheets;
 import net.minecraft.client.renderer.entity.LivingEntityRenderer;
+import net.minecraft.client.renderer.entity.NoopRenderer;
 import net.minecraft.client.renderer.entity.ThrownItemRenderer;
 import net.minecraft.client.renderer.item.ClampedItemPropertyFunction;
 import net.minecraft.client.renderer.item.ItemProperties;
@@ -405,6 +406,8 @@ public class ClientRegistrationEvents {
 		event.registerEntityRenderer(TFEntities.STABLE_ICE_CORE.get(), m -> new StableIceCoreRenderer(m, new StableIceCoreModel(m.bakeLayer(TFModelLayers.STABLE_ICE_CORE))));
 		event.registerEntityRenderer(TFEntities.UNSTABLE_ICE_CORE.get(), m -> new UnstableIceCoreRenderer<>(m, new UnstableIceCoreModel<>(m.bakeLayer(TFModelLayers.UNSTABLE_ICE_CORE))));
 		event.registerEntityRenderer(TFEntities.PRINCESS_AURORA.get(), PrincessAuroraRenderer::new);
+		event.registerEntityRenderer(TFEntities.ASHEN_LORD.get(), AshenLordRenderer::new);
+		event.registerEntityRenderer(TFEntities.LEAF_PROJECTILE.get(), NoopRenderer::new);
 		event.registerEntityRenderer(TFEntities.TROLL.get(), m -> new TFBipedRenderer<>(m, new TrollModel(m.bakeLayer(TFModelLayers.TROLL)), 0.625F, "troll.png"));
 		event.registerEntityRenderer(TFEntities.GIANT_MINER.get(), TFGiantRenderer::new);
 		event.registerEntityRenderer(TFEntities.ARMORED_GIANT.get(), TFGiantRenderer::new);
@@ -481,6 +484,8 @@ public class ClientRegistrationEvents {
 		event.registerLayerDefinition(TFModelLayers.NAGA_TROPHY, NagaModel::checkForPack);
 		event.registerLayerDefinition(TFModelLayers.QUEST_RAM_TROPHY, QuestRamModel::checkForPackTrophyEdition);
 		event.registerLayerDefinition(TFModelLayers.PRINCESS_AURORA_TROPHY, PrincessAuroraTrophyModel::create);
+		event.registerLayerDefinition(TFModelLayers.ASHEN_LORD_TROPHY, AshenLordModel::createBodyLayer);
+		event.registerLayerDefinition(TFModelLayers.PALE_MONARCH_TROPHY, PaleMonarchTrophyModel::create);
 		event.registerLayerDefinition(TFModelLayers.UR_GHAST_TROPHY, UrGhastModel::create);
 
 		event.registerLayerDefinition(TFModelLayers.ADHERENT, AdherentModel::create);
@@ -539,6 +544,7 @@ public class ClientRegistrationEvents {
 		event.registerLayerDefinition(TFModelLayers.SLIME_BEETLE, SlimeBeetleModel::checkForPack);
 		event.registerLayerDefinition(TFModelLayers.SLIME_BEETLE_TAIL, SlimeBeetleModel::checkForPack);
 		event.registerLayerDefinition(TFModelLayers.PRINCESS_AURORA, PrincessAuroraModel::create);
+		event.registerLayerDefinition(TFModelLayers.ASHEN_LORD, AshenLordModel::createBodyLayer);
 		event.registerLayerDefinition(TFModelLayers.CHAIN_BLOCK, SpikeBlockModel::create);
 		event.registerLayerDefinition(TFModelLayers.SQUIRREL, SquirrelModel::checkForPack);
 		event.registerLayerDefinition(TFModelLayers.BROWNIE, BrownieModel::create);
@@ -588,6 +594,12 @@ public class ClientRegistrationEvents {
 		event.registerSpriteSet(TFParticleType.BLACKSTONE_MOTE.get(), SuspendedTownParticle.Provider::new);
 		event.registerSpriteSet(TFParticleType.PARTICLE_SPAWNER_FIREFLY.get(), FireflyParticle.ParticleSpawnerProvider::new);
 		event.registerSpriteSet(TFParticleType.FALLEN_LEAF.get(), LeafParticle.Factory::new);
+		event.registerSpriteSet(TFParticleType.TWILIGHT_PORTAL.get(), TFPortalParticle.Provider::new);
+		event.registerSpriteSet(TFParticleType.AUTUMN_LEAF.get(), FeyLeafParticle.Factory::new);
+		event.registerSpriteSet(TFParticleType.SPRING_LEAF.get(), FeyLeafParticle.Factory::new);
+		event.registerSpriteSet(TFParticleType.SUMMER_LEAF.get(), FeyLeafParticle.Factory::new);
+		event.registerSpriteSet(TFParticleType.WINTER_LEAF.get(), FeyLeafParticle.Factory::new);
+		event.registerSpriteSet(TFParticleType.AUTUMN_SPARKLE.get(), sprites -> new FeySparkleParticle.Factory(sprites, 1.0F, 0.4F, 0.0F));
 		event.registerSpriteSet(TFParticleType.DIM_FLAME.get(), FlameParticle.SmallFlameProvider::new);
 		event.registerSpriteSet(TFParticleType.OMINOUS_FLAME.get(), FlameParticle.SmallFlameProvider::new);
 		event.registerSpriteSet(TFParticleType.SORTING_PARTICLE.get(), SortingParticle.Factory::new);
@@ -683,7 +695,7 @@ public class ClientRegistrationEvents {
 			TFItems.CICADA_JAR.get(), TFItems.FIREFLY_JAR.get(), TFItems.MASON_JAR.get(), TFItems.KNIGHTMETAL_SHIELD.get(), TFItems.MYSTIC_CROWN.value(),
 			TFBlocks.TWILIGHT_OAK_CHEST.asItem(), TFBlocks.CANOPY_CHEST.asItem(), TFBlocks.MANGROVE_CHEST.asItem(), TFBlocks.DARK_CHEST.asItem(), TFBlocks.TIME_CHEST.asItem(), TFBlocks.TRANSFORMATION_CHEST.asItem(), TFBlocks.MINING_CHEST.asItem(), TFBlocks.SORTING_CHEST.asItem(),
 			TFBlocks.TWILIGHT_OAK_TRAPPED_CHEST.asItem(), TFBlocks.CANOPY_TRAPPED_CHEST.asItem(), TFBlocks.MANGROVE_TRAPPED_CHEST.asItem(), TFBlocks.DARK_TRAPPED_CHEST.asItem(), TFBlocks.TIME_TRAPPED_CHEST.asItem(), TFBlocks.TRANSFORMATION_TRAPPED_CHEST.asItem(), TFBlocks.MINING_TRAPPED_CHEST.asItem(), TFBlocks.SORTING_TRAPPED_CHEST.asItem(),
-			TFItems.NAGA_TROPHY.get(), TFItems.LICH_TROPHY.get(), TFItems.MINOSHROOM_TROPHY.get(), TFItems.HYDRA_TROPHY.get(), TFItems.KNIGHT_PHANTOM_TROPHY.get(), TFItems.UR_GHAST_TROPHY.get(), TFItems.ALPHA_YETI_TROPHY.get(), TFItems.PRINCESS_AURORA_TROPHY.get(), TFItems.QUEST_RAM_TROPHY.get(),
+			TFItems.NAGA_TROPHY.get(), TFItems.LICH_TROPHY.get(), TFItems.MINOSHROOM_TROPHY.get(), TFItems.HYDRA_TROPHY.get(), TFItems.KNIGHT_PHANTOM_TROPHY.get(), TFItems.UR_GHAST_TROPHY.get(), TFItems.ALPHA_YETI_TROPHY.get(), TFItems.PRINCESS_AURORA_TROPHY.get(), TFItems.ASHEN_LORD_TROPHY.get(), TFItems.PALE_MONARCH_TROPHY.get(), TFItems.QUEST_RAM_TROPHY.get(),
 			TFItems.CREEPER_SKULL_CANDLE.get(), TFItems.PIGLIN_SKULL_CANDLE.get(), TFItems.PLAYER_SKULL_CANDLE.get(), TFItems.SKELETON_SKULL_CANDLE.get(), TFItems.WITHER_SKELETON_SKULL_CANDLE.get(), TFItems.ZOMBIE_SKULL_CANDLE.get()
 		);
 

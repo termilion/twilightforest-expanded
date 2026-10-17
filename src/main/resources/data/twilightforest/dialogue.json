@@ -1,5 +1,30 @@
 {
     "en": {
+        "quest_allay": {
+            "intro_1": [
+                "A new one! A new one! A new one!"
+            ],
+            "intro_2": [
+                "Quick traveller! The god of this forest wants to speak to you!"
+            ],
+            "intro_3": [
+                "Find him on his island in the lakes of this forest!"
+            ]
+        },
+        "freed_allay": {
+            "free_1": [
+                "Thank you! Thank you! Thank you dear Traveller!"
+            ],
+            "free_2": [
+                "I am an Allay. I was send by the God of the Forest to seek the help of adventurers!"
+            ],
+            "free_3": [
+                "But these roudy thugs captured me before I could find anyone."
+            ],
+            "free_4": [
+                "If you want to help us, throw this shard into a twilight pool to open the portal to our realm. I'll mark the location on this map."
+            ]
+        },
         "brownie": {
             "hide_and_seek_start": [
                 "Hihihi, let us play a game! Catch me three times, if you can!"

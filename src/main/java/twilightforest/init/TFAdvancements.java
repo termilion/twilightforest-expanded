@@ -17,6 +17,7 @@ public class TFAdvancements {
 	public static final DeferredHolder<CriterionTrigger<?>, SimpleAdvancementTrigger> QUEST_RAM_COMPLETED = TRIGGERS.register("complete_quest_ram", SimpleAdvancementTrigger::new);
 	public static final DeferredHolder<CriterionTrigger<?>, SimpleAdvancementTrigger> PLACED_TROPHY_ON_PEDESTAL = TRIGGERS.register("placed_on_trophy_pedestal", SimpleAdvancementTrigger::new);
 	public static final DeferredHolder<CriterionTrigger<?>, SimpleAdvancementTrigger> ACTIVATED_GHAST_TRAP = TRIGGERS.register("activate_ghast_trap", SimpleAdvancementTrigger::new);
+	public static final DeferredHolder<CriterionTrigger<?>, QuestCompletedTrigger> QUEST_COMPLETED = TRIGGERS.register("quest_completed", QuestCompletedTrigger::new);
 	public static final DeferredHolder<CriterionTrigger<?>, StructureClearedTrigger> STRUCTURE_CLEARED = TRIGGERS.register("structure_cleared", StructureClearedTrigger::new);
 	public static final DeferredHolder<CriterionTrigger<?>, DrinkFromFlaskTrigger> DRINK_FROM_FLASK = TRIGGERS.register("drink_from_flask", DrinkFromFlaskTrigger::new);
 	public static final DeferredHolder<CriterionTrigger<?>, KillBugTrigger> KILL_BUG = TRIGGERS.register("kill_bug", KillBugTrigger::new);

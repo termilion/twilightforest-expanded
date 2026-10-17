@@ -75,7 +75,6 @@ public class TFConfig {
 	public static int portalCreationPermission = 0;
 	public static boolean disablePortalCreation = false;
 	public static boolean checkPortalPlacement = true;
-	public static boolean destructivePortalLightning = true;
 	public static boolean shouldReturnPortalBeUsable = true;
 	public static int maxPortalSize = 64;
 
@@ -161,7 +160,6 @@ public class TFConfig {
 		portalCreationPermission = config.PORTAL.portalCreationPermission.get();
 		disablePortalCreation = config.PORTAL.disablePortalCreation.get();
 		checkPortalPlacement = config.PORTAL.checkPortalPlacement.get();
-		destructivePortalLightning = config.PORTAL.destructivePortalLightning.get();
 		shouldReturnPortalBeUsable = config.PORTAL.shouldReturnPortalBeUsable.get();
 		maxPortalSize = config.PORTAL.maxPortalSize.get();
 

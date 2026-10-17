@@ -6,6 +6,7 @@ import net.neoforged.neoforge.registries.DeferredHolder;
 import net.neoforged.neoforge.registries.DeferredRegister;
 import twilightforest.TwilightForestMod;
 import twilightforest.world.components.structures.*;
+import twilightforest.world.components.structures.peakshrine.PeakShrineComponent;
 import twilightforest.world.components.structures.courtyard.*;
 import twilightforest.world.components.structures.darktower.*;
 import twilightforest.world.components.structures.fallentrunk.FallenTrunkPiece;
@@ -31,6 +32,7 @@ public class TFStructurePieceTypes {
 	public static final DeferredHolder<StructurePieceType, StructurePieceType> TFHedge = registerPieceType("TFHedge", HedgeMazeComponent::new);
 	public static final DeferredHolder<StructurePieceType, StructurePieceType> TFQuestGrove = registerPieceType("TFQuest1", QuestGrove::new);
 	public static final DeferredHolder<StructurePieceType, StructurePieceType> TFHydra = registerPieceType("TFHydra", HydraLairComponent::new);
+	public static final DeferredHolder<StructurePieceType, StructurePieceType> TFPeakShrine = registerPieceType("TFPeakShrine", PeakShrineComponent::new);
 	public static final DeferredHolder<StructurePieceType, StructurePieceType> TFYeti = registerPieceType("TFYeti", YetiCaveComponent::new);
 	public static final DeferredHolder<StructurePieceType, StructurePieceType> TFBrownieHut = registerPieceType("TFBrownieHut", BrownieHutPiece::new);
 	public static final DeferredHolder<StructurePieceType, StructurePieceType> TFLakeRuin = registerPieceType("TFLakeRuin", LakeRuinPiece::new);

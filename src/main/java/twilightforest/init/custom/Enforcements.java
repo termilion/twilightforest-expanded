@@ -42,6 +42,18 @@ public class Enforcements {
 		}
 	}));
 
+	// Vanilla powder snow freezing (frost overlay, slowness). Runs every 20 ticks, vanilla thaws 2 per tick, so this keeps the player fully frozen.
+	// The freeze damage is dealt here as well, so freeze immune wearables (leather armor) don't help.
+	public static final DeferredHolder<Enforcement, Enforcement> FREEZE = ENFORCEMENTS.register("freeze", () -> new Enforcement((player, level, restriction) -> {
+		if (level.tickRateManager().runsNormally()) {
+			int required = player.getTicksRequiredToFreeze();
+			player.setTicksFrozen(Math.min(player.getTicksFrozen() + 80, required + 60));
+			if (player.tickCount % 40 == 0 && player.isFullyFrozen()) {
+				player.hurt(level.damageSources().freeze(), restriction.multiplier());
+			}
+		}
+	}));
+
 	public static final DeferredHolder<Enforcement, Enforcement> ACID_RAIN = ENFORCEMENTS.register("acid_rain", () -> new Enforcement((player, level, restriction) -> {
 		if (player.tickCount % 5 == 0 && level.tickRateManager().runsNormally()) {
 			if (player.hurt(TFDamageTypes.getDamageSource(level, TFDamageTypes.ACID_RAIN), restriction.multiplier())) {

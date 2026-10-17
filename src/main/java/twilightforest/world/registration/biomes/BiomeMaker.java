@@ -43,6 +43,9 @@ public final class BiomeMaker extends BiomeHelper {
 
 			biomeColumnWithUnderground(0.0D, 2.45D, 0.5D, biomeRegistry, TFBiomes.SNOWY_FOREST, undergroundBiome),
 			biomeColumnWithUnderground(-0.05D, 1.75D, 1.0D, biomeRegistry, TFBiomes.GLACIER, undergroundBiome),
+			// Base height only, the mountain itself comes from the landmark peak density function
+			biomeColumnWithUnderground(2.0D, 0.6D, 1.0D, biomeRegistry, TFBiomes.SNOW_MOUNTAIN, undergroundBiome),
+			biomeColumnWithUnderground(2.0D, 0.6D, 1.0D, biomeRegistry, TFBiomes.MOUNTAIN_PEAK, undergroundBiome),
 			biomeColumnWithUnderground(5.5D, 1.15D, 1.0D, biomeRegistry, TFBiomes.AMETHYST_STRAITS, biomeRegistry.getOrThrow(TFBiomes.AMETHYST_STRAITS_UNDERGROUND)),
 
 			biomeColumnWithUnderground(3.0D, 2.25D, 0.135D, biomeRegistry, TFBiomes.HIGHLANDS, biomeRegistry.getOrThrow(TFBiomes.HIGHLANDS_UNDERGROUND)),

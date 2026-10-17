@@ -10,6 +10,7 @@ import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.ItemLike;
 import twilightforest.TFRegistries;
 import twilightforest.TwilightForestMod;
+import twilightforest.palemonarch.init.PaleMonarchModItems;
 import twilightforest.init.TFBiomes;
 import twilightforest.init.TFBlocks;
 import twilightforest.init.TFItems;
@@ -30,6 +31,8 @@ public class Restrictions {
 	public static final ResourceKey<Restriction> SNOWY_FOREST = makeKey(TFBiomes.SNOWY_FOREST.location());
 	public static final ResourceKey<Restriction> SWAMP = makeKey(TFBiomes.SWAMP.location());
 	public static final ResourceKey<Restriction> THORNLANDS = makeKey(TFBiomes.THORNLANDS.location());
+	public static final ResourceKey<Restriction> SNOW_MOUNTAIN = makeKey(TFBiomes.SNOW_MOUNTAIN.location());
+	public static final ResourceKey<Restriction> MOUNTAIN_PEAK = makeKey(TFBiomes.MOUNTAIN_PEAK.location());
 
 	private static ResourceKey<Restriction> makeKey(ResourceLocation name) {
 		return ResourceKey.create(TFRegistries.Keys.RESTRICTIONS, name);
@@ -44,6 +47,9 @@ public class Restrictions {
 		context.register(HIGHLANDS, new Restriction(TFStructures.TROLL_CAVE, Enforcements.ACID_RAIN.getKey(), 0.5F, asStack(TFBlocks.UBEROUS_SOIL), List.of(TwilightForestMod.prefix("progress_merge"))));
 		context.register(SNOWY_FOREST, new Restriction(TFStructures.YETI_CAVE, Enforcements.FROST.getKey(), 0.0F, asStack(TFBlocks.LICH_TOWER_MINIATURE_STRUCTURE), List.of(TwilightForestMod.prefix("progress_lich"))));
 		context.register(SWAMP, new Restriction(TFStructures.LABYRINTH, Enforcements.HUNGER.getKey(), 1.0F, asStack(TFBlocks.LICH_TOWER_MINIATURE_STRUCTURE), List.of(TwilightForestMod.prefix("progress_lich"))));
+		// The Pale Monarch waits in the lone citadel of the amethyst straits
+		context.register(SNOW_MOUNTAIN, new Restriction(TFStructures.LONE_CITADEL, Enforcements.FREEZE.getKey(), 2.0F, asStack(PaleMonarchModItems.PALE_AXE), List.of(TwilightForestMod.prefix("progress_monarch"))));
+		context.register(MOUNTAIN_PEAK, new Restriction(TFStructures.LONE_CITADEL, Enforcements.FREEZE.getKey(), 2.0F, asStack(PaleMonarchModItems.PALE_AXE), List.of(TwilightForestMod.prefix("progress_monarch"))));
 		context.register(THORNLANDS, new Restriction(null, Enforcements.ACID_RAIN.getKey(), 1.0F, asStack(TFItems.LAMP_OF_CINDERS), List.of(TwilightForestMod.prefix("progress_troll"))));
 	}
 

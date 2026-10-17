@@ -36,6 +36,7 @@ public class TFStructureSets {
 	public static final ResourceKey<StructureSet> LICH_TOWER = registerKey("lich_tower");
 	public static final ResourceKey<StructureSet> LABYRINTH = registerKey("labyrinth");
 	public static final ResourceKey<StructureSet> HYDRA_LAIR = registerKey("hydra_lair");
+	public static final ResourceKey<StructureSet> PEAK_SHRINE = registerKey("peak_shrine");
 	public static final ResourceKey<StructureSet> KNIGHT_STRONGHOLD = registerKey("knight_stronghold");
 	public static final ResourceKey<StructureSet> DARK_TOWER = registerKey("dark_tower");
 	public static final ResourceKey<StructureSet> YETI_CAVE = registerKey("yeti_cave");
@@ -88,6 +89,8 @@ public class TFStructureSets {
 		context.register(YETI_CAVE, new StructureSet(structures.getOrThrow(TFStructures.YETI_CAVE), LandmarkGridPlacement.forceStructureForCenters()));
 		context.register(AURORA_PALACE, new StructureSet(structures.getOrThrow(TFStructures.AURORA_PALACE), LandmarkGridPlacement.forceStructureForCenters()));
 		context.register(TROLL_CAVE, new StructureSet(structures.getOrThrow(TFStructures.TROLL_CAVE), LandmarkGridPlacement.forceStructureForCenters()));
+		// Summit of the snow mountain, only on the key tile (the peak clearing sits on its landmark center)
+		context.register(PEAK_SHRINE, new StructureSet(structures.getOrThrow(TFStructures.PEAK_SHRINE), new LandmarkGridPlacement(Optional.empty(), true)));
 		context.register(GIANT_HOUSE, new StructureSet(structures.getOrThrow(TFStructures.GIANT_HOUSE), LandmarkGridPlacement.forceStructureForCenters()));
 
 		// uncomment to include in mod-internal datapack, for worldgen

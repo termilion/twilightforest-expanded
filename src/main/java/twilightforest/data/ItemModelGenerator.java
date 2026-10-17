@@ -207,6 +207,7 @@ public class ItemModelGenerator extends ItemModelProvider {
 		toBlockModel(TFBlocks.UR_GHAST_BOSS_SPAWNER.get(), prefix("block/boss_spawner"));
 		toBlockModel(TFBlocks.KNIGHT_PHANTOM_BOSS_SPAWNER.get(), prefix("block/boss_spawner"));
 		toBlockModel(TFBlocks.PRINCESS_AURORA_BOSS_SPAWNER.get(), prefix("block/boss_spawner"));
+		toBlockModel(TFBlocks.ASHEN_LORD_BOSS_SPAWNER.get(), prefix("block/boss_spawner"));
 		toBlockModel(TFBlocks.MINOSHROOM_BOSS_SPAWNER.get(), prefix("block/boss_spawner"));
 		toBlockModel(TFBlocks.ALPHA_YETI_BOSS_SPAWNER.get(), prefix("block/boss_spawner"));
 		toBlockModel(TFBlocks.FIREFLY_JAR.get(), prefix("item/mason_jar"));
@@ -489,6 +490,8 @@ public class ItemModelGenerator extends ItemModelProvider {
 			.transform(ItemDisplayContext.HEAD).scale(1.5F).translation(0, 2, 0).rotation(180, 0, 180).end()
 			.transform(itemDisplayContextEnumExtension.JARRED).translation(0, 0, 1).rotation(0, 180, 0).end().end();
 		withExistingParent(TFItems.PRINCESS_AURORA_TROPHY.getId().toString(), templateTrophy);
+		withExistingParent(TFItems.ASHEN_LORD_TROPHY.getId().toString(), templateTrophy);
+		withExistingParent(TFItems.PALE_MONARCH_TROPHY.getId().toString(), templateTrophy);
 		withExistingParent(TFItems.QUEST_RAM_TROPHY.getId().toString(), templateTrophy).transforms()
 			.transform(itemDisplayContextEnumExtension.JARRED).scale(0.85F).rotation(0, 180, 0).end().end();
 		withExistingParent(TFItems.MYSTIC_CROWN.getId().toString(), templateTrophy);
@@ -520,6 +523,7 @@ public class ItemModelGenerator extends ItemModelProvider {
 		hollowLog(TFItems.HOLLOW_SORTING_LOG);
 
 		singleTex(TFItems.NAGA_SCALE);
+		singleTex(TFItems.TWILIGHT_SHARD);
 		singleTex(TFItems.NAGA_CHESTPLATE);
 		singleTex(TFItems.NAGA_LEGGINGS);
 		singleTexTool(TFItems.TWILIGHT_SCEPTER);

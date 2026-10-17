@@ -58,10 +58,6 @@ public class TFCommonConfig {
 				.translation(TFConfig.CONFIG_ID + "check_portal_placement")
 				.comment(ConfigComments.CHECK_PORTAL)
 				.define("checkPortalPlacement", true);
-			PORTAL.destructivePortalLightning = builder
-				.translation(TFConfig.CONFIG_ID + "destructive_portal_lighting")
-				.comment(ConfigComments.PORTAL_LIGHTNING)
-				.define("destructivePortalLightning", true);
 			PORTAL.shouldReturnPortalBeUsable = builder
 				.translation(TFConfig.CONFIG_ID + "portal_return")
 				.comment(ConfigComments.RETURN_PORTAL)
@@ -218,7 +214,6 @@ public class TFCommonConfig {
 		ModConfigSpec.IntValue portalCreationPermission;
 		ModConfigSpec.BooleanValue disablePortalCreation;
 		ModConfigSpec.BooleanValue checkPortalPlacement;
-		ModConfigSpec.BooleanValue destructivePortalLightning;
 		ModConfigSpec.BooleanValue shouldReturnPortalBeUsable;
 		ModConfigSpec.ConfigValue<String> portalAdvancementLock;
 		ModConfigSpec.IntValue maxPortalSize;

@@ -19,8 +19,10 @@ import twilightforest.world.components.structures.type.ExclusiveJigsawStructure;
 import twilightforest.compat.CosmeticArmorCompat;
 import twilightforest.compat.curios.CuriosCompat;
 import twilightforest.config.ConfigSetup;
+import twilightforest.block.PortalActivationEffect;
 import twilightforest.init.*;
 import twilightforest.init.custom.*;
+import twilightforest.quest.TFQuestlog;
 import twilightforest.util.TFRemapper;
 import twilightforest.palemonarch.PaleMonarchMod;
 import twilightforest.ivarsbosses.IvarsBosses;
@@ -97,6 +99,8 @@ public final class TwilightForestMod {
 
 		PaleMonarchMod.register(bus);
 		IvarsBosses.register(bus);
+		TFQuestlog.register(bus);
+		PortalActivationEffect.register();
 
 		TFRemapper.addRegistryAliases();
 

@@ -4,6 +4,7 @@ import net.minecraft.core.BlockPos;
 import net.minecraft.core.particles.*;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.sounds.SoundEvent;
+import net.minecraft.sounds.SoundEvents;
 import net.minecraft.sounds.SoundSource;
 import net.minecraft.util.RandomSource;
 import net.minecraft.world.InteractionResult;
@@ -121,6 +122,15 @@ public abstract class AbstractTrophyBlock extends BaseEntityBlock implements Equ
 					pitch = 0.6F;
 				}
 				case PRINCESS_AURORA -> sound = TFSounds.PRINCESS_AURORA_AMBIENT.get();
+				case PALE_MONARCH -> {
+					sound = SoundEvents.ANVIL_LAND;
+					volume = 0.4F;
+					pitch = 0.6F;
+				}
+				case ASHEN_LORD -> {
+					sound = TFSounds.ASHEN_LORD_AMBIENT.get();
+					pitch = 0.9F;
+				}
 				case KNIGHT_PHANTOM -> {
 					sound = TFSounds.KNIGHT_PHANTOM_AMBIENT.get();
 					pitch = 1.1F;

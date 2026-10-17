@@ -52,6 +52,10 @@ public class TFBiomes {
 
 	public static final ResourceKey<Biome> THORNLANDS = makeKey("thornlands");
 
+	// Key slot 5: a snow covered mountain massif, its summit clearing sits on the landmark center
+	public static final ResourceKey<Biome> SNOW_MOUNTAIN = makeKey("snow_mountain");
+	public static final ResourceKey<Biome> MOUNTAIN_PEAK = makeKey("mountain_peak");
+
 	public static final ResourceKey<Biome> UNDERGROUND = makeKey("underground");
 	public static final ResourceKey<Biome> AMETHYST_STRAITS_UNDERGROUND = makeKey("amethyst_straits_underground");
 	public static final ResourceKey<Biome> OAK_SAVANNAH_UNDERGROUND = makeKey("oak_savannah_underground");
@@ -88,6 +92,8 @@ public class TFBiomes {
 		context.register(DARK_FOREST_CENTER, biomeWithDefaults(defaultAmbientBuilder().skyColor(0x000000).fogColor(0x493000).grassColorOverride(0x667540).foliageColorOverride(0xF9821E).grassColorModifier(grassColorModifierEnumExtension.DARK_FOREST_CENTER), new MobSpawnSettings.Builder(), darkForestCenterGen(featureGetter, carverGetter)).build());
 
 		context.register(SNOWY_FOREST, biomeWithDefaults(defaultAmbientBuilder().skyColor(0x808080).fogColor(0xFFFFFF).foliageColorOverride(0xFFFFFF).grassColorOverride(0xFFFFFF), snowForestSpawning(), snowyForestGen(featureGetter, carverGetter)).hasPrecipitation(true).temperature(0.09F).downfall(0.9F).build());
+		context.register(SNOW_MOUNTAIN, biomeWithDefaults(defaultAmbientBuilder().skyColor(0xA9B8C9).fogColor(0xE8EEF4).foliageColorOverride(0xFFFFFF).grassColorOverride(0xFFFFFF), snowForestSpawning(), snowMountainGen(featureGetter, carverGetter)).hasPrecipitation(true).temperature(-0.5F).downfall(0.9F).build());
+		context.register(MOUNTAIN_PEAK, biomeWithDefaults(defaultAmbientBuilder().skyColor(0xA9B8C9).fogColor(0xE8EEF4).foliageColorOverride(0xFFFFFF).grassColorOverride(0xFFFFFF), new MobSpawnSettings.Builder(), mountainPeakGen(featureGetter, carverGetter)).hasPrecipitation(true).temperature(-0.5F).downfall(0.9F).build());
 		context.register(GLACIER, biomeWithDefaults(defaultAmbientBuilder().skyColor(0x130D28).fogColor(0x361F88), penguinSpawning(), glacierGen(featureGetter, carverGetter)).temperature(0.08F).downfall(0.1F).hasPrecipitation(true).build());
 		// Started as a copy of vanilla ice spikes (OverworldBiomes#plains with isCold + isIceSpikes), sky as dark forest
 		context.register(AMETHYST_STRAITS, biomeWithDefaults(purpleFireflyParticles(defaultAmbientBuilder()).skyColor(0x000000).fogColor(0xD8C0FF).foliageColorOverride(0x1E5C14).waterColor(0xCE7FFF).waterFogColor(0x9C48A8), amethystStraitsSpawning(), amethystStraitsGen(featureGetter, carverGetter)).hasPrecipitation(true).temperature(0.8F).downfall(0.0F).build());

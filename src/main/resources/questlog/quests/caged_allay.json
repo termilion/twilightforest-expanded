@@ -1,0 +1,27 @@
+{
+  "title": "quest.twilightforest.caged_allay.title",
+  "description": "quest.twilightforest.caged_allay.description",
+  "description_completed": "quest.twilightforest.caged_allay.description_completed",
+  "translatable": true,
+  "icon": {
+    "item": "twilightforest:twilight_shard"
+  },
+  "chapter": "twilightforest",
+  "include_in_main": true,
+  "sort_order": -2,
+  "requirements": [
+    {
+      "type": "questlog:unobtainable"
+    }
+  ],
+  "objectives": [
+    {
+      "type": "twilightforest:allay_freed",
+      "name": "quest.twilightforest.caged_allay.objective",
+      "translatable": true
+    }
+  ],
+  "toast_on_unlock": true,
+  "toast_on_complete": true,
+  "show_popup_on_unlock": true
+}

@@ -219,6 +219,8 @@ public final class TFSounds {
 	public static final DeferredHolder<SoundEvent, SoundEvent> QUEST_RAM_DEATH = createEvent("entity.twilightforest.quest_ram.death");
 	public static final DeferredHolder<SoundEvent, SoundEvent> QUEST_RAM_HURT = createEvent("entity.twilightforest.quest_ram.hurt");
 	public static final DeferredHolder<SoundEvent, SoundEvent> QUEST_RAM_STEP = createEvent("entity.twilightforest.quest_ram.step");
+	public static final DeferredHolder<SoundEvent, SoundEvent> QUEST_RAM_STUDY_START = createEvent("entity.twilightforest.quest_ram.study_start");
+	public static final DeferredHolder<SoundEvent, SoundEvent> QUEST_RAM_STUDY_DONE = createEvent("entity.twilightforest.quest_ram.study_done");
 	public static final DeferredHolder<SoundEvent, SoundEvent> RAVEN_CAW = createEvent("entity.twilightforest.raven.caw");
 	public static final DeferredHolder<SoundEvent, SoundEvent> RAVEN_SQUAWK = createEvent("entity.twilightforest.raven.squawk");
 	public static final DeferredHolder<SoundEvent, SoundEvent> REACTOR_AMBIENT = createEvent("block.twilightforest.reactor.ambient");
@@ -257,6 +259,12 @@ public final class TFSounds {
 	public static final DeferredHolder<SoundEvent, SoundEvent> PRINCESS_AURORA_HURT = createEvent("entity.twilightforest.princess_aurora.hurt");
 	public static final DeferredHolder<SoundEvent, SoundEvent> PRINCESS_AURORA_INTIMIDATE = createEvent("entity.twilightforest.princess_aurora.intimidate");
 	public static final DeferredHolder<SoundEvent, SoundEvent> PRINCESS_AURORA_SUMMON = createEvent("entity.twilightforest.princess_aurora.summon");
+	public static final DeferredHolder<SoundEvent, SoundEvent> ASHEN_LORD_AMBIENT = createEvent("entity.twilightforest.ashen_lord.ambient");
+	public static final DeferredHolder<SoundEvent, SoundEvent> ASHEN_LORD_HURT = createEvent("entity.twilightforest.ashen_lord.hurt");
+	public static final DeferredHolder<SoundEvent, SoundEvent> ASHEN_LORD_DEATH = createEvent("entity.twilightforest.ashen_lord.death");
+	public static final DeferredHolder<SoundEvent, SoundEvent> ASHEN_LORD_ATTACK = createEvent("entity.twilightforest.ashen_lord.attack");
+	public static final DeferredHolder<SoundEvent, SoundEvent> ASHEN_LORD_CHANNEL_01 = createEvent("entity.twilightforest.ashen_lord.channel_short");
+	public static final DeferredHolder<SoundEvent, SoundEvent> ASHEN_LORD_CHANNEL_02 = createEvent("entity.twilightforest.ashen_lord.channel_long");
 	public static final DeferredHolder<SoundEvent, SoundEvent> BROWNIE_AMBIENT = createEvent("entity.twilightforest.brownie.ambient");
 	public static final DeferredHolder<SoundEvent, SoundEvent> BROWNIE_HURT = createEvent("entity.twilightforest.brownie.hurt");
 	public static final DeferredHolder<SoundEvent, SoundEvent> BROWNIE_NOD = createEvent("entity.twilightforest.brownie.nod");

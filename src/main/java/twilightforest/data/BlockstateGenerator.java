@@ -139,6 +139,8 @@ public class BlockstateGenerator extends BlockModelBuilders {
 		simpleBlock(TFBlocks.HYDRA_TROPHY.get(), models().getExistingFile(ResourceLocation.withDefaultNamespace("block/skull")));
 		simpleBlock(TFBlocks.ALPHA_YETI_TROPHY.get(), models().getExistingFile(ResourceLocation.withDefaultNamespace("block/skull")));
 		simpleBlock(TFBlocks.PRINCESS_AURORA_TROPHY.get(), models().getExistingFile(ResourceLocation.withDefaultNamespace("block/skull")));
+		simpleBlock(TFBlocks.ASHEN_LORD_TROPHY.get(), models().getExistingFile(ResourceLocation.withDefaultNamespace("block/skull")));
+		simpleBlock(TFBlocks.PALE_MONARCH_TROPHY.get(), models().getExistingFile(ResourceLocation.withDefaultNamespace("block/skull")));
 		simpleBlock(TFBlocks.KNIGHT_PHANTOM_TROPHY.get(), models().getExistingFile(ResourceLocation.withDefaultNamespace("block/skull")));
 		simpleBlock(TFBlocks.UR_GHAST_TROPHY.get(), models().getExistingFile(ResourceLocation.withDefaultNamespace("block/skull")));
 		simpleBlock(TFBlocks.QUEST_RAM_TROPHY.get(), models().getExistingFile(ResourceLocation.withDefaultNamespace("block/skull")));
@@ -148,6 +150,8 @@ public class BlockstateGenerator extends BlockModelBuilders {
 		simpleBlock(TFBlocks.HYDRA_WALL_TROPHY.get(), models().getExistingFile(ResourceLocation.withDefaultNamespace("block/skull")));
 		simpleBlock(TFBlocks.ALPHA_YETI_WALL_TROPHY.get(), models().getExistingFile(ResourceLocation.withDefaultNamespace("block/skull")));
 		simpleBlock(TFBlocks.PRINCESS_AURORA_WALL_TROPHY.get(), models().getExistingFile(ResourceLocation.withDefaultNamespace("block/skull")));
+		simpleBlock(TFBlocks.ASHEN_LORD_WALL_TROPHY.get(), models().getExistingFile(ResourceLocation.withDefaultNamespace("block/skull")));
+		simpleBlock(TFBlocks.PALE_MONARCH_WALL_TROPHY.get(), models().getExistingFile(ResourceLocation.withDefaultNamespace("block/skull")));
 		simpleBlock(TFBlocks.KNIGHT_PHANTOM_WALL_TROPHY.get(), models().getExistingFile(ResourceLocation.withDefaultNamespace("block/skull")));
 		simpleBlock(TFBlocks.UR_GHAST_WALL_TROPHY.get(), models().getExistingFile(ResourceLocation.withDefaultNamespace("block/skull")));
 		simpleBlock(TFBlocks.QUEST_RAM_WALL_TROPHY.get(), models().getExistingFile(ResourceLocation.withDefaultNamespace("block/skull")));
@@ -326,6 +330,7 @@ public class BlockstateGenerator extends BlockModelBuilders {
 		simpleBlock(TFBlocks.UR_GHAST_BOSS_SPAWNER.get(), bigSpawner);
 		simpleBlock(TFBlocks.KNIGHT_PHANTOM_BOSS_SPAWNER.get(), bigSpawner);
 		simpleBlock(TFBlocks.PRINCESS_AURORA_BOSS_SPAWNER.get(), bigSpawner);
+		simpleBlock(TFBlocks.ASHEN_LORD_BOSS_SPAWNER.get(), bigSpawner);
 		simpleBlock(TFBlocks.MINOSHROOM_BOSS_SPAWNER.get(), bigSpawner);
 		simpleBlock(TFBlocks.ALPHA_YETI_BOSS_SPAWNER.get(), bigSpawner);
 

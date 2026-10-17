@@ -83,6 +83,8 @@ public class TFEntityNames {
 	public static final ResourceLocation STABLE_ICE_CORE = prefix("stable_ice_core");
 	public static final ResourceLocation UNSTABLE_ICE_CORE = prefix("unstable_ice_core");
 	public static final ResourceLocation PRINCESS_AURORA = prefix("princess_aurora");
+	public static final ResourceLocation ASHEN_LORD = prefix("ashen_lord");
+	public static final ResourceLocation LEAF_PROJECTILE = prefix("leaf_projectile");
 	public static final ResourceLocation ICE_CRYSTAL = prefix("ice_crystal");
 
 	// Highlands

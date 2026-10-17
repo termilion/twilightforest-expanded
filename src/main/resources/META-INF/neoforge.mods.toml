@@ -20,7 +20,7 @@ enumExtensions="META-INF/enumextensions.json"
 [[dependencies.twilightforest]]
 modId = "neoforge"
 type = "required"
-versionRange = "[21.1.209,)"
+versionRange = "[21.1.228,)"
 ordering = "NONE"
 side = "BOTH"
 
@@ -43,6 +43,20 @@ modId = "mythsandlegends"
 type = "required"
 versionRange = "[1.0.9,)"
 ordering = "AFTER" # our data/mythsandlegends overrides must win
+side = "BOTH"
+
+[[dependencies.twilightforest]]
+modId = "questlog"
+type = "required"
+versionRange = "[3.4.1,)"
+ordering = "AFTER"
+side = "BOTH"
+
+[[dependencies.twilightforest]]
+modId = "cloth_config"
+type = "required"
+versionRange = "[15.0.140,)"
+ordering = "NONE"
 side = "BOTH"
 
 [[dependencies.twilightforest]]

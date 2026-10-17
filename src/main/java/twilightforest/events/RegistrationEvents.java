@@ -697,6 +697,7 @@ public class RegistrationEvents {
 		event.put(TFEntities.STABLE_ICE_CORE.get(), StableIceCore.registerAttributes().build());
 		event.put(TFEntities.UNSTABLE_ICE_CORE.get(), UnstableIceCore.registerAttributes().build());
 		event.put(TFEntities.PRINCESS_AURORA.get(), PrincessAurora.registerAttributes().build());
+		event.put(TFEntities.ASHEN_LORD.get(), AshenLord.registerAttributes().build());
 		event.put(TFEntities.TROLL.get(), Troll.registerAttributes().build());
 		event.put(TFEntities.GIANT_MINER.get(), GiantMiner.registerAttributes().build());
 		event.put(TFEntities.ARMORED_GIANT.get(), GiantMiner.registerAttributes().build());

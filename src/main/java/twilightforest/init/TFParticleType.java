@@ -16,6 +16,7 @@ public class TFParticleType {
 
 	public static final DeferredRegister<ParticleType<?>> PARTICLE_TYPES = DeferredRegister.create(Registries.PARTICLE_TYPE, TwilightForestMod.ID);
 
+	public static final DeferredHolder<ParticleType<?>, SimpleParticleType> TWILIGHT_PORTAL = PARTICLE_TYPES.register("twilight_portal", () -> new SimpleParticleType(false));
 	public static final DeferredHolder<ParticleType<?>, SimpleParticleType> LARGE_FLAME = PARTICLE_TYPES.register("large_flame", () -> new SimpleParticleType(false));
 	public static final DeferredHolder<ParticleType<?>, SimpleParticleType> LEAF_RUNE = PARTICLE_TYPES.register("leaf_rune", () -> new SimpleParticleType(false));
 	public static final DeferredHolder<ParticleType<?>, SimpleParticleType> BOSS_TEAR = PARTICLE_TYPES.register("boss_tear", () -> new SimpleParticleType(false));
@@ -25,6 +26,12 @@ public class TFParticleType {
 	public static final DeferredHolder<ParticleType<?>, SimpleParticleType> SNOW_WARNING = PARTICLE_TYPES.register("snow_warning", () -> new SimpleParticleType(false));
 	public static final DeferredHolder<ParticleType<?>, SimpleParticleType> EXTENDED_SNOW_WARNING = PARTICLE_TYPES.register("extended_snow_warning", () -> new SimpleParticleType(false));
 	public static final DeferredHolder<ParticleType<?>, SimpleParticleType> SNOW_GUARDIAN = PARTICLE_TYPES.register("snow_guardian", () -> new SimpleParticleType(false));
+	// Feywild (MIT) leaves and sparkle, used by the Ashen Lord
+	public static final DeferredHolder<ParticleType<?>, SimpleParticleType> AUTUMN_LEAF = PARTICLE_TYPES.register("autumn_leaf", () -> new SimpleParticleType(true));
+	public static final DeferredHolder<ParticleType<?>, SimpleParticleType> SPRING_LEAF = PARTICLE_TYPES.register("spring_leaf", () -> new SimpleParticleType(true));
+	public static final DeferredHolder<ParticleType<?>, SimpleParticleType> SUMMER_LEAF = PARTICLE_TYPES.register("summer_leaf", () -> new SimpleParticleType(true));
+	public static final DeferredHolder<ParticleType<?>, SimpleParticleType> WINTER_LEAF = PARTICLE_TYPES.register("winter_leaf", () -> new SimpleParticleType(true));
+	public static final DeferredHolder<ParticleType<?>, SimpleParticleType> AUTUMN_SPARKLE = PARTICLE_TYPES.register("autumn_sparkle", () -> new SimpleParticleType(true));
 	public static final DeferredHolder<ParticleType<?>, SimpleParticleType> ICE_BEAM = PARTICLE_TYPES.register("ice_beam", () -> new SimpleParticleType(false));
 	public static final DeferredHolder<ParticleType<?>, SimpleParticleType> ANNIHILATE = PARTICLE_TYPES.register("annihilate", () -> new SimpleParticleType(false));
 	public static final DeferredHolder<ParticleType<?>, SimpleParticleType> PERFECT_DODGE = PARTICLE_TYPES.register("perfect_dodge", () -> new SimpleParticleType(false));

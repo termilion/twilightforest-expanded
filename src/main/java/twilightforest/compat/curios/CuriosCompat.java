@@ -65,7 +65,7 @@ public class CuriosCompat {
 			},
 			TFItems.CHARM_OF_KEEPING_1, TFItems.CHARM_OF_KEEPING_2, TFItems.CHARM_OF_KEEPING_3, TFItems.CHARM_OF_LIFE_1, TFItems.CHARM_OF_LIFE_2,
 			TFItems.NAGA_TROPHY, TFItems.LICH_TROPHY, TFItems.MINOSHROOM_TROPHY, TFItems.HYDRA_TROPHY, TFItems.KNIGHT_PHANTOM_TROPHY,
-			TFItems.UR_GHAST_TROPHY, TFItems.ALPHA_YETI_TROPHY, TFItems.PRINCESS_AURORA_TROPHY, TFItems.QUEST_RAM_TROPHY,
+			TFItems.UR_GHAST_TROPHY, TFItems.ALPHA_YETI_TROPHY, TFItems.PRINCESS_AURORA_TROPHY, TFItems.ASHEN_LORD_TROPHY, TFItems.PALE_MONARCH_TROPHY, TFItems.QUEST_RAM_TROPHY,
 			TFBlocks.CICADA, TFBlocks.FIREFLY, TFBlocks.MOONWORM, TFItems.SKELETON_SKULL_CANDLE, TFItems.WITHER_SKELETON_SKULL_CANDLE,
 			TFItems.ZOMBIE_SKULL_CANDLE, TFItems.CREEPER_SKULL_CANDLE, TFItems.PLAYER_SKULL_CANDLE, TFItems.PIGLIN_SKULL_CANDLE
 		);
@@ -107,6 +107,8 @@ public class CuriosCompat {
 			CuriosRendererRegistry.register(TFItems.UR_GHAST_TROPHY.get(), CurioHeadRenderer::new);
 			CuriosRendererRegistry.register(TFItems.ALPHA_YETI_TROPHY.get(), CurioHeadRenderer::new);
 			CuriosRendererRegistry.register(TFItems.PRINCESS_AURORA_TROPHY.get(), CurioHeadRenderer::new);
+			CuriosRendererRegistry.register(TFItems.ASHEN_LORD_TROPHY.get(), CurioHeadRenderer::new);
+			CuriosRendererRegistry.register(TFItems.PALE_MONARCH_TROPHY.get(), CurioHeadRenderer::new);
 			CuriosRendererRegistry.register(TFItems.QUEST_RAM_TROPHY.get(), CurioHeadRenderer::new);
 
 			CuriosRendererRegistry.register(TFBlocks.CICADA.get().asItem(), CurioHeadRenderer::new);

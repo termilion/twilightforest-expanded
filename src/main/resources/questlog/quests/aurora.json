@@ -1,0 +1,39 @@
+{
+  "title": "quest.twilightforest.aurora.title",
+  "description": "quest.twilightforest.aurora.description",
+  "description_completed": "quest.twilightforest.aurora.description_completed",
+  "translatable": true,
+  "icon": {
+    "item": "twilightforest:princess_aurora_trophy"
+  },
+  "chapter": "twilightforest",
+  "include_in_main": true,
+  "sort_order": 5,
+  "requirements": [
+    {
+      "type": "questlog:quest_complete",
+      "quest": "questlog:twilightforest/lich"
+    }
+  ],
+  "objectives": [
+    {
+      "type": "questlog:or",
+      "objectives": [
+        {
+          "type": "questlog:advancement",
+          "advancement": "twilightforest:progress_glacier"
+        },
+        {
+          "type": "twilightforest:entity_interact",
+          "entity": "twilightforest:quest_ram",
+          "item": "twilightforest:princess_aurora_trophy"
+        }
+      ],
+      "name": "quest.twilightforest.aurora.objective",
+      "translatable": true
+    }
+  ],
+  "toast_on_unlock": true,
+  "toast_on_complete": true,
+  "show_popup_on_unlock": true
+}

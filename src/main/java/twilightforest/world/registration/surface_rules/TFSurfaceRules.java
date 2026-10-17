@@ -20,6 +20,7 @@ public class TFSurfaceRules {
 	private static final SurfaceRules.RuleSource SAND = makeStateRule(Blocks.SAND);
 	private static final SurfaceRules.RuleSource SANDSTONE = makeStateRule(Blocks.SANDSTONE);
 	private static final SurfaceRules.RuleSource SNOW = makeStateRule(Blocks.SNOW_BLOCK);
+	private static final SurfaceRules.RuleSource STONE = makeStateRule(Blocks.STONE);
 	private static final SurfaceRules.RuleSource BLACKSTONE = makeStateRule(Blocks.BLACKSTONE);
 	private static final SurfaceRules.RuleSource OBSIDIAN = makeStateRule(Blocks.OBSIDIAN);
 	private static final SurfaceRules.RuleSource WEATHERED_DEADROCK = makeStateRule(TFBlocks.WEATHERED_DEADROCK.get());
@@ -40,11 +41,26 @@ public class TFSurfaceRules {
 			deadrockSurface(),
 			snowyForestSurface(),
 			glacierSurface(),
+			snowMountainSurface(),
 			mangroveSwampSurface(),
 			amethystStraitsSurface(),
 			darkwoodClearingSurface(),
 			overworldLikeFloor()
 		);
+	}
+
+	// Snow on the slopes, bare stone on the steep faces
+	@NotNull
+	private static SurfaceRules.RuleSource snowMountainSurface() {
+		SurfaceRules.RuleSource snowOrStone = SurfaceRules.sequence(
+			SurfaceRules.ifTrue(SurfaceRules.steep(), STONE),
+			SNOW
+		);
+
+		return SurfaceRules.ifTrue(SurfaceRules.isBiome(TFBiomes.SNOW_MOUNTAIN, TFBiomes.MOUNTAIN_PEAK), SurfaceRules.sequence(
+			SurfaceRules.ifTrue(SurfaceRules.ON_FLOOR, snowOrStone),
+			SurfaceRules.ifTrue(SurfaceRules.waterStartCheck(-6, -1), SurfaceRules.ifTrue(SurfaceRules.UNDER_FLOOR, snowOrStone))
+		));
 	}
 
 	// The arachnid dwelling's clearing has a podzol floor

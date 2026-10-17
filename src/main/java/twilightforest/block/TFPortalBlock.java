@@ -4,7 +4,6 @@ import net.minecraft.advancements.AdvancementHolder;
 import net.minecraft.advancements.DisplayInfo;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
-import net.minecraft.core.particles.ParticleTypes;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.network.chat.Component;
 import net.minecraft.resources.ResourceKey;
@@ -15,7 +14,6 @@ import net.minecraft.sounds.SoundSource;
 import net.minecraft.util.RandomSource;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.EntityType;
-import net.minecraft.world.entity.LightningBolt;
 import net.minecraft.world.entity.item.ItemEntity;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
@@ -37,7 +35,6 @@ import net.minecraft.world.phys.AABB;
 import net.minecraft.world.phys.shapes.CollisionContext;
 import net.minecraft.world.phys.shapes.Shapes;
 import net.minecraft.world.phys.shapes.VoxelShape;
-import net.neoforged.neoforge.event.EventHooks;
 import net.neoforged.neoforge.network.PacketDistributor;
 import org.apache.commons.lang3.mutable.MutableInt;
 import org.jetbrains.annotations.Nullable;
@@ -67,24 +64,6 @@ public class TFPortalBlock extends HalfTransparentBlock implements LiquidBlockCo
 		this.registerDefaultState(this.getStateDefinition().any().setValue(DISALLOW_RETURN, false));
 	}
 
-	private static void causeLightning(Level level, BlockPos pos, boolean destructive) {
-		LightningBolt bolt = new LightningBolt(EntityType.LIGHTNING_BOLT, level);
-		bolt.setPos(pos.getX() + 0.5, pos.getY(), pos.getZ() + 0.5);
-		bolt.setVisualOnly(destructive);
-		level.addFreshEntity(bolt);
-
-		if (destructive && level instanceof ServerLevel) {
-			double range = 3.0D;
-			List<Entity> list = level.getEntitiesOfClass(Entity.class, new AABB(pos).inflate(range));
-
-			for (Entity victim : list) {
-				if (!EventHooks.onEntityStruckByLightning(victim, bolt)) {
-					victim.thunderHit((ServerLevel) level, bolt);
-				}
-			}
-		}
-	}
-
 	public static boolean recursivelyValidatePortal(Level level, BlockPos pos, Map<BlockPos, Boolean> blocksChecked, MutableInt portalSize, BlockState poolBlock) {
 		if (portalSize.incrementAndGet() > TFConfig.maxPortalSize) return false;
 
@@ -96,13 +75,13 @@ public class TFPortalBlock extends HalfTransparentBlock implements LiquidBlockCo
 			if (!blocksChecked.containsKey(positionCheck)) {
 				BlockState state = level.getBlockState(positionCheck);
 
-				if (state == poolBlock && level.getBlockState(positionCheck.below()).isFaceSturdy(level, pos, Direction.UP)) {
+				if (isPoolBlock(state, poolBlock) && hasValidFloor(level, positionCheck)) {
 					blocksChecked.put(positionCheck, true);
 					if (isPoolProbablyEnclosed) {
 						isPoolProbablyEnclosed = recursivelyValidatePortal(level, positionCheck, blocksChecked, portalSize, poolBlock);
 					}
 
-				} else if (isGrassOrDirt(state) && isNatureBlock(level.getBlockState(positionCheck.above()))) {
+				} else if (isGrassOrDirt(state)) {
 					blocksChecked.put(positionCheck, false);
 
 				} else return false;
@@ -110,10 +89,6 @@ public class TFPortalBlock extends HalfTransparentBlock implements LiquidBlockCo
 		}
 
 		return isPoolProbablyEnclosed;
-	}
-
-	private static boolean isNatureBlock(BlockState state) {
-		return state.is(BlockTagGenerator.PORTAL_DECO);
 	}
 
 	private static boolean isGrassOrDirt(BlockState state) {
@@ -153,7 +128,7 @@ public class TFPortalBlock extends HalfTransparentBlock implements LiquidBlockCo
 
 		BlockState state = level.getBlockState(pos);
 
-		if (this.canFormPortal(state) && level.getBlockState(pos.below()).isFaceSturdy(level, pos, Direction.UP)) {
+		if (this.canFormPortal(state) && hasValidFloor(level, pos)) {
 			Map<BlockPos, Boolean> blocksChecked = new HashMap<>();
 			blocksChecked.put(pos, true);
 
@@ -173,19 +148,31 @@ public class TFPortalBlock extends HalfTransparentBlock implements LiquidBlockCo
 				}
 
 				catalyst.getItem().shrink(1);
-				causeLightning(level, pos, TFConfig.destructivePortalLightning);
-
 				for (Map.Entry<BlockPos, Boolean> checkedPos : blocksChecked.entrySet()) {
 					if (checkedPos.getValue()) {
 						level.setBlock(checkedPos.getKey(), TFBlocks.TWILIGHT_PORTAL.get().defaultBlockState(), Block.UPDATE_CLIENTS);
 					}
 				}
 
+				PortalActivationEffect.start(level, blocksChecked.entrySet().stream().filter(Map.Entry::getValue).map(Map.Entry::getKey).toList());
 				return true;
 			}
 		}
 
 		return false;
+	}
+
+	// A pool block rests on a sturdy block, or on more pool: water, seagrass, kelp or another portal block
+	private static boolean hasValidFloor(Level level, BlockPos pos) {
+		BlockPos below = pos.below();
+		BlockState floor = level.getBlockState(below);
+		return floor.isFaceSturdy(level, below, Direction.UP) || floor.is(BlockTagGenerator.PORTAL_POOL) || floor.getBlock() instanceof TFPortalBlock;
+	}
+
+	// A return portal pool is made of one kind of portal block; every other pool is any still water, seagrass and kelp included
+	private static boolean isPoolBlock(BlockState state, BlockState poolBlock) {
+		if (poolBlock.getBlock() instanceof TFPortalBlock) return state == poolBlock;
+		return state.is(BlockTagGenerator.PORTAL_POOL) && state.getFluidState().isSource();
 	}
 
 	public boolean canFormPortal(BlockState state) {
@@ -194,7 +181,7 @@ public class TFPortalBlock extends HalfTransparentBlock implements LiquidBlockCo
 
 	@Override
 	public void neighborChanged(BlockState state, Level level, BlockPos pos, Block block, BlockPos fromPos, boolean isMoving) {
-		boolean good = level.getBlockState(pos.below()).isFaceSturdy(level, pos, Direction.UP);
+		boolean good = hasValidFloor(level, pos);
 
 		for (Direction facing : Direction.Plane.HORIZONTAL) {
 			if (!good) break;
@@ -255,7 +242,7 @@ public class TFPortalBlock extends HalfTransparentBlock implements LiquidBlockCo
 			double ySpeed = rand.nextFloat();
 			double zSpeed = (rand.nextFloat() - 0.5D) * 0.5D;
 
-			level.addParticle(ParticleTypes.PORTAL, xPos, yPos, zPos, xSpeed, ySpeed, zSpeed);
+			level.addParticle(TFParticleType.TWILIGHT_PORTAL.get(), xPos, yPos, zPos, xSpeed, ySpeed, zSpeed);
 		}
 	}
 

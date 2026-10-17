@@ -264,6 +264,10 @@ public class BlockLootTables extends BlockLootSubProvider {
 		add(TFBlocks.ALPHA_YETI_WALL_TROPHY.get(), createSingleItemTable(TFBlocks.ALPHA_YETI_TROPHY.get().asItem()));
 		add(TFBlocks.PRINCESS_AURORA_TROPHY.get(), createSingleItemTable(TFBlocks.PRINCESS_AURORA_TROPHY.get().asItem()));
 		add(TFBlocks.PRINCESS_AURORA_WALL_TROPHY.get(), createSingleItemTable(TFBlocks.PRINCESS_AURORA_TROPHY.get().asItem()));
+		add(TFBlocks.ASHEN_LORD_TROPHY.get(), createSingleItemTable(TFBlocks.ASHEN_LORD_TROPHY.get().asItem()));
+		add(TFBlocks.ASHEN_LORD_WALL_TROPHY.get(), createSingleItemTable(TFBlocks.ASHEN_LORD_TROPHY.get().asItem()));
+		add(TFBlocks.PALE_MONARCH_TROPHY.get(), createSingleItemTable(TFBlocks.PALE_MONARCH_TROPHY.get().asItem()));
+		add(TFBlocks.PALE_MONARCH_WALL_TROPHY.get(), createSingleItemTable(TFBlocks.PALE_MONARCH_TROPHY.get().asItem()));
 		add(TFBlocks.QUEST_RAM_TROPHY.get(), createSingleItemTable(TFBlocks.QUEST_RAM_TROPHY.get().asItem()));
 		add(TFBlocks.QUEST_RAM_WALL_TROPHY.get(), createSingleItemTable(TFBlocks.QUEST_RAM_TROPHY.get().asItem()));
 

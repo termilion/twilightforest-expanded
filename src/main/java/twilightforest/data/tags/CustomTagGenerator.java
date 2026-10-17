@@ -47,7 +47,8 @@ public class CustomTagGenerator {
 				TFBlockEntities.KNIGHT_PHANTOM_SPAWNER.getKey(),
 				TFBlockEntities.UR_GHAST_SPAWNER.getKey(),
 				TFBlockEntities.ALPHA_YETI_SPAWNER.getKey(),
-				TFBlockEntities.PRINCESS_AURORA_SPAWNER.getKey());
+				TFBlockEntities.PRINCESS_AURORA_SPAWNER.getKey(),
+				TFBlockEntities.ASHEN_LORD_SPAWNER.getKey());
 
 			this.tag(IMMOVABLE).add(
 				TFBlockEntities.ANTIBUILDER.getKey(),
@@ -59,7 +60,8 @@ public class CustomTagGenerator {
 				TFBlockEntities.KNIGHT_PHANTOM_SPAWNER.getKey(),
 				TFBlockEntities.UR_GHAST_SPAWNER.getKey(),
 				TFBlockEntities.ALPHA_YETI_SPAWNER.getKey(),
-				TFBlockEntities.PRINCESS_AURORA_SPAWNER.getKey());
+				TFBlockEntities.PRINCESS_AURORA_SPAWNER.getKey(),
+				TFBlockEntities.ASHEN_LORD_SPAWNER.getKey());
 		}
 
 		@Override

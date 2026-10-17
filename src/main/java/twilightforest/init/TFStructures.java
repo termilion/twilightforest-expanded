@@ -20,6 +20,7 @@ public class TFStructures {
 	public static final ResourceKey<Structure> LICH_TOWER = registerKey("lich_tower");
 	public static final ResourceKey<Structure> LABYRINTH = registerKey("labyrinth");
 	public static final ResourceKey<Structure> HYDRA_LAIR = registerKey("hydra_lair");
+	public static final ResourceKey<Structure> PEAK_SHRINE = registerKey("peak_shrine");
 	public static final ResourceKey<Structure> KNIGHT_STRONGHOLD = registerKey("knight_stronghold");
 	public static final ResourceKey<Structure> DARK_TOWER = registerKey("dark_tower");
 	public static final ResourceKey<Structure> YETI_CAVE = registerKey("yeti_cave");
@@ -68,6 +69,7 @@ public class TFStructures {
 		context.register(YETI_CAVE, YetiCaveStructure.buildYetiCaveConfig(context));
 		context.register(AURORA_PALACE, AuroraPalaceStructure.buildAuroraPalaceConfig(context));
 		context.register(TROLL_CAVE, TrollCaveStructure.buildTrollCaveConfig(context));
+		context.register(PEAK_SHRINE, PeakShrineStructure.buildPeakShrineConfig(context));
 		context.register(GIANT_HOUSE, GiantHouseStructure.buildGiantHouseConfig(context));
 
 		context.register(MUSHROOM_TOWER, MushroomTowerStructure.buildStructureConfig(context));

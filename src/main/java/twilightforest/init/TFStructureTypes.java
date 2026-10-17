@@ -27,6 +27,7 @@ public class TFStructureTypes {
 	public static final DeferredHolder<StructureType<?>, StructureType<LichTowerStructure>> LICH_TOWER = registerType("lich_tower", () -> () -> LichTowerStructure.CODEC);
 	public static final DeferredHolder<StructureType<?>, StructureType<LabyrinthStructure>> LABYRINTH = registerType("labyrinth", () -> () -> LabyrinthStructure.CODEC);
 	public static final DeferredHolder<StructureType<?>, StructureType<HydraLairStructure>> HYDRA_LAIR = registerType("hydra_lair", () -> () -> HydraLairStructure.CODEC);
+	public static final DeferredHolder<StructureType<?>, StructureType<PeakShrineStructure>> PEAK_SHRINE = registerType("peak_shrine", () -> () -> PeakShrineStructure.CODEC);
 	public static final DeferredHolder<StructureType<?>, StructureType<KnightStrongholdStructure>> KNIGHT_STRONGHOLD = registerType("knight_stronghold", () -> () -> KnightStrongholdStructure.CODEC);
 	public static final DeferredHolder<StructureType<?>, StructureType<DarkTowerStructure>> DARK_TOWER = registerType("dark_tower", () -> () -> DarkTowerStructure.CODEC);
 	public static final DeferredHolder<StructureType<?>, StructureType<YetiCaveStructure>> YETI_CAVE = registerType("yeti_cave", () -> () -> YetiCaveStructure.CODEC);

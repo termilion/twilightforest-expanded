@@ -60,6 +60,10 @@ public class BiomeDensitySource {
 		return this.biomeList.get(this.genBiomes.get().getBiome(biomeX, biomeZ)).getMainBiome();
 	}
 
+	public ResourceKey<Biome> getBiomeKey(int biomeX, int biomeZ) {
+		return this.genBiomes.get().getBiome(biomeX, biomeZ);
+	}
+
 	public Holder<Biome> getNoiseBiome(int biomeX, int biomeY, int biomeZ) {
 		return this.biomeList.get(this.genBiomes.get().getBiome(biomeX, biomeZ)).getBiome(biomeY);
 	}

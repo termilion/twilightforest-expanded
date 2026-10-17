@@ -273,6 +273,8 @@ public class TFCreativeTabs {
 			output.accept(TFItems.UR_GHAST_TROPHY);
 			output.accept(TFItems.ALPHA_YETI_TROPHY);
 			output.accept(TFItems.PRINCESS_AURORA_TROPHY);
+			output.accept(TFItems.ASHEN_LORD_TROPHY);
+			output.accept(TFItems.PALE_MONARCH_TROPHY);
 			output.accept(TFItems.QUEST_RAM_TROPHY);
 
 			output.accept(TFBlocks.NAGA_BOSS_SPAWNER);
@@ -283,6 +285,7 @@ public class TFCreativeTabs {
 			output.accept(TFBlocks.UR_GHAST_BOSS_SPAWNER);
 			output.accept(TFBlocks.ALPHA_YETI_BOSS_SPAWNER);
 			output.accept(TFBlocks.PRINCESS_AURORA_BOSS_SPAWNER);
+			output.accept(TFBlocks.ASHEN_LORD_BOSS_SPAWNER);
 			output.accept(TFBlocks.SINISTER_SPAWNER);
 
 			output.accept(TFBlocks.ETCHED_NAGASTONE);
@@ -451,6 +454,7 @@ public class TFCreativeTabs {
 			output.accept(TFItems.IRONWOOD_INGOT);
 			output.accept(TFItems.STEELEAF_INGOT);
 			output.accept(TFItems.MAZE_SLIME_BALL);
+			output.accept(TFItems.TWILIGHT_SHARD);
 			output.accept(TFItems.NAGA_SCALE);
 			output.accept(TFItems.WROUGHT_IRON_BAR);
 			output.accept(TFItems.ARMOR_SHARD);

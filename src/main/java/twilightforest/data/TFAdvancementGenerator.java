@@ -23,6 +23,8 @@ import net.neoforged.neoforge.common.data.AdvancementProvider;
 import net.neoforged.neoforge.common.data.ExistingFileHelper;
 import net.neoforged.neoforge.common.util.Lazy;
 import twilightforest.TwilightForestMod;
+import twilightforest.palemonarch.init.PaleMonarchModEntities;
+import twilightforest.palemonarch.init.PaleMonarchModItems;
 import twilightforest.advancements.*;
 import twilightforest.advancements.predicate.ItemColorPredicate;
 import tamaized.beanification.Autowired;
@@ -31,6 +33,7 @@ import twilightforest.components.item.PotionFlaskComponent;
 import twilightforest.data.helpers.AdvancementDataMultiRequirements;
 import twilightforest.data.tags.ItemTagGenerator;
 import twilightforest.init.*;
+import twilightforest.quest.TFQuests;
 
 import java.util.Optional;
 import java.util.function.Consumer;
@@ -38,7 +41,7 @@ import java.util.function.Supplier;
 
 public class TFAdvancementGenerator implements AdvancementProvider.AdvancementGenerator {
 
-	private static final Supplier<EntityType<?>[]> TF_KILLABLE = Lazy.of(() -> new EntityType<?>[]{TFEntities.ADHERENT.get(), TFEntities.ARMORED_GIANT.get(), TFEntities.BIGHORN_SHEEP.get(), TFEntities.BLOCKCHAIN_GOBLIN.get(), TFEntities.DWARF_RABBIT.get(), TFEntities.DEATH_TOME.get(), TFEntities.DEER.get(), TFEntities.FIRE_BEETLE.get(), TFEntities.GIANT_MINER.get(), TFEntities.LOWER_GOBLIN_KNIGHT.get(), TFEntities.UPPER_GOBLIN_KNIGHT.get(), TFEntities.HARBINGER_CUBE.get(), TFEntities.HEDGE_SPIDER.get(), TFEntities.HELMET_CRAB.get(), TFEntities.HOSTILE_WOLF.get(), TFEntities.HYDRA.get(), TFEntities.KING_SPIDER.get(), TFEntities.KNIGHT_PHANTOM.get(), TFEntities.KOBOLD.get(), TFEntities.LICH.get(), TFEntities.LICH_MINION.get(), TFEntities.MAZE_SLIME.get(), TFEntities.CARMINITE_GHASTLING.get(), TFEntities.MINOSHROOM.get(), TFEntities.MINOTAUR.get(), TFEntities.MIST_WOLF.get(), TFEntities.MOSQUITO_SWARM.get(), TFEntities.NAGA.get(), TFEntities.PENGUIN.get(), TFEntities.PINCH_BEETLE.get(), TFEntities.QUEST_RAM.get(), TFEntities.RAVEN.get(), TFEntities.REDCAP.get(), TFEntities.REDCAP_SAPPER.get(), TFEntities.SKELETON_DRUID.get(), TFEntities.SLIME_BEETLE.get(), TFEntities.SNOW_GUARDIAN.get(), TFEntities.PRINCESS_AURORA.get(), TFEntities.SQUIRREL.get(), TFEntities.STABLE_ICE_CORE.get(), TFEntities.SWARM_SPIDER.get(), TFEntities.TINY_BIRD.get(), TFEntities.CARMINITE_BROODLING.get(), TFEntities.CARMINITE_GHASTGUARD.get(), TFEntities.CARMINITE_GOLEM.get(), TFEntities.TOWERWOOD_BORER.get(), TFEntities.TROLL.get(), TFEntities.UNSTABLE_ICE_CORE.get(), TFEntities.UR_GHAST.get(), TFEntities.BOAR.get(), TFEntities.WINTER_WOLF.get(), TFEntities.WRAITH.get(), TFEntities.YETI.get(), TFEntities.ALPHA_YETI.get()});
+	private static final Supplier<EntityType<?>[]> TF_KILLABLE = Lazy.of(() -> new EntityType<?>[]{TFEntities.ADHERENT.get(), TFEntities.ARMORED_GIANT.get(), TFEntities.BIGHORN_SHEEP.get(), TFEntities.BLOCKCHAIN_GOBLIN.get(), TFEntities.DWARF_RABBIT.get(), TFEntities.DEATH_TOME.get(), TFEntities.DEER.get(), TFEntities.FIRE_BEETLE.get(), TFEntities.GIANT_MINER.get(), TFEntities.LOWER_GOBLIN_KNIGHT.get(), TFEntities.UPPER_GOBLIN_KNIGHT.get(), TFEntities.HARBINGER_CUBE.get(), TFEntities.HEDGE_SPIDER.get(), TFEntities.HELMET_CRAB.get(), TFEntities.HOSTILE_WOLF.get(), TFEntities.HYDRA.get(), TFEntities.KING_SPIDER.get(), TFEntities.KNIGHT_PHANTOM.get(), TFEntities.KOBOLD.get(), TFEntities.LICH.get(), TFEntities.LICH_MINION.get(), TFEntities.MAZE_SLIME.get(), TFEntities.CARMINITE_GHASTLING.get(), TFEntities.MINOSHROOM.get(), TFEntities.MINOTAUR.get(), TFEntities.MIST_WOLF.get(), TFEntities.MOSQUITO_SWARM.get(), TFEntities.NAGA.get(), TFEntities.PENGUIN.get(), TFEntities.PINCH_BEETLE.get(), TFEntities.QUEST_RAM.get(), TFEntities.RAVEN.get(), TFEntities.REDCAP.get(), TFEntities.REDCAP_SAPPER.get(), TFEntities.SKELETON_DRUID.get(), TFEntities.SLIME_BEETLE.get(), TFEntities.SNOW_GUARDIAN.get(), TFEntities.PRINCESS_AURORA.get(), TFEntities.ASHEN_LORD.get(), TFEntities.SQUIRREL.get(), TFEntities.STABLE_ICE_CORE.get(), TFEntities.SWARM_SPIDER.get(), TFEntities.TINY_BIRD.get(), TFEntities.CARMINITE_BROODLING.get(), TFEntities.CARMINITE_GHASTGUARD.get(), TFEntities.CARMINITE_GOLEM.get(), TFEntities.TOWERWOOD_BORER.get(), TFEntities.TROLL.get(), TFEntities.UNSTABLE_ICE_CORE.get(), TFEntities.UR_GHAST.get(), TFEntities.BOAR.get(), TFEntities.WINTER_WOLF.get(), TFEntities.WRAITH.get(), TFEntities.YETI.get(), TFEntities.ALPHA_YETI.get()});
 
 	private static final Supplier<ItemLike[]> DENDROLOGIST_BLOCKS = Lazy.of(() -> new ItemLike[]{
 		TFBlocks.TWILIGHT_OAK_LOG.get(), TFBlocks.TWILIGHT_OAK_WOOD.get(), TFBlocks.STRIPPED_TWILIGHT_OAK_LOG.get(), TFBlocks.STRIPPED_TWILIGHT_OAK_WOOD.get(), TFBlocks.HOLLOW_TWILIGHT_OAK_LOG_HORIZONTAL.get(), TFBlocks.TWILIGHT_OAK_LEAVES.get(), TFBlocks.TWILIGHT_OAK_SAPLING.get(), TFBlocks.TWILIGHT_OAK_PLANKS.get(), TFBlocks.TWILIGHT_OAK_SLAB.get(), TFBlocks.TWILIGHT_OAK_STAIRS.get(), TFBlocks.TWILIGHT_OAK_BUTTON.get(), TFBlocks.TWILIGHT_OAK_FENCE.get(), TFBlocks.TWILIGHT_OAK_GATE.get(), TFBlocks.TWILIGHT_OAK_PLATE.get(), TFBlocks.TWILIGHT_OAK_DOOR.get(), TFBlocks.TWILIGHT_OAK_TRAPDOOR.get(), TFBlocks.TWILIGHT_OAK_SIGN.get(), TFBlocks.TWILIGHT_OAK_HANGING_SIGN.get(), TFBlocks.TWILIGHT_OAK_CHEST.get(), TFBlocks.TWILIGHT_OAK_TRAPPED_CHEST.get(), TFBlocks.TWILIGHT_OAK_BANISTER.get(), TFBlocks.TWILIGHT_OAK_DRYING_RACK.get(), TFItems.TWILIGHT_OAK_BOAT.get(), TFItems.TWILIGHT_OAK_CHEST_BOAT.get(),
@@ -106,13 +109,7 @@ public class TFAdvancementGenerator implements AdvancementProvider.AdvancementGe
 				Component.translatable("advancement.twilightforest.kill_lich.desc",
 					Component.translatable(TFEntities.LICH.get().getDescriptionId())),
 				null, AdvancementType.GOAL, true, true, false))
-			.addCriterion("kill_lich", KilledTrigger.TriggerInstance.playerKilledEntity(EntityPredicate.Builder.entity().of(TFEntities.LICH.get())))
-			.addCriterion("trophy", InventoryChangeTrigger.TriggerInstance.hasItems(TFBlocks.LICH_TROPHY.get()))
-			.addCriterion("lifedrain_scepter", InventoryChangeTrigger.TriggerInstance.hasItems(TFItems.LIFEDRAIN_SCEPTER.get()))
-			.addCriterion("twilight_scepter", InventoryChangeTrigger.TriggerInstance.hasItems(TFItems.TWILIGHT_SCEPTER.get()))
-			.addCriterion("zombie_scepter", InventoryChangeTrigger.TriggerInstance.hasItems(TFItems.ZOMBIE_SCEPTER.get()))
-			.addCriterion("shield_scepter", InventoryChangeTrigger.TriggerInstance.hasItems(TFItems.FORTIFICATION_SCEPTER.get()))
-			.addCriterion("was_in_fight", HurtBossTrigger.TriggerInstance.hurtBoss(EntityPredicate.Builder.entity().of(TFEntities.LICH.get())))
+			.addCriterion("quest", QuestCompletedTrigger.TriggerInstance.completedQuest(TFQuests.LICH))
 			.and()
 			.addCriterion("kill_naga", this.advancementTrigger(naga))
 			.requirements()
@@ -134,9 +131,7 @@ public class TFAdvancementGenerator implements AdvancementProvider.AdvancementGe
 				Component.translatable("advancement.twilightforest.kill_hydra.desc",
 					Component.translatable(TFEntities.HYDRA.get().getDescriptionId())),
 				null, AdvancementType.GOAL, true, true, false))
-			.addCriterion("kill_hydra", KilledTrigger.TriggerInstance.playerKilledEntity(EntityPredicate.Builder.entity().of(TFEntities.HYDRA.get())))
-			.addCriterion("trophy", InventoryChangeTrigger.TriggerInstance.hasItems(TFBlocks.HYDRA_TROPHY.get()))
-			.addCriterion("was_in_fight", HurtBossTrigger.TriggerInstance.hurtBoss(EntityPredicate.Builder.entity().of(TFEntities.HYDRA.get())))
+			.addCriterion("quest", QuestCompletedTrigger.TriggerInstance.completedQuest(TFQuests.HYDRA))
 			.and()
 			.addCriterion("stroganoff", this.advancementTrigger(minoshroom))
 			.requirements()
@@ -181,9 +176,7 @@ public class TFAdvancementGenerator implements AdvancementProvider.AdvancementGe
 				Component.translatable("advancement.twilightforest.progress_ur_ghast.desc",
 					Component.translatable(TFEntities.UR_GHAST.get().getDescriptionId())),
 				null, AdvancementType.GOAL, true, true, false))
-			.addCriterion("ghast", KilledTrigger.TriggerInstance.playerKilledEntity(EntityPredicate.Builder.entity().of(TFEntities.UR_GHAST.get())))
-			.addCriterion("trophy", InventoryChangeTrigger.TriggerInstance.hasItems(TFBlocks.UR_GHAST_TROPHY.get()))
-			.addCriterion("was_in_fight", HurtBossTrigger.TriggerInstance.hurtBoss(EntityPredicate.Builder.entity().of(TFEntities.UR_GHAST.get())))
+			.addCriterion("quest", QuestCompletedTrigger.TriggerInstance.completedQuest(TFQuests.UR_GHAST))
 			.and()
 			.addCriterion("previous_progression", this.advancementTrigger(knights))
 			.requirements()
@@ -210,9 +203,7 @@ public class TFAdvancementGenerator implements AdvancementProvider.AdvancementGe
 				Component.translatable("advancement.twilightforest.progress_glacier.desc",
 					Component.translatable(TFEntities.PRINCESS_AURORA.get().getDescriptionId())),
 				null, AdvancementType.GOAL, true, true, false))
-			.addCriterion("queen", KilledTrigger.TriggerInstance.playerKilledEntity(EntityPredicate.Builder.entity().of(TFEntities.PRINCESS_AURORA.get())))
-			.addCriterion("trophy", InventoryChangeTrigger.TriggerInstance.hasItems(TFBlocks.PRINCESS_AURORA_TROPHY.get()))
-			.addCriterion("was_in_fight", HurtBossTrigger.TriggerInstance.hurtBoss(EntityPredicate.Builder.entity().of(TFEntities.PRINCESS_AURORA.get())))
+			.addCriterion("quest", QuestCompletedTrigger.TriggerInstance.completedQuest(TFQuests.AURORA))
 			.and()
 			.addCriterion("previous_progression", this.advancementTrigger(yeti))
 			.requirements()
@@ -271,14 +262,31 @@ public class TFAdvancementGenerator implements AdvancementProvider.AdvancementGe
 			.addCriterion("previous_progression", this.advancementTrigger(merge))
 			.save(consumer, "twilightforest:progress_troll");
 
-		Advancement.Builder.advancement().parent(lamp).display(
-				Items.STRUCTURE_VOID,
-				Component.translatable("advancement.twilightforest.progression_end"),
-				Component.translatable("advancement.twilightforest.progression_end.desc"),
-				null, AdvancementType.GOAL, true, false, false)
+		// The Pale Monarch of the lone citadel unlocks the snow mountain
+		AdvancementHolder monarch = advancementDataMultiRequirements.wrap(Advancement.Builder.advancement().parent(lamp).display(
+				PaleMonarchModItems.PALE_AXE.get(),
+				Component.translatable("advancement.twilightforest.progress_monarch"),
+				Component.translatable("advancement.twilightforest.progress_monarch.desc",
+					Component.translatable(PaleMonarchModEntities.PALE_MONARCH.get().getDescriptionId())),
+				null, AdvancementType.GOAL, true, true, false))
+			.addCriterion("quest", QuestCompletedTrigger.TriggerInstance.completedQuest(TFQuests.PALE_MONARCH))
+			.and()
 			.addCriterion("previous_progression", this.advancementTrigger(lamp))
-			.addCriterion("spooky_forest", PlayerTrigger.TriggerInstance.located(LocationPredicate.Builder.inBiome(biomes.getOrThrow(TFBiomes.SPOOKY_FOREST))))
-			.save(consumer, "twilightforest:progression_end");
+			.requirements()
+			.save(consumer, "twilightforest:progress_monarch");
+
+		// Last stage for now: the Ashen Lord on the summit of the snow mountain
+		advancementDataMultiRequirements.wrap(Advancement.Builder.advancement().parent(monarch).display(
+				TFBlocks.ASHEN_LORD_TROPHY.get(),
+				Component.translatable("advancement.twilightforest.progress_summit"),
+				Component.translatable("advancement.twilightforest.progress_summit.desc",
+					Component.translatable(TFEntities.ASHEN_LORD.get().getDescriptionId())),
+				null, AdvancementType.CHALLENGE, true, true, false))
+			.addCriterion("quest", QuestCompletedTrigger.TriggerInstance.completedQuest(TFQuests.ASHEN_LORD))
+			.and()
+			.addCriterion("previous_progression", this.advancementTrigger(monarch))
+			.requirements()
+			.save(consumer, "twilightforest:progress_summit");
 
 //		AdvancementHolder thornlands = Advancement.Builder.advancement().parent(lamp).display(
 //						TFBlocks.BROWN_THORNS.get(),

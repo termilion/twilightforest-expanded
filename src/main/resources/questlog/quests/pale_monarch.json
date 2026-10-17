@@ -1,0 +1,47 @@
+{
+  "title": "quest.twilightforest.pale_monarch.title",
+  "description": "quest.twilightforest.pale_monarch.description",
+  "description_completed": "quest.twilightforest.pale_monarch.description_completed",
+  "translatable": true,
+  "icon": {
+    "item": "twilightforest:pale_monarch_trophy"
+  },
+  "chapter": "twilightforest",
+  "include_in_main": true,
+  "sort_order": 6,
+  "requirements": [
+    {
+      "type": "questlog:quest_complete",
+      "quest": "questlog:twilightforest/hydra"
+    },
+    {
+      "type": "questlog:quest_complete",
+      "quest": "questlog:twilightforest/ur_ghast"
+    },
+    {
+      "type": "questlog:quest_complete",
+      "quest": "questlog:twilightforest/aurora"
+    }
+  ],
+  "objectives": [
+    {
+      "type": "questlog:or",
+      "objectives": [
+        {
+          "type": "questlog:advancement",
+          "advancement": "twilightforest:progress_monarch"
+        },
+        {
+          "type": "twilightforest:entity_interact",
+          "entity": "twilightforest:quest_ram",
+          "item": "twilightforest:pale_monarch_trophy"
+        }
+      ],
+      "name": "quest.twilightforest.pale_monarch.objective",
+      "translatable": true
+    }
+  ],
+  "toast_on_unlock": true,
+  "toast_on_complete": true,
+  "show_popup_on_unlock": true
+}

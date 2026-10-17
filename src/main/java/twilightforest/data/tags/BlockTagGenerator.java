@@ -42,7 +42,6 @@ public class BlockTagGenerator extends ModdedBlockTagGenerator {
 
 	public static final TagKey<Block> PORTAL_EDGE = create("portal/edge");
 	public static final TagKey<Block> PORTAL_POOL = create("portal/fluid");
-	public static final TagKey<Block> PORTAL_DECO = create("portal/decoration");
 	public static final TagKey<Block> GENERATED_PORTAL_DECO = create("portal/generated_decoration");
 
 	public static final TagKey<Block> DARK_TOWER_ALLOWED_POTS = create("dark_tower_allowed_pots");
@@ -352,38 +351,8 @@ public class BlockTagGenerator extends ModdedBlockTagGenerator {
 		this.tag(Tags.Blocks.STORAGE_BLOCKS).addTags(STORAGE_BLOCKS_ARCTIC_FUR, STORAGE_BLOCKS_CARMINITE, STORAGE_BLOCKS_FIERY, STORAGE_BLOCKS_IRONWOOD, STORAGE_BLOCKS_KNIGHTMETAL, STORAGE_BLOCKS_STEELEAF);
 
 		this.tag(BlockTags.DIRT).add(TFBlocks.UBEROUS_SOIL.get());
-		this.tag(PORTAL_EDGE).add(Blocks.FARMLAND, Blocks.DIRT_PATH).addTags(BlockTags.DIRT);
-		this.tag(PORTAL_POOL).add(Blocks.WATER);
-		this.tag(PORTAL_DECO).add(
-				Blocks.BAMBOO,
-				Blocks.SHORT_GRASS, Blocks.TALL_GRASS,
-				Blocks.FERN, Blocks.LARGE_FERN,
-				Blocks.DEAD_BUSH,
-				Blocks.SUGAR_CANE,
-				Blocks.CHORUS_PLANT, Blocks.CHORUS_FLOWER,
-				Blocks.SWEET_BERRY_BUSH,
-				Blocks.NETHER_WART,
-				Blocks.COCOA,
-				Blocks.VINE, Blocks.GLOW_LICHEN,
-				Blocks.RED_MUSHROOM, Blocks.BROWN_MUSHROOM,
-				Blocks.WARPED_FUNGUS, Blocks.CRIMSON_FUNGUS,
-				Blocks.ATTACHED_MELON_STEM, Blocks.ATTACHED_PUMPKIN_STEM,
-				Blocks.MOSS_CARPET,
-				Blocks.PINK_PETALS,
-				Blocks.BIG_DRIPLEAF,
-				Blocks.BIG_DRIPLEAF_STEM,
-				Blocks.SMALL_DRIPLEAF,
-				TFBlocks.FIDDLEHEAD.get(),
-				TFBlocks.MOSS_PATCH.get(),
-				TFBlocks.MAYAPPLE.get(),
-				TFBlocks.CLOVER_PATCH.get(),
-				TFBlocks.MUSHGLOOM.get(),
-				TFBlocks.FALLEN_LEAVES.get(),
-				TFBlocks.GIANT_LEAVES.get(),
-				TFBlocks.STEELEAF_BLOCK.get(),
-				TFBlocks.HARDENED_DARK_LEAVES.get())
-			.addTags(BlockTags.FLOWERS, BlockTags.LEAVES, BlockTags.SAPLINGS, BlockTags.CROPS);
-
+		this.tag(PORTAL_EDGE).add(TFBlocks.DEADROCK.get(), TFBlocks.CRACKED_DEADROCK.get(), TFBlocks.WEATHERED_DEADROCK.get());
+		this.tag(PORTAL_POOL).add(Blocks.WATER, Blocks.SEAGRASS, Blocks.TALL_SEAGRASS, Blocks.KELP, Blocks.KELP_PLANT);
 		this.tag(GENERATED_PORTAL_DECO)
 			.add(Blocks.BROWN_MUSHROOM, Blocks.RED_MUSHROOM,
 				Blocks.SHORT_GRASS, Blocks.FERN,
@@ -416,7 +385,7 @@ public class BlockTagGenerator extends ModdedBlockTagGenerator {
 			TFBlocks.NAGA_TROPHY.get(), TFBlocks.LICH_TROPHY.get(),
 			TFBlocks.MINOSHROOM_TROPHY.get(), TFBlocks.HYDRA_TROPHY.get(),
 			TFBlocks.KNIGHT_PHANTOM_TROPHY.get(), TFBlocks.UR_GHAST_TROPHY.get(),
-			TFBlocks.ALPHA_YETI_TROPHY.get(), TFBlocks.PRINCESS_AURORA_TROPHY.get());
+			TFBlocks.ALPHA_YETI_TROPHY.get(), TFBlocks.PRINCESS_AURORA_TROPHY.get(), TFBlocks.ASHEN_LORD_TROPHY.get(), TFBlocks.PALE_MONARCH_TROPHY.get());
 
 		this.tag(FIRE_JET_FUEL).add(Blocks.LAVA);
 
@@ -476,6 +445,7 @@ public class BlockTagGenerator extends ModdedBlockTagGenerator {
 			TFBlocks.UR_GHAST_BOSS_SPAWNER.get(),
 			TFBlocks.ALPHA_YETI_BOSS_SPAWNER.get(),
 			TFBlocks.PRINCESS_AURORA_BOSS_SPAWNER.get(),
+			TFBlocks.ASHEN_LORD_BOSS_SPAWNER.get(),
 			TFBlocks.STRONGHOLD_SHIELD.get(),
 			TFBlocks.UNBREAKABLE_VANISHING_BLOCK.get(),
 			TFBlocks.LOCKED_VANISHING_BLOCK.get(),
@@ -811,7 +781,7 @@ public class BlockTagGenerator extends ModdedBlockTagGenerator {
 			TFBlocks.NAGA_BOSS_SPAWNER.get(), TFBlocks.LICH_BOSS_SPAWNER.get(),
 			TFBlocks.MINOSHROOM_BOSS_SPAWNER.get(), TFBlocks.HYDRA_BOSS_SPAWNER.get(),
 			TFBlocks.KNIGHT_PHANTOM_BOSS_SPAWNER.get(), TFBlocks.UR_GHAST_BOSS_SPAWNER.get(),
-			TFBlocks.ALPHA_YETI_BOSS_SPAWNER.get(), TFBlocks.PRINCESS_AURORA_BOSS_SPAWNER.get());
+			TFBlocks.ALPHA_YETI_BOSS_SPAWNER.get(), TFBlocks.PRINCESS_AURORA_BOSS_SPAWNER.get(), TFBlocks.ASHEN_LORD_BOSS_SPAWNER.get());
 
 		this.tag(SUPPORTS_STALAGMITES).addTag(DEADROCK).add(Blocks.PACKED_ICE);
 

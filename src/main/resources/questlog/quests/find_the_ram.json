@@ -1,0 +1,28 @@
+{
+  "title": "quest.twilightforest.find_the_ram.title",
+  "description": "quest.twilightforest.find_the_ram.description",
+  "description_completed": "quest.twilightforest.find_the_ram.description_completed",
+  "translatable": true,
+  "icon": {
+    "item": "twilightforest:quest_ram_trophy"
+  },
+  "chapter": "twilightforest",
+  "include_in_main": true,
+  "sort_order": 1,
+  "requirements": [
+    {
+      "type": "questlog:unobtainable"
+    }
+  ],
+  "objectives": [
+    {
+      "type": "twilightforest:entity_interact",
+      "entity": "twilightforest:quest_ram",
+      "name": "quest.twilightforest.find_the_ram.objective",
+      "translatable": true
+    }
+  ],
+  "toast_on_unlock": true,
+  "toast_on_complete": true,
+  "show_popup_on_unlock": true
+}

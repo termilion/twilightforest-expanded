@@ -1,0 +1,29 @@
+{
+  "title": "quest.twilightforest.into_the_twilight.title",
+  "description": "quest.twilightforest.into_the_twilight.description",
+  "description_completed": "quest.twilightforest.into_the_twilight.description_completed",
+  "translatable": true,
+  "icon": {
+    "item": "twilightforest:twilight_shard"
+  },
+  "chapter": "twilightforest",
+  "include_in_main": true,
+  "sort_order": -1,
+  "requirements": [
+    {
+      "type": "questlog:quest_complete",
+      "quest": "questlog:twilightforest/caged_allay"
+    }
+  ],
+  "objectives": [
+    {
+      "type": "questlog:visit_dimension",
+      "dimension": "twilightforest:twilight_forest",
+      "name": "quest.twilightforest.into_the_twilight.objective",
+      "translatable": true
+    }
+  ],
+  "toast_on_unlock": true,
+  "toast_on_complete": true,
+  "show_popup_on_unlock": true
+}

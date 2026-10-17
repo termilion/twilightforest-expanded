@@ -53,12 +53,13 @@ public class BiomeLayerStack {
 			TFBiomes.CLEARING
 		));
 
-		biomes = new KeyBiomesLayer.Factory(1000L, List.of(TFBiomes.GLACIER, TFBiomes.FIRE_SWAMP, TFBiomes.DARK_FOREST_CENTER, TFBiomes.SPOOKY_FOREST), Holder.direct(biomes));
+		biomes = new KeyBiomesLayer.Factory(1000L, List.of(TFBiomes.GLACIER, TFBiomes.FIRE_SWAMP, TFBiomes.DARK_FOREST_CENTER, TFBiomes.SPOOKY_FOREST, TFBiomes.SNOW_MOUNTAIN), Holder.direct(biomes));
 		biomes = new CompanionBiomesLayer.Factory(1000L, List.of(
 			Pair.of(TFBiomes.FIRE_SWAMP, TFBiomes.SWAMP),
 			Pair.of(TFBiomes.GLACIER, TFBiomes.SNOWY_FOREST),
 			Pair.of(TFBiomes.DARK_FOREST_CENTER, TFBiomes.DARK_FOREST),
-			Pair.of(TFBiomes.SPOOKY_FOREST, TFBiomes.HIGHLANDS)
+			Pair.of(TFBiomes.SPOOKY_FOREST, TFBiomes.HIGHLANDS),
+			Pair.of(TFBiomes.SNOW_MOUNTAIN, TFBiomes.SNOWY_FOREST)
 		), Holder.direct(biomes));
 		// Key slot 4 holds one of several biomes, picked per key biome cell
 		biomes = new KeyBiomeVariantsLayer.Factory(1010L, TFBiomes.SPOOKY_FOREST, List.of(TFBiomes.SPOOKY_FOREST, TFBiomes.AMETHYST_STRAITS), Holder.direct(biomes));
@@ -69,7 +70,7 @@ public class BiomeLayerStack {
 		biomes = new StabilizeLayer.Factory(700L, Holder.direct(biomes));
 
 		// Make room for large structures inside the key biome slot formerly held by the Final Plateau
-		biomes = new ExpandBiomeLayer.Factory(600L, List.of(TFBiomes.SPOOKY_FOREST, TFBiomes.AMETHYST_STRAITS), Holder.direct(biomes));
+		biomes = new ExpandBiomeLayer.Factory(600L, List.of(TFBiomes.SPOOKY_FOREST, TFBiomes.AMETHYST_STRAITS, TFBiomes.SNOW_MOUNTAIN), Holder.direct(biomes));
 
 		biomes = new BorderLayer.Factory(500L, TFBiomes.SPOOKY_FOREST, TFBiomes.THORNLANDS, Holder.direct(biomes));
 		biomes = new BorderLayer.Factory(501L, TFBiomes.AMETHYST_STRAITS, TFBiomes.THORNLANDS, Holder.direct(biomes));
@@ -92,10 +93,12 @@ public class BiomeLayerStack {
 		biomes = new LandmarkIslandLayer.Factory(900L, TFBiomes.LAKE, TFBiomes.ENCHANTED_FOREST, 56, Optional.empty(), Holder.direct(biomes));
 		// Every other darkwood landmark center becomes a small clearing carrying the arachnid dwelling, the rest keep the knight stronghold
 		biomes = new LandmarkIslandLayer.Factory(901L, TFBiomes.DARK_FOREST, TFBiomes.DARKWOOD_CLEARING, 40, Optional.of(1), Holder.direct(biomes));
+		// The summit clearing of the snow mountain, on its landmark center (same radius as the peak plateau in TFDensityFunctions)
+		biomes = new LandmarkIslandLayer.Factory(902L, TFBiomes.SNOW_MOUNTAIN, TFBiomes.MOUNTAIN_PEAK, 24, Optional.empty(), Holder.direct(biomes));
 
 		Holder.Reference<BiomeLayerFactory> randomBiomes = context.register(RANDOM_FOREST_BIOMES, biomes);
 
-		BiomeLayerFactory riverLayer = new SeamLayer.Factory(1L, TFBiomes.STREAM, List.of(TFBiomes.LAKE, TFBiomes.ENCHANTED_FOREST, TFBiomes.DARKWOOD_CLEARING, TFBiomes.THORNLANDS, TFBiomes.CLEARING, TFBiomes.OAK_SAVANNAH), List.of(
+		BiomeLayerFactory riverLayer = new SeamLayer.Factory(1L, TFBiomes.STREAM, List.of(TFBiomes.LAKE, TFBiomes.ENCHANTED_FOREST, TFBiomes.DARKWOOD_CLEARING, TFBiomes.SNOW_MOUNTAIN, TFBiomes.MOUNTAIN_PEAK, TFBiomes.THORNLANDS, TFBiomes.CLEARING, TFBiomes.OAK_SAVANNAH), List.of(
 			Pair.of(TFBiomes.SNOWY_FOREST, TFBiomes.GLACIER),
 			Pair.of(TFBiomes.MUSHROOM_FOREST, TFBiomes.DENSE_MUSHROOM_FOREST),
 			Pair.of(TFBiomes.SWAMP, TFBiomes.FIRE_SWAMP),

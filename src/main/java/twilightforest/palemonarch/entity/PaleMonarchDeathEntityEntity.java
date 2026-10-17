@@ -77,6 +77,7 @@ public class PaleMonarchDeathEntityEntity extends Monster implements GeoEntity, 
    protected void dropCustomDeathLoot(ServerLevel serverLevel, DamageSource source, boolean recentlyHitIn) {
       super.dropCustomDeathLoot(serverLevel, source, recentlyHitIn);
       this.spawnAtLocation(new ItemStack((ItemLike)PaleMonarchModItems.PALE_AXE.get()));
+      this.spawnAtLocation(new ItemStack(twilightforest.init.TFItems.PALE_MONARCH_TROPHY.get()));
       if (this.random.nextBoolean()) {
          this.spawnAtLocation(new ItemStack(Items.NETHERITE_INGOT, 1 + this.random.nextInt(4)));
       }

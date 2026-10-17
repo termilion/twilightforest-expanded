@@ -50,6 +50,23 @@ public class EntityLootTables extends EntityLootSubProvider {
 		add(TFEntities.HARBINGER_CUBE.get(), emptyLootTable());
 		add(TFEntities.MOSQUITO_SWARM.get(), emptyLootTable());
 		add(TFEntities.PINCH_BEETLE.get(), emptyLootTable());
+		add(TFEntities.ASHEN_LORD.get(),
+			LootTable.lootTable()
+				.withPool(LootPool.lootPool()
+					.name("ashen_lord_netherite")
+					.setRolls(ConstantValue.exactly(1.0F))
+					.add(LootItem.lootTableItem(Items.NETHERITE_INGOT)
+						.apply(SetItemCountFunction.setCount(UniformGenerator.between(1.0F, 2.0F)))))
+				.withPool(LootPool.lootPool()
+					.name("ashen_lord_apples")
+					.setRolls(ConstantValue.exactly(1.0F))
+					.add(LootItem.lootTableItem(Items.GOLDEN_APPLE)
+						.apply(SetItemCountFunction.setCount(UniformGenerator.between(2.0F, 4.0F)))))
+				.withPool(LootPool.lootPool()
+					.name("ashen_lord_trophy")
+					.setRolls(ConstantValue.exactly(1.0F))
+					.add(LootItem.lootTableItem(TFBlocks.ASHEN_LORD_TROPHY.get().asItem()))));
+
 		add(TFEntities.QUEST_RAM.get(), emptyLootTable());
 		add(TFEntities.QUEST_ALLAY.get(), emptyLootTable());
 		add(TFEntities.BROWNIE.get(), emptyLootTable());

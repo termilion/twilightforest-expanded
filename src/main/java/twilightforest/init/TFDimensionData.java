@@ -26,6 +26,8 @@ public class TFDimensionData {
 	// TODO How should we fix this for clients? Would need to sync serverlevel's sealevel to clients
 	@Deprecated // FIXME Make private
 	public static final int SEALEVEL = 0;
+	// raised from 256 for the snow mountain (summit ~Y 300)
+	public static final int MAX_Y = 384;
 
 	public static final ResourceKey<DimensionType> TWILIGHT_DIM_TYPE = ResourceKey.create(Registries.DIMENSION_TYPE, TwilightForestMod.prefix("twilight_forest_type"));
 
@@ -45,8 +47,8 @@ public class TFDimensionData {
 			true, //bed works
 			false, //respawn anchor works
 			-32, // Minimum Y Level
-			32 + 256, // Height + Min Y = Max Y
-			32 + 256, // Logical Height
+			32 + MAX_Y, // Height + Min Y = Max Y
+			32 + MAX_Y, // Logical Height
 			BlockTags.INFINIBURN_OVERWORLD, //infiburn
 			TFDimension.DIMENSION_RENDERER, // DimensionRenderInfo
 			0.01f,
@@ -64,7 +66,7 @@ public class TFDimensionData {
 
 		NoiseSettings tfNoise = NoiseSettings.create(
 			-32, //TODO Deliberate over this. For now it'll be -32
-			256,
+			32 + MAX_Y,
 			2,
 			2
 		);

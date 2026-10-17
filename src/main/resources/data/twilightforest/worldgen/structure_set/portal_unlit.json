@@ -1,0 +1,15 @@
+{
+  "placement": {
+    "type": "minecraft:random_spread",
+    "salt": 1482930571,
+    "spacing": 48,
+    "separation": 20,
+    "frequency": 0.5
+  },
+  "structures": [
+    {
+      "structure": "twilightforest:portal_unlit",
+      "weight": 1
+    }
+  ]
+}

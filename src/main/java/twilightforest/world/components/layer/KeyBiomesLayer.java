@@ -3,7 +3,6 @@ package twilightforest.world.components.layer;
 import com.mojang.serialization.Codec;
 import com.mojang.serialization.MapCodec;
 import com.mojang.serialization.codecs.RecordCodecBuilder;
-import net.minecraft.Util;
 import net.minecraft.core.Holder;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.resources.ResourceKey;
@@ -21,7 +20,6 @@ import twilightforest.world.components.layer.vanillalegacy.traits.AreaTransforme
 
 import java.util.List;
 import java.util.Random;
-import java.util.function.Function;
 import java.util.function.LongFunction;
 
 /**
@@ -53,7 +51,7 @@ public record KeyBiomesLayer(List<ResourceKey<Biome>> keyBiomes) implements Area
 	@Override
 	public ResourceKey<Biome> applyPixel(RandomContext randomContext, Area layer, int x, int z) {
 		final Random rand = new Random(WorldUtil.getOverworldSeed() + (x / 8) * 25117L + (z / 8) * 151121L);
-		int offset = rand.nextInt(3);
+		int offset = rand.nextInt(this.keyBiomes.size());
 		if (isKeyPixel(x, z)) {
 			// determine which of the 4
 			if ((x & 4) == 0) {
@@ -76,18 +74,17 @@ public record KeyBiomesLayer(List<ResourceKey<Biome>> keyBiomes) implements Area
 	}
 
 	/**
-	 * Determine which map "region" the specified points are in.  Assign the 0-3 of the index to the key biomes based on that region.
+	 * Determine which map "region" the specified points are in. Each 8x8 region holds 4 key pixels, the key biomes rotate through them,
+	 * so with 5 key biomes every region holds 4 different ones and each key biome is missing from every 5th region.
 	 */
 	private ResourceKey<Biome> getKeyBiomeFor(int index) {
-		// do we need to shuffle this better?
-		// the current version just "rotates" the 4 key biomes
-		return this.keyBiomes.get(index & 0b11);
+		return this.keyBiomes.get(index % this.keyBiomes.size());
 	}
 
 	public static final class Factory implements BiomeLayerFactory {
 		public static final MapCodec<Factory> CODEC = RecordCodecBuilder.mapCodec(inst -> inst.group(
 			Codec.LONG.fieldOf("salt").forGetter(Factory::salt),
-			ResourceKey.codec(Registries.BIOME).listOf().comapFlatMap(list -> Util.fixedSize(list, 4), Function.identity()).fieldOf("key_biomes").forGetter(Factory::keyBiomes),
+			ResourceKey.codec(Registries.BIOME).listOf(4, 5).fieldOf("key_biomes").forGetter(Factory::keyBiomes),
 			BiomeLayerStack.HOLDER_CODEC.fieldOf("parent").forGetter(Factory::parent)
 		).apply(inst, Factory::new));
 		private final long salt;

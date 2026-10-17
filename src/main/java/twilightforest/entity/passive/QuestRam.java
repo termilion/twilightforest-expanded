@@ -22,6 +22,9 @@ import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.Mob;
 import net.minecraft.world.entity.ai.attributes.AttributeSupplier;
 import net.minecraft.world.entity.ai.attributes.Attributes;
+import net.minecraft.world.effect.MobEffectInstance;
+import net.minecraft.world.effect.MobEffects;
+import net.minecraft.world.entity.item.ItemEntity;
 import net.minecraft.world.entity.ai.goal.*;
 import net.minecraft.world.entity.animal.Animal;
 import net.minecraft.world.entity.player.Player;
@@ -46,7 +49,11 @@ import twilightforest.init.TFStructures;
 import twilightforest.network.ParticlePacket;
 import twilightforest.util.landmarks.LandmarkUtil;
 
+import twilightforest.data.tags.ItemTagGenerator;
+import twilightforest.quest.QuestRamStudies;
+
 import java.util.Optional;
+import java.util.UUID;
 
 public class QuestRam extends Animal implements EnforcedHomePoint {
 
@@ -57,7 +64,16 @@ public class QuestRam extends Animal implements EnforcedHomePoint {
 	private static final EntityDataAccessor<Boolean> DATA_REWARDED = SynchedEntityData.defineId(QuestRam.class, EntityDataSerializers.BOOLEAN);
 	private static final EntityDataAccessor<Optional<GlobalPos>> HOME_POINT = SynchedEntityData.defineId(QuestRam.class, EntityDataSerializers.OPTIONAL_GLOBAL_POS);
 
+	// How long the ram studies a handed in item before giving it back
+	private static final int STUDY_TICKS = 60;
+	private static final double STUDY_RANGE = 16.0D;
+
 	private int randomTickDivider;
+	// The item being studied (one trophy), who handed it in, and the ticks left; not synced, the ram looks at the player on the server
+	private ItemStack studiedStack = ItemStack.EMPTY;
+	@Nullable
+	private UUID studyPlayer;
+	private int studyTicks;
 
 	public QuestRam(EntityType<? extends QuestRam> type, Level level) {
 		super(type, level);
@@ -98,7 +114,7 @@ public class QuestRam extends Animal implements EnforcedHomePoint {
 
 	public static AttributeSupplier.Builder registerAttributes() {
 		return Mob.createMobAttributes()
-			.add(Attributes.MAX_HEALTH, 70.0D)
+			.add(Attributes.MAX_HEALTH, 300.0D)
 			.add(Attributes.MOVEMENT_SPEED, 0.23D);
 	}
 
@@ -112,6 +128,15 @@ public class QuestRam extends Animal implements EnforcedHomePoint {
 
 	@Override
 	protected void customServerAiStep() {
+		// Permanent instant health, like the pale monarch: the ram can't be killed by normal means
+		if (this.getHealth() < this.getMaxHealth()) {
+			this.addEffect(new MobEffectInstance(MobEffects.HEAL, 4, 1, false, false));
+		}
+
+		if (this.isStudying()) {
+			this.tickStudy();
+		}
+
 		if (--this.randomTickDivider <= 0) {
 			this.randomTickDivider = 70 + this.getRandom().nextInt(50);
 
@@ -147,12 +172,75 @@ public class QuestRam extends Animal implements EnforcedHomePoint {
 	public InteractionResult interactAt(Player player, Vec3 vec, InteractionHand hand) {
 		ItemStack currentItem = player.getItemInHand(hand);
 
+		if (hand == InteractionHand.MAIN_HAND && player instanceof ServerPlayer serverPlayer) {
+			QuestRamStudies.fireInteraction(serverPlayer, this, currentItem.copy());
+		}
+
+		if (currentItem.is(ItemTagGenerator.QUEST_RAM_STUDIABLE)) {
+			if (!this.level().isClientSide() && !this.isStudying()) {
+				this.startStudy(player, currentItem.consumeAndReturn(1, player));
+			}
+			// A busy ram ignores the item, but the click still counts so the trophy isn't placed or used
+			return InteractionResult.sidedSuccess(this.level().isClientSide());
+		}
+
 		if (!level().isClientSide() && this.tryAccept(currentItem)) {
 			currentItem.consume(1, player);
 
 			return InteractionResult.SUCCESS;
 		} else {
 			return super.interactAt(player, vec, hand);
+		}
+	}
+
+	public boolean isStudying() {
+		return this.studyTicks > 0;
+	}
+
+	private void startStudy(Player player, ItemStack stack) {
+		this.studiedStack = stack;
+		this.studyPlayer = player.getUUID();
+		this.studyTicks = STUDY_TICKS;
+		this.playSound(TFSounds.QUEST_RAM_STUDY_START.get(), 1.0F, 1.0F);
+	}
+
+	private void tickStudy() {
+		Player player = this.studyPlayer == null ? null : this.level().getPlayerByUUID(this.studyPlayer);
+		if (player != null && this.distanceToSqr(player) < STUDY_RANGE * STUDY_RANGE) {
+			this.getNavigation().stop();
+			this.getLookControl().setLookAt(player, 30.0F, 30.0F);
+		}
+
+		if (--this.studyTicks <= 0) {
+			this.finishStudy(player);
+		}
+	}
+
+	private void finishStudy(@Nullable Player player) {
+		ItemStack stack = this.studiedStack;
+		this.studiedStack = ItemStack.EMPTY;
+		this.studyPlayer = null;
+		this.studyTicks = 0;
+		this.playSound(TFSounds.QUEST_RAM_STUDY_DONE.get(), 1.0F, 1.0F);
+
+		ItemEntity item = new ItemEntity(this.level(), this.getX(), this.getEyeY() - 0.3D, this.getZ(), stack);
+		item.setPickUpDelay(20);
+		Vec3 toss = player != null ? player.position().subtract(this.position()).multiply(1.0D, 0.0D, 1.0D).normalize().scale(0.25D) : Vec3.ZERO;
+		item.setDeltaMovement(toss.x(), 0.2D, toss.z());
+		this.level().addFreshEntity(item);
+
+		if (player instanceof ServerPlayer serverPlayer) {
+			QuestRamStudies.fireHandedIn(serverPlayer, this, stack);
+		}
+	}
+
+	// A ram that dies while studying doesn't keep the item
+	@Override
+	protected void dropCustomDeathLoot(ServerLevel level, DamageSource source, boolean recentlyHit) {
+		super.dropCustomDeathLoot(level, source, recentlyHit);
+		if (!this.studiedStack.isEmpty()) {
+			this.spawnAtLocation(this.studiedStack);
+			this.studiedStack = ItemStack.EMPTY;
 		}
 	}
 
@@ -181,6 +269,13 @@ public class QuestRam extends Animal implements EnforcedHomePoint {
 		super.addAdditionalSaveData(compound);
 		compound.putInt("ColorFlags", this.getColorFlags());
 		compound.putBoolean("Rewarded", this.getRewarded());
+		if (this.isStudying() && !this.studiedStack.isEmpty()) {
+			compound.put("StudiedItem", this.studiedStack.save(this.registryAccess()));
+			compound.putInt("StudyTicks", this.studyTicks);
+			if (this.studyPlayer != null) {
+				compound.putUUID("StudyPlayer", this.studyPlayer);
+			}
+		}
 		this.saveHomePointToNbt(compound);
 	}
 
@@ -189,6 +284,11 @@ public class QuestRam extends Animal implements EnforcedHomePoint {
 		super.readAdditionalSaveData(compound);
 		this.setColorFlags(compound.getInt("ColorFlags"));
 		this.setRewarded(compound.getBoolean("Rewarded"));
+		if (compound.contains("StudiedItem")) {
+			this.studiedStack = ItemStack.parse(this.registryAccess(), compound.get("StudiedItem")).orElse(ItemStack.EMPTY);
+			this.studyTicks = this.studiedStack.isEmpty() ? 0 : Math.max(1, compound.getInt("StudyTicks"));
+			this.studyPlayer = compound.hasUUID("StudyPlayer") ? compound.getUUID("StudyPlayer") : null;
+		}
 		this.loadHomePointFromNbt(compound);
 	}
 

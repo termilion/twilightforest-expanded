@@ -39,6 +39,7 @@ public class BiomeTagGenerator extends BiomeTagsProvider {
 	public static final TagKey<Biome> VALID_LICH_TOWER_BIOMES = TagKey.create(Registries.BIOME, TwilightForestMod.prefix("valid_lich_tower_biomes"));
 	public static final TagKey<Biome> VALID_LABYRINTH_BIOMES = TagKey.create(Registries.BIOME, TwilightForestMod.prefix("valid_labyrinth_biomes"));
 	public static final TagKey<Biome> VALID_HYDRA_LAIR_BIOMES = TagKey.create(Registries.BIOME, TwilightForestMod.prefix("valid_hydra_lair_biomes"));
+	public static final TagKey<Biome> VALID_PEAK_SHRINE_BIOMES = TagKey.create(Registries.BIOME, TwilightForestMod.prefix("valid_peak_shrine_biomes"));
 	public static final TagKey<Biome> VALID_KNIGHT_STRONGHOLD_BIOMES = TagKey.create(Registries.BIOME, TwilightForestMod.prefix("valid_knight_stronghold_biomes"));
 	public static final TagKey<Biome> VALID_DARK_TOWER_BIOMES = TagKey.create(Registries.BIOME, TwilightForestMod.prefix("valid_dark_tower_biomes"));
 	public static final TagKey<Biome> VALID_YETI_CAVE_BIOMES = TagKey.create(Registries.BIOME, TwilightForestMod.prefix("valid_yeti_cave_biomes"));
@@ -73,7 +74,7 @@ public class BiomeTagGenerator extends BiomeTagsProvider {
 			TFBiomes.LAKE, TFBiomes.STREAM, TFBiomes.UNDERGROUND,
 			TFBiomes.SWAMP, TFBiomes.FIRE_SWAMP, TFBiomes.MANGROVE_SWAMP,
 			TFBiomes.DARK_FOREST, TFBiomes.DARK_FOREST_CENTER, TFBiomes.DARKWOOD_CLEARING,
-			TFBiomes.SNOWY_FOREST, TFBiomes.GLACIER,
+			TFBiomes.SNOWY_FOREST, TFBiomes.GLACIER, TFBiomes.SNOW_MOUNTAIN, TFBiomes.MOUNTAIN_PEAK,
 			TFBiomes.HIGHLANDS, TFBiomes.THORNLANDS,
 			TFBiomes.AMETHYST_STRAITS, TFBiomes.AMETHYST_STRAITS_UNDERGROUND,
 			TFBiomes.OAK_SAVANNAH_UNDERGROUND
@@ -128,6 +129,7 @@ public class BiomeTagGenerator extends BiomeTagsProvider {
 		this.tag(VALID_LICH_TOWER_BIOMES).add(TFBiomes.MANGROVE_SWAMP);
 		this.tag(VALID_LABYRINTH_BIOMES).add(TFBiomes.SWAMP);
 		this.tag(VALID_HYDRA_LAIR_BIOMES).add(TFBiomes.FIRE_SWAMP);
+		this.tag(VALID_PEAK_SHRINE_BIOMES).add(TFBiomes.MOUNTAIN_PEAK);
 		this.tag(VALID_KNIGHT_STRONGHOLD_BIOMES).add(TFBiomes.DARK_FOREST);
 		this.tag(VALID_DARK_TOWER_BIOMES).add(TFBiomes.DARK_FOREST_CENTER);
 		this.tag(VALID_YETI_CAVE_BIOMES).add(TFBiomes.SNOWY_FOREST);

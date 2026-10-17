@@ -42,6 +42,7 @@ public class TFItems {
 
 	public static final DeferredRegister.Items ITEMS = DeferredRegister.createItems(TwilightForestMod.ID);
 
+	public static final DeferredItem<Item> TWILIGHT_SHARD = ITEMS.register("twilight_shard", () -> new TwilightShardItem(new Item.Properties().rarity(tfRarityEnumExtension.TWILIGHT)));
 	public static final DeferredItem<Item> NAGA_SCALE = ITEMS.register("naga_scale", () -> new Item(new Item.Properties().rarity(Rarity.UNCOMMON)));
 	public static final DeferredItem<Item> NAGA_CHESTPLATE = ITEMS.register("naga_chestplate", () -> new ArmorItem(TFArmorMaterials.NAGA, ArmorItem.Type.CHESTPLATE, new Item.Properties().durability(ArmorItem.Type.CHESTPLATE.getDurability(21)).rarity(Rarity.UNCOMMON)));
 	public static final DeferredItem<Item> NAGA_LEGGINGS = ITEMS.register("naga_leggings", () -> new ArmorItem(TFArmorMaterials.NAGA, ArmorItem.Type.LEGGINGS, new Item.Properties().durability(ArmorItem.Type.LEGGINGS.getDurability(21)).rarity(Rarity.UNCOMMON)));
@@ -218,6 +219,8 @@ public class TFItems {
 	public static final DeferredItem<Item> UR_GHAST_TROPHY = ITEMS.register("ur_ghast_trophy", () -> new TrophyItem(TFBlocks.UR_GHAST_TROPHY.get(), TFBlocks.UR_GHAST_WALL_TROPHY.get(), new Item.Properties().rarity(tfRarityEnumExtension.TWILIGHT)));
 	public static final DeferredItem<Item> ALPHA_YETI_TROPHY = ITEMS.register("alpha_yeti_trophy", () -> new TrophyItem(TFBlocks.ALPHA_YETI_TROPHY.get(), TFBlocks.ALPHA_YETI_WALL_TROPHY.get(), new Item.Properties().rarity(tfRarityEnumExtension.TWILIGHT)));
 	public static final DeferredItem<Item> PRINCESS_AURORA_TROPHY = ITEMS.register("princess_aurora_trophy", () -> new TrophyItem(TFBlocks.PRINCESS_AURORA_TROPHY.get(), TFBlocks.PRINCESS_AURORA_WALL_TROPHY.get(), new Item.Properties().rarity(tfRarityEnumExtension.TWILIGHT)));
+	public static final DeferredItem<Item> ASHEN_LORD_TROPHY = ITEMS.register("ashen_lord_trophy", () -> new TrophyItem(TFBlocks.ASHEN_LORD_TROPHY.get(), TFBlocks.ASHEN_LORD_WALL_TROPHY.get(), new Item.Properties().rarity(tfRarityEnumExtension.TWILIGHT)));
+	public static final DeferredItem<Item> PALE_MONARCH_TROPHY = ITEMS.register("pale_monarch_trophy", () -> new TrophyItem(TFBlocks.PALE_MONARCH_TROPHY.get(), TFBlocks.PALE_MONARCH_WALL_TROPHY.get(), new Item.Properties().rarity(tfRarityEnumExtension.TWILIGHT)));
 	public static final DeferredItem<Item> QUEST_RAM_TROPHY = ITEMS.register("quest_ram_trophy", () -> new TrophyItem(TFBlocks.QUEST_RAM_TROPHY.get(), TFBlocks.QUEST_RAM_WALL_TROPHY.get(), new Item.Properties().rarity(tfRarityEnumExtension.TWILIGHT)));
 
 	public static final DeferredItem<HollowLogItem> HOLLOW_TWILIGHT_OAK_LOG = ITEMS.register("hollow_twilight_oak_log", () -> new HollowLogItem(TFBlocks.HOLLOW_TWILIGHT_OAK_LOG_HORIZONTAL, TFBlocks.HOLLOW_TWILIGHT_OAK_LOG_VERTICAL, TFBlocks.HOLLOW_TWILIGHT_OAK_LOG_CLIMBABLE, new Item.Properties()));
