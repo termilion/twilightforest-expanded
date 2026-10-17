@@ -142,7 +142,7 @@ public class LangGenerator extends TFLangProvider {
 		this.addAdvancement("kill_cicada", "Shut", "Kill a Cicada");
 		this.addAdvancement("uncraft_uncrafting_table", "A Step too Far", "Uncraft an Uncrafting Table");
 		this.addAdvancement("hedge", "Bug Stomper", "Defeat a spider in a Hedge Maze");
-		this.addAdvancement("hill1", "The Boots Are Mine!", "Defeat a %s in a Small Hollow Hill");
+		this.addAdvancement("hill1", "The Pick Is Mine!", "Defeat a %s in a Small Hollow Hill");
 		this.addAdvancement("hill2", "What Was That Noise?", "Defeat a %s in a Medium Hollow Hill");
 		this.addAdvancement("hill3", "I See Right Through You", "Defeat a %s in a Large Hollow Hill");
 		this.addAdvancement("quest_ram", "Consummate Baaahs", "Give the %s what it is missing");
@@ -865,8 +865,8 @@ public class LangGenerator extends TFLangProvider {
 		this.addEntityAndEgg(TFEntities.PINCH_BEETLE, "Pinch Beetle");
 		this.addEntityAndEgg(TFEntities.QUEST_RAM, "Questing Ram");
 		this.addEntityAndEgg(TFEntities.RAVEN, "Raven");
-		this.addEntityAndEgg(TFEntities.REDCAP, "Redcap");
-		this.addEntityAndEgg(TFEntities.REDCAP_SAPPER, "Redcap Sapper");
+		this.addEntityAndEgg(TFEntities.MAD_DWARF, "Mad Dwarf");
+		this.addEntityAndEgg(TFEntities.MAD_DWARF_WARRIOR, "Mad Dwarf Warrior");
 		this.addEntityAndEgg(TFEntities.SKELETON_DRUID, "Skeleton Druid");
 		this.addEntityAndEgg(TFEntities.SLIME_BEETLE, "Slime Beetle");
 		this.addEntityAndEgg(TFEntities.SNOW_GUARDIAN, "Snow Guardian");
@@ -1192,7 +1192,7 @@ public class LangGenerator extends TFLangProvider {
 		this.createTip("pocket_watch", "The Rabbit's Pocket Watch will grants additional speed while in the hotbar, and will increase mining speed when held.");
 		this.createTip("quest_ram", "The Questing Ram will reward anyone who gives it what it's missing.");
 		this.createTip("red_thread", "Red Thread can be seen through walls.");
-		this.createTip("redcap", "Redcaps can place and light TNT.");
+		this.createTip("mad_dwarf", "Mad Dwarves can place and light TNT.");
 		this.createTip("skull_candle", "Candles can be placed on top of mob heads to create a fancy light source.");
 		this.createTip("sorting_tree", "The Sorting Tree will sort chests next to it into other chests nearby.");
 		this.createTip("spooky_forest", "The Spooky Forest is not Halloween themed.");

@@ -26,8 +26,8 @@ public class TFEntityNames {
 	public static final ResourceLocation KOBOLD = prefix("kobold");
 	public static final ResourceLocation HOSTILE_WOLF = prefix("hostile_wolf");
 
-	public static final ResourceLocation REDCAP = prefix("redcap");
-	public static final ResourceLocation REDCAP_SAPPER = prefix("redcap_sapper");
+	public static final ResourceLocation MAD_DWARF = prefix("mad_dwarf");
+	public static final ResourceLocation MAD_DWARF_WARRIOR = prefix("mad_dwarf_warrior");
 
 	public static final ResourceLocation SWARM_SPIDER = prefix("swarm_spider");
 	public static final ResourceLocation HEDGE_SPIDER = prefix("hedge_spider");

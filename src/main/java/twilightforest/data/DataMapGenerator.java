@@ -102,7 +102,7 @@ public class DataMapGenerator extends DataMapProvider {
 
 		var parrot = this.builder(NeoForgeDataMaps.PARROT_IMITATIONS);
 		parrot.add(TFEntities.ALPHA_YETI, new ParrotImitation(TFSounds.ALPHA_YETI_PARROT.get()), false);
-		parrot.add(TFEntities.BLOCKCHAIN_GOBLIN, new ParrotImitation(TFSounds.REDCAP_PARROT.get()), false);
+		parrot.add(TFEntities.BLOCKCHAIN_GOBLIN, new ParrotImitation(TFSounds.MAD_DWARF_PARROT.get()), false);
 		parrot.add(TFEntities.CARMINITE_BROODLING, new ParrotImitation(SoundEvents.PARROT_IMITATE_SPIDER), false);
 		parrot.add(TFEntities.CARMINITE_GOLEM, new ParrotImitation(TFSounds.CARMINITE_GOLEM_PARROT.get()), false);
 		parrot.add(TFEntities.FIRE_BEETLE, new ParrotImitation(SoundEvents.PARROT_IMITATE_SPIDER), false);
@@ -125,8 +125,8 @@ public class DataMapGenerator extends DataMapProvider {
 		parrot.add(TFEntities.NAGA, new ParrotImitation(TFSounds.NAGA_PARROT.get()), false);
 		parrot.add(TFEntities.KNIGHT_PHANTOM, new ParrotImitation(TFSounds.WRAITH_PARROT.get()), false);
 		parrot.add(TFEntities.PINCH_BEETLE, new ParrotImitation(SoundEvents.PARROT_IMITATE_SPIDER), false);
-		parrot.add(TFEntities.REDCAP, new ParrotImitation(TFSounds.REDCAP_PARROT.get()), false);
-		parrot.add(TFEntities.REDCAP_SAPPER, new ParrotImitation(TFSounds.REDCAP_PARROT.get()), false);
+		parrot.add(TFEntities.MAD_DWARF, new ParrotImitation(TFSounds.MAD_DWARF_PARROT.get()), false);
+		parrot.add(TFEntities.MAD_DWARF_WARRIOR, new ParrotImitation(TFSounds.MAD_DWARF_PARROT.get()), false);
 		parrot.add(TFEntities.SKELETON_DRUID, new ParrotImitation(SoundEvents.PARROT_IMITATE_SKELETON), false);
 		parrot.add(TFEntities.SLIME_BEETLE, new ParrotImitation(SoundEvents.PARROT_IMITATE_SLIME), false);
 		parrot.add(TFEntities.SNOW_GUARDIAN, new ParrotImitation(TFSounds.ICE_CORE_PARROT.get()), false);

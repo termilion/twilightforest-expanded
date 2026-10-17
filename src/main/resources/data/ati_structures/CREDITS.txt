@@ -11,7 +11,7 @@ graveyard/hill_1 loot with vanilla entries emptied).
 Also imported as oak savannah landmarks (twilightforest:savanna_*): quarry, gnome_hut (2 variants) and ati_stoneworks with
 the stoneworks pieces and terrain_large foundations. Changes: all loot containers use Twilight Forest hollow hill tables
 (gnome hut hill_1, quarry and stoneworks pieces hill_2, stoneworks main building hill_3); all hostile mobs replaced by
-redcaps (5), redcap sappers (3) and kobolds or cave spiders (2), about 1 in 20 of them a vex; the terrain pool now points at terrain_large/terrain1..2 (the original
+mad dwarves (5), mad dwarf warriors (3) and kobolds or cave spiders (2), about 1 in 20 of them a vex; the terrain pool now points at terrain_large/terrain1..2 (the original
 pointed at a non-existing terrain/ folder).
 
 Also imported for the darkwood clearing landmark (twilightforest:arachnid_dwelling): arachnid_dwelling (template + pool). Wood blocks

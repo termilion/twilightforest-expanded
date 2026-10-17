@@ -1,0 +1,3 @@
+Mad dwarf model, textures and animation file are derived from The Dwarven Forge by Tenebris Mors
+(github.com/AngelDGr/The-Dwarven-Forge, declared MIT in its mods.toml).
+Changes: purple eyes + glow mask, warrior accents recoloured from cyan to gold, level badge bone removed.

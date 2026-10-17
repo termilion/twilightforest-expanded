@@ -97,7 +97,7 @@ public class HollowHillStructure extends LandmarkStructure implements Configurab
 			ControlledSpawningConfig.create(List.of(List.of(
 				new MobSpawnSettings.SpawnerData(EntityType.SPIDER, 10, 4, 4),
 				new MobSpawnSettings.SpawnerData(EntityType.ZOMBIE, 10, 4, 4),
-				new MobSpawnSettings.SpawnerData(TFEntities.REDCAP.get(), 10, 4, 4),
+				new MobSpawnSettings.SpawnerData(TFEntities.MAD_DWARF.get(), 10, 4, 4),
 				new MobSpawnSettings.SpawnerData(TFEntities.SWARM_SPIDER.get(), 10, 4, 4),
 				new MobSpawnSettings.SpawnerData(TFEntities.KOBOLD.get(), 10, 4, 8)
 			)), List.of(), List.of()),
@@ -117,8 +117,8 @@ public class HollowHillStructure extends LandmarkStructure implements Configurab
 		return new HollowHillStructure(
 			2,
 			ControlledSpawningConfig.create(List.of(List.of(
-				new MobSpawnSettings.SpawnerData(TFEntities.REDCAP.get(), 10, 1, 2),
-				new MobSpawnSettings.SpawnerData(TFEntities.REDCAP_SAPPER.get(), 2, 1, 2),
+				new MobSpawnSettings.SpawnerData(TFEntities.MAD_DWARF.get(), 10, 1, 2),
+				new MobSpawnSettings.SpawnerData(TFEntities.MAD_DWARF_WARRIOR.get(), 2, 1, 2),
 				new MobSpawnSettings.SpawnerData(TFEntities.KOBOLD.get(), 10, 2, 4),
 				new MobSpawnSettings.SpawnerData(EntityType.SKELETON, 10, 2, 3),
 				new MobSpawnSettings.SpawnerData(TFEntities.SWARM_SPIDER.get(), 10, 2, 4),
@@ -144,8 +144,8 @@ public class HollowHillStructure extends LandmarkStructure implements Configurab
 		return new HollowHillStructure(
 			3,
 			ControlledSpawningConfig.firstIndexMonsters(
-				new MobSpawnSettings.SpawnerData(TFEntities.REDCAP.get(), 10, 2, 4),
-				new MobSpawnSettings.SpawnerData(TFEntities.REDCAP_SAPPER.get(), 2, 1, 2),
+				new MobSpawnSettings.SpawnerData(TFEntities.MAD_DWARF.get(), 10, 2, 4),
+				new MobSpawnSettings.SpawnerData(TFEntities.MAD_DWARF_WARRIOR.get(), 2, 1, 2),
 				new MobSpawnSettings.SpawnerData(EntityType.SKELETON, 10, 2, 3),
 				new MobSpawnSettings.SpawnerData(EntityType.CAVE_SPIDER, 10, 1, 2),
 				new MobSpawnSettings.SpawnerData(EntityType.CREEPER, 10, 1, 1),

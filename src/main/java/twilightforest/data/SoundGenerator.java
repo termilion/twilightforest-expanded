@@ -213,9 +213,9 @@ public class SoundGenerator extends TFSoundProvider {
 		this.generateNewSoundWithSubtitle(TFSounds.RAVEN_CAW, "mob/raven/caw", 2, "Raven caws");
 		this.generateNewSoundWithSubtitle(TFSounds.RAVEN_SQUAWK, "mob/raven/squawk", 2, "Raven squawks in pain");
 
-		this.generateNewSoundWithSubtitle(TFSounds.REDCAP_AMBIENT, "mob/redcap/redcap", 6, "Redcap chuckles");
-		this.generateNewSoundWithSubtitle(TFSounds.REDCAP_DEATH, "mob/redcap/die", 3, "Redcap groans in agony");
-		this.generateNewSoundWithSubtitle(TFSounds.REDCAP_HURT, "mob/redcap/hurt", 4, "Redcap screeches in pain");
+		this.generateNewSoundWithSubtitle(TFSounds.MAD_DWARF_AMBIENT, "mob/redcap/redcap", 6, "Mad Dwarf chuckles");
+		this.generateNewSoundWithSubtitle(TFSounds.MAD_DWARF_DEATH, "mob/redcap/die", 3, "Mad Dwarf groans in agony");
+		this.generateNewSoundWithSubtitle(TFSounds.MAD_DWARF_HURT, "mob/redcap/hurt", 4, "Mad Dwarf screeches in pain");
 
 		this.generateNewSoundWithSubtitle(TFSounds.SHIELD_ADD, "random/scepter/shield_use", 1, "Fortification Shield spawns");
 		this.generateNewSoundWithSubtitle(TFSounds.SHIELD_BREAK, "random/scepter/shield_break", 1, "Fortification Shield breaks");
@@ -320,7 +320,7 @@ public class SoundGenerator extends TFSoundProvider {
 		this.generateParrotSound(TFSounds.MINOTAUR_PARROT, TFSounds.MINOTAUR_AMBIENT.get(), "Parrot moos angrily");
 		this.generateParrotSound(TFSounds.MOSQUITO_PARROT, TFSounds.MOSQUITO.get(), "Parrot buzzes");
 		this.generateParrotSound(TFSounds.NAGA_PARROT, TFSounds.NAGA_HISS.get(), "Parrot rattles");
-		this.generateParrotSound(TFSounds.REDCAP_PARROT, TFSounds.REDCAP_AMBIENT.get(), "Parrot chuckles");
+		this.generateParrotSound(TFSounds.MAD_DWARF_PARROT, TFSounds.MAD_DWARF_AMBIENT.get(), "Parrot chuckles");
 		this.generateParrotSound(TFSounds.WRAITH_PARROT, TFSounds.WRAITH_AMBIENT.get(), "Parrot gasps");
 
 

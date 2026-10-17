@@ -8,14 +8,14 @@ import net.minecraft.world.entity.item.PrimedTnt;
 import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.phys.AABB;
 import org.jetbrains.annotations.Nullable;
-import twilightforest.entity.monster.Redcap;
+import twilightforest.entity.monster.MadDwarf;
 
-public abstract class RedcapBaseGoal extends Goal {
+public abstract class MadDwarfBaseGoal extends Goal {
 
-	protected final Redcap redcap;
+	protected final MadDwarf madDwarf;
 
-	protected RedcapBaseGoal(Redcap entity) {
-		this.redcap = entity;
+	protected MadDwarfBaseGoal(MadDwarf entity) {
+		this.madDwarf = entity;
 	}
 
 	/**
@@ -23,8 +23,8 @@ public abstract class RedcapBaseGoal extends Goal {
 	 */
 	public boolean isTargetLookingAtMe(LivingEntity attackTarget) {
 		// find angle of approach
-		double dx = this.redcap.getX() - attackTarget.getX();
-		double dz = this.redcap.getZ() - attackTarget.getZ();
+		double dx = this.madDwarf.getX() - attackTarget.getX();
+		double dz = this.madDwarf.getZ() - attackTarget.getZ();
 		float angle = (float) ((Math.atan2(dz, dx) * 180D) / Math.PI) - 90F;
 
 		float difference = Mth.abs((attackTarget.getYRot() - angle) % 360);
@@ -34,12 +34,12 @@ public abstract class RedcapBaseGoal extends Goal {
 
 	@Nullable
 	public BlockPos findBlockTNTNearby(int range) {
-		BlockPos entityPos = this.redcap.blockPosition();
+		BlockPos entityPos = this.madDwarf.blockPosition();
 
 		for (int x = -range; x <= range; x++) {
 			for (int y = -range; y <= range; y++) {
 				for (int z = -range; z <= range; z++) {
-					if (this.redcap.level().getBlockState(entityPos.offset(x, y, z)).getBlock() == Blocks.TNT) {
+					if (this.madDwarf.level().getBlockState(entityPos.offset(x, y, z)).getBlock() == Blocks.TNT) {
 						return entityPos.offset(x, y, z);
 					}
 				}
@@ -50,7 +50,7 @@ public abstract class RedcapBaseGoal extends Goal {
 	}
 
 	public boolean isLitTNTNearby(int range) {
-		AABB expandedBox = this.redcap.getBoundingBox().inflate(range, range, range);
-		return !this.redcap.level().getEntitiesOfClass(PrimedTnt.class, expandedBox).isEmpty();
+		AABB expandedBox = this.madDwarf.getBoundingBox().inflate(range, range, range);
+		return !this.madDwarf.level().getEntitiesOfClass(PrimedTnt.class, expandedBox).isEmpty();
 	}
 }

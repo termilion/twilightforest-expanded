@@ -79,7 +79,7 @@ public class EntityLootTables extends EntityLootSubProvider {
 		add(TFEntities.HOSTILE_WOLF.get(), fromEntityLootTable(EntityType.WOLF));
 		add(TFEntities.KING_SPIDER.get(), fromEntityLootTable(EntityType.SPIDER));
 		add(TFEntities.MIST_WOLF.get(), fromEntityLootTable(EntityType.WOLF));
-		add(TFEntities.REDCAP_SAPPER.get(), fromEntityLootTable(TFEntities.REDCAP.get()));
+		add(TFEntities.MAD_DWARF_WARRIOR.get(), fromEntityLootTable(TFEntities.MAD_DWARF.get()));
 		add(TFEntities.SWARM_SPIDER.get(), fromEntityLootTable(EntityType.SPIDER));
 		add(TFEntities.CARMINITE_BROODLING.get(), fromEntityLootTable(EntityType.SPIDER));
 		add(TFEntities.CARMINITE_GHASTGUARD.get(), fromEntityLootTable(EntityType.GHAST));
@@ -194,7 +194,7 @@ public class EntityLootTables extends EntityLootSubProvider {
 						.apply(SetItemCountFunction.setCount(UniformGenerator.between(0.0F, 2.0F)))
 						.apply(EnchantedCountIncreaseFunction.lootingMultiplier(this.registries, UniformGenerator.between(0.0F, 1.0F))))));
 
-		add(TFEntities.REDCAP.get(),
+		add(TFEntities.MAD_DWARF.get(),
 			LootTable.lootTable()
 				.withPool(LootPool.lootPool()
 					.setRolls(ConstantValue.exactly(1))

@@ -78,9 +78,6 @@ public class TFModelLayers {
 	public static final ModelLayerLocation QUEST_RAM = register("quest_ram");
 	public static final ModelLayerLocation BROWNIE = register("brownie");
 	public static final ModelLayerLocation RAVEN = register("raven");
-	public static final ModelLayerLocation REDCAP = register("redcap");
-	public static final ModelLayerLocation REDCAP_ARMOR_OUTER = register("redcap", "outer");
-	public static final ModelLayerLocation REDCAP_ARMOR_INNER = register("redcap", "inner");
 	public static final ModelLayerLocation RISING_ZOMBIE = register("rising_zombie");
 	public static final ModelLayerLocation ROVING_CUBE = register("roving_cube");
 	public static final ModelLayerLocation SKELETON_DRUID = register("skeleton_druid");

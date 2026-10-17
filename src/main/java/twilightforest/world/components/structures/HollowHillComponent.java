@@ -272,7 +272,7 @@ public class HollowHillComponent extends TFStructureComponentOld {
 			case 3, 4, 5 -> EntityType.SPIDER;
 			case 6, 7 -> EntityType.ZOMBIE;
 			case 8 -> EntityType.SILVERFISH;
-			case 9 -> TFEntities.REDCAP.get();
+			case 9 -> TFEntities.MAD_DWARF.get();
 			default -> TFEntities.SWARM_SPIDER.get();
 		};
 	}
@@ -286,7 +286,7 @@ public class HollowHillComponent extends TFStructureComponentOld {
 			case 6, 7 -> EntityType.SKELETON;
 			case 8 -> TFEntities.SWARM_SPIDER.get();
 			case 9 -> EntityType.CAVE_SPIDER;
-			default -> TFEntities.REDCAP.get();
+			default -> TFEntities.MAD_DWARF.get();
 		};
 	}
 

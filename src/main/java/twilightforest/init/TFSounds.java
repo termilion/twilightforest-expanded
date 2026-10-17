@@ -226,9 +226,9 @@ public final class TFSounds {
 	public static final DeferredHolder<SoundEvent, SoundEvent> REACTOR_AMBIENT = createEvent("block.twilightforest.reactor.ambient");
 	public static final DeferredHolder<SoundEvent, SoundEvent> REAPPEAR_BLOCK = createEvent("block.twilightforest.reappearing_block.reappear");
 	public static final DeferredHolder<SoundEvent, SoundEvent> REAPPEAR_POOF = createEvent("block.twilightforest.reappearing_block.vanish");
-	public static final DeferredHolder<SoundEvent, SoundEvent> REDCAP_AMBIENT = createEvent("entity.twilightforest.redcap.ambient");
-	public static final DeferredHolder<SoundEvent, SoundEvent> REDCAP_DEATH = createEvent("entity.twilightforest.redcap.death");
-	public static final DeferredHolder<SoundEvent, SoundEvent> REDCAP_HURT = createEvent("entity.twilightforest.redcap.hurt");
+	public static final DeferredHolder<SoundEvent, SoundEvent> MAD_DWARF_AMBIENT = createEvent("entity.twilightforest.mad_dwarf.ambient");
+	public static final DeferredHolder<SoundEvent, SoundEvent> MAD_DWARF_DEATH = createEvent("entity.twilightforest.mad_dwarf.death");
+	public static final DeferredHolder<SoundEvent, SoundEvent> MAD_DWARF_HURT = createEvent("entity.twilightforest.mad_dwarf.hurt");
 	public static final DeferredHolder<SoundEvent, SoundEvent> SHIELD_ADD = createEvent("entity.twilightforest.fortification_shield.add");
 	public static final DeferredHolder<SoundEvent, SoundEvent> SHIELD_BLOCK = createEvent("entity.twilightforest.fortification_shield.block");
 	public static final DeferredHolder<SoundEvent, SoundEvent> SHIELD_BREAK = createEvent("entity.twilightforest.fortification_shield.break");
@@ -336,7 +336,7 @@ public final class TFSounds {
 	public static final DeferredHolder<SoundEvent, SoundEvent> MINOTAUR_PARROT = createEvent("entity.twilightforest.parrot.imitate.minotaur");
 	public static final DeferredHolder<SoundEvent, SoundEvent> MOSQUITO_PARROT = createEvent("entity.twilightforest.parrot.imitate.mosquito");
 	public static final DeferredHolder<SoundEvent, SoundEvent> NAGA_PARROT = createEvent("entity.twilightforest.parrot.imitate.naga");
-	public static final DeferredHolder<SoundEvent, SoundEvent> REDCAP_PARROT = createEvent("entity.twilightforest.parrot.imitate.redcap");
+	public static final DeferredHolder<SoundEvent, SoundEvent> MAD_DWARF_PARROT = createEvent("entity.twilightforest.parrot.imitate.mad_dwarf");
 	public static final DeferredHolder<SoundEvent, SoundEvent> WRAITH_PARROT = createEvent("entity.twilightforest.parrot.imitate.wraith");
 
 	public static final DeferredHolder<SoundEvent, SoundEvent> JAR_BREAK = createEvent("block.twilightforest.jar.break");

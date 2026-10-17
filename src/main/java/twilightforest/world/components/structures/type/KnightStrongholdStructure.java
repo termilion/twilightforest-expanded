@@ -58,7 +58,7 @@ public class KnightStrongholdStructure extends ControlledSpawningStructure {
 				new MobSpawnSettings.SpawnerData(TFEntities.LOWER_GOBLIN_KNIGHT.get(), 5, 1, 2),
 				new MobSpawnSettings.SpawnerData(TFEntities.HELMET_CRAB.get(), 10, 2, 4),
 				new MobSpawnSettings.SpawnerData(TFEntities.SLIME_BEETLE.get(), 10, 2, 3),
-				new MobSpawnSettings.SpawnerData(TFEntities.REDCAP_SAPPER.get(), 2, 1, 2),
+				new MobSpawnSettings.SpawnerData(TFEntities.MAD_DWARF_WARRIOR.get(), 2, 1, 2),
 				new MobSpawnSettings.SpawnerData(TFEntities.KOBOLD.get(), 10, 2, 4),
 				new MobSpawnSettings.SpawnerData(EntityType.CREEPER, 5, 1, 2),
 				new MobSpawnSettings.SpawnerData(EntityType.SLIME, 5, 4, 4)

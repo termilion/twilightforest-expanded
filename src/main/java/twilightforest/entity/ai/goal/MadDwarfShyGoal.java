@@ -4,11 +4,11 @@ import net.minecraft.util.Mth;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.phys.Vec3;
-import twilightforest.entity.monster.Redcap;
+import twilightforest.entity.monster.MadDwarf;
 
 import java.util.EnumSet;
 
-public class RedcapShyGoal extends RedcapBaseGoal {
+public class MadDwarfShyGoal extends MadDwarfBaseGoal {
 
 	private LivingEntity entityTarget;
 	private final float speed;
@@ -21,25 +21,25 @@ public class RedcapShyGoal extends RedcapBaseGoal {
 	private static final double maxDistance = 6.0;
 
 	@SuppressWarnings("this-escape")
-	public RedcapShyGoal(Redcap entityTFRedcap, float moveSpeed) {
-		super(entityTFRedcap);
+	public MadDwarfShyGoal(MadDwarf entity, float moveSpeed) {
+		super(entity);
 		this.speed = moveSpeed;
 		this.setFlags(EnumSet.of(Flag.MOVE, Flag.LOOK));
 	}
 
 	@Override
 	public boolean canUse() {
-		LivingEntity attackTarget = this.redcap.getTarget();
+		LivingEntity attackTarget = this.madDwarf.getTarget();
 
 		if (attackTarget == null
-			|| !this.redcap.isShy()
-			|| attackTarget.distanceTo(this.redcap) > maxDistance
-			|| attackTarget.distanceTo(this.redcap) < minDistance
+			|| !this.madDwarf.isShy()
+			|| attackTarget.distanceTo(this.madDwarf) > maxDistance
+			|| attackTarget.distanceTo(this.madDwarf) < minDistance
 			|| !isTargetLookingAtMe(attackTarget)) {
 			return false;
 		} else {
 			this.entityTarget = attackTarget;
-			Vec3 avoidPos = findCirclePoint(this.redcap, this.entityTarget, 5, this.lefty ? 1 : -1);
+			Vec3 avoidPos = findCirclePoint(this.madDwarf, this.entityTarget, 5, this.lefty ? 1 : -1);
 
 			this.targetX = avoidPos.x();
 			this.targetY = avoidPos.y();
@@ -54,33 +54,33 @@ public class RedcapShyGoal extends RedcapBaseGoal {
 	 */
 	@Override
 	public void start() {
-		this.redcap.getNavigation().moveTo(this.targetX, this.targetY, this.targetZ, this.speed);
+		this.madDwarf.getNavigation().moveTo(this.targetX, this.targetY, this.targetZ, this.speed);
 	}
 
 	@Override
 	public boolean canContinueToUse() {
-		LivingEntity attackTarget = this.redcap.getTarget();
+		LivingEntity attackTarget = this.madDwarf.getTarget();
 
 		if (attackTarget == null) {
 			return false;
 		} else if (!this.entityTarget.isAlive()) {
 			return false;
-		} else if (this.redcap.getNavigation().isDone()) {
+		} else if (this.madDwarf.getNavigation().isDone()) {
 			return false;
 		}
 
-		return this.redcap.isShy() && attackTarget.distanceTo(this.redcap) < maxDistance && attackTarget.distanceTo(this.redcap) > minDistance && isTargetLookingAtMe(attackTarget);
+		return this.madDwarf.isShy() && attackTarget.distanceTo(this.madDwarf) < maxDistance && attackTarget.distanceTo(this.madDwarf) > minDistance && isTargetLookingAtMe(attackTarget);
 	}
 
 	@Override
 	public void tick() {
-		this.redcap.getLookControl().setLookAt(this.entityTarget, 30.0F, 30.0F);
+		this.madDwarf.getLookControl().setLookAt(this.entityTarget, 30.0F, 30.0F);
 	}
 
 	@Override
 	public void stop() {
 		this.entityTarget = null;
-		this.redcap.getNavigation().stop();
+		this.madDwarf.getNavigation().stop();
 	}
 
 	private Vec3 findCirclePoint(Entity circler, Entity toCircle, double radius, double rotation) {

@@ -579,7 +579,7 @@ public class RegistrationEvents {
 		event.register(TFEntities.BOAR.get(), SpawnPlacementTypes.ON_GROUND, Heightmap.Types.MOTION_BLOCKING_NO_LEAVES, Animal::checkAnimalSpawnRules, RegisterSpawnPlacementsEvent.Operation.REPLACE);
 		event.register(TFEntities.BIGHORN_SHEEP.get(), SpawnPlacementTypes.ON_GROUND, Heightmap.Types.MOTION_BLOCKING_NO_LEAVES, Animal::checkAnimalSpawnRules, RegisterSpawnPlacementsEvent.Operation.REPLACE);
 		event.register(TFEntities.DEER.get(), SpawnPlacementTypes.ON_GROUND, Heightmap.Types.MOTION_BLOCKING_NO_LEAVES, Animal::checkAnimalSpawnRules, RegisterSpawnPlacementsEvent.Operation.REPLACE);
-		event.register(TFEntities.REDCAP.get(), SpawnPlacementTypes.ON_GROUND, Heightmap.Types.MOTION_BLOCKING_NO_LEAVES, Monster::checkMonsterSpawnRules, RegisterSpawnPlacementsEvent.Operation.REPLACE);
+		event.register(TFEntities.MAD_DWARF.get(), SpawnPlacementTypes.ON_GROUND, Heightmap.Types.MOTION_BLOCKING_NO_LEAVES, Monster::checkMonsterSpawnRules, RegisterSpawnPlacementsEvent.Operation.REPLACE);
 		event.register(TFEntities.SKELETON_DRUID.get(), SpawnPlacementTypes.ON_GROUND, Heightmap.Types.MOTION_BLOCKING_NO_LEAVES, SkeletonDruid::checkDruidSpawnRules, RegisterSpawnPlacementsEvent.Operation.REPLACE);
 		event.register(TFEntities.WRAITH.get(), SpawnPlacementTypes.ON_GROUND, Heightmap.Types.MOTION_BLOCKING_NO_LEAVES, Wraith::checkMonsterSpawnRules, RegisterSpawnPlacementsEvent.Operation.REPLACE);
 		event.register(TFEntities.HOSTILE_WOLF.get(), SpawnPlacementTypes.ON_GROUND, Heightmap.Types.MOTION_BLOCKING_NO_LEAVES, HostileWolf::checkWolfSpawnRules, RegisterSpawnPlacementsEvent.Operation.REPLACE);
@@ -624,7 +624,7 @@ public class RegistrationEvents {
 		event.register(TFEntities.KING_SPIDER.get(), SpawnPlacementTypes.ON_GROUND, Heightmap.Types.MOTION_BLOCKING_NO_LEAVES, Monster::checkMonsterSpawnRules, RegisterSpawnPlacementsEvent.Operation.REPLACE);
 		event.register(TFEntities.CARMINITE_BROODLING.get(), SpawnPlacementTypes.ON_GROUND, Heightmap.Types.MOTION_BLOCKING_NO_LEAVES, Monster::checkMonsterSpawnRules, RegisterSpawnPlacementsEvent.Operation.REPLACE);
 		event.register(TFEntities.HEDGE_SPIDER.get(), SpawnPlacementTypes.ON_GROUND, Heightmap.Types.MOTION_BLOCKING_NO_LEAVES, HedgeSpider::canSpawn, RegisterSpawnPlacementsEvent.Operation.REPLACE);
-		event.register(TFEntities.REDCAP_SAPPER.get(), SpawnPlacementTypes.ON_GROUND, Heightmap.Types.MOTION_BLOCKING_NO_LEAVES, Monster::checkMonsterSpawnRules, RegisterSpawnPlacementsEvent.Operation.REPLACE);
+		event.register(TFEntities.MAD_DWARF_WARRIOR.get(), SpawnPlacementTypes.ON_GROUND, Heightmap.Types.MOTION_BLOCKING_NO_LEAVES, Monster::checkMonsterSpawnRules, RegisterSpawnPlacementsEvent.Operation.REPLACE);
 		event.register(TFEntities.MAZE_SLIME.get(), SpawnPlacementTypes.ON_GROUND, Heightmap.Types.MOTION_BLOCKING_NO_LEAVES, MazeSlime::getCanSpawnHere, RegisterSpawnPlacementsEvent.Operation.REPLACE);
 		event.register(TFEntities.YETI.get(), SpawnPlacementTypes.ON_GROUND, Heightmap.Types.MOTION_BLOCKING_NO_LEAVES, Yeti::yetiSnowyForestSpawnHandler, RegisterSpawnPlacementsEvent.Operation.REPLACE);
 		event.register(TFEntities.ALPHA_YETI.get(), SpawnPlacementTypes.ON_GROUND, Heightmap.Types.MOTION_BLOCKING_NO_LEAVES, Monster::checkMonsterSpawnRules, RegisterSpawnPlacementsEvent.Operation.REPLACE);
@@ -647,7 +647,7 @@ public class RegistrationEvents {
 		event.put(TFEntities.BOAR.get(), Boar.registerAttributes().build());
 		event.put(TFEntities.BIGHORN_SHEEP.get(), Sheep.createAttributes().build());
 		event.put(TFEntities.DEER.get(), Deer.registerAttributes().build());
-		event.put(TFEntities.REDCAP.get(), Redcap.registerAttributes().build());
+		event.put(TFEntities.MAD_DWARF.get(), MadDwarf.registerAttributes().build());
 		event.put(TFEntities.SWARM_SPIDER.get(), SwarmSpider.registerAttributes().build());
 		event.put(TFEntities.NAGA.get(), Naga.registerAttributes().build());
 		event.put(TFEntities.SKELETON_DRUID.get(), AbstractSkeleton.createAttributes().build());
@@ -676,7 +676,7 @@ public class RegistrationEvents {
 		event.put(TFEntities.SLIME_BEETLE.get(), SlimeBeetle.registerAttributes().build());
 		event.put(TFEntities.PINCH_BEETLE.get(), PinchBeetle.registerAttributes().build());
 		event.put(TFEntities.MAZE_SLIME.get(), Monster.createMonsterAttributes().build());
-		event.put(TFEntities.REDCAP_SAPPER.get(), RedcapSapper.registerAttributes().build());
+		event.put(TFEntities.MAD_DWARF_WARRIOR.get(), MadDwarfWarrior.registerAttributes().build());
 		event.put(TFEntities.MIST_WOLF.get(), MistWolf.registerAttributes().build());
 		event.put(TFEntities.KING_SPIDER.get(), KingSpider.registerAttributes().build());
 		event.put(TFEntities.CARMINITE_GHASTLING.get(), CarminiteGhastling.registerAttributes().build());
